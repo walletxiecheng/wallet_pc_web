@@ -4,7 +4,7 @@ import Index from "../src/pages/Index";
 import Privacry from "../src/pages/Privacy"
 import Agreement from "../src/pages/Agreement"
 import Footer from "./components/Footer";
-import { Router, Route,Routes } from "react-router-dom";
+import {Route,Routes } from "react-router-dom";
 export default function App() {
   return (
     <div>
