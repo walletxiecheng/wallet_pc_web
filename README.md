@@ -1,8 +1,26 @@
-# React + Vite
+# 项目名称
+  wallen_admin_web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 项目简介
+公司官网
 
-Currently, two official plugins are available:
+## 技术栈
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **前端框架**: React/Vue/Angular
+- **构建工具**: Vite/Webpack/Create React App
+- **CSS**: Tailwind CSS/Sass/LESS
+- **其他**: Axios、React Router 等
+
+## 打包
+
+npm run build
+
+```bash
+# 克隆项目
+git clone https://github.com/your-username/your-project.git
+
+# 进入项目目录
+cd  wallen_admin_web
+
+# 安装依赖
+npm install
