@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-
+import { Link } from "react-router-dom";
 import logo from "../../icon/logo.png";
 import token from "../../icon/Token13.png";
 import language from "../../icon/Language.png";
@@ -95,8 +95,13 @@ export default function Menu() {
         </div>
         {/* 协议/语言 */}
         <div className={style.menuContent}>
-          <span>{t("User Agreement")}</span>
-          <span>{t("Privacy Policy")}</span>
+          <Link className={style.link} to='agreem'>
+            {t("User Agreement")}
+          </Link>
+          <Link className={style.link} to='privacy'>
+            {t("Privacy Policy")}
+          </Link>
+          
           <div className={style.languageContainer}>
             <img
               alt=""

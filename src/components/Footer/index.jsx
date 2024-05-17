@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import style from "./index.module.less";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -11,8 +12,8 @@ export default function Footer() {
           ©Vanilla 2023-2024 {t(". All Rights Reserved.")}
         </p>
         <p className={style.agreement}>
-          <span>{t("User Agreement")}</span>
-          <span className={style.privacy}>{t("Privacy Policy")}</span>
+          <Link to='/agreem'  className={style.link} >{t("User Agreement")}</Link>
+          <Link  to='/privacy' className={style.link} >{t("Privacy Policy")}</Link>
         </p>
       </div>
     </div>
