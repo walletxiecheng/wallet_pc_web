@@ -1,17 +1,20 @@
 import React from 'react'
 import style from './index.module.less'
-const data = {
+import union from "../../icon/union.png";
+import Recommend from '../../components/Recommend'
 
-}
 export default function Privacy() {
   return (
     <div className={style.privacyContainer}>
-        <header>
+        <div className={style.privacyTop}>
+            <img className={style.headerIcon} src={union} alt="" />
+      </div>
+        <header >
               <h2>Privacy Policy</h2>
               <div className={style.updateDate}>Update date: May 18, 2024</div>
         </header>
-        <hr />
         <main>
+   
           <section>
             <p>If you use the services of the Token 13 platform, it means that you agree with what we have stated in this policy. Token 13 will inform you in this policy how we collect, process and protect your personal information. Please read carefully and accept the contents of this policy before using Token 13 services. After we update our privacy policy, we will promptly remind you of the new situation. If you continue to use our products or services, it means that you agree to the contents of our privacy policy (including the updated version).</p>
           </section>

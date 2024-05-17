@@ -1,14 +1,17 @@
 import React from 'react'
 import style from './index.module.less'
-
+import union from "../../icon/union.png";
+import Recommend from '../../components/Recommend'
 export default function Agreement() {
   return (
     <div className={style.agreeContainer}>
+        <div className={style.privacyTop}>
+            <img className={style.headerIcon} src={union} alt="" />
+      </div>
        <header>
-              <h2>Privacy Policy</h2>
+              <h2> User Agreement</h2>
               <div className={style.updateDate}>Update date: May 18, 2024</div>
         </header>
-        <hr />
         <main>
           <section>
             <h4>Welcome to Token 13</h4>

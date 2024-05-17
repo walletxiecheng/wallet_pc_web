@@ -35,8 +35,6 @@ export default function Index() {
       <CarouselBox />
       {/* 评价列表 */}
       <Assess />
-      {/* 推荐下载方式 */}
-      <Recommend />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../icon/logo.png";
 import token from "../../icon/Token13.png";
 import language from "../../icon/Language.png";
@@ -64,7 +65,7 @@ export default function Menu() {
   // 展示语言类型组件
   const [showTip, setShowTip] = useState(false);
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
   const isFixed = scrollPosition > 100;
 
   // 查看当前选择的语法
@@ -89,7 +90,9 @@ export default function Menu() {
     >
       <div className={style.menuBox}>
         {/* logo */}
-        <div className={style.logo}>
+        <div className={style.logo} onClick={()=>{
+            navigate('/index')
+        }}>
           <img src={logo} alt="" />
           <img src={token} alt="" />
         </div>
