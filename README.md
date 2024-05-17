@@ -6,10 +6,10 @@
 
 ## 技术栈
 
-- **前端框架**: React/Vue/Angular
-- **构建工具**: Vite/Webpack/Create React App
-- **CSS**: Tailwind CSS/Sass/LESS
-- **其他**: Axios、React Router 等
+- **前端框架**: React
+- **构建工具**: Vite
+- **CSS**: LESS
+- **其他**: React Router，ant-design
 
 ## 打包
 
