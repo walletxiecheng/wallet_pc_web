@@ -22,7 +22,7 @@ export default function Router() {
     {
       path: "/agree",
       element: <Agreement />,
-    },
+    }
   ]);
   return element;
 }
