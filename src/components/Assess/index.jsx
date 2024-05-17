@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 import style from "./index.module.less";
 import prev from "../../icon/prev.png";
 import back from "../../icon/back.png";
+import unback from "../../icon/unback.png";
+import unprev from "../../icon/unprev.png";
 import start from "../../icon/start.png";
 import startHalf from "../../icon/starthalf.png";
 import avatar from "../../image/avatar.png";
@@ -168,10 +170,10 @@ export default function Assess() {
         </div>
         <div className={style.switch}>
           <div className={style.move} onClick={onPrev}>
-            <img src={prev} alt="" />
+            <img src={page <= 1 ? unprev : prev} alt="" />
           </div>
           <div className={style.move} onClick={onNext}>
-            <img src={back} alt="" />
+            <img src={page >= 3 ? unback : back} alt="" />
           </div>
         </div>
       </div>

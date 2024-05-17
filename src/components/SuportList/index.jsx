@@ -10,6 +10,14 @@ import suportIcon4 from "../../icon/suporr4.png";
 import suportIcon5 from "../../icon/suporr5.png";
 import suportIcon6 from "../../icon/suporr6.png";
 
+import bg1 from "../../image/s1.png"
+import bg2 from "../../image/s2.png"
+import bg3 from "../../image/s3.png"
+import bg4 from "../../image/s4.png"
+import bg5 from "../../image/s5.png"
+import bg6 from "../../image/s6.png"
+
+
 const tips = [
   {
     content: "Frax.finance",
@@ -49,43 +57,50 @@ const suplist = [
     icon: suportIcon1,
     content:
       "There are various DApps on Token 13 such as cryptocurrency wallets, decentralized exchanges, games, and financial services.You have complete control over your data and assets without relying on third-party intermediaries.",
+    bakground: bg1
   },
   {
     title: "Flash Exchange",
     icon: suportIcon2,
     content:
       "Token 13 is a fast and convenient decentralized transaction method. Use smart contracts and cross-chain technology to ensure the security and reliability of transactions.",
-  },
+    bakground: bg2
+    },
   {
     title: "Batch Transfer",
     icon: suportIcon3,
     content:
       "Use the Token 13 batch transfer function to send assets to multiple addresses at once, thereby saving handling fees and time. Improve efficiency, reduce costs and reduce the risk of human error.",
-  },
+    bakground: bg3
+    },
   {
     title: "Hardware Equipment",
     icon: suportIcon4,
     content:
       "Use secure transmission protocols and encryption algorithms to ensure security during data transmission and prevent unauthorized data theft or tampering.And supports multiple authentication mechanisms to ensure that only authorized users can access and operate.You can store Token 13 data with confidence, avoid data leakage and risks, and improve overall security and protection capabilities.",
-  },
+    bakground: bg4
+    },
   {
     title: "TRX Vote",
     icon: suportIcon5,
     content:
       "Through the voting function of Token 13, support your recognized super representatives or candidate representatives to help them obtain more voting rights, thereby influencing the development direction and decision-making results of the TRON network and obtaining rewards or benefits.",
-  },
+     bakground: bg5
+    },
   {
     title: "Cross-chain exchange",
     icon: suportIcon6,
     content:
       "Token 13 can exchange or transfer digital assets. Help you achieve asset liquidity and interoperability between different blockchain networks and promote the development and integration of the blockchain ecosystem.",
-  },
+      bakground: bg6
+    },
 ];
 
-export function SuportItem({ title, icon, content }) {
+export function SuportItem({ title, icon, content, bakground}) {
   const { t } = useTranslation();
   return (
     <div className={style.suportBox}>
+      <img className={style.suportBg} src={bakground} alt="" />
       <header className={style.suportHeader}>{t(title)}</header>
       <img className={style.suportIcon} src={icon} alt="" />
       <div className={style.suportContent}>{t(content)}</div>
@@ -114,6 +129,7 @@ export default function SuportList() {
             icon={item.icon}
             title={item.title}
             content={item.content}
+            bakground={item.bakground}
           ></SuportItem>
         ))}
       </div>
