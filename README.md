@@ -11,9 +11,6 @@
 - **CSS**: LESS
 - **其他**: React Router，ant-design
 
-## 打包
-
-npm run build
 
 ```bash
 # 克隆项目
@@ -24,3 +21,6 @@ cd  wallen_admin_web
 
 # 安装依赖
 npm install
+
+#打包
+npm run build
