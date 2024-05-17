@@ -1,0 +1,71 @@
+.menuContainer {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  .menuBox {
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .menuContent {
+      color: var(---_-, #7e8795);
+      font-family: Gilroy;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px;
+      display: flex;
+      span {
+        display: block;
+        margin-right: 24px;
+      }
+      span:hover {
+        color: #000;
+      }
+      .languageContainer {
+        .languageIcon {
+          width: 16px;
+          height: 16px;
+        }
+        .languageList {
+          margin: 5px;
+          padding: 10px;
+          width: 100px;
+          height: 42px;
+          position: absolute;
+          border-radius: 5px;
+          background-color: #ffffff;
+          .languageGroup {
+            .languageItem {
+              margin-top: 2px;
+              display: flex;
+              align-items: center;
+              list-style-type: none;
+              justify-content: space-between;
+              .languageLabel {
+                color: #000000;
+              }
+              .selectIcon {
+                width: 16px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.fixed {
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+  }
+}

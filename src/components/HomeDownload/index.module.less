@@ -1,0 +1,54 @@
+// 下载组
+.downLoadGroup {
+  width: 100%;
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  .downloadBtn {
+    display: flex;
+    width: 160px;
+    height: 52px;
+    margin: 0 13px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(---, #cbcfd5);
+    background: #fff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
+    .icon {
+      width: 36px;
+    }
+    .contentBox {
+      margin-left: 8px;
+      .header {
+        color: var(---_-, #7e8795);
+        font-family: Gilroy;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 12px; /* 120% */
+      }
+      .content {
+        margin-top: 2px;
+        color: #060707;
+        font-family: Gilroy;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 18px; /* 128.571% */
+      }
+    }
+  }
+  .selectDownloadBtn {
+    background-color: #000;
+    transition: background-color 0.5s ease;
+    .contentBox {
+      .header {
+        color: #b2b7bf;
+      }
+      .content {
+        color: #ffffff;
+      }
+    }
+  }
+}
