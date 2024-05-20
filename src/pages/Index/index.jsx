@@ -7,7 +7,6 @@ import ReadyExplore from "../../components/ReadyExplore";
 import HomeTitle from "../../components/HomeTitle";
 import HomeDownload from "../../components/HomeDownload";
 import Assess from "../../components/Assess";
-import Recommend from "../../components/Recommend";
 import style from "./index.module.less";
 export default function Index() {
   return (
