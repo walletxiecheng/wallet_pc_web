@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import SuportList from "../../components/SuportList";
 import CarouselBox from "../../components/Carousel";
-import homePreview from "../../image/home-preview.png";
-import marketPreview from "../../image/market-preview.png";
 import ReadyExplore from "../../components/ReadyExplore";
 import HomeTitle from "../../components/HomeTitle";
 import HomeDownload from "../../components/HomeDownload";
 import Assess from "../../components/Assess";
 import style from "./index.module.less";
+import { useTranslation } from "react-i18next";
+import homePreview from "../../image/home-preview.png";
+import marketPreview from "../../image/market-preview.png";
+import homePreviewZh from "../../image/home-preview-zh.png";
+import marketPreviewZh from "../../image/market-preview-zh.png";
+
+
 export default function Index() {
+  const { i18n } = useTranslation()
+  const isZh = useState(i18n.language === 'zh')
+  console.log(isZh)
   return (
     <div className={style.homeContainer}>
       {/* 标题 */}
@@ -20,10 +28,10 @@ export default function Index() {
             {/* screen组 */}
             <div className={style.previewGroup}>
               <div className={style.floor}>
-                <img src={marketPreview} alt="" />
+                <img src={ isZh ? marketPreviewZh: marketPreview} alt="" />
               </div>
               <div>
-                <img src={homePreview} alt="" />
+                <img src={ isZh? marketPreview: homePreview} alt="" />
               </div>
             </div>
       </div>

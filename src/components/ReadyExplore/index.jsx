@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import style from "./index.module.less";
 import union from "../../icon/union.png";
 import readyImg from "../../image/readyImg.png";
+import readyImgZh from "../../image/readyImg_zh.png";
+
 import safe from "../../icon/safe.png";
 import enrich from "../../icon/enrich.png";
 import market from "../../icon/market.png";
@@ -34,7 +36,6 @@ const advanceList = [
 ];
 export function AdvanceItem({ title, content, icon }) {
   const { t } = useTranslation();
-
   return (
     <div className={style.advanceContainer}>
       <img  className={style.advIcon} src={icon} alt="" />
@@ -47,8 +48,8 @@ export function AdvanceItem({ title, content, icon }) {
 }
 
 export default function ReadyExplore() {
-  const { t } = useTranslation();
-
+  const { t, i18n} = useTranslation();
+  const isZh = i18n.language  === 'zh'
   return (
     <div className={style.readyContainer}>
       <header className={style.header}>
@@ -71,7 +72,7 @@ export default function ReadyExplore() {
           </div>
         </div>
         <div className={style.previewBox}>
-          <img  width={320} src={readyImg} alt="" />
+          <img  width={320} src={ isZh? readyImgZh: readyImg} alt="" />
         </div>
       </div>
     </div>

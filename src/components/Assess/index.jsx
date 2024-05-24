@@ -86,6 +86,22 @@ const assessListData = [
         name: "Wade Warren",
         email: "@Nellie Davis",
       },
+      {
+        title: "Great app!",
+        content:
+          "I have used the Token 13 wallet many times and have mixed it up, but it is more compatible and easier to use than many wallets. It is protected by a more secure system than other wallets. I have recommended it to other crypto enthusiast friends I know.",
+        avatar: start,
+        name: "Wade Warren",
+        email: "@Nellie Davis",
+      },
+      {
+        title: "Great app!",
+        content:
+          "I have used the Token 13 wallet many times and have mixed it up, but it is more compatible and easier to use than many wallets. It is protected by a more secure system than other wallets. I have recommended it to other crypto enthusiast friends I know.",
+        avatar: start,
+        name: "Wade Warren",
+        email: "@Nellie Davis",
+      },
     ],
   },
 ];
