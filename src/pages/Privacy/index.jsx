@@ -28,7 +28,7 @@ export default function Privacy() {
 
           <section>
             <h4>{t('How we use your personal information')}</h4>
-            <p>{("We will use the personal information you provide for the following purposes:")}</p>
+            <p>{t("We will use the personal information you provide for the following purposes")}</p>
             <p>{t('1. Used for identity verification, fraud checking, fraud monitoring, customer service, archiving and backup when providing services to ensure the security of the services and products Token 13 provides you.')}</p>
             <p>{t('2. Provide you with personalized service and experience.')}</p>
             <p>{t('3. Send you products, services, advertisements, and user surveys that may be of interest to you based on your personal information.')}</p>

@@ -159,7 +159,7 @@ export default function Assess() {
       </header>
 
       {/* 评价列表 */}
-      <Carousel ref={carouselRef} infinite={false} dots={false}>
+      <Carousel  autoplay ref={carouselRef} infinite={false} dots={false}>
         {assessListData.map((item, index) => (
           <AssessItem key={index} data={item.data}></AssessItem>
         ))}

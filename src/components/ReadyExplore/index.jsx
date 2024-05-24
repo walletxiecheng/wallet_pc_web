@@ -37,7 +37,7 @@ export function AdvanceItem({ title, content, icon }) {
 
   return (
     <div className={style.advanceContainer}>
-      <img className={style.advIcon} src={icon} alt="" />
+      <img  className={style.advIcon} src={icon} alt="" />
       <header className={style.advHeader}>{t(title)} </header>
       <p>
         <span className={style.advContent}>{t(content)}</span>
@@ -71,7 +71,7 @@ export default function ReadyExplore() {
           </div>
         </div>
         <div className={style.previewBox}>
-          <img src={readyImg} alt="" />
+          <img  width={320} src={readyImg} alt="" />
         </div>
       </div>
     </div>

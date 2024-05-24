@@ -19,7 +19,7 @@ export default function Recommend() {
       </div>
       <div className={style.downLoadWay}>
         <div>
-          <img className={style.qrcode} src={qrCodePc} alt="" />
+          <img  width={116} className={style.qrcode} src={qrCodePc} alt="" />
         </div>
         <HomeDownload vertical={true}></HomeDownload>
       </div>

@@ -12,19 +12,22 @@ export default function Index() {
   return (
     <div className={style.homeContainer}>
       {/* 标题 */}
-      <HomeTitle />
-      {/* 下载按钮组 */}
-      <HomeDownload />
+      <div className={style.bannner}>
+            <HomeTitle />
+            {/* 下载按钮组 */}
+            <HomeDownload />
 
-      {/* screen组 */}
-      <div className={style.previewGroup}>
-        <div className={style.floor}>
-          <img src={marketPreview} alt="" />
-        </div>
-        <div>
-          <img src={homePreview} alt="" />
-        </div>
+            {/* screen组 */}
+            <div className={style.previewGroup}>
+              <div className={style.floor}>
+                <img src={marketPreview} alt="" />
+              </div>
+              <div>
+                <img src={homePreview} alt="" />
+              </div>
+            </div>
       </div>
+    
 
       {/* 准备好探索token13了吗 explore */}
       <ReadyExplore />

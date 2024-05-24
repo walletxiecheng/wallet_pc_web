@@ -45,7 +45,7 @@ export function CarouselItem({ image, title, content, subTitle }) {
     <div className={style.toolContainer}>
       {/* 轮播图片 */}
       <div>
-        <img src={image} alt="" />
+        <img  width={316} src={image} alt="" />
       </div>
       {/* 右侧介绍 */}
       <div>
