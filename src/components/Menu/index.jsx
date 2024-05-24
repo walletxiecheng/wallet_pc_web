@@ -93,8 +93,8 @@ export default function Menu() {
         <div className={style.logo} onClick={()=>{
             navigate('/index')
         }}>
-          <img src={logo} alt="" />
-          <img src={token} alt="" />
+          <img width={40} src={logo} alt="" />
+          <img width={117} className={style.logoToken} src={token} alt="" />
         </div>
         {/* 协议/语言 */}
         <div className={style.menuContent}>

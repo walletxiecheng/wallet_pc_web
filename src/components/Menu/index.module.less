@@ -1,7 +1,8 @@
 .menuContainer {
   position: fixed;
   top: 0;
-  width: 100vw;
+  left: 0;
+  right: 0;
   height: 72px;
   display: flex;
   align-items: center;
@@ -9,12 +10,16 @@
   z-index: 99999;
   .menuBox {
     width: 1200px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     .logo {
       display: flex;
       align-items: center;
+      .logoToken{
+        margin-left: 5px;
+      }
     }
     .menuContent {
       font-family: Gilroy;

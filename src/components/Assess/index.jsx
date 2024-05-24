@@ -101,7 +101,7 @@ export function AssessItem({ data }) {
           <div className={style.iconList}>
             {starIcons.map((item, index) => (
               <div key={index} className={style.starIcon}>
-                <img src={item} alt="" />
+                <img src={item} width={20} alt="" />
               </div>
             ))}
           </div>
@@ -166,14 +166,14 @@ export default function Assess() {
       </Carousel>
       <div className={style.paginGroup}>
         <div className={style.pagin}>
-          <span>0{page}</span> of 10
+          <span>0{page}</span> of 3
         </div>
         <div className={style.switch}>
           <div className={style.move} onClick={onPrev}>
-            <img src={page <= 1 ? unprev : prev} alt="" />
+            <img width={37} src={page <= 1 ? unprev : prev} alt="" />
           </div>
           <div className={style.move} onClick={onNext}>
-            <img src={page >= 3 ? unback : back} alt="" />
+            <img  width={37} src={page >= 3 ? unback : back} alt="" />
           </div>
         </div>
       </div>
