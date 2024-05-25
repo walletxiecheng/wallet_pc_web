@@ -10,5 +10,8 @@ export default defineConfig({
         javascriptEnabled: true,
       },
     },
+    server: {
+      host: true
+    }  
   },
 });

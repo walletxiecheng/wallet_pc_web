@@ -16,7 +16,6 @@ import marketPreviewZh from "../../image/market-preview-zh.png";
 export default function Index() {
   const { i18n } = useTranslation()
   const isZh = useState(i18n.language === 'zh')
-  console.log(isZh)
   return (
     <div className={style.homeContainer}>
       {/* 标题 */}
@@ -31,7 +30,7 @@ export default function Index() {
                 <img src={ isZh ? marketPreviewZh: marketPreview} alt="" />
               </div>
               <div>
-                <img src={ isZh? marketPreview: homePreview} alt="" />
+                <img src={ isZh? homePreviewZh: homePreview} alt="" />
               </div>
             </div>
       </div>

@@ -107,7 +107,6 @@ export default function Menu() {
           
           <div className={style.languageContainer}>
             <img
-              alt=""
               src={icon}
               className={style.languageIcon}
               onMouseOver={() => {
@@ -118,7 +117,7 @@ export default function Menu() {
                 setIcon(language);
                 setTimeout(() => {
                   setShowTip(false);
-                }, 1000);
+                }, 2000);
               }}
             />
             {showTip && <LanguageTypes />}
