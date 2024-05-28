@@ -12,13 +12,14 @@ const axiosInstance = axios.create({
 
 const aioxsDefine = {
   // GET 请求
-  get: (url, params = {}, headers) => axiosInstance.get(url, { params }),
+  get: (url, params = {}) => axiosInstance.get(url, { params }),
 
   // POST 请求
   post: (url, data = {}, headers) => axiosInstance.post(url, data, headers),
 
   // PUT 请求
-  put: (url, data = {}) => axiosInstance.put(url, data),
+  put: (url, data = {}, headers) => axiosInstance.put(url, data, headers),
+  // put: (url, data = {}, headers) => {axiosInstance.put(url, data, headers)},
 
   // DELETE 请求
   delete: (url, data = {}) => axiosInstance.delete(url, { data })

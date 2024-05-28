@@ -1,7 +1,8 @@
 import {
   getSupportChainList,
   uploadSupportChain,
-  deleteSupportChain
+  deleteSupportChain,
+  updateSupportChain
 } from '@/service/coin'
 
 function App() {
@@ -28,7 +29,25 @@ function App() {
   }
 
   const put = async () => {
-    const req = { page: 1, size: 10 }
+    const req = {
+      id: 7,
+      name: 'dddd',
+      description: 'ddd',
+      website:
+        'http://18.143.170.163:9996/swagger/index.html#/%E4%BB%A3%E5%B8%81%E7%AE%A1%E7%90%86%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3/post_back_appPageManagement_coins_uploadSupportChain',
+      types: 'Bitcoin',
+      path: "m/44'/0'/0'/0/0",
+      network: 'MAINNET',
+      status: 3,
+      file: ''
+    }
+    const headers = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    const res = await updateSupportChain(req, headers)
+    console.log(res)
   }
 
   const del = async () => {

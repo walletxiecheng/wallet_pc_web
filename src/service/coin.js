@@ -35,10 +35,13 @@ export const uploadSupportChain = (data, headers) => {
 }
 
 // 修改的支持链信息
-export const updateSupportChain = (data) => {
+export const updateSupportChain = (data, headers) => {
+  console.log(headers)
+
   return aioxsDefine.put(
     '/back/appPageManagement/coins/updateSupportChain',
-    data
+    data,
+    headers
   )
 }
 
