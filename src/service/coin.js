@@ -68,3 +68,12 @@ export const deleteSupportChain = (params) => {
     params
   )
 }
+
+//上传图片接口 1.代币图片，2.dapp图片，3.新闻图片，4.用户头像
+export const uploadImage = (data, headers) => {
+  return axiossDefine.put(
+    '/back/appPageManagement/coins/uploadImage',
+    data,
+    headers
+  )
+}
