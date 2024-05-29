@@ -1,13 +1,13 @@
 // 资讯/新闻相关
-
+import axiosDefine from '@/common/axiosSetiting'
 // 删除新闻
 export const deleteNews = (params) => {
-  return aioxsDefine.delete('/back/appPageManagement/news/deleteNews', params)
+  return axiosDefine.delete('/back/appPageManagement/news/deleteNews', params)
 }
 
 // 删除新闻图片
 export const deleteNewsImage = (params) => {
-  return aioxsDefine.delete(
+  return axiosDefine.delete(
     '/back/appPageManagement/news/deleteNewsImage',
     params
   )
@@ -15,12 +15,12 @@ export const deleteNewsImage = (params) => {
 
 // 获取新闻列表
 export const getNewsList = (params) => {
-  return aioxsDefine.get('/back/appPageManagement/news/getNewsList', params)
+  return axiosDefine.get('/back/appPageManagement/news/getNewsList', params)
 }
 
 // 发布新闻
 export const publishNews = (data, headers) => {
-  return aioxsDefine.get(
+  return axiosDefine.get(
     '/back/appPageManagement/news/publishNews',
     data,
     headers
@@ -29,7 +29,7 @@ export const publishNews = (data, headers) => {
 
 // 修改新闻
 export const updateNewss = (data, headers) => {
-  return aioxsDefine.put(
+  return axiosDefine.put(
     '/back/appPageManagement/news/updateNewss',
     data,
     headers

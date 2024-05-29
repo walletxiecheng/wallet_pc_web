@@ -1,9 +1,9 @@
 //代币管理相关接口
-import aioxsDefine from '@/common/axiosSetiting'
+import axiossDefine from '@/common/axiosSetiting'
 
 // 获取支持的代币信息
 export const getSupportCoinList = (params) => {
-  return aioxsDefine.get(
+  return axiossDefine.get(
     '/back/appPageManagement/coins/getSupportChainList',
     params
   )
@@ -11,7 +11,7 @@ export const getSupportCoinList = (params) => {
 
 // 获取支持的链信息
 export const getSupportChainList = (params) => {
-  return aioxsDefine.get(
+  return axiossDefine.get(
     '/back/appPageManagement/coins/getSupportChainList',
     params
   )
@@ -19,7 +19,7 @@ export const getSupportChainList = (params) => {
 
 // 上传新的支持代币
 export const uploadSupportCoin = (data) => {
-  return aioxsDefine.post(
+  return axiossDefine.post(
     '/back/appPageManagement/coins/uploadSupportCoin',
     data
   )
@@ -27,7 +27,7 @@ export const uploadSupportCoin = (data) => {
 
 // 上传新的支持链信息——传入表单格式数据
 export const uploadSupportChain = (data, headers) => {
-  return aioxsDefine.post(
+  return axiossDefine.post(
     '/back/appPageManagement/coins/uploadSupportChain',
     data,
     headers
@@ -38,7 +38,7 @@ export const uploadSupportChain = (data, headers) => {
 export const updateSupportChain = (data, headers) => {
   console.log(headers)
 
-  return aioxsDefine.put(
+  return axiossDefine.put(
     '/back/appPageManagement/coins/updateSupportChain',
     data,
     headers
@@ -47,7 +47,7 @@ export const updateSupportChain = (data, headers) => {
 
 // 修改的支持代币信息
 export const updateSupportCoinList = (data) => {
-  return aioxsDefine.put(
+  return axiossDefine.put(
     '/back/appPageManagement/coins/updateSupportCoinList',
     data
   )
@@ -55,7 +55,7 @@ export const updateSupportCoinList = (data) => {
 
 // 删除支持的代币信息
 export const deleteSupportCoin = (params) => {
-  return aioxsDefine.delete(
+  return axiossDefine.delete(
     '/back/appPageManagement/coins/deleteSupportCoin',
     params
   )
@@ -63,7 +63,7 @@ export const deleteSupportCoin = (params) => {
 
 // 删除支持的链信息
 export const deleteSupportChain = (params) => {
-  return aioxsDefine.delete(
+  return axiossDefine.delete(
     '/back/appPageManagement/coins/deleteSupportChain',
     params
   )

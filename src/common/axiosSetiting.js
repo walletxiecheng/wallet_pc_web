@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
   }
 })
 
-const aioxsDefine = {
+const axiossDefine = {
   // GET 请求
   get: (url, params = {}) => axiosInstance.get(url, { params }),
 
@@ -25,4 +25,4 @@ const aioxsDefine = {
   delete: (url, data = {}) => axiosInstance.delete(url, { data })
 }
 
-export default aioxsDefine
+export default axiossDefine
