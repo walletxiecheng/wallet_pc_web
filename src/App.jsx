@@ -1,10 +1,15 @@
+import { BrowserRouter as Router, useRoutes } from 'react-router-dom'
 import {
   getSupportChainList,
   uploadSupportChain,
   deleteSupportChain,
   updateSupportChain
 } from '@/service/coin'
+import routes from '@/routes'
 
+function AppRoutes() {
+  return useRoutes(routes)
+}
 function App() {
   const add = async () => {
     const headers = {
@@ -61,15 +66,16 @@ function App() {
     console.log(res)
   }
   return (
-    <>
-      <div>
+    <Router>
+      <AppRoutes />
+      {/* <div>
         <button onClick={add}>新增</button>
         <button onClick={del}>删除</button>
         <button onClick={put}>修改</button>
         <button onClick={query}>查询</button>
         <input type="text" />
-      </div>
-    </>
+      </div> */}
+    </Router>
   )
 }
 
