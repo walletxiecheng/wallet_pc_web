@@ -1,4 +1,4 @@
-import { useUserStore } from '@/store/use'
+import { useUserStore } from '@/stores/index'
 // 首页组件
 export default function Index() {
   const newInfo = {
