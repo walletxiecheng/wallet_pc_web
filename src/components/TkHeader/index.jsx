@@ -3,8 +3,9 @@ import style from './index.module.less'
 import { Header } from 'antd/es/layout/layout'
 import logoIcon from '@/assets/icon/logoIcon.svg'
 import avatarIcon from '@/assets/icon/avatarIcon.svg'
+
 // 顶部header
-export default function MyHeader() {
+export default function TkHeader() {
   return (
     <Header className={style.headerContainer}>
       <div className={style.headerTitle}>

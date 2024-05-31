@@ -1,43 +1,51 @@
 import { createBrowserRouter } from 'react-router-dom'
 import BaseLayout from '@/Layouts/BaseLayout'
-import Index from '@/pages/Index'
 import Login from '@/pages/Login'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
 
 export const URlS = {
-  home: '/',
+  root: '/',
   index: '/index',
   login: '/login',
-  smsManager: '/systems/sms',
+  smsManager: '/systems/smsManager',
+  warnManager: '/systems/warnManager',
+  warnSetting: '/systems/warnSetting',
   notFount: '*'
 }
 
 const routes = createBrowserRouter([
   {
-    path: URlS.home,
+    path: URlS.root,
     element: <BaseLayout />,
-    errorElement: ErrorPage
-  },
-  {
-    path: URlS.index,
-    element: <Index />,
-    errorElement: ErrorPage
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: URlS.smsManager,
+        element: <div>smsManager</div>,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URlS.warnManager,
+        element: <div>warnManager</div>,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URlS.warnSetting,
+        element: <div>warnSetting</div>,
+        errorElement: <ErrorPage />
+      }
+    ]
   },
   {
     path: URlS.login,
     element: <Login />,
-    errorElement: ErrorPage
-  },
-  {
-    path: URlS.smsManager,
-    element: <div>smsManager</div>,
-    errorElement: ErrorPage
+    errorElement: <ErrorPage />
   },
   {
     path: URlS.notFount,
     element: <NotFound />
   }
 ])
-console.log(routes)
+
 export default routes
