@@ -4,32 +4,40 @@ import Index from '@/pages/Index'
 import Login from '@/pages/Login'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
+
+export const URlS = {
+  home: '/',
+  index: '/index',
+  login: '/login',
+  smsManager: '/systems/sms',
+  notFount: '*'
+}
+
 const routes = createBrowserRouter([
   {
-    path: '/',
+    path: URlS.home,
     element: <BaseLayout />,
-    children: [
-      {
-        path: '/index',
-        element: <Index></Index>
-      }
-    ],
     errorElement: ErrorPage
   },
   {
-    path: '/index',
+    path: URlS.index,
     element: <Index />,
     errorElement: ErrorPage
   },
   {
-    path: '/login',
+    path: URlS.login,
     element: <Login />,
     errorElement: ErrorPage
   },
   {
-    path: '*',
+    path: URlS.smsManager,
+    element: <div>smsManager</div>,
+    errorElement: ErrorPage
+  },
+  {
+    path: URlS.notFount,
     element: <NotFound />
   }
 ])
-
+console.log(routes)
 export default routes

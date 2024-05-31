@@ -19,6 +19,7 @@ const BaseLayout = () => {
           style={{
             background: colorBgContainer,
             height: '968px'
+            // width: 208
           }}
         >
           <SiderMenu />

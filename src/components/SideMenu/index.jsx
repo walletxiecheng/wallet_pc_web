@@ -5,23 +5,6 @@ import {
   UserOutlined
 } from '@ant-design/icons'
 import { Menu } from 'antd'
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-  (icon, index) => {
-    const key = String(index + 1)
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
-      children: new Array(4).fill(null).map((_, j) => {
-        const subKey = index * 4 + j + 1
-        return {
-          key: subKey,
-          label: `option${subKey}`
-        }
-      })
-    }
-  }
-)
 
 const item = [
   {
@@ -76,10 +59,12 @@ const item = [
     ]
   }
 ]
+
 export default function SideMenu() {
   const changeMenuItem = (e) => {
     console.log(e)
   }
+
   return (
     <Menu
       mode="inline"
