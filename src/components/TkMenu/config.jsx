@@ -1,12 +1,13 @@
 import { UserOutlined } from '@ant-design/icons'
+import { URLS } from '@/routes/urls'
 
-export var menuKeys = {
+export const menuKeys = {
   systems: 'systems',
   smsManager: 'smsManager',
   warnManager: 'warnManager',
   warnSetting: 'warnSetting',
   adminSetting: 'adminSetting',
-  opreatLogSetting: 'opreatLogSetting',
+  operateLogSetting: 'operateLogSetting',
   loginLogManager: 'loginLogManager',
   merchantManager: 'merchantManager',
   accountManager: 'accountManager',
@@ -23,17 +24,17 @@ export const menuItems = [
       {
         label: '短信管理',
         key: menuKeys.smsManager,
-        path: '/systems/smsManager'
+        path: URLS.smsManager
       },
       {
         label: '报警管理',
         key: menuKeys.warnManager,
-        path: '/systems/warnManager'
+        path: URLS.warnManager
       },
       {
         label: '报警设置',
         key: menuKeys.warnSetting,
-        path: '/systems/warnSetting'
+        path: URLS.warnSetting
       },
       {
         label: '管理员设置',
@@ -41,7 +42,7 @@ export const menuItems = [
       },
       {
         label: '操作日志设置',
-        key: menuKeys.opreatLogSetting
+        key: menuKeys.operateLogSetting
       },
       {
         label: '登陆日志管理',
@@ -50,7 +51,7 @@ export const menuItems = [
     ]
   },
   {
-    key: 'merchantManager',
+    key: menuKeys.merchantManager,
     icon: <UserOutlined />,
     label: '商户管理',
     children: [

@@ -1,10 +1,7 @@
 import React from 'react'
 import { Breadcrumb, Layout } from 'antd'
-import TkTable from '@/components/TkTable'
 import { Outlet } from 'react-router-dom'
 import style from './index.module.less'
-
-const { Content } = Layout
 
 export default function MainLayout() {
   return (
@@ -16,7 +13,6 @@ export default function MainLayout() {
       {/* 短信管理 */}
       <Layout.Content className={style.layoutContent}>
         <Outlet />
-        <TkTable></TkTable>
       </Layout.Content>
     </Layout>
   )

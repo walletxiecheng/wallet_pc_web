@@ -1,49 +1,41 @@
 import { createBrowserRouter } from 'react-router-dom'
 import BaseLayout from '@/Layouts/BaseLayout'
 import Login from '@/pages/Login'
+import SmsManager from '@/pages/SmsManager'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
+import { URLS } from './urls'
 
-export const URlS = {
-  root: '/',
-  index: '/index',
-  login: '/login',
-  smsManager: '/systems/smsManager',
-  warnManager: '/systems/warnManager',
-  warnSetting: '/systems/warnSetting',
-  notFount: '*'
-}
-
-const routes = createBrowserRouter([
+export const routes = createBrowserRouter([
   {
-    path: URlS.root,
+    path: URLS.root,
     element: <BaseLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: URlS.smsManager,
-        element: <div>smsManager</div>,
+        path: URLS.smsManager,
+        element: <SmsManager />,
         errorElement: <ErrorPage />
       },
       {
-        path: URlS.warnManager,
+        path: URLS.warnManager,
         element: <div>warnManager</div>,
         errorElement: <ErrorPage />
       },
       {
-        path: URlS.warnSetting,
+        path: URLS.warnSetting,
         element: <div>warnSetting</div>,
         errorElement: <ErrorPage />
       }
     ]
   },
   {
-    path: URlS.login,
+    path: URLS.login,
     element: <Login />,
     errorElement: <ErrorPage />
   },
   {
-    path: URlS.notFount,
+    path: URLS.notFount,
     element: <NotFound />
   }
 ])
