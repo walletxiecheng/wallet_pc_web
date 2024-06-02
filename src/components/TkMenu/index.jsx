@@ -7,8 +7,9 @@ import { Layout } from 'antd'
 
 export default function TkMenu() {
   const navigate = useNavigate()
-  const handleClick = ({ item }) => {
-    const path = item?.props?.path || ''
+  const handleClick = (props) => {
+    const { item } = props
+    const path = item?.props?.path || '' //waring: 可能性bug
     if (!path) {
       return
     }
