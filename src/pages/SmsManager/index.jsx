@@ -78,7 +78,7 @@ const SmsManager = () => {
   const [inputValue, setInputValue] = useState()
   const [selectKey, setSelectKey] = useState('id')
 
-  // Modal：新建弹出框
+  // Modal：新建
   const handleAddSms = () => {
     // 重置表单字段-打开弹窗
     setTimeout(() => form.resetFields(), 64)
@@ -97,6 +97,7 @@ const SmsManager = () => {
     })
   }
 
+  // Modal：编辑
   const handleEditSms = (record) => {
     // 重置表单字段
     // 设置表单值为：record回显编辑

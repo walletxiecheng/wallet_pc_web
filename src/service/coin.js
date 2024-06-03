@@ -1,5 +1,5 @@
 //代币管理相关接口
-import axiossDefine from '@/common/axiosSetiting'
+import axiossDefine from '@/common/axiosSetting'
 
 // 获取支持的代币信息
 export const getSupportCoinList = (params) => {
@@ -36,8 +36,6 @@ export const uploadSupportChain = (data, headers) => {
 
 // 修改的支持链信息
 export const updateSupportChain = (data, headers) => {
-  console.log(headers)
-
   return axiossDefine.put(
     '/back/appPageManagement/coins/updateSupportChain',
     data,

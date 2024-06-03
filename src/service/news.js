@@ -1,5 +1,5 @@
 // 资讯/新闻相关
-import axiosDefine from '@/common/axiosSetiting'
+import axiosDefine from '@/common/axiosSetting'
 // 删除新闻
 export const deleteNews = (params) => {
   return axiosDefine.delete('/back/appPageManagement/news/deleteNews', params)

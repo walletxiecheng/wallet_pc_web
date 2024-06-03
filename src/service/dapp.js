@@ -1,5 +1,5 @@
 //后台dapp相关接口
-import axiosDefine from '@/common/axiosSetiting'
+import axiosDefine from '@/common/axiosSetting'
 
 // 删除dapp信息
 export const deleteDapp = (params) => {

@@ -1,5 +1,5 @@
 // 节点配置
-import axiosDefine from '@/common/axiosSetiting'
+import axiosDefine from '@/common/axiosSetting'
 
 // 删除节点配置信息
 export const deleteNodeConfig = (params) => {

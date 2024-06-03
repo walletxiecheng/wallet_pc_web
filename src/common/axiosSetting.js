@@ -6,7 +6,8 @@ const axiosInstance = axios.create({
   // baseURL: window.location.href,
   timeout: 10000,
   headers: {
-    'Content-Type': 'application/json'
+    // 'Content-Type': 'application/json'
+    'Content-Type': 'multipart/form-data'
   }
 })
 
@@ -19,7 +20,6 @@ const axiossDefine = {
 
   // PUT 请求
   put: (url, data = {}, headers) => axiosInstance.put(url, data, headers),
-  // put: (url, data = {}, headers) => {axiosInstance.put(url, data, headers)},
 
   // DELETE 请求
   delete: (url, data = {}) => axiosInstance.delete(url, { data })

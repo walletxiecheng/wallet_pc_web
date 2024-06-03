@@ -1,5 +1,5 @@
 // 版本管理
-import axiosDefine from '@/common/axiosSetiting'
+import axiosDefine from '@/common/axiosSetting'
 
 //获取软件版本信息
 export const getVersionInfo = (params) => {

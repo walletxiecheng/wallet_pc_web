@@ -1,5 +1,5 @@
 // 热门词管理相关接口
-import axiosDefine from '@/common/axiosSetiting'
+import axiosDefine from '@/common/axiosSetting'
 
 // 将dapp移除热门
 export const deleteHotDapp = (params) => {

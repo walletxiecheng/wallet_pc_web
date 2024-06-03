@@ -1,5 +1,5 @@
 //后台语言相关接口
-import axiosDefine from '@/common/axiosSetiting'
+import axiosDefine from '@/common/axiosSetting'
 
 // 删除指定的语言
 export const deleteLanguageMapInfo = (params) => {
