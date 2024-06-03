@@ -48,3 +48,18 @@ export const columns = (handleEditSms) => {
     }
   ]
 }
+
+export const downLoadOptions = [
+  {
+    value: 'id',
+    label: '编号'
+  },
+  {
+    value: 'name',
+    label: '名称'
+  },
+  {
+    value: 'key',
+    label: '唯一标识'
+  }
+]

@@ -1,9 +1,10 @@
 import React from 'react'
-import { Space, Table, Button, Form } from 'antd'
+import { Space, Table, Button, Form, Select, Input } from 'antd'
 import { useState } from 'react'
-import { columns } from './config'
+import { columns, downLoadOptions } from './config'
 import { openModal } from './components/Modal'
 import { SmsForm } from './components/Form'
+import style from './index.module.less'
 
 const dataSource = [
   {
@@ -74,6 +75,8 @@ const dataSource = [
 const SmsManager = () => {
   const [form] = Form.useForm()
   const [data, setData] = useState(dataSource)
+  const [inputValue, setInputValue] = useState()
+  const [selectKey, setSelectKey] = useState('id')
 
   // Modal：新建弹出框
   const handleAddSms = () => {
@@ -117,13 +120,39 @@ const SmsManager = () => {
       }
     })
   }
+  const onSearch = () => {
+    const req = {
+      selectKey: inputValue
+    }
+    // 调用接口
 
+    // 渲染数据
+    console.log(req)
+  }
   return (
     <>
-      <Space>
-        <Button onClick={handleAddSms} style={{ marginBottom: '16px' }}>
-          + 新建
-        </Button>
+      <Space className={style.editDataBox}>
+        {/* 数据操作区 */}
+        <Space.Compact>
+          <Select
+            className={style.select}
+            defaultValue="编号"
+            options={downLoadOptions}
+            onChange={(e) => {
+              setSelectKey(e)
+            }}
+          />
+          <Input
+            placeholder="请输入编号"
+            onChange={(e) => {
+              setInputValue(e.target.value)
+            }}
+          />
+          <Button onClick={onSearch}>搜索</Button>
+        </Space.Compact>
+        <Space.Compact>
+          <Button onClick={handleAddSms}>+ 新建</Button>
+        </Space.Compact>
       </Space>
 
       <Table columns={columns(handleEditSms)} dataSource={data} />
