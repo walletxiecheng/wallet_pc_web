@@ -1,4 +1,5 @@
 import axiosDefine from '@/common/axiosSetting'
+
 // 登录
 export const login = (data) => {
   return axiosDefine.put('/back/system/login/login', data)

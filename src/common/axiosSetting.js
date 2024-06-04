@@ -6,8 +6,8 @@ const axiosInstance = axios.create({
   // baseURL: window.location.href,
   timeout: 10000,
   headers: {
-    // 'Content-Type': 'application/json'
-    'Content-Type': 'multipart/form-data'
+    'Content-Type': 'application/json'
+    // 'Content-Type': 'multipart/form-data'
   }
 })
 

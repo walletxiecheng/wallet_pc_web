@@ -1,27 +1,62 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Form, Input, Space } from 'antd'
-import { useNavigate } from 'react-router-dom'
 import { convertJsonToFormData } from '@/utils/handleData'
-import { login } from '@/service/login'
-import { useUserStore } from '@/stores'
+import { openModal } from '../SmsManager/components/Modal'
+import BindTelForm from './components/Form'
+import { login, preLogin, bindPhoneNumber } from '@/service/login'
+import { successMsg } from '@/components/TKMessage'
 import style from './index.module.less'
 import logo from '@/assets/icon/largeLogoIcon.svg'
-// 测试组件
+// 登录组件
 export default function Login() {
-  const [form] = Form.useForm()
-  const navigate = useNavigate()
-  const changeInfo = useUserStore((state) => {
-    state.changeInfo
-  })
+  const [loginForm] = Form.useForm()
+  const [bindForm] = Form.useForm()
+  const bindTelNumber = (formData) => {
+    // TODO首次登录绑定手机号
+    return openModal({
+      title: '绑定手机号',
+      content: <BindTelForm form={bindForm} />,
+      handleOk: async () => {
+        const result = await bindForm.validateFields()
+        try {
+          // TODO:绑定手机号
+          result.account_number = Number(formData.account_number)
+          console.log(result)
+          const res = await bindPhoneNumber(result)
+          console.log(res)
+          return Promise.reject()
+        } catch (err) {
+          return Promise.reject()
+        }
+      }
+    })
+  }
+  const onLoginHandler = async () => {
+    const res = await login()
+    console.log(res)
+  }
+  // 登录时调用
   const onFinish = async (values) => {
-    const from = convertJsonToFormData(values)
-    const { data } = await login(from)
-    form.resetFields()
-    setTimeout(() => {
-      changeInfo(data)
-    }, 200)
-    navigate('/systems/smsManager')
+    // TODO判断是否首次登录
+    const loginData = await loginForm.validateFields()
+    const req = { account_number: values.account_number }
+    const { data } = await preLogin(req)
+    const resData = data.data
+    const status = resData.account_status
+
+    console.log(values)
+    // 根据不同的状态码做不同的操作
+    if (status === 0) {
+      successMsg('账号不存在', 'error')
+    } else if (status === 1) {
+      // 直接登录
+      onLoginHandler(values)
+    } else if (status === 2) {
+      bindTelNumber(loginData)
+    } else if (status === 3) {
+      successMsg('账号已禁用', 'warn')
+    }
   }
   return (
     <div className={style.loginContainer}>
@@ -39,8 +74,8 @@ export default function Login() {
         </header>
         {/* 登陆表单 */}
         <Form
+          form={loginForm}
           name="normal_login"
-          form={form}
           className={style.loginForm}
           initialValues={{
             remember: true
@@ -78,23 +113,7 @@ export default function Login() {
               placeholder="请输入密码"
             />
           </Form.Item>
-          <Form.Item
-            name="verification_code"
-            rules={[
-              {
-                required: true,
-                message: '请输入验证码'
-              }
-            ]}
-          >
-            <Input
-              type="text"
-              style={{
-                width: 120
-              }}
-              placeholder="请输入验证码"
-            />
-          </Form.Item>
+
           <Form.Item>
             <Form.Item valuePropName="checked" noStyle>
               <Checkbox>记住我</Checkbox>
