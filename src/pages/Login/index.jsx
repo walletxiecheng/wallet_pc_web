@@ -1,16 +1,27 @@
 import React from 'react'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Form, Input, Space } from 'antd'
+import { useNavigate } from 'react-router-dom'
 import { convertJsonToFormData } from '@/utils/handleData'
 import { login } from '@/service/login'
+import { useUserStore } from '@/stores'
 import style from './index.module.less'
 import logo from '@/assets/icon/largeLogoIcon.svg'
 // 测试组件
 export default function Login() {
+  const [form] = Form.useForm()
+  const navigate = useNavigate()
+  const changeInfo = useUserStore((state) => {
+    state.changeInfo
+  })
   const onFinish = async (values) => {
     const from = convertJsonToFormData(values)
     const { data } = await login(from)
-    console.log(data)
+    form.resetFields()
+    setTimeout(() => {
+      changeInfo(data)
+    }, 200)
+    navigate('/systems/smsManager')
   }
   return (
     <div className={style.loginContainer}>
@@ -29,6 +40,7 @@ export default function Login() {
         {/* 登陆表单 */}
         <Form
           name="normal_login"
+          form={form}
           className={style.loginForm}
           initialValues={{
             remember: true

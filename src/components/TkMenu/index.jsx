@@ -18,7 +18,7 @@ export default function TkMenu() {
   }
 
   return (
-    <Layout.Sider width="208px">
+    <Layout.Sider width="208px" theme="light">
       <Menu
         mode="inline"
         items={menuItems}
