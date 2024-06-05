@@ -38,15 +38,18 @@ export const menuItems = [
       },
       {
         label: '管理员设置',
-        key: menuKeys.adminSetting
+        key: menuKeys.adminSetting,
+        path: URLS.adminSetting
       },
       {
         label: '操作日志设置',
-        key: menuKeys.operateLogSetting
+        key: menuKeys.operateLogSetting,
+        path: URLS.operateLogSetting
       },
       {
         label: '登陆日志管理',
-        key: menuKeys.loginLogManager
+        key: menuKeys.loginLogManager,
+        path: URLS.loginLogManager
       }
     ]
   },

@@ -6,8 +6,6 @@ import {
   DatePicker,
   Input,
   Select,
-  Col,
-  Row,
   Button,
   Space
 } from 'antd'
@@ -34,11 +32,17 @@ const options = [
 ]
 
 export default function WarnManager() {
+  const [form] = Form.useForm()
+  // 查询
+  const query = () => {}
+  // 重置
+  const reset = () => {}
+
   return (
     <div className={style.warnContainer}>
       <div className={style.warnSet}>
         <Form layout="horizontal" className={style.warnSetForm}>
-          <Row>
+          <Space size="large">
             <Form.Item name="min" label="触发指标">
               <InputNumber changeOnWheel placeholder="最小值" />
             </Form.Item>
@@ -51,11 +55,11 @@ export default function WarnManager() {
             <Form.Item name="dsc" label="摘要">
               <Input placeholder="报错内容"></Input>
             </Form.Item>
-          </Row>
+          </Space>
 
-          <Row>
+          <Space size="large">
             <Form.Item name="sysType" label="系统类型">
-              <Select option={options} placeholder="IOS"></Select>
+              <Select option={options} placeholder="系统类型"></Select>
             </Form.Item>
             <Form.Item name="warnType" label="报警类型">
               <Select option={options} placeholder="报警类型"></Select>
@@ -63,16 +67,15 @@ export default function WarnManager() {
             <Form.Item name="ruleType" label="规则类型">
               <Select option={options} placeholder="规则类型"></Select>
             </Form.Item>
-            <Space style={{ marginLeft: '45%' }}>
-              <Form.Item>
-                <Button>重置</Button>
-              </Form.Item>
-              <Form.Item>
-                <Button>查询</Button>
-              </Form.Item>
-              <Form.Item>收起</Form.Item>
-            </Space>
-          </Row>
+          </Space>
+          <Space style={{ marginLeft: '40%' }}>
+            <Button type="primary" onClick={reset}>
+              重置
+            </Button>
+            <Button type="primary" onClick={query}>
+              查询
+            </Button>
+          </Space>
         </Form>
       </div>
       <Table columns={columns()} dataSource={dataSource} />

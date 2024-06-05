@@ -5,6 +5,7 @@ export const convertJsonToFormData = (json) => {
   const formData = new FormData()
   for (const key in json) {
     if (json.hasOwnProperty(key)) {
+      console.log(key, json[key])
       formData.append(key, json[key])
     }
   }

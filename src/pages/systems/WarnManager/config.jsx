@@ -46,11 +46,11 @@ export const columns = () => {
       title: '操作',
       dataIndex: 'operate',
       key: 'operate',
-      render: () => (
+      render: (record) => (
         <Button
           type="link"
           onClick={() => {
-            navigate(URLS.warnDetail)
+            navigate(URLS.warnDetail, record)
           }}
         >
           查看详情

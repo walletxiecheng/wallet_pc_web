@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Form, Input, Space } from 'antd'
-import { convertJsonToFormData } from '@/utils/handleData'
-import { openModal } from '../SmsManager/components/Modal'
+import { openModal } from '../systems/SmsManager/components/Modal'
 import BindTelForm from './components/Form'
+import { useNavigate } from 'react-router-dom'
 import { login, preLogin, bindPhoneNumber } from '@/service/login'
-import { successMsg } from '@/components/TKMessage'
+import { showMsg } from '@/components/TKMessage'
 import style from './index.module.less'
 import logo from '@/assets/icon/largeLogoIcon.svg'
 // 登录组件
 export default function Login() {
   const [loginForm] = Form.useForm()
   const [bindForm] = Form.useForm()
+  const navigate = useNavigate()
+
   const bindTelNumber = (formData) => {
     // TODO首次登录绑定手机号
     return openModal({
@@ -22,19 +24,36 @@ export default function Login() {
         try {
           // TODO:绑定手机号
           result.account_number = Number(formData.account_number)
-          console.log(result)
-          const res = await bindPhoneNumber(result)
-          console.log(res)
-          return Promise.reject()
+          const { data } = await bindPhoneNumber(result)
+          if (data.code === 0) {
+            showMsg('绑定手机号成功', 'success')
+          } else {
+            showMsg('绑定手机号失败，请检查你的手机号或验证码', 'error')
+            return Promise.reject()
+          }
         } catch (err) {
           return Promise.reject()
         }
       }
     })
   }
-  const onLoginHandler = async () => {
-    const res = await login()
-    console.log(res)
+
+  // 处理登录逻辑
+  const onLoginHandler = async (formData) => {
+    const header = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    const { data } = await login(formData, header)
+    // console.log(data)
+    if (data.code !== 0) {
+      showMsg(data.msg, 'warning')
+      return Promise.reject()
+    }
+
+    console.log(data.data)
+    navigate('/systems/smsManager')
   }
   // 登录时调用
   const onFinish = async (values) => {
@@ -45,17 +64,16 @@ export default function Login() {
     const resData = data.data
     const status = resData.account_status
 
-    console.log(values)
     // 根据不同的状态码做不同的操作
     if (status === 0) {
-      successMsg('账号不存在', 'error')
+      showMsg('账号不存在', 'error')
     } else if (status === 1) {
       // 直接登录
       onLoginHandler(values)
     } else if (status === 2) {
       bindTelNumber(loginData)
     } else if (status === 3) {
-      successMsg('账号已禁用', 'warn')
+      showMsg('账号已禁用', 'warn')
     }
   }
   return (
@@ -114,6 +132,14 @@ export default function Login() {
             />
           </Form.Item>
 
+          <Space>
+            <Form.Item name="verification_code">
+              <Input placeholder="请输入验证码" />
+            </Form.Item>
+            <Form.Item>
+              <Button>发送验证码</Button>
+            </Form.Item>
+          </Space>
           <Form.Item>
             <Form.Item valuePropName="checked" noStyle>
               <Checkbox>记住我</Checkbox>

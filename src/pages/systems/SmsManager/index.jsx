@@ -107,7 +107,7 @@ const SmsManager = () => {
     }, 64)
     // 打开弹窗编辑
     openModal({
-      okText: '编辑',
+      okText: '保存',
       title: '编辑规则',
       content: <SmsForm form={form} />,
       handleOk: async (modal) => {
@@ -149,10 +149,14 @@ const SmsManager = () => {
               setInputValue(e.target.value)
             }}
           />
-          <Button onClick={onSearch}>搜索</Button>
+          <Button type="primary" onClick={onSearch}>
+            搜索
+          </Button>
         </Space.Compact>
         <Space.Compact>
-          <Button onClick={handleAddSms}>+ 新建</Button>
+          <Button type="primary" onClick={handleAddSms}>
+            + 新建
+          </Button>
         </Space.Compact>
       </Space>
 

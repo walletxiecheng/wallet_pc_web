@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom'
 import BaseLayout from '@/Layouts/BaseLayout'
 import Login from '@/pages/Login'
-import SmsManager from '@/pages/SmsManager'
-import WarnManager from '@/pages/WarnManager'
+import SmsManager from '@/pages/systems/SmsManager'
+import WarnManager from '@/pages/systems/WarnManager'
+import WarnDetail from '@/pages/systems/WarnDetail'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
 import { URLS } from './urls'
@@ -25,11 +26,26 @@ export const routes = createBrowserRouter([
       },
       {
         path: URLS.warnDetail,
-        element: <div>Detail</div>
+        element: <WarnDetail />
       },
       {
         path: URLS.warnSetting,
         element: <div>warnSetting</div>,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.adminSetting,
+        element: <div>adminSetting</div>,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.operateLogSetting,
+        element: <div>operateLogSetting</div>,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.loginLogManager,
+        element: <div>loginLogManager</div>,
         errorElement: <ErrorPage />
       }
     ]
