@@ -50,7 +50,11 @@ export default function WarnManager() {
               <InputNumber changeOnWheel placeholder="最大值" />
             </Form.Item>
             <Form.Item name="date" label="日期">
-              <RangePicker />
+              <RangePicker
+                onChange={(e) => {
+                  console.log(e)
+                }}
+              />
             </Form.Item>
             <Form.Item name="dsc" label="摘要">
               <Input placeholder="报错内容"></Input>

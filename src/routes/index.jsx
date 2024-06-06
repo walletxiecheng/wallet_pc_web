@@ -4,6 +4,7 @@ import Login from '@/pages/Login'
 import SmsManager from '@/pages/systems/SmsManager'
 import WarnManager from '@/pages/systems/WarnManager'
 import WarnDetail from '@/pages/systems/WarnDetail'
+import WarnSetting from '@/pages/systems/WarnSetting'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
 import { URLS } from './urls'
@@ -26,11 +27,12 @@ export const routes = createBrowserRouter([
       },
       {
         path: URLS.warnDetail,
-        element: <WarnDetail />
+        element: <WarnDetail />,
+        errorElement: <ErrorPage />
       },
       {
         path: URLS.warnSetting,
-        element: <div>warnSetting</div>,
+        element: <WarnSetting />,
         errorElement: <ErrorPage />
       },
       {
