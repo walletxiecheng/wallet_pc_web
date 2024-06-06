@@ -5,6 +5,7 @@ import SmsManager from '@/pages/systems/SmsManager'
 import WarnManager from '@/pages/systems/WarnManager'
 import WarnDetail from '@/pages/systems/WarnDetail'
 import WarnSetting from '@/pages/systems/WarnSetting'
+import AdminSetting from '@/pages/systems/AdminSetting'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
 import { URLS } from './urls'
@@ -37,7 +38,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: URLS.adminSetting,
-        element: <div>adminSetting</div>,
+        element: <AdminSetting />,
         errorElement: <ErrorPage />
       },
       {
