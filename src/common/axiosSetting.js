@@ -8,6 +8,8 @@ export const axiosInstance = axios.create({
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'
+    // 'x-user-id': '121212'
+    // 'access-token': ''
     // 'Content-Type': 'multipart/form-data'
   }
 })

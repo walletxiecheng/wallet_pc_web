@@ -1,19 +1,24 @@
 import { Button, Space } from 'antd'
-
-export const columns = () => {
+import {
+  openAdminHandler,
+  disableAdminHandler,
+  deleteAdminHandler
+} from './utils/operate'
+import { render } from 'less'
+export const columns = (editAdministrator) => {
   return [
     {
       title: '编号',
-      dataIndex: 'id',
-      key: 'id',
+      dataIndex: 'ID',
+      key: 'ID',
       width: '8%',
       sorter: (a, b) => a.id - b.id
       // 排序
     },
     {
       title: '账号',
-      dataIndex: 'account',
-      key: 'account',
+      dataIndex: 'account_number',
+      key: 'account_number',
       width: '15%'
     },
     {
@@ -36,21 +41,25 @@ export const columns = () => {
     },
     {
       title: '账号角色',
-      dataIndex: 'role',
-      key: 'role',
-      width: '12%'
+      dataIndex: 'character_name',
+      key: 'character_name',
+      width: '12%',
+      render: (_, record) => <span>{record.character.character_name}</span>
     },
     {
       title: '联系电话',
-      dataIndex: 'tel',
-      key: 'tel',
+      dataIndex: 'phone_number',
+      key: 'phone_number',
       width: '15%'
     },
     {
       title: '账号状态',
-      dataIndex: 'status',
-      key: 'status',
-      width: '8%'
+      dataIndex: 'enable',
+      key: 'enable',
+      width: '8%',
+      render: (_, record) => (
+        <span>{record.enable === 1 ? '启用' : '禁用'}</span>
+      )
     },
     {
       title: '操作',
@@ -59,19 +68,54 @@ export const columns = () => {
       width: '8%',
       render: (_, record) => (
         <Space>
-          <Space.Compact>
-            <Button type="link">编辑</Button>
-          </Space.Compact>
-          <Space.Compact>
-            <Button type="link">启用</Button>
-          </Space.Compact>
-          <Space.Compact>
-            <Button type="link" style={{ color: '#FF3B30' }}>
-              删除
+          <Button type="link">编辑</Button>
+          {record.enable === 2 && (
+            <Button
+              type="link"
+              onClick={() => {
+                openAdminHandler(record)
+              }}
+            >
+              启用
             </Button>
-          </Space.Compact>
+          )}
+          {record.enable === 1 && (
+            <Button
+              type="link"
+              style={{ color: '#ff3b30' }}
+              onClick={() => {
+                disableAdminHandler(record)
+              }}
+            >
+              禁用
+            </Button>
+          )}
+          <Button
+            type="link"
+            style={{ color: '#ff3b30' }}
+            onClick={() => {
+              deleteAdminHandler(record)
+            }}
+          >
+            删除
+          </Button>
         </Space>
       )
     }
   ]
 }
+
+export const statusOptions = [
+  {
+    value: '0',
+    label: '所有状态'
+  },
+  {
+    value: '1',
+    label: '启用'
+  },
+  {
+    value: '2',
+    label: '禁用'
+  }
+]

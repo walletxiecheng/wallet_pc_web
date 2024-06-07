@@ -1,63 +1,66 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Divider, Form, Select, Table, Space, Input, Button } from 'antd'
+import { getAllCharacterNameHandler } from './utils/role'
 import { openModal } from '../SmsManager/components/Modal'
+import { addKeyByTable } from '@/utils/handleData'
 import AdminForm from './components/Form'
 import style from './index.module.less'
-import { columns } from './config'
+import { columns, statusOptions } from './config'
+import { showMsg } from '@/components/TKMessage'
+import { getSystemUserList } from '@/service/system'
 const { Search } = Input
 
-const dataSource = [
-  {
-    key: 1,
-    id: 1,
-    account: '1234',
-    name: '张三',
-    department: '技术部门',
-    post: '技术',
-    role: '普通',
-    tel: '13388992188',
-    status: '禁用'
-  },
-  {
-    key: 2,
-    id: 2,
-    account: '323',
-    name: '李四',
-    department: '技术部门',
-    post: '技术',
-    role: '中级',
-    tel: '13388992188',
-    status: '禁用'
-  }
-]
-
-const options = [
-  {
-    value: '1',
-    label: '所有状态'
-  },
-  {
-    value: '2',
-    label: '禁用'
-  },
-  {
-    value: '3',
-    label: '启用'
-  }
-]
 export default function AdminSetting() {
+  const [userList, setUserList] = useState()
+
   const [searchForm] = Form.useForm()
-  const [addForm] = Form.useForm()
+  const [form] = Form.useForm()
   // 搜索
   const search = async () => {
     const req = await searchForm.validateFields()
-    console.log(req)
+    searchForm.resetFields()
     // TODO：调用查询接口
   }
+
+  // 进入页面渲染数据
+  useEffect(() => {
+    getSystemUserListHandler()
+    getAllCharacterNameHandler()
+  }, [])
+
+  // 获取管理员列表
+  const getSystemUserListHandler = async () => {
+    const req = {
+      page: 1,
+      size: 10,
+      status: 3
+    }
+    const { data } = await getSystemUserList(req)
+    const res = data.data
+    const t = addKeyByTable(res)
+    setUserList(t)
+  }
+
+  // 编辑管理员
+  const editAdministrator = (record) => {}
+
+  // 添加管理员
   const addAdministrator = () => {
     openModal({
-      title: '新建管理员',
-      content: <AdminForm />
+      title: '新增管理员',
+      content: <AdminForm form={form} />,
+      handleOk: async () => {
+        const result = await form.validateFields()
+        form.resetFields()
+
+        console.log(result)
+        // showMsg('添加成功')
+        try {
+          // TODO 调用新增管理员接口接口
+        } catch (error) {
+          showMsg(error, 'error')
+        }
+      }
     })
   }
 
@@ -65,13 +68,13 @@ export default function AdminSetting() {
     <div className={style.adminContainer}>
       <header>管理员设置</header>
       <Divider />
-      <Form form={searchForm} initialValues={searchForm}>
+      <Form>
         <Space className={style.title}>
           <Space.Compact className={style.searchForm}>
             <Form.Item label="启用状态" name="status">
               <Select
                 style={{ width: 100, marginRight: '20px' }}
-                options={options}
+                options={statusOptions}
               ></Select>
             </Form.Item>
             <Form.Item label="管理员账号" name="account">
@@ -90,7 +93,7 @@ export default function AdminSetting() {
           </Space.Compact>
         </Space>
       </Form>
-      <Table columns={columns()} dataSource={dataSource} />
+      <Table columns={columns(editAdministrator)} dataSource={userList} />
     </div>
   )
 }

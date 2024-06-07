@@ -18,7 +18,7 @@ export const handleInterceptors = () => {
     function (response) {
       // 2xx 范围内的状态码都会触发该函数。
       // 对响应数据做点什么
-      console.log(response)
+      // console.log(response)
       return response
     },
     function (error) {

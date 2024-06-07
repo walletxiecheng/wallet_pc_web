@@ -51,6 +51,7 @@ export const SmsForm = (props) => {
       <Form.Item
         label="状态"
         name="state"
+        layout="horizontal"
         rules={[{ required: true, message: '请选择状态' }]}
       >
         <Radio.Group>
