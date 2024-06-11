@@ -1,17 +1,13 @@
 import React from 'react'
 import { Form, Input, Select, Radio } from 'antd'
+
 export default function AdminForm({ form }) {
   return (
     <Form form={form} layout="vertical" size="middle">
       <Form.Item
         label="账号"
         name="account_number"
-        rules={[
-          {
-            required: true,
-            message: '请输入管理员账号'
-          }
-        ]}
+        rules={[{ required: true, message: '请输入管理员账号' }]}
       >
         <Input></Input>
       </Form.Item>
@@ -19,12 +15,7 @@ export default function AdminForm({ form }) {
       <Form.Item
         label="密码"
         name="password"
-        rules={[
-          {
-            required: true,
-            message: '请输入管理员密码'
-          }
-        ]}
+        rules={[{ required: true, message: '请输入管理员密码' }]}
       >
         <Input></Input>
       </Form.Item>
@@ -44,14 +35,8 @@ export default function AdminForm({ form }) {
         <Select
           // defaultValue={'技术'}
           options={[
-            {
-              value: '1',
-              label: '技术'
-            },
-            {
-              value: '2',
-              label: '设计'
-            }
+            { value: '1', label: '技术' },
+            { value: '2', label: '设计' }
           ]}
         ></Select>
       </Form.Item>

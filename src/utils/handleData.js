@@ -14,10 +14,12 @@ export const convertJsonToFormData = (json) => {
 
 // 给表格数据添加key
 export const addKeyByTable = (data) => {
-  const res = []
-  data.map((item) => {
-    item.key = item.ID
-    res.push(item)
-  })
-  return res
+  return (
+    data.map((item) => {
+      return {
+        ...item,
+        key: item.ID
+      }
+    }) || []
+  )
 }

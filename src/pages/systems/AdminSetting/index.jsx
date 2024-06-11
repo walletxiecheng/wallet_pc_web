@@ -1,45 +1,59 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Divider, Form, Select, Table, Space, Input, Button } from 'antd'
-import { getAllCharacterNameHandler } from './utils/role'
 import { openModal } from '../SmsManager/components/Modal'
-import { addKeyByTable } from '@/utils/handleData'
 import AdminForm from './components/Form'
 import style from './index.module.less'
-import { columns, statusOptions } from './config'
+import { STATUS_ENUM, columns, statusOptions } from './config'
 import { showMsg } from '@/components/TKMessage'
 import { getSystemUserList } from '@/service/system'
+import { usePagination } from 'ahooks'
+
 const { Search } = Input
+const TOTAL = 3
+const PAGE_SIZE = 1
 
 export default function AdminSetting() {
-  const [userList, setUserList] = useState()
-
-  const [searchForm] = Form.useForm()
   const [form] = Form.useForm()
+
   // 搜索
-  const search = async () => {
-    const req = await searchForm.validateFields()
-    searchForm.resetFields()
+  const search = async (values) => {
+    console.log(values)
+    // const req = await searchForm.validateFields()
+    // searchForm.resetFields()
     // TODO：调用查询接口
   }
 
-  // 进入页面渲染数据
-  useEffect(() => {
-    getSystemUserListHandler()
-    getAllCharacterNameHandler()
-  }, [])
+  const {
+    data: userList,
+    run: runUserList,
+    total: userListTotal = TOTAL,
+    loading: userListLoading,
+    pagination: userPagination
+  } = usePagination(
+    async (params) => {
+      const { data } = await getSystemUserList(params)
 
-  // 获取管理员列表
-  const getSystemUserListHandler = async () => {
-    const req = {
-      page: 1,
-      size: 10,
-      status: 3
+      if (data.code !== 0) {
+        showMsg('请求出错', 'error')
+        return []
+      }
+
+      return data?.data || []
+    },
+
+    {
+      onError: () => {
+        showMsg('请求出错', 'error')
+      },
+      defaultParams: [
+        {
+          page: 1,
+          size: PAGE_SIZE,
+          status: STATUS_ENUM.ALL
+        }
+      ]
     }
-    const { data } = await getSystemUserList(req)
-    const res = data.data
-    const t = addKeyByTable(res)
-    setUserList(t)
-  }
+  )
 
   // 编辑管理员
   const editAdministrator = (record) => {}
@@ -68,10 +82,14 @@ export default function AdminSetting() {
     <div className={style.adminContainer}>
       <header>管理员设置</header>
       <Divider />
-      <Form>
+      <Form onFinish={search}>
         <Space className={style.title}>
           <Space.Compact className={style.searchForm}>
-            <Form.Item label="启用状态" name="status">
+            <Form.Item
+              label="启用状态"
+              name="status"
+              initialValue={STATUS_ENUM.ALL}
+            >
               <Select
                 style={{ width: 100, marginRight: '20px' }}
                 options={statusOptions}
@@ -93,7 +111,17 @@ export default function AdminSetting() {
           </Space.Compact>
         </Space>
       </Form>
-      <Table columns={columns(editAdministrator)} dataSource={userList} />
+      <Table
+        columns={columns(editAdministrator)}
+        dataSource={userList}
+        rowKey={(record) => record.ID}
+        pagination={{
+          total: userListTotal,
+          current: 1,
+          pageSize: PAGE_SIZE,
+          onChange: userPagination.onChange
+        }}
+      />
     </div>
   )
 }
