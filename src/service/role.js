@@ -16,7 +16,7 @@ export const getAllAuthority = (params) => {
   return axiosDefine.get('/back/system/character/getAllAuthority', params)
 }
 
-// 获取全部角色信息
+// 获取全部角色信息(不包含权限)
 export const getAllCharacterName = (params) => {
   return axiosDefine.get('/back/system/character/getAllCharacterName', params)
 }

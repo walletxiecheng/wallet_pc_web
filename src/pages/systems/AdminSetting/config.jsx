@@ -1,11 +1,10 @@
 import { Button, Space } from 'antd'
-import {
+export const columns = (
+  editAdministrator,
   openAdminHandler,
   disableAdminHandler,
   deleteAdminHandler
-} from './utils/operate'
-
-export const columns = (editAdministrator) => {
+) => {
   return [
     {
       key: 'ID',
@@ -68,7 +67,14 @@ export const columns = (editAdministrator) => {
       dataIndex: 'operate',
       render: (_, record) => (
         <Space>
-          <Button type="link">编辑</Button>
+          <Button
+            onClick={() => {
+              editAdministrator(record)
+            }}
+            type="link"
+          >
+            编辑
+          </Button>
           {record.enable === STATUS_ENUM.DISABLE && (
             <Button
               type="link"

@@ -1,24 +1,15 @@
 import React from 'react'
 import { Form, Input, Select, Radio } from 'antd'
 import { STATUS_ENUM } from '../../config'
-export default function AdminForm({ form, roleList }) {
+export default function EditForm(props) {
+  const { form, initialValues, roleList } = props
   return (
-    <Form form={form} layout="vertical" size="middle">
-      <Form.Item
-        label="账号"
-        name="account_number"
-        rules={[{ required: true, message: '请输入管理员账号' }]}
-      >
-        <Input></Input>
-      </Form.Item>
-
-      <Form.Item
-        label="密码"
-        name="password"
-        rules={[{ required: true, message: '请输入管理员密码' }]}
-      >
-        <Input></Input>
-      </Form.Item>
+    <Form
+      form={form}
+      initialValues={initialValues}
+      layout="vertical"
+      size="middle"
+    >
       <Form.Item label="姓名" name="name">
         <Input></Input>
       </Form.Item>

@@ -3,11 +3,11 @@ import axiosDefine from '@/common/axiosSetting'
 
 // 添加系统用户 管理员// 表单格式
 export const addCharacter = (data, headers) => {
-  return axiosDefine.post('/back/system/user/addSystemUser', data, headers)
+  return axiosDefine.put('/back/system/user/addSystemUser', data, headers)
 }
 
 // 修改系统用户信息(不包含手机号和密码)
-export const deleteCharacter = (data) => {
+export const alertSystemUser = (data) => {
   return axiosDefine.post('/back/system/user/alertSystemUser', data)
 }
 
@@ -21,7 +21,7 @@ export const alertSystemUserPhoneNumber = (data) => {
   return axiosDefine.post('/back/system/user/alertSystemUserPhoneNumber', data)
 }
 
-// 修改系统用户信息
+// 删除系统用户信息
 export const deleteSystemUser = (params) => {
   return axiosDefine.delete('/back/system/user/deleteSystemUser', params)
 }
