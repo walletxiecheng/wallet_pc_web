@@ -10,6 +10,9 @@ export default function EditForm(props) {
       layout="vertical"
       size="middle"
     >
+      <Form.Item label="账号" name="account_number">
+        <Input disabled={true}></Input>
+      </Form.Item>
       <Form.Item label="姓名" name="name">
         <Input></Input>
       </Form.Item>
@@ -20,7 +23,7 @@ export default function EditForm(props) {
         <Input></Input>
       </Form.Item>
       <Form.Item label="电话" name="phone_number">
-        <Input></Input>
+        <Input disabled={true}></Input>
       </Form.Item>
       <Form.Item label="角色" name="character_id">
         <Select options={roleList}></Select>
@@ -29,7 +32,6 @@ export default function EditForm(props) {
         label="状态"
         name="status"
         layout="horizontal"
-        rules={[{ required: true, message: '请选择状态' }]}
         initialValue={STATUS_ENUM.ENABLE}
       >
         <Radio.Group>

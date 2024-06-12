@@ -16,8 +16,8 @@ export const columns = (handleEditSms) => {
     },
     {
       title: '唯一标识',
-      dataIndex: 'key',
-      key: 'key'
+      dataIndex: 'identification',
+      key: 'identification'
     },
     {
       title: '内容',
@@ -27,8 +27,8 @@ export const columns = (handleEditSms) => {
     },
     {
       title: '发送上限',
-      dataIndex: 'sendMax',
-      key: 'sendMax'
+      dataIndex: 'send_limit',
+      key: 'send_limit'
     },
     {
       title: '操作',
@@ -51,15 +51,20 @@ export const columns = (handleEditSms) => {
 
 export const downLoadOptions = [
   {
-    value: 'id',
+    value: '1',
     label: '编号'
   },
   {
-    value: 'name',
+    value: '2',
     label: '名称'
   },
   {
-    value: 'key',
+    value: '3',
     label: '唯一标识'
   }
 ]
+
+export const STATUS_ENUM = {
+  ENABLE: 1,
+  DISABLE: 2
+}

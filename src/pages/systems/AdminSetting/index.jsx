@@ -5,7 +5,10 @@ import EditForm from './components/EditForm'
 import style from './index.module.less'
 import { STATUS_ENUM, columns, statusOptions } from './config'
 import { showError, showSuccess } from '@/components/TKMessage'
-import { getSystemUserList } from '@/service/system'
+import {
+  getSystemUserList,
+  getSystemUserByAccountNumber
+} from '@/service/system'
 import { usePagination } from 'ahooks'
 import { getAllCharacterName } from '@/service/role'
 import {
@@ -15,7 +18,8 @@ import {
 } from '@/service/system'
 import { Divider, Form, Select, Table, Space, Input, Button } from 'antd'
 
-const { Search } = Input
+const PAGE_SIZE = 3
+
 export default function AdminSetting() {
   const [form] = Form.useForm()
   const [editForm] = Form.useForm()
@@ -23,34 +27,35 @@ export default function AdminSetting() {
   // 搜索
   const search = async (values) => {
     console.log(values)
+    runUserList({
+      ...values,
+      current: userPagination.current,
+      pageSize: userPagination.pageSize
+    })
   }
 
   const {
     data: userList,
     run: runUserList,
-    total: userListTotal,
-    loading: userListLoading,
     pagination: userPagination
   } = usePagination(
     async (params) => {
       const res = await getSystemUserList(params)
       const { data } = res
+
       if (res.code !== 0) {
         showError('请求数据失败，请重试。')
-        return []
+        return { total: 0, list: [] }
       }
-      return data.system_user_info_list
+
+      return { total: data.total, list: data.system_user_info_list }
     },
     {
       onError: () => {
         showMsg('请求出错', 'error')
       },
       defaultParams: [
-        {
-          current: 1,
-          pageSize: 10,
-          status: STATUS_ENUM.ALL
-        }
+        { current: 1, pageSize: PAGE_SIZE, status: STATUS_ENUM.ALL }
       ]
     }
   )
@@ -77,7 +82,7 @@ export default function AdminSetting() {
           // 刷新
           runUserList({
             current: 1,
-            pageSize: 10,
+            pageSize: PAGE_SIZE,
             status: STATUS_ENUM.ALL
           })
           return showSuccess('修改成功！')
@@ -109,7 +114,7 @@ export default function AdminSetting() {
           // 刷新
           runUserList({
             current: 1,
-            pageSize: 10,
+            pageSize: PAGE_SIZE,
             status: STATUS_ENUM.ALL
           })
           return showSuccess('新增管理员成功')
@@ -137,6 +142,7 @@ export default function AdminSetting() {
     setRoleList(options)
   }
 
+  // 启用管理员
   const openAdminHandler = async (record) => {
     const res = await alertSystemUser({
       enable: STATUS_ENUM.ENABLE,
@@ -147,7 +153,7 @@ export default function AdminSetting() {
     }
     runUserList({
       current: 1,
-      pageSize: 10,
+      pageSize: PAGE_SIZE,
       status: STATUS_ENUM.ALL
     })
     return showSuccess('启用成功')
@@ -163,7 +169,7 @@ export default function AdminSetting() {
     }
     runUserList({
       current: 1,
-      pageSize: 10,
+      pageSize: PAGE_SIZE,
       status: STATUS_ENUM.ALL
     })
     return showSuccess('禁用成功')
@@ -176,7 +182,7 @@ export default function AdminSetting() {
     }
     runUserList({
       current: 1,
-      pageSize: 10,
+      pageSize: PAGE_SIZE,
       status: STATUS_ENUM.ALL
     })
     return showSuccess('删除成功')
@@ -190,9 +196,9 @@ export default function AdminSetting() {
     <div className={style.adminContainer}>
       <header>管理员设置</header>
       <Divider />
-      <Form onFinish={search}>
-        <Space className={style.title}>
-          <Space.Compact className={style.searchForm}>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Form onFinish={search}>
+          <Space className={style.title}>
             <Form.Item
               label="启用状态"
               name="status"
@@ -201,24 +207,22 @@ export default function AdminSetting() {
               <Select
                 style={{ width: 100, marginRight: '20px' }}
                 options={statusOptions}
-              ></Select>
-            </Form.Item>
-            <Form.Item label="管理员账号" name="account">
-              <Search
-                placeholder="请输入管理员账号"
-                onSearch={search}
-                enterButton="Search"
               />
             </Form.Item>
-          </Space.Compact>
-
-          <Space.Compact>
-            <Button type="primary" onClick={addAdministrator}>
-              + 新建
-            </Button>
-          </Space.Compact>
-        </Space>
-      </Form>
+            <Form.Item label="管理员账号" name="account_number">
+              <Input placeholder="请输入管理员账号" />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                搜索
+              </Button>
+            </Form.Item>
+          </Space>
+        </Form>
+        <Button type="primary" onClick={addAdministrator}>
+          + 新建管理员账号
+        </Button>
+      </div>
       <Table
         columns={columns(
           editAdministrator,
@@ -226,11 +230,14 @@ export default function AdminSetting() {
           disableAdminHandler,
           deleteAdminHandler
         )}
-        dataSource={userList}
+        dataSource={userList?.list || []}
         rowKey={(record) => record.ID}
         pagination={{
-          current: usePagination.current,
-          pageSize: usePagination.pageSize
+          total: userList?.total,
+          current: userPagination.current,
+          pageSize: userPagination.pageSize,
+          onChange: userPagination.onChange,
+          onShowSizeChange: userPagination.onChange
         }}
       />
     </div>

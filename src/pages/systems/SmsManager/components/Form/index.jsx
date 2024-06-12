@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input, Radio } from 'antd'
-
+import { STATUS_ENUM } from '../../config'
 /**
  *
  * @description 短信管理的表单编辑&创建组件
@@ -15,7 +15,7 @@ export const SmsForm = (props) => {
     <Form layout="vertical" form={form} initialValues={initialValues}>
       <Form.Item
         label="编号"
-        name="id"
+        name="serial_number"
         rules={[{ required: true, message: '请填写编号' }]}
       >
         <Input placeholder="6位数字" />
@@ -29,7 +29,7 @@ export const SmsForm = (props) => {
       </Form.Item>
       <Form.Item
         label="唯一标识"
-        name="key"
+        name="identification"
         rules={[{ required: true, message: '请填写唯一标识' }]}
       >
         <Input placeholder="仅限英文字符" />
@@ -43,20 +43,20 @@ export const SmsForm = (props) => {
       </Form.Item>
       <Form.Item
         label="发送上限"
-        name="sendMax"
+        name="send_limit"
         rules={[{ required: true, message: '请填写发送上限' }]}
       >
         <Input placeholder="单日接受不了上限，0或未选择是为无上限" />
       </Form.Item>
       <Form.Item
         label="状态"
-        name="state"
+        name="status"
         layout="horizontal"
         rules={[{ required: true, message: '请选择状态' }]}
       >
         <Radio.Group>
-          <Radio value={1}>启用</Radio>
-          <Radio value={0}>禁用</Radio>
+          <Radio value={STATUS_ENUM.ENABLE}>启用</Radio>
+          <Radio value={STATUS_ENUM.DISABLE}>禁用</Radio>
         </Radio.Group>
       </Form.Item>
     </Form>

@@ -60,8 +60,9 @@ export default function Login() {
     // TODO判断是否首次登录
     const loginData = await loginForm.validateFields()
     const req = { account_number: values.account_number }
-    const { data } = await preLogin(req)
-    const resData = data.data
+    const res = await preLogin(req)
+    console.log(res)
+    const resData = res.data
     const status = resData.account_status
 
     // 根据不同的状态码做不同的操作
@@ -69,6 +70,7 @@ export default function Login() {
       showMsg('账号不存在', 'error')
     } else if (status === 1) {
       // 直接登录
+      console.log('直接登录')
       onLoginHandler(values)
     } else if (status === 2) {
       bindTelNumber(loginData)
