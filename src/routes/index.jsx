@@ -6,6 +6,8 @@ import WarnManager from '@/pages/systems/WarnManager'
 import WarnDetail from '@/pages/systems/WarnDetail'
 import WarnSetting from '@/pages/systems/WarnSetting'
 import AdminSetting from '@/pages/systems/AdminSetting'
+import OperateLog from '@/pages/systems/OperateLog'
+import LoginLog from '@/pages/systems/LoginLog'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
 import { URLS } from './urls'
@@ -43,12 +45,12 @@ export const routes = createBrowserRouter([
       },
       {
         path: URLS.operateLogSetting,
-        element: <div>operateLogSetting</div>,
+        element: <OperateLog />,
         errorElement: <ErrorPage />
       },
       {
         path: URLS.loginLogManager,
-        element: <div>loginLogManager</div>,
+        element: <LoginLog />,
         errorElement: <ErrorPage />
       }
     ]

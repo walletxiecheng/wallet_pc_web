@@ -5,7 +5,7 @@ import { openModal } from '../systems/SmsManager/components/Modal'
 import BindTelForm from './components/Form'
 import { useNavigate } from 'react-router-dom'
 import { login, preLogin, bindPhoneNumber } from '@/service/login'
-import { showMsg } from '@/components/TKMessage'
+import { showError, showMsg } from '@/components/TKMessage'
 import style from './index.module.less'
 import logo from '@/assets/icon/largeLogoIcon.svg'
 // 登录组件
@@ -62,17 +62,22 @@ export default function Login() {
     const req = { account_number: values.account_number }
     const res = await preLogin(req)
     console.log(res)
-    const resData = res.data
-    const status = resData.account_status
+    if (res.code !== 0) {
+      return showError(res.msg)
+    }
+
+    const data = res.data
+    const status = data.account_status
 
     // 根据不同的状态码做不同的操作
     if (status === 0) {
-      showMsg('账号不存在', 'error')
+      showError('账号不存在')
     } else if (status === 1) {
       // 直接登录
       console.log('直接登录')
       onLoginHandler(values)
     } else if (status === 2) {
+      // 绑定手机号
       bindTelNumber(loginData)
     } else if (status === 3) {
       showMsg('账号已禁用', 'warn')
@@ -134,19 +139,19 @@ export default function Login() {
             />
           </Form.Item>
 
-          <Space>
+          {/* <Space>
             <Form.Item name="verification_code">
               <Input placeholder="请输入验证码" />
             </Form.Item>
             <Form.Item>
               <Button>发送验证码</Button>
             </Form.Item>
-          </Space>
-          <Form.Item>
+          </Space> */}
+          {/* <Form.Item>
             <Form.Item valuePropName="checked" noStyle>
               <Checkbox>记住我</Checkbox>
             </Form.Item>
-          </Form.Item>
+          </Form.Item> */}
 
           <Form.Item>
             <Button type="primary" htmlType="submit">

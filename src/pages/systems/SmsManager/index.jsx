@@ -111,7 +111,7 @@ const SmsManager = () => {
       >
         <Form onFinish={onSearch} form={searchForm}>
           <Space>
-            <Form.Item label={'检索'} name="serial_number">
+            <Form.Item label={'检索'} name="key">
               <Input
                 style={{ width: 230 }}
                 onChange={() => {

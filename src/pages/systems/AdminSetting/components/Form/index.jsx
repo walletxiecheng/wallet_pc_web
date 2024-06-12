@@ -19,7 +19,11 @@ export default function AdminForm({ form, roleList }) {
       >
         <Input></Input>
       </Form.Item>
-      <Form.Item label="姓名" name="name">
+      <Form.Item
+        label="姓名"
+        name="name"
+        rules={[{ required: true, message: '请输入姓名' }]}
+      >
         <Input></Input>
       </Form.Item>
       <Form.Item label="部门" name="department">
@@ -31,7 +35,11 @@ export default function AdminForm({ form, roleList }) {
       <Form.Item label="电话" name="phone_number">
         <Input></Input>
       </Form.Item>
-      <Form.Item label="角色" name="character_id">
+      <Form.Item
+        label="角色"
+        name="character_id"
+        rules={[{ required: true, message: '请选择角色' }]}
+      >
         <Select options={roleList}></Select>
       </Form.Item>
       <Form.Item
