@@ -10,16 +10,18 @@ import {
   Input,
   Select
 } from 'antd'
-import { columns } from './config'
+import { columns, RESULT_MENU, resultOption } from './config'
 import { getLoginLogList } from '@/service/log'
 import { usePagination } from 'ahooks'
 import { showError, showSuccess } from '@/components/TKMessage'
 import { openModal } from '../SmsManager/components/Modal'
 import style from './index.module.less'
-
 const PAGE_SIZE = 10
+
 export default function LoginLog() {
+  // 搜索表单
   const [form] = Form.useForm()
+  //TODO 数据分页请求
   const {
     data: logList,
     run: logRun,
@@ -43,8 +45,15 @@ export default function LoginLog() {
   )
   // 查询表单
   const onFinish = (values) => {
+    if (values.date) {
+      values.date = values.date.format('YYYY-MM-DD')
+    }
+    if (values.time) {
+      values.start_time = values?.time[0].format('hh:mm:ss')
+      values.end_time = values?.time[1].format('hh:mm:ss')
+    }
+    logRun({ ...values, current: 1, pageSize: PAGE_SIZE })
     form.resetFields()
-    console.log(values)
   }
 
   // 重置搜索表单
@@ -83,14 +92,22 @@ export default function LoginLog() {
         </Form.Item>
         <Space style={{ display: 'flex', justifyContent: 'space-between' }}>
           <Space>
-            <Form.Item label="登录结果" name="login_result">
-              <Select placeholder="请选择" />
+            <Form.Item
+              label="登录结果"
+              name="login_result"
+              initialValue={RESULT_MENU.ALL}
+            >
+              <Select
+                options={resultOption}
+                style={{ width: 100 }}
+                placeholder="请选择"
+              />
             </Form.Item>
             <Form.Item label="日期" name="date">
-              <DatePicker placeholder="请选择" />
+              <DatePicker placeholder="请选择" format={'YYYY-MM-DD'} />
             </Form.Item>
             <Form.Item label="时间" name="time">
-              <TimePicker.RangePicker />
+              <TimePicker.RangePicker format={'HH:mm:ss'} />
             </Form.Item>
           </Space>
           <Space>
