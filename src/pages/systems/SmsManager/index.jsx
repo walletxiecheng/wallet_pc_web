@@ -8,7 +8,7 @@ import { usePagination } from 'ahooks'
 import { getSmsList, addSmsRule } from '@/service/sms'
 import { showError, showSuccess } from '@/components/TKMessage'
 
-const PAGE_SIZE = 2
+const PAGE_SIZE = 10
 
 const SmsManager = () => {
   const [form] = Form.useForm()

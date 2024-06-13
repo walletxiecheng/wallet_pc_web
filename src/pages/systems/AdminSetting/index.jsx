@@ -52,7 +52,7 @@ export default function AdminSetting() {
     },
     {
       onError: () => {
-        showMsg('请求出错', 'error')
+        return showMsg('请求出错', 'error')
       },
       defaultParams: [
         { current: 1, pageSize: PAGE_SIZE, status: STATUS_ENUM.ALL }
