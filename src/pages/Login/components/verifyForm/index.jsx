@@ -17,7 +17,6 @@ export default function VerifyForm(props) {
       phone_number: values.phone_number,
       verify_type: 1 //登录验证
     }
-    // console.log(req)
     const res = await sendLoginVerificationCode(req)
     console.log(res)
     if (res.code !== 0) {

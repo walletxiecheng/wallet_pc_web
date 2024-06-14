@@ -5,17 +5,20 @@ import logo from '@/assets/icon/largeLogoIcon.svg'
 import { Form, Space, Input, Checkbox, Button } from 'antd'
 import { preLogin } from '@/service/login'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
-import { showError, showWarning } from '@/components/TKMessage'
+import { showError, showSuccess, showWarning } from '@/components/TKMessage'
 import VerifyForm from './components/verifyForm'
 import { login } from '@/service/login'
 import { useUserStore } from '@/stores'
+import { useNavigate } from 'react-router-dom'
+import { URLS } from '@/routes/urls'
+import BindTelForm from './components/BindTelForm'
 
 export default function Login() {
   const [form] = Form.useForm()
   const [passwordVisible, setPasswordVisible] = useState(false)
   const [modalForm] = Form.useForm()
-  const { setUserInfo, getUserInfo } = useUserStore()
-  console.log(getUserInfo())
+  const { setUserInfo } = useUserStore()
+  const navigate = useNavigate()
   // 登录
   const onFinish = async (values) => {
     // TODO 预登录
@@ -34,7 +37,7 @@ export default function Login() {
       verifyLogin(formValue)
     } else if (status === 2) {
       // 进入绑定手机号弹窗
-      bindTelNumber()
+      bindTelNumber(formValue)
     } else if (status === 3) {
       return showError('账号已被禁用，请联系管理员。')
     } else if (status === 4) {
@@ -50,10 +53,15 @@ export default function Login() {
   }
 
   // 绑定手机号
-  const bindTelNumber = () => {
+  const bindTelNumber = (values) => {
     console.log('绑定手机号')
     openModal({
-      title: '绑定手机号'
+      title: '绑定手机号',
+      content: <BindTelForm form={modalForm} values={values} />,
+      handleOk: async () => {
+        console.log('绑定手机号')
+        return Promise.reject()
+      }
     })
   }
 
@@ -64,7 +72,6 @@ export default function Login() {
       okText: '登录',
       content: <VerifyForm form={modalForm} values={values} />,
       handleOk: async () => {
-        console.log('点击了确定按钮')
         const result = await modalForm.validateFields()
         try {
           const header = {
@@ -80,6 +87,9 @@ export default function Login() {
             return Promise.reject()
           }
           setUserInfo(res.data)
+          localStorage.setItem('token', res.data.token)
+          showSuccess('登录成功')
+          navigate(URLS.index)
         } catch (err) {
           showError(err)
           return Promise.reject()

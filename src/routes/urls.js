@@ -1,6 +1,6 @@
 export const URLS = {
   root: '/',
-  index: '/index',
+  index: '/systems/smsManager',
   login: '/login',
   notFount: '*',
   smsManager: '/systems/smsManager',
