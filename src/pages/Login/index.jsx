@@ -3,7 +3,7 @@ import style from './index.module.less'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import logo from '@/assets/icon/largeLogoIcon.svg'
 import { Form, Space, Input, Checkbox, Button } from 'antd'
-import { preLogin } from '@/service/login'
+import { preLogin, bindPhoneNumber } from '@/service/login'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
 import { showError, showSuccess, showWarning } from '@/components/TKMessage'
 import VerifyForm from './components/verifyForm'
@@ -60,7 +60,23 @@ export default function Login() {
       content: <BindTelForm form={modalForm} values={values} />,
       handleOk: async () => {
         console.log('绑定手机号')
-        return Promise.reject()
+        const result = await modalForm.validateFields()
+        result.account_number = Number(values.account_number)
+
+        try {
+          const res = await bindPhoneNumber(result)
+          if (res.code !== 0) {
+            showError('验证码错误')
+            return Promise.reject()
+          }
+          showSuccess('绑定手机号成功,请登录')
+          return navigate(URLS.login)
+        } catch (err) {
+          showError(err)
+          return Promise.reject()
+        }
+
+        // return Promise.reject()
       }
     })
   }
