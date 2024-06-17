@@ -59,3 +59,44 @@ export const columns = () => {
     }
   ]
 }
+
+export const systemOptions = [
+  {
+    value: 1,
+    label: '安卓'
+  },
+  {
+    value: 2,
+    label: '鸿蒙'
+  },
+  {
+    value: 3,
+    label: 'PC'
+  },
+  {
+    value: 4,
+    label: '未知'
+  }
+]
+
+export const warnOptions = [
+  {
+    value: 1,
+    label: '崩溃'
+  },
+  {
+    value: 2,
+    label: '异常'
+  }
+]
+
+export const ruleOptions = [
+  {
+    value: 1,
+    label: '单个版本'
+  },
+  {
+    value: 2,
+    label: '单个摘要'
+  }
+]
