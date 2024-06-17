@@ -43,3 +43,8 @@ export const getSystemUserList = (params) => {
 export const searchSystemUser = (params) => {
   return axiosDefine.get('/back/system/user/searchSystemUser', params)
 }
+
+// 重置系统用户登录密码
+export const resetSystemUserPassword = (data) => {
+  return axiosDefine.post('/back/system/user/resetSystemUserPassword', data)
+}

@@ -19,3 +19,13 @@ export const bindPhoneNumber = (data) => {
 export const sendLoginVerificationCode = (data) => {
   return axiosDefine.post('/back/system/login/sendLoginVerificationCode', data)
 }
+
+// 忘记密码
+export const forgetPassword = () => {
+  return '忘记密码'
+}
+
+// 忘记密码
+export const editPassWord = () => {
+  return '修改密码'
+}

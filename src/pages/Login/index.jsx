@@ -4,19 +4,26 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import logo from '@/assets/icon/largeLogoIcon.svg'
 import { Form, Space, Input, Checkbox, Button } from 'antd'
 import { preLogin, bindPhoneNumber } from '@/service/login'
+import { resetSystemUserPassword } from '@/service/system'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
 import { showError, showSuccess, showWarning } from '@/components/TKMessage'
-import VerifyForm from './components/verifyForm'
+import VerifyForm from './components/VerifyForm'
+import ForgetForm from './components/ForgetForm'
+import EditForm from './components/EditForm'
+import BindTelForm from './components/BindTelForm'
 import { login } from '@/service/login'
 import { useUserStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '@/routes/urls'
-import BindTelForm from './components/BindTelForm'
 
 export default function Login() {
+  // 登录表单
   const [form] = Form.useForm()
+  // 控制密码显示隐藏
   const [passwordVisible, setPasswordVisible] = useState(false)
+  // 弹窗通用表单
   const [modalForm] = Form.useForm()
+  // 使用状态管理 设置用户信息
   const { setUserInfo } = useUserStore()
   const navigate = useNavigate()
   // 登录
@@ -44,12 +51,16 @@ export default function Login() {
       return showWarning('密码错误')
     }
   }
-
   // 忘记密码
   const forgetPassword = () => {
     console.log('忘记密码')
     openModal({
-      title: '忘记密码'
+      title: '忘记密码',
+      content: <ForgetForm form={modalForm} />,
+      handleOk: async () => {
+        const result = await modalForm.validateFields()
+        editPassWord(result)
+      }
     })
   }
 
@@ -117,9 +128,23 @@ export default function Login() {
 
   // 修改密码
   const editPassWord = (editForm) => {
-    console.log('修改密码')
     openModal({
-      title: '修改密码'
+      title: '修改密码',
+      content: <EditForm form={modalForm} />,
+      handleOk: async () => {
+        const result = await modalForm.validateFields()
+        try {
+          const req = { ...result, ...editForm }
+          const res = await resetSystemUserPassword(req)
+          if (res.code !== 0) {
+            return showError(res.msg)
+          }
+          return showSuccess('修改成功，请登录。')
+        } catch (error) {
+          showError(error)
+          return Promise.reject()
+        }
+      }
     })
   }
 
