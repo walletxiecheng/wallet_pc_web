@@ -27,7 +27,7 @@ export const searchLanguageMapInfo = (params) => {
 
 // 更新各个语言和文字的对应关系
 export const updateLanguageMap = (data, headers) => {
-  return axiosDefine.put(
+  return axiosDefine.post(
     '/back/appPageManagement/language/updateLanguageMap',
     data,
     headers
@@ -36,7 +36,7 @@ export const updateLanguageMap = (data, headers) => {
 
 // 上传语言信息
 export const uploadLanguageInfo = (data, headers) => {
-  return axiosDefine.post(
+  return axiosDefine.put(
     '/back/appPageManagement/language/uploadLanguageInfo',
     data,
     headers

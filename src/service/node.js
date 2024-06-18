@@ -17,10 +17,19 @@ export const getNodeConfigList = (params) => {
   )
 }
 
-// 更新/添加节点信息
+// 更新添加节点信息
 export const updateOrAddNodeConfig = (data, headers) => {
+  return axiosDefine.post(
+    '/back/appPageManagement/node/updateNodeConfig',
+    data,
+    headers
+  )
+}
+
+// 添加节点信息
+export const addNodeConfig = (data, headers) => {
   return axiosDefine.put(
-    '/back/appPageManagement/node/updateOrAddNodeConfig',
+    '/back/appPageManagement/node/updateNodeConfig',
     data,
     headers
   )

@@ -3,7 +3,7 @@ import axiosDefine from '@/common/axiosSetting'
 
 // 添加角色请求
 export const addCharacter = (data) => {
-  return axiosDefine.post('/back/system/character/addCharacter', data)
+  return axiosDefine.put('/back/system/character/addCharacter', data)
 }
 
 // 删除角色

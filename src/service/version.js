@@ -11,7 +11,7 @@ export const getVersionInfo = (params) => {
 
 //上传软件版本信息
 export const uploadAppVersion = (data, headers) => {
-  return axiosDefine.post(
+  return axiosDefine.put(
     '/back/systemManagement/version/uploadAppVersion',
     data,
     headers

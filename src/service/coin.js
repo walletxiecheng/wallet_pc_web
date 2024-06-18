@@ -2,10 +2,10 @@
 import axiossDefine from '@/common/axiosSetting'
 
 // 获取支持的代币信息
-export const getSupportCoinList = (params) => {
-  return axiossDefine.get(
-    '/back/appPageManagement/coins/getSupportChainList',
-    params
+export const getSupportCoinList = (data) => {
+  return axiossDefine.post(
+    '/back/appPageManagement/coins/getSupportCoinList',
+    data
   )
 }
 

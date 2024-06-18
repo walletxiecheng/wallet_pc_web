@@ -20,7 +20,7 @@ export const getNewsList = (params) => {
 
 // 发布新闻
 export const publishNews = (data, headers) => {
-  return axiosDefine.get(
+  return axiosDefine.put(
     '/back/appPageManagement/news/publishNews',
     data,
     headers
@@ -28,9 +28,9 @@ export const publishNews = (data, headers) => {
 }
 
 // 修改新闻
-export const updateNewss = (data, headers) => {
-  return axiosDefine.put(
-    '/back/appPageManagement/news/updateNewss',
+export const updateNews = (data, headers) => {
+  return axiosDefine.post(
+    '/back/appPageManagement/news/updateNews',
     data,
     headers
   )

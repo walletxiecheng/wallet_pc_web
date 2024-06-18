@@ -11,23 +11,62 @@ import {
 } from 'antd'
 import { columns, ruleOptions, systemOptions, warnOptions } from './config'
 import { usePagination } from 'ahooks'
-
+import { getWarningList } from '@/service/warn'
+import { showError } from '@/components/TKMessage'
 const { RangePicker } = DatePicker
-export default function WarnManager() {
-  // const [form] = Form.useForm()
-  // TODO 数据渲染
+const PAGE_SIZE = 2
 
-  const { data: warnList, run: warnRun, pagination } = usePagination()
+export default function WarnManager() {
+  const [form] = Form.useForm()
+  // TODO 数据渲染
+  const {
+    data: warnList,
+    run: warnRun,
+    pagination: warnPagination
+  } = usePagination(
+    async (params) => {
+      const res = await getWarningList(params)
+      if (res.code !== 0) {
+        showError('请求数据失败，请检查网络状态或刷新重试。')
+        return { total: 0, list: [] }
+      }
+      const { data } = res
+      return { total: data.total, list: data.system_warning_list }
+    },
+    {
+      defaultParams: [
+        {
+          current: 1,
+          pageSize: PAGE_SIZE
+        }
+      ]
+    }
+  )
   // 查询
-  const query = (e) => {
-    console.log(e)
+  const query = (values) => {
+    // 日期有值的情况下增加开始日期字段和结束日期字段
+    if (values.date) {
+      values.date_start = values.date[0].format('YYYY-MM-DD')
+      values.date_end = values.date[1].format('YYYY-MM-DD')
+    }
+    // 重新渲染
+    warnRun({
+      current: 1,
+      pageSize: PAGE_SIZE
+    })
   }
   // 重置
-  const reset = () => {}
+  const reset = () => {
+    form.resetFields()
+    warnRun({
+      current: 1,
+      pageSize: PAGE_SIZE
+    })
+  }
 
   return (
     <div>
-      <Form layout="horizontal" onFinish={query}>
+      <Form layout="horizontal" form={form} onFinish={query}>
         <Space size="large">
           <Form.Item name="trigger_indicator_min" label="触发指标">
             <InputNumber changeOnWheel placeholder="最小值" />
@@ -67,7 +106,7 @@ export default function WarnManager() {
           </Space>
 
           <Space>
-            <Button type="primary" onClick={reset}>
+            <Button type="primary" htmlType="reset">
               重置
             </Button>
             <Button type="primary" htmlType="submit">
@@ -76,7 +115,18 @@ export default function WarnManager() {
           </Space>
         </Space>
       </Form>
-      <Table columns={columns()} />
+      <Table
+        dataSource={warnList?.list || []}
+        rowKey={(record) => record.id}
+        pagination={{
+          total: warnList?.total,
+          current: warnPagination.current,
+          pageSize: warnPagination.pageSize,
+          onChange: warnPagination.onChange,
+          onShowSizeChange: warnPagination.onChange
+        }}
+        columns={columns()}
+      />
     </div>
   )
 }
