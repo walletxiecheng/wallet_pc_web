@@ -1,7 +1,7 @@
-import { Button } from 'antd'
+import { Button, Space } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '@/routes/urls'
-export const columns = () => {
+export const columns = (editRule) => {
   const navigate = useNavigate()
   return [
     {
@@ -60,11 +60,11 @@ export const columns = () => {
       title: '操作',
       dataIndex: 'operate',
       key: 'operate',
-      render: (record) => (
+      render: (_, record) => (
         <Button
           type="link"
           onClick={() => {
-            navigate(URLS.warnDetail, record)
+            navigate(URLS.warnDetail, { state: record })
           }}
         >
           查看详情

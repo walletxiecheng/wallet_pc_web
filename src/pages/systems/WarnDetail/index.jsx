@@ -1,40 +1,93 @@
 import React from 'react'
-import { Table, Form, Input, Space } from 'antd'
-import { columns } from './config'
+import { Divider, Form, Space, Input, Table } from 'antd'
+import { useLocation } from 'react-router-dom'
+import { WARN_MENU } from '../WarnManager/config'
+import { getWarningDetail } from '@/service/warn'
+import { usePagination } from 'ahooks'
+import style from './index.module.less'
+import { showError } from '@/components/TKMessage'
+import { userColumns, machineColumns, versionColumns } from './config'
+
 export default function WarnDetail() {
-  const data = []
+  const state = useLocation().state
+  const rule = state.trigger_rule
+  console.log(state)
+  const {
+    data: warnData,
+    run: warnRun,
+    pagination: warnPagination
+  } = usePagination(
+    async (params) => {
+      const res = await getWarningDetail(params)
+      if (res.code !== 0) {
+        showError('请求数据失败,请重试。')
+        return []
+      }
+      // const data = { res }
+      return res.data
+    },
+    {
+      defaultParams: [{ current: 1, pageSize: 10, warning_record_id: 1 }]
+    }
+  )
   return (
     <div>
+      <header>
+        <h2>报警详情</h2>
+      </header>
+      <Divider></Divider>
       <Form>
-        <Space size="large">
+        <Space>
           <Form.Item label="编号">
-            <Input defaultValue="01"></Input>
+            <Input value={state.id} />
           </Form.Item>
-
           <Form.Item label="报警类型">
-            <Input defaultValue="崩溃"></Input>
+            <Input
+              value={state.warn_type === WARN_MENU.CRASH ? '崩溃' : '异常'}
+            />
           </Form.Item>
           <Form.Item label="触发规则">
-            <Input defaultValue="单个版本"></Input>
+            <Input value={rule.warning_rule_name} />
           </Form.Item>
           <Form.Item label="触发指标">
-            <Input defaultValue="4408"></Input>
+            <Input value={state.trigger_indication} />
           </Form.Item>
         </Space>
-
-        <Space size="large">
+        <Space>
           <Form.Item label="报警时间">
-            <Input defaultValue="2024" type="date"></Input>
+            <Input value={state.warning_time} />
           </Form.Item>
           <Form.Item label="系统类型">
-            <Input defaultValue="IOS"></Input>
+            <Input value={state.system_type} />
           </Form.Item>
           <Form.Item label="摘要">
-            <Input defaultValue="报错文本"></Input>
+            <Input value={state.abstract} />
           </Form.Item>
         </Space>
       </Form>
-      <Table columns={columns()} dataSource={data} />
+      <div className={style.tableBox}>
+        <div className={style.tableItem}>
+          <header>影响用户 * {0}</header>
+          <Table
+            columns={userColumns}
+            dataSource={warnData?.effected_user_info}
+          ></Table>
+        </div>
+        <div className={style.tableItem}>
+          <header>影响手机型号 * {0}</header>
+          <Table
+            columns={machineColumns}
+            dataSource={warnData?.effected_machine_info}
+          ></Table>
+        </div>
+        <div className={style.tableItem}>
+          <header>影响版本数 * {0}</header>
+          <Table
+            columns={versionColumns}
+            dataSource={warnData?.effected_version_info}
+          ></Table>
+        </div>
+      </div>
     </div>
   )
 }

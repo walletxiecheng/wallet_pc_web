@@ -7,14 +7,16 @@ import {
   Input,
   Select,
   Button,
-  Space
+  Space,
+  Divider
 } from 'antd'
 import { columns, ruleOptions, systemOptions, warnOptions } from './config'
 import { usePagination } from 'ahooks'
 import { getWarningList } from '@/service/warn'
 import { showError } from '@/components/TKMessage'
+import { openModal } from '../SmsManager/components/Modal'
 const { RangePicker } = DatePicker
-const PAGE_SIZE = 2
+const PAGE_SIZE = 10
 
 export default function WarnManager() {
   const [form] = Form.useForm()
@@ -55,17 +57,25 @@ export default function WarnManager() {
       pageSize: PAGE_SIZE
     })
   }
-  // 重置
-  const reset = () => {
-    form.resetFields()
-    warnRun({
-      current: 1,
-      pageSize: PAGE_SIZE
+
+  // 编辑弹窗
+  const editRule = (ruleInfo) => {
+    openModal({
+      title: '编辑规则',
+      content: <EditForm values={ruleInfo} />,
+      handleOK: () => {
+        console.log('点击了确定按钮')
+        return Promise.reject()
+      }
     })
   }
 
   return (
     <div>
+      <header>
+        <h2>报警管理</h2>
+      </header>
+      <Divider></Divider>
       <Form layout="horizontal" form={form} onFinish={query}>
         <Space size="large">
           <Form.Item name="trigger_indicator_min" label="触发指标">
@@ -125,7 +135,7 @@ export default function WarnManager() {
           onChange: warnPagination.onChange,
           onShowSizeChange: warnPagination.onChange
         }}
-        columns={columns()}
+        columns={columns(editRule)}
       />
     </div>
   )

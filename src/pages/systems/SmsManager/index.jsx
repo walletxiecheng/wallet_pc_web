@@ -1,7 +1,7 @@
 import React from 'react'
 import { Space, Table, Button, Form, Select, Input } from 'antd'
 import { useState } from 'react'
-import { columns, downLoadOptions } from './config'
+import { columns } from './config'
 import { openModal } from './components/Modal'
 import { SmsForm } from './components/Form'
 import { usePagination } from 'ahooks'
