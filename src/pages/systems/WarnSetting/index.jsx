@@ -15,9 +15,10 @@ export default function WarnSetting() {
       const res = await getWarningSettings(params)
       if (res.code !== 0) {
         showError(res.msg + '请求数据失败')
-        return []
+        return { total: 0, list: [] }
       }
-      return res?.data
+      const { data } = res
+      return { total: data.total, list: data.warning_setting_list }
     },
     {
       defaultParams: [{ current: 1, pageSize: PAGE_SIZE }]
@@ -39,13 +40,10 @@ export default function WarnSetting() {
         <Form onFinish={onFinish}>
           <Space>
             <Form.Item label="调用规则" name="trigger_rule">
-              <Select></Select>
+              <Select placeholder="全部"></Select>
             </Form.Item>
             <Form.Item label="通知" name="notify_status">
-              <Select
-                options={stateOption}
-                defaultValue={STATE_MENU.ALL}
-              ></Select>
+              <Select placeholder="全部" options={stateOption}></Select>
             </Form.Item>
             <Form.Item label="搜索" name="id">
               <Input placeholder="ID" />
@@ -79,7 +77,7 @@ export default function WarnSetting() {
       </div>
       <Table
         rowKey={(record) => record.id}
-        dataSource={data}
+        dataSource={data?.list}
         columns={columns()}
         pagination={{
           pageSize: pagination.pageSize,
