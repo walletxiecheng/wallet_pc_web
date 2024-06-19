@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, Form, Space, Input, Table } from 'antd'
+import { Divider, Form, Space, Input, Table, Pagination } from 'antd'
 import { useLocation } from 'react-router-dom'
 import { WARN_MENU } from '../WarnManager/config'
 import { getWarningDetail } from '@/service/warn'
@@ -8,9 +8,10 @@ import style from './index.module.less'
 import { showError } from '@/components/TKMessage'
 import { userColumns, machineColumns, versionColumns } from './config'
 
+const PAGE_SIZE = 10
 export default function WarnDetail() {
-  const state = useLocation().state
-  const rule = state.trigger_rule
+  const state = useLocation().state || {}
+  const rule = state?.trigger_rule || {}
   console.log(state)
   const {
     data: warnData,
@@ -24,10 +25,10 @@ export default function WarnDetail() {
         return []
       }
       // const data = { res }
-      return res.data
+      return res?.data || []
     },
     {
-      defaultParams: [{ current: 1, pageSize: 10, warning_record_id: 1 }]
+      defaultParams: [{ current: 1, pageSize: PAGE_SIZE, warning_record_id: 1 }]
     }
   )
   return (
@@ -69,6 +70,7 @@ export default function WarnDetail() {
         <div className={style.tableItem}>
           <header>影响用户 * {0}</header>
           <Table
+            pagination={false}
             columns={userColumns}
             dataSource={warnData?.effected_user_info}
           ></Table>
@@ -76,6 +78,7 @@ export default function WarnDetail() {
         <div className={style.tableItem}>
           <header>影响手机型号 * {0}</header>
           <Table
+            pagination={false}
             columns={machineColumns}
             dataSource={warnData?.effected_machine_info}
           ></Table>
@@ -83,11 +86,19 @@ export default function WarnDetail() {
         <div className={style.tableItem}>
           <header>影响版本数 * {0}</header>
           <Table
+            pagination={false}
             columns={versionColumns}
             dataSource={warnData?.effected_version_info}
           ></Table>
         </div>
       </div>
+      <Pagination
+        total={warnData?.total || 10}
+        pageSize={warnPagination.pageSize}
+        current={warnPagination.current}
+        onChange={warnPagination.onChange}
+        onShowSizeChange={warnPagination.onChange}
+      ></Pagination>
     </div>
   )
 }

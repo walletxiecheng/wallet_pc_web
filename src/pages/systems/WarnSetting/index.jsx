@@ -1,50 +1,94 @@
-import React, { useState } from 'react'
-import { Tabs } from 'antd'
-import WarnRuleTable from './components/WarnRuleTable'
-const data = [
-  {
-    key: '1',
-    id: 1,
-    tel: '123',
-    desc: '职务'
-  },
-  {
-    key: '2',
-    id: 2,
-    tel: '123',
-    desc: '职务'
-  }
-]
-const items = [
-  {
-    key: '1',
-    label: '崩溃报警'
-  },
-  {
-    key: '2',
-    label: '异常报警'
-  }
-]
+import React from 'react'
+import { Button, Divider, Form, Input, Select, Space, Table } from 'antd'
+import { useNavigate } from 'react-router-dom'
+import { getWarningSettings } from '@/service/warn'
+import { usePagination } from 'ahooks'
+import { columns, stateOption, STATE_MENU } from './config'
+import { showError } from '@/components/TKMessage'
+
+const PAGE_SIZE = 10
 export default function WarnSetting() {
+  const navigate = useNavigate()
   // 数据源
-  const [dataSource, setDataSource] = useState(data)
-  // 新增通知
-  const addPerson = (value) => {
-    const res = dataSource
-    res.push(value)
-    setDataSource(res)
-    console.log(dataSource)
+  const { data, run, pagination } = usePagination(
+    async (params) => {
+      const res = await getWarningSettings(params)
+      if (res.code !== 0) {
+        showError(res.msg + '请求数据失败')
+        return []
+      }
+      return res?.data
+    },
+    {
+      defaultParams: [{ current: 1, pageSize: PAGE_SIZE }]
+    }
+  )
+  const onFinish = (values) => {
+    console.log(values)
+    run({ current: 1, pageSize: PAGE_SIZE, ...values })
   }
+
   return (
     <div>
-      <Tabs items={items}></Tabs>
-      <WarnRuleTable
-        addPerson={addPerson}
-        data={dataSource}
-        title="所有版本报警规则"
+      <header>
+        <h2>报警设置</h2>
+      </header>
+      <Divider />
+
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Form onFinish={onFinish}>
+          <Space>
+            <Form.Item label="调用规则" name="trigger_rule">
+              <Select></Select>
+            </Form.Item>
+            <Form.Item label="通知" name="notify_status">
+              <Select
+                options={stateOption}
+                defaultValue={STATE_MENU.ALL}
+              ></Select>
+            </Form.Item>
+            <Form.Item label="搜索" name="id">
+              <Input placeholder="ID" />
+            </Form.Item>
+            <Form.Item>
+              <Button
+                type="link"
+                style={{ border: '1px solid, #3f78f9' }}
+                htmlType="reset"
+              >
+                重置
+              </Button>
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                查询
+              </Button>
+            </Form.Item>
+          </Space>
+        </Form>
+        <Button
+          type="primary"
+          onClick={() => {
+            navigate('/systems/warnSetting/handleRule', {
+              state: { type: 1 }
+            })
+          }}
+        >
+          新增
+        </Button>
+      </div>
+      <Table
+        rowKey={(record) => record.id}
+        dataSource={data}
+        columns={columns()}
+        pagination={{
+          pageSize: pagination.pageSize,
+          current: pagination.current,
+          total: data?.total || 0,
+          onShowSizeChange: pagination.onChange,
+          onChange: pagination.onChange
+        }}
       />
-      <WarnRuleTable title="单个版本报警规则" />
-      <WarnRuleTable title="单个 崩溃/异常 摘要报警规则" />
     </div>
   )
 }

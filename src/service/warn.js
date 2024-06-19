@@ -50,3 +50,8 @@ export const deleteNotifyMember = (params) => {
     params
   )
 }
+
+//获取报警规则信息列表
+export const getRules = (params) => {
+  return axiosDefine.get('/grafana/alert/rules', params)
+}

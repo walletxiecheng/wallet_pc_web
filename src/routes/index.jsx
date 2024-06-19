@@ -5,6 +5,7 @@ import SmsManager from '@/pages/systems/SmsManager'
 import WarnManager from '@/pages/systems/WarnManager'
 import WarnDetail from '@/pages/systems/WarnDetail'
 import WarnSetting from '@/pages/systems/WarnSetting'
+import HandleRule from '@/pages/systems/WarnSetting/pages/HandleRule'
 import AdminSetting from '@/pages/systems/AdminSetting'
 import OperateLog from '@/pages/systems/OperateLog'
 import LoginLog from '@/pages/systems/LoginLog'
@@ -37,6 +38,11 @@ export const routes = createBrowserRouter([
         path: URLS.warnSetting,
         element: <WarnSetting />,
         errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.handleRule,
+        element: <HandleRule />,
+        errorElement: <HandleRule />
       },
       {
         path: URLS.adminSetting,
