@@ -13,7 +13,6 @@ import React from 'react'
 import { columns, resultOption, typeOption } from './config'
 import { getOperationRecordList } from '@/service/log'
 import { usePagination } from 'ahooks'
-import { showError } from '@/components/TKMessage'
 
 export default function OperateLog() {
   const [form] = Form.useForm()
@@ -21,7 +20,6 @@ export default function OperateLog() {
     async (params) => {
       const res = await getOperationRecordList(params)
       if (res.code !== 0) {
-        showError('查询错误，请检查参数或者网络设置')
         return { total: 0, list: [] }
       }
       const data = res.data

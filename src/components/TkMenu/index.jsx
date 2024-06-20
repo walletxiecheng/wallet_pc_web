@@ -10,6 +10,7 @@ export default function TkMenu() {
   const handleClick = (props) => {
     const { item } = props
     const path = item?.props?.path || '' //waring: 可能性bug
+
     if (!path) {
       return
     }

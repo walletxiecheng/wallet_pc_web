@@ -31,7 +31,7 @@ export default function Login() {
     // TODO 预登录
     const res = await preLogin(values)
     if (res.code !== 0) {
-      return showError('系统错误请稍后再试')
+      return
     }
     const data = res.data
     const status = data.account_status
@@ -78,7 +78,6 @@ export default function Login() {
         try {
           const res = await bindPhoneNumber(result)
           if (res.code !== 0) {
-            showError('验证码错误')
             return Promise.reject()
           }
           showSuccess('绑定手机号成功,请登录')
@@ -87,8 +86,6 @@ export default function Login() {
           showError(err)
           return Promise.reject()
         }
-
-        // return Promise.reject()
       }
     })
   }
@@ -111,7 +108,6 @@ export default function Login() {
           // TODO 调用登录接口
           const res = await login(req, header)
           if (res.code !== 0) {
-            showError('验证码错误,请稍后重试。')
             return Promise.reject()
           }
           setUserInfo(res.data)
@@ -137,7 +133,7 @@ export default function Login() {
           const req = { ...result, ...editForm }
           const res = await resetSystemUserPassword(req)
           if (res.code !== 0) {
-            return showError(res.msg)
+            return Promise.reject()
           }
           return showSuccess('修改成功，请登录。')
         } catch (error) {

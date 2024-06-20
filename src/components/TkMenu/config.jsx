@@ -1,18 +1,30 @@
 import { UserOutlined } from '@ant-design/icons'
 import { URLS } from '@/routes/urls'
 
+// 菜单列表
 export const menuKeys = {
-  systems: 'systems',
-  smsManager: 'smsManager',
-  warnManager: 'warnManager',
-  warnSetting: 'warnSetting',
-  adminSetting: 'adminSetting',
-  operateLogSetting: 'operateLogSetting',
-  loginLogManager: 'loginLogManager',
-  merchantManager: 'merchantManager',
-  accountManager: 'accountManager',
+  systems: 'systems', //系统管理
+  smsManager: 'smsManager', //短信
+  warnManager: 'warnManager', //报警管理
+  warnSetting: 'warnSetting', //报警设置
+  adminSetting: 'adminSetting', //管理员设置
+  operateLogSetting: 'operateLogSetting', //操作日志
+  loginLogManager: 'loginLogManager', //登录日志
+
+  merchantManager: 'merchantManager', //商户管理
+  accountManager: 'accountManager', //
   realNameManager: 'realNameManager',
-  balanceManager: 'balanceManager'
+  balanceManager: 'balanceManager',
+
+  app: 'app', // 应用端管理
+  dappManager: 'dappManager', //dapp
+  newsManager: 'newsManager', //咨讯
+  languageManager: 'languageManager', //语言
+  nodeManager: 'nodeManager', //节点
+  coinManager: 'coinManager', //代币
+  tenderManager: 'tenderManager', //法币
+  advertisement: 'advertisement', //广告版
+  versionManager: 'versionManager' //版本管理
 }
 
 export const menuItems = [
@@ -69,6 +81,47 @@ export const menuItems = [
       {
         label: '余额管理',
         key: menuKeys.balanceManager
+      }
+    ]
+  },
+  {
+    key: menuKeys.app,
+    icon: <UserOutlined />,
+    label: '应用端管理',
+    children: [
+      {
+        label: 'DApp管理',
+        key: menuKeys.dappManager,
+        path: URLS.dappManager
+      },
+      {
+        label: '资讯管理',
+        key: menuKeys.newsManager,
+        path: URLS.newsManager
+      },
+      {
+        label: '语言管理',
+        key: menuKeys.languageManager
+      },
+      {
+        label: '节点管理',
+        key: menuKeys.nodeManager
+      },
+      {
+        label: '代币管理',
+        key: menuKeys.coinManager
+      },
+      {
+        label: '法币管理',
+        key: menuKeys.tenderManager
+      },
+      {
+        label: '广告版管理',
+        key: menuKeys.advertisement
+      },
+      {
+        label: '版本管理',
+        key: menuKeys.versionManager
       }
     ]
   }

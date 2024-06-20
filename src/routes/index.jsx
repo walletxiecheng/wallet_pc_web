@@ -9,6 +9,9 @@ import HandleRule from '@/pages/systems/WarnSetting/pages/HandleRule'
 import AdminSetting from '@/pages/systems/AdminSetting'
 import OperateLog from '@/pages/systems/OperateLog'
 import LoginLog from '@/pages/systems/LoginLog'
+
+import NewsManager from '@/pages/app/NewsManager'
+import DappManager from '@/pages/app/DappManager'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
 import { URLS } from './urls'
@@ -19,6 +22,7 @@ export const routes = createBrowserRouter([
     element: <BaseLayout />,
     errorElement: <ErrorPage />,
     children: [
+      // 系统管理
       {
         path: URLS.smsManager,
         element: <SmsManager />,
@@ -57,6 +61,17 @@ export const routes = createBrowserRouter([
       {
         path: URLS.loginLogManager,
         element: <LoginLog />,
+        errorElement: <ErrorPage />
+      },
+      // 应用端管理
+      {
+        path: URLS.dappManager,
+        element: <DappManager />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.newsManager,
+        element: <NewsManager />,
         errorElement: <ErrorPage />
       }
     ]
