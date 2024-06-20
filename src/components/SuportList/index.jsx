@@ -55,7 +55,7 @@ const suplist = [
   {
     title: "Discover DApp",
     icon: suportIcon1,
-    content: "There are various DApps such as cryptocurrency wallets and financial services on Token 17. and have full control over their own data and assets",
+    content: "There are various DApps such as cryptocurrency wallets and financial services on Token 17. and have full control over their own data and assets.",
     bakground: bg1
   },
   {
