@@ -11,14 +11,14 @@ const btnList = [
     label: "Apple Store",
     icon: iPhone,
     selectIcon: iPhoneSelect,
-    url: "https://www.baidu.com/",
+    url: "https://apps.apple.com/vn/app/token17/id6504523429",
   },
   {
     title: "Download APK",
     label: "android",
     icon: android,
     selectIcon: androidSelect,
-    url: "https://www.baidu.com/",
+    url: "https://apps.apple.com/vn/app/token17/id6504523429",
   },
 ];
 

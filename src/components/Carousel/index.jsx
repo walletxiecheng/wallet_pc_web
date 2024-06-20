@@ -18,7 +18,7 @@ const carouselItem = [
     title: "Provide bank grade",
     subTitle: "Security guarantee, multiple verification",
     content:
-      "Token 13 is a mobile app that provides you with bank-grade security and multi-factor authentication to help you manage and protect your digital assets. Whether it's cryptocurrency, digital collections, or other digital assets, Token 13 provides all the features you need to manage your financial assets with peace of mind.",
+      "Token 17 is a mobile app that provides you with bank-grade security and multi-factor authentication to help you manage and protect your digital assets. Whether it's cryptocurrency, digital collections, or other digital assets, Token 17 provides all the features you need to manage your financial assets with peace of mind.",
     image: carouselPc1,
     imageZh: carouselPc1_zh
   },
@@ -26,7 +26,7 @@ const carouselItem = [
     title: "Easily manage digital assets",
     subTitle: "Always in control",
     content:
-      "Token 13 is the easiest and most secure way to connect to blockchain-based applications. Whenever you interact with the new decentralized network, you are always in control. Token 13 allows you to easily manage your digital assets, ensure security, and always be under your control.",
+      "Token 17 is the easiest and most secure way to connect to blockchain-based applications. Whenever you interact with the new decentralized network, you are always in control. Token 17 allows you to easily manage your digital assets, ensure security, and always be under your control.",
     image: carouselPc2,
     imageZh: carouselPc2_zh
   },
@@ -34,7 +34,7 @@ const carouselItem = [
     title: "Only on your device",
     subTitle: "Generate passwords and keys",
     content:
-      "Token 13 generates passwords and keys on your device, ensuring only you can access your accounts and data. This security measure protects your privacy and the security of your digital assets, allowing you to manage your accounts and data with confidence.",
+      "Token 17 generates passwords and keys on your device, ensuring only you can access your accounts and data. This security measure protects your privacy and the security of your digital assets, allowing you to manage your accounts and data with confidence.",
     image: carouselPc3,
     imageZh: carouselPc3_zh
   },
@@ -42,7 +42,7 @@ const carouselItem = [
     title: "Self-hosted encryption",
     subTitle: "Don't share with others",
     content:
-      "Token 13 is a self-hosted wallet and the private keys are encrypted on your device and never shared with anyone. We will never track your personally identifiable information, account addresses or asset balances, ensuring your privacy is protected to the greatest extent possible. You can use Token 13 to manage your digital assets without worrying about the risk of personal information leakage.",
+      "Token 17 is a self-hosted wallet and the private keys are encrypted on your device and never shared with anyone. We will never track your personally identifiable information, account addresses or asset balances, ensuring your privacy is protected to the greatest extent possible. You can use Token 17 to manage your digital assets without worrying about the risk of personal information leakage.",
     image: carouselPc4,
     imageZh: carouselPc4_zh
   },

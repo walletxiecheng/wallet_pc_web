@@ -36,7 +36,7 @@ export default function Index() {
       </div>
     
 
-      {/* 准备好探索token13了吗 explore */}
+      {/* 准备好探索token17了吗 explore */}
       <ReadyExplore />
       {/* 支持web3-wide */}
       <SuportList />

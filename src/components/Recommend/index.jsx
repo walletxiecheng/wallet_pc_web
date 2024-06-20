@@ -9,7 +9,7 @@ export default function Recommend() {
     <div className={style.recoContainer}>
       <div className={style.content}>
         <header className={style.title}>
-          {t("Get started with Token 13")}
+          {t("Get started with Token 17")}
         </header>
         <div className={style.words}>
           {t(

@@ -55,19 +55,19 @@ const suplist = [
   {
     title: "Discover DApp",
     icon: suportIcon1,
-    content: "There are various DApps such as cryptocurrency wallets and financial services on Token 13. and have full control over their own data and assets",
+    content: "There are various DApps such as cryptocurrency wallets and financial services on Token 17. and have full control over their own data and assets",
     bakground: bg1
   },
   {
     title: "Flash Exchange",
     icon: suportIcon2,
-    content:"Token 13 is a fast and convenient decentralized transaction method. Use smart contracts and cross-chain technology to ensure transaction security and reliability.",
+    content:"Token 17 is a fast and convenient decentralized transaction method. Use smart contracts and cross-chain technology to ensure transaction security and reliability.",
     bakground: bg2
     },
   {
     title: "Batch Transfer",
     icon: suportIcon3,
-    content:"Use Token 13 to send assets to multiple addresses at once, saving handling fees and time. Improve efficiency and reduce the risk of human error.",
+    content:"Use Token 17 to send assets to multiple addresses at once, saving handling fees and time. Improve efficiency and reduce the risk of human error.",
     bakground: bg3
     },
   {
@@ -79,13 +79,13 @@ const suplist = [
   {
     title: "TRX Vote",
     icon: suportIcon5,
-    content:"Deposit TRX tokens via Token 13 to vote for super representatives on the TRON network and get rewards.",
+    content:"Deposit TRX tokens via Token 17 to vote for super representatives on the TRON network and get rewards.",
      bakground: bg5
     },
   {
     title: "Cross-chain exchange",
     icon: suportIcon6,
-    content:"Token 13 can exchange or transfer digital assets. Help you achieve asset liquidity and interoperability between different blockchain networks.",
+    content:"Token 17 can exchange or transfer digital assets. Help you achieve asset liquidity and interoperability between different blockchain networks.",
       bakground: bg6
     },
 ];

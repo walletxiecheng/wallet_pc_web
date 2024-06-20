@@ -58,7 +58,7 @@ export default function ReadyExplore() {
       <div className={style.readyBox}>
         <div className={style.content}>
           <header className={style.contentTitle}>
-            {t("Ready to explore Token 13?")}
+            {t("Ready to explore Token 17?")}
           </header>
           <div className={style.advanceBox}>
             {advanceList.map((item, index) => (
