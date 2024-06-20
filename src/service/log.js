@@ -5,3 +5,11 @@ import axiosDefine from '@/common/axiosSetting'
 export const getLoginLogList = (params) => {
   return axiosDefine.get('/back/system/log/getLoginLogList', params)
 }
+
+// 获取操作日志列表
+export const getOperationRecordList = (params) => {
+  return axiosDefine.get(
+    '/back/system/operationRecord/getOperationRecordList',
+    params
+  )
+}

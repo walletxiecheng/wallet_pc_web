@@ -28,7 +28,9 @@ export default function WarnDetail() {
       return res?.data || []
     },
     {
-      defaultParams: [{ current: 1, pageSize: PAGE_SIZE, warning_record_id: 1 }]
+      defaultParams: [
+        { current: 1, pageSize: PAGE_SIZE, warning_record_id: state?.id }
+      ]
     }
   )
   return (
