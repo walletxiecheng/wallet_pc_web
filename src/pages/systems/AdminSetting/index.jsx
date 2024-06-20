@@ -18,7 +18,7 @@ import {
 } from '@/service/system'
 import { Divider, Form, Select, Table, Space, Input, Button } from 'antd'
 
-const PAGE_SIZE = 3
+const PAGE_SIZE = 10
 
 export default function AdminSetting() {
   const [form] = Form.useForm()
@@ -75,10 +75,7 @@ export default function AdminSetting() {
         const result = await editForm.validateFields()
         result.ID = record.ID
         try {
-          const res = await alertSystemUser(result)
-          if (res.code !== 0) {
-            return showError('修改失败，请重试！')
-          }
+          await alertSystemUser(result)
           // 刷新
           runUserList({
             current: 1,
@@ -87,7 +84,7 @@ export default function AdminSetting() {
           })
           return showSuccess('修改成功！')
         } catch (error) {
-          showError(error)
+          showError('修改失败，请重试！')
           return Promise.reject()
         }
       }
@@ -108,9 +105,8 @@ export default function AdminSetting() {
               'Content-Type': 'multipart/form-data'
             }
           }
-          // TODO 调用新增管理员接口接口
-          const res = await addCharacter(result, header)
-          if (res.code !== 0) return showError('新增失败，请检查数据格式')
+          // 调用新增管理员接口接口
+          await addCharacter(result, header)
           // 刷新
           runUserList({
             current: 1,
@@ -118,8 +114,8 @@ export default function AdminSetting() {
             status: STATUS_ENUM.ALL
           })
           return showSuccess('新增管理员成功')
-        } catch (error) {
-          showError(error)
+        } catch (e) {
+          showError('新增失败，请检查数据格式')
           return Promise.reject()
         }
       }

@@ -12,7 +12,7 @@ import ForgetForm from './components/ForgetForm'
 import EditForm from './components/EditForm'
 import BindTelForm from './components/BindTelForm'
 import { login } from '@/service/login'
-import { useUserStore } from '@/stores'
+import { useUserStore, useTokenStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '@/routes/urls'
 
@@ -25,6 +25,7 @@ export default function Login() {
   const [modalForm] = Form.useForm()
   // 使用状态管理 设置用户信息
   const { setUserInfo } = useUserStore()
+  const { setToken } = useTokenStore()
   const navigate = useNavigate()
   // 登录
   const onFinish = async (values) => {
@@ -105,13 +106,10 @@ export default function Login() {
             }
           }
           const req = { ...values, ...result }
-          // TODO 调用登录接口
+          // 调用登录接口
           const res = await login(req, header)
-          if (res.code !== 0) {
-            return Promise.reject()
-          }
           setUserInfo(res.data)
-          localStorage.setItem('token', res.data.token)
+          setToken(res.data.token)
           showSuccess('登录成功')
           navigate(URLS.index)
         } catch (err) {
