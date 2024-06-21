@@ -15,6 +15,7 @@ import { login } from '@/service/login'
 import { useUserStore, useTokenStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '@/routes/urls'
+import { header } from '@/common/config'
 
 export default function Login() {
   // 登录表单
@@ -30,26 +31,26 @@ export default function Login() {
   // 登录
   const onFinish = async (values) => {
     // TODO 预登录
-    const res = await preLogin(values)
-    if (res.code !== 0) {
-      return
-    }
-    const data = res.data
-    const status = data.account_status
-    const formValue = { ...data, ...values }
-    // TODO 根据返回的不同状态码做不同操作
-    if (status === 0) {
-      return showError('账号不存在，请检查。')
-    } else if (status === 1) {
-      //  带着用户名和密码和手机号进入验证码弹窗
-      verifyLogin(formValue)
-    } else if (status === 2) {
-      // 进入绑定手机号弹窗
-      bindTelNumber(formValue)
-    } else if (status === 3) {
-      return showError('账号已被禁用，请联系管理员。')
-    } else if (status === 4) {
-      return showWarning('密码错误')
+    try {
+      const { data } = await preLogin(values)
+      const status = data.account_status
+      const formValue = { ...data, ...values }
+      // TODO 根据返回的不同状态码做不同操作
+      if (status === 0) {
+        return showError('账号不存在，请检查。')
+      } else if (status === 1) {
+        //  带着用户名和密码和手机号进入验证码弹窗
+        verifyLogin(formValue)
+      } else if (status === 2) {
+        // 进入绑定手机号弹窗
+        bindTelNumber(formValue)
+      } else if (status === 3) {
+        return showError('账号已被禁用，请联系管理员。')
+      } else if (status === 4) {
+        return showWarning('密码错误')
+      }
+    } catch (err) {
+      return showError(err)
     }
   }
   // 忘记密码
@@ -94,16 +95,11 @@ export default function Login() {
       handleOk: async () => {
         const result = await modalForm.validateFields()
         try {
-          const header = {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          }
           const req = { ...values, ...result }
           // 调用登录接口
-          const res = await login(req, header)
-          setUserInfo(res.data)
-          setToken(res.data.token)
+          const { data } = await login(req, header)
+          setUserInfo(data)
+          setToken(data.token)
           showSuccess('登录成功')
           navigate(URLS.index)
         } catch (err) {

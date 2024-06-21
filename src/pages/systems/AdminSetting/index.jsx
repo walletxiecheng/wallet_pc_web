@@ -116,8 +116,7 @@ export default function AdminSetting() {
   // 获取角色列表
   const getAllCharacterNameHandler = async () => {
     try {
-      const res = await getAllCharacterName()
-      const data = res.data
+      const { data } = await getAllCharacterName()
       const options = data.map((item) => {
         return {
           value: item.id,

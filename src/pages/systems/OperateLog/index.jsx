@@ -13,23 +13,25 @@ import React from 'react'
 import { columns, resultOption, typeOption } from './config'
 import { getOperationRecordList } from '@/service/log'
 import { usePagination } from 'ahooks'
+const PAGE_SIZE = 10
 
 export default function OperateLog() {
   const [form] = Form.useForm()
   const { data, run, pagination } = usePagination(
     async (params) => {
-      const res = await getOperationRecordList(params)
-      if (res.code !== 0) {
+      try {
+        const { data } = await getOperationRecordList(params)
+        return { total: data?.total, list: data?.operation_list }
+      } catch (err) {
+        showError('获取日志列表失败')
         return { total: 0, list: [] }
       }
-      const data = res.data
-      return { total: data?.total, list: data?.operation_list }
     },
     {
       defaultParams: [
         {
           current: 1,
-          pageSize: 10
+          pageSize: PAGE_SIZE
         }
       ]
     }
@@ -44,7 +46,7 @@ export default function OperateLog() {
 
     run({
       current: 1,
-      pageSize: 10,
+      pageSize: PAGE_SIZE,
       ...values
     })
   }

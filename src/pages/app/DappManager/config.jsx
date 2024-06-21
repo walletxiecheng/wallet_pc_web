@@ -1,10 +1,18 @@
 import { Space, Button } from 'antd'
 import style from './index.module.less'
-import { useEffect, useState } from 'react'
+import { render } from 'less'
 
+export const columns = (chainList) => {
+  // 查找链
+  const findChainList = (value) => {
+    const label = chainList.map((item) => {
+      if (item.value == value) {
+        return item.label
+      }
+    })
+    return label
+  }
 
-
-export const columns = () => {
   // 查找类型名称
   const findName = (value) => {
     const label = typeOption.map((item) => {
@@ -52,7 +60,8 @@ export const columns = () => {
       key: 'chain_id',
       title: '所属链',
       dataIndex: 'chain_id',
-      width: '8%'
+      width: '8%',
+      render: (_, record) => <span>{findChainList(record.chain_id)}</span>
     },
     {
       key: 'type',
@@ -100,6 +109,7 @@ export const columns = () => {
   ]
 }
 
+// 标签
 const TYPE_MENU = {
   NEW: 1,
   DEFI: 2,
@@ -109,6 +119,7 @@ const TYPE_MENU = {
   TOOL: 6
 }
 
+// 标签类型
 export const typeOption = [
   {
     value: TYPE_MENU.NEW,
@@ -134,5 +145,21 @@ export const typeOption = [
   {
     value: TYPE_MENU.TOOL,
     label: '工具'
+  }
+]
+
+export const STATUS_MENU = {
+  ENABLE: 1,
+  DISABLE: 2
+}
+
+export const statusOption = [
+  {
+    value: STATUS_MENU.ENABLE,
+    label: '启用'
+  },
+  {
+    value: STATUS_MENU.DISABLE,
+    label: '禁用'
   }
 ]
