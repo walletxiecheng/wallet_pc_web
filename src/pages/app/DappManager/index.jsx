@@ -39,7 +39,6 @@ export default function DappManager() {
     if (res.code !== 0) {
       return []
     }
-    console.log(res)
     setChainList(res?.data?.dapp_list)
   }
   useEffect(() => {

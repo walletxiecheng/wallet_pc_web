@@ -6,24 +6,17 @@ export default function VerifyForm(props) {
   const { form, values } = props
 
   const sendCode = async () => {
-    console.log('发送验证码')
-    //     {
-    //   "account_number": 0,
-    //   "phone_number": "string",
-    //   "verify_type": 0
-    // }
     const req = {
       account_number: Number(values.account_number),
       phone_number: values.phone_number,
       verify_type: 1 //登录验证
     }
-    const res = await sendLoginVerificationCode(req)
-    console.log(res)
-    if (res.code !== 0) {
+    try {
+      const res = await sendLoginVerificationCode(req)
+    } catch (err) {
       showError('发送失败请重试')
       return Promise.reject()
     }
-    // 发送成功
   }
 
   return (

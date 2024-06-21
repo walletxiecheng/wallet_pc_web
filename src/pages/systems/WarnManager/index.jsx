@@ -27,13 +27,14 @@ export default function WarnManager() {
     pagination: warnPagination
   } = usePagination(
     async (params) => {
-      const res = await getWarningList(params)
-      if (res.code !== 0) {
-        showError('请求数据失败，请检查网络状态或刷新重试。')
+      try {
+        const res = await getWarningList(params)
+        const { data } = res
+        return { total: data.total, list: data.system_warning_list }
+      } catch (err) {
+        showError('获取数据失败')
         return { total: 0, list: [] }
       }
-      const { data } = res
-      return { total: data.total, list: data.system_warning_list }
     },
     {
       defaultParams: [
@@ -64,7 +65,6 @@ export default function WarnManager() {
       title: '编辑规则',
       content: <EditForm values={ruleInfo} />,
       handleOK: () => {
-        console.log('点击了确定按钮')
         return Promise.reject()
       }
     })
@@ -85,11 +85,7 @@ export default function WarnManager() {
             <InputNumber changeOnWheel placeholder="最大值" />
           </Form.Item>
           <Form.Item name="date" label="日期">
-            <RangePicker
-              onChange={(e) => {
-                console.log(e)
-              }}
-            />
+            <RangePicker />
           </Form.Item>
           <Form.Item name="abstract" label="摘要">
             <Input placeholder="报错内容"></Input>

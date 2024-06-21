@@ -7,7 +7,7 @@ import { SmsForm } from './components/Form'
 import { usePagination } from 'ahooks'
 import { getSmsList, addSmsRule } from '@/service/sms'
 import { showError, showSuccess } from '@/components/TKMessage'
-
+import { header } from '@/common/config'
 const PAGE_SIZE = 10
 
 const SmsManager = () => {
@@ -20,18 +20,16 @@ const SmsManager = () => {
     pagination: smsPagination
   } = usePagination(
     async (params) => {
-      const res = await getSmsList(params)
-      if (res.code !== 0) {
+      try {
+        const res = await getSmsList(params)
+        const { data } = res
+        return { total: data.total, list: data.system_sms_list }
+      } catch (err) {
         showError('请求数据失败，请重试。')
         return { total: 0, list: [] }
       }
-      const { data } = res
-      return { total: data.total, list: data.system_sms_list }
     },
     {
-      onError: () => {
-        return showError('请求出错')
-      },
       defaultParams: [{ current: 1, pageSize: PAGE_SIZE }]
     }
   )
@@ -45,21 +43,14 @@ const SmsManager = () => {
       handleOk: async () => {
         const result = await form.validateFields()
         try {
-          const header = {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          }
           // TODO 调用接口保存数据
-          const res = await addSmsRule(result, header)
-          if (res.code !== 0) {
-            return showError('添加失败,请重试。')
-          }
+          await addSmsRule(result, header)
+
           smsRun({ current: 1, pageSize: PAGE_SIZE })
           return showSuccess('添加成功！')
         } catch (error) {
           // TODO 提示保存失败
-          showError(error)
+          showError('新建失败，请重试。')
           return Promise.reject()
         }
       }

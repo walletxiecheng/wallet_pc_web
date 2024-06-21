@@ -11,14 +11,13 @@ export default function BindTelForm(props) {
       phone_number: phone_number,
       verify_type: 2
     }
-    const res = await sendLoginVerificationCode(req)
-    console.log(res)
-    if (res.code !== 0) {
+    try {
+      const res = await sendLoginVerificationCode(req)
+      return showSuccess('发送成功，请在手机查收。')
+    } catch (err) {
       showError('发送验证码失败，请稍后重试。')
-      return Promise.reject()
     }
     // 发送成功
-    return showSuccess('发送成功，请在手机查收。')
   }
   return (
     <Form form={form}>

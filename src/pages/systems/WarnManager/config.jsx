@@ -40,15 +40,7 @@ export const columns = (editRule) => {
     {
       title: '系统类型',
       dataIndex: 'system_type',
-      key: 'system_type',
-      render: (_, record) => (
-        <span>
-          {record.system_type == 1 ? 'Android' : ''}
-          {record.system_type == 2 ? 'HarmonyOS' : ''}
-          {record.system_type == 3 ? 'PC' : ''}
-          {record.system_type == 4 ? 'Undefined' : ''}
-        </span>
-      )
+      key: 'system_type'
     },
     {
       title: '摘要',

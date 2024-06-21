@@ -12,20 +12,20 @@ export default function WarnSetting() {
   // 数据源
   const { data, run, pagination } = usePagination(
     async (params) => {
-      const res = await getWarningSettings(params)
-      if (res.code !== 0) {
+      try {
+        const res = await getWarningSettings(params)
+        const { data } = res
+        return { total: data.total, list: data.warning_setting_list }
+      } catch (err) {
         showError(res.msg + '请求数据失败')
         return { total: 0, list: [] }
       }
-      const { data } = res
-      return { total: data.total, list: data.warning_setting_list }
     },
     {
       defaultParams: [{ current: 1, pageSize: PAGE_SIZE }]
     }
   )
   const onFinish = (values) => {
-    console.log(values)
     run({ current: 1, pageSize: PAGE_SIZE, ...values })
   }
 

@@ -28,18 +28,16 @@ export default function LoginLog() {
     pagination: logPagination
   } = usePagination(
     async (params) => {
-      const res = await getLoginLogList(params)
-      const { data } = res
-      if (res.code !== 0) {
+      try {
+        const res = await getLoginLogList(params)
+        const { data } = res
+        return { total: data.total, list: data.login_log_list }
+      } catch (err) {
         showError('请求数据失败，请重试。')
         return { total: 0, list: [] }
       }
-      return { total: data.total, list: data.login_log_list }
     },
     {
-      onError: () => {
-        return showError('请求出错，请检查网络设置。')
-      },
       defaultParams: [{ current: 1, pageSize: PAGE_SIZE }]
     }
   )

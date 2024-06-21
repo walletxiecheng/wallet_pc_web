@@ -1,11 +1,9 @@
-// apiService.js
 import axios from 'axios'
 import { handleInterceptors } from './interceptors'
 import { useTokenStore, useUserStore } from '@/stores'
 
 export const axiosInstance = axios.create({
   baseURL: 'http://18.143.170.163:9996',
-  // baseURL: window.location.href,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',

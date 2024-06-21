@@ -5,10 +5,7 @@ import EditForm from './components/EditForm'
 import style from './index.module.less'
 import { STATUS_ENUM, columns, statusOptions } from './config'
 import { showError, showSuccess } from '@/components/TKMessage'
-import {
-  getSystemUserList,
-  getSystemUserByAccountNumber
-} from '@/service/system'
+import { getSystemUserList } from '@/service/system'
 import { usePagination } from 'ahooks'
 import { getAllCharacterName } from '@/service/role'
 import {
@@ -26,7 +23,6 @@ export default function AdminSetting() {
   const [roleList, setRoleList] = useState([])
   // 搜索
   const search = async (values) => {
-    console.log(values)
     runUserList({
       ...values,
       current: userPagination.current,
@@ -40,20 +36,15 @@ export default function AdminSetting() {
     pagination: userPagination
   } = usePagination(
     async (params) => {
-      const res = await getSystemUserList(params)
-      const { data } = res
-
-      if (res.code !== 0) {
+      try {
+        const res = await getSystemUserList(params)
+        const { data } = res
+        return { total: data.total, list: data.system_user_info_list }
+      } catch (err) {
         showError('请求数据失败，请重试。')
-        return { total: 0, list: [] }
       }
-
-      return { total: data.total, list: data.system_user_info_list }
     },
     {
-      onError: () => {
-        return showMsg('请求出错', 'error')
-      },
       defaultParams: [
         { current: 1, pageSize: PAGE_SIZE, status: STATUS_ENUM.ALL }
       ]
@@ -115,7 +106,7 @@ export default function AdminSetting() {
           })
           return showSuccess('新增管理员成功')
         } catch (e) {
-          showError('新增失败，请检查数据格式')
+          showError('添加管理员失败')
           return Promise.reject()
         }
       }
@@ -124,64 +115,69 @@ export default function AdminSetting() {
 
   // 获取角色列表
   const getAllCharacterNameHandler = async () => {
-    const res = await getAllCharacterName()
-    if (res.code !== 0) {
-      return showError('请求角色列表失败')
+    try {
+      const res = await getAllCharacterName()
+      const data = res.data
+      const options = data.map((item) => {
+        return {
+          value: item.id,
+          label: item.character_name
+        }
+      })
+      setRoleList(options)
+    } catch (err) {
+      return showError('获取角色列表失败')
     }
-    const data = res.data
-    const options = data.map((item) => {
-      return {
-        value: item.id,
-        label: item.character_name
-      }
-    })
-    setRoleList(options)
   }
 
   // 启用管理员
   const openAdminHandler = async (record) => {
-    const res = await alertSystemUser({
-      enable: STATUS_ENUM.ENABLE,
-      id: record.ID
-    })
-    if (res.code !== 0) {
+    try {
+      await alertSystemUser({
+        enable: STATUS_ENUM.ENABLE,
+        id: record.ID
+      })
+      runUserList({
+        current: 1,
+        pageSize: PAGE_SIZE,
+        status: STATUS_ENUM.ALL
+      })
+      return showSuccess('启用成功')
+    } catch (err) {
       return showError('启用失败')
     }
-    runUserList({
-      current: 1,
-      pageSize: PAGE_SIZE,
-      status: STATUS_ENUM.ALL
-    })
-    return showSuccess('启用成功')
   }
   // 禁用管理员
   const disableAdminHandler = async (record) => {
-    const res = await alertSystemUser({
-      id: record.ID,
-      enable: STATUS_ENUM.DISABLE
-    })
-    if (res.code !== 0) {
+    try {
+      await alertSystemUser({
+        id: record.ID,
+        enable: STATUS_ENUM.DISABLE
+      })
+      runUserList({
+        current: 1,
+        pageSize: PAGE_SIZE,
+        status: STATUS_ENUM.ALL
+      })
+      return showSuccess('禁用成功')
+    } catch (err) {
       return showError('禁用失败')
     }
-    runUserList({
-      current: 1,
-      pageSize: PAGE_SIZE,
-      status: STATUS_ENUM.ALL
-    })
-    return showSuccess('禁用成功')
   }
   // 删除管理员
   const deleteAdminHandler = async (record) => {
-    const res = await deleteSystemUser({ id: record.ID })
-    if (res.code !== 0) {
-      return showError('删除失败,请检查网络状态')
+    try {
+      await deleteSystemUser({ id: record.ID })
+
+      runUserList({
+        current: 1,
+        pageSize: PAGE_SIZE,
+        status: STATUS_ENUM.ALL
+      })
+      return showSuccess('删除成功')
+    } catch (err) {
+      return showError('删除失败,请重试。')
     }
-    runUserList({
-      current: 1,
-      pageSize: PAGE_SIZE,
-      status: STATUS_ENUM.ALL
-    })
-    return showSuccess('删除成功')
   }
 
   useEffect(() => {

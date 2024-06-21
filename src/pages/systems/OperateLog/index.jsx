@@ -36,13 +36,11 @@ export default function OperateLog() {
   )
 
   const onFinish = (values) => {
-    // console.log(values.date.format('YYYY-MM-DD'))
     values.date = values?.date.format('YYYY-MM-DD') || undefined
     if (values.time) {
       values.start_time = values?.time[0].format('hh:mm:ss') || undefined
       values.end_time = values?.time[1].format('hh:mm:ss') || undefined
     }
-    console.log(values)
 
     run({
       current: 1,

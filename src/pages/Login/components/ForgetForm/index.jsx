@@ -7,18 +7,15 @@ export default function BindTelForm(props) {
   const sendCode = async () => {
     const req = form.getFieldsValue()
     req.verify_type = 3
+    try {
+      const res = await sendLoginVerificationCode(req)
+      return showSuccess('发送成功，请在手机查收。')
+    } catch (err) {
+      showError('发送验证码失败，请检查手机号')
+      return Promise.reject()
+    }
 
-    const res = await sendLoginVerificationCode(req)
-    if (res.code === 420) {
-      showWarning('该手机号未绑定，请检查后重新输入。')
-      return Promise.reject()
-    }
-    if (res.code !== 0) {
-      showError('发送验证码失败，请稍后重试。')
-      return Promise.reject()
-    }
     // 发送成功
-    return showSuccess('发送成功，请在手机查收。')
   }
   return (
     <Form form={form}>

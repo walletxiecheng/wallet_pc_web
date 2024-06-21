@@ -12,20 +12,20 @@ const PAGE_SIZE = 10
 export default function WarnDetail() {
   const state = useLocation().state || {}
   const rule = state?.trigger_rule || {}
-  console.log(state)
   const {
     data: warnData,
     run: warnRun,
     pagination: warnPagination
   } = usePagination(
     async (params) => {
-      const res = await getWarningDetail(params)
-      if (res.code !== 0) {
+      try {
+        const res = await getWarningDetail(params)
+        return res?.data || []
+      } catch (err) {
         showError('请求数据失败,请重试。')
         return []
       }
       // const data = { res }
-      return res?.data || []
     },
     {
       defaultParams: [

@@ -54,7 +54,6 @@ export default function Login() {
   }
   // 忘记密码
   const forgetPassword = () => {
-    console.log('忘记密码')
     openModal({
       title: '忘记密码',
       content: <ForgetForm form={modalForm} />,
@@ -67,24 +66,19 @@ export default function Login() {
 
   // 绑定手机号
   const bindTelNumber = (values) => {
-    console.log('绑定手机号')
     openModal({
       title: '绑定手机号',
       content: <BindTelForm form={modalForm} values={values} />,
       handleOk: async () => {
-        console.log('绑定手机号')
         const result = await modalForm.validateFields()
         result.account_number = Number(values.account_number)
 
         try {
-          const res = await bindPhoneNumber(result)
-          if (res.code !== 0) {
-            return Promise.reject()
-          }
+          await bindPhoneNumber(result)
           showSuccess('绑定手机号成功,请登录')
           return navigate(URLS.login)
         } catch (err) {
-          showError(err)
+          showError('绑定手机号失败，请重试。')
           return Promise.reject()
         }
       }
@@ -129,13 +123,11 @@ export default function Login() {
         const result = await modalForm.validateFields()
         try {
           const req = { ...result, ...editForm }
-          const res = await resetSystemUserPassword(req)
-          if (res.code !== 0) {
-            return Promise.reject()
-          }
+          await resetSystemUserPassword(req)
+
           return showSuccess('修改成功，请登录。')
         } catch (error) {
-          showError(error)
+          showError('修改失败')
           return Promise.reject()
         }
       }
