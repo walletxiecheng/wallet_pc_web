@@ -2,7 +2,7 @@ import { Space, Button } from 'antd'
 import style from './index.module.less'
 import { render } from 'less'
 
-export const columns = (chainList) => {
+export const columns = (chainList, handleEditDapp) => {
   // 查找链
   const findChainList = (value) => {
     const label = chainList.map((item) => {
@@ -14,7 +14,8 @@ export const columns = (chainList) => {
   }
 
   // 查找类型名称
-  const findName = (value) => {
+  const findName = (values) => {
+    const value = values[0]
     const label = typeOption.map((item) => {
       if (item.value == value) {
         return item.label
@@ -96,7 +97,14 @@ export const columns = (chainList) => {
       dataIndex: 'operate',
       render: (_, record) => (
         <Space>
-          <Button type="link">编辑</Button>
+          <Button
+            type="link"
+            onClick={() => {
+              handleEditDapp(record)
+            }}
+          >
+            编辑
+          </Button>
           <Button
             style={{ color: record.status === 1 ? '#000000' : '#00851D' }}
             type="link"
@@ -110,7 +118,7 @@ export const columns = (chainList) => {
 }
 
 // 标签
-const TYPE_MENU = {
+export const TYPE_MENU = {
   NEW: 1,
   DEFI: 2,
   GAME: 3,

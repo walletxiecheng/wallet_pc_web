@@ -20,7 +20,7 @@ const PAGE_SIZE = 10
 
 export default function WarnManager() {
   const [form] = Form.useForm()
-  // TODO 数据渲染
+  //  数据渲染
   const {
     data: warnList,
     run: warnRun,

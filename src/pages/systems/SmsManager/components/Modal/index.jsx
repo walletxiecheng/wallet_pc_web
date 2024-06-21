@@ -29,12 +29,14 @@ export const openModal = (props = {}) => {
     okText,
     cancelText,
     handleOk,
-    handleCancel
+    handleCancel,
+    width
   } = props
 
   const modal = Modal.confirm({
     title,
     content,
+    width,
     icon: icon ?? null,
     okText: okText ?? '确定',
     closable: closable ?? true,

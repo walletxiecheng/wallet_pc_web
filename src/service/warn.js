@@ -1,4 +1,4 @@
-// TODO 报警管理相关接口
+//  报警管理相关接口
 import axiosDefine from '@/common/axiosSetting'
 
 //获取系统报警列表
@@ -16,7 +16,7 @@ export const reportWarningInfo = (params) => {
   return axiosDefine.put('/warning/x/reportWarningInfo', params)
 }
 
-// TODO 报警设置相关接口
+//  报警设置相关接口
 
 // 获取报警设置信息列表
 export const getWarningSettings = (params) => {

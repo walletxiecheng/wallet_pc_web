@@ -11,14 +11,22 @@ import {
 } from 'antd'
 import { getSupportChainList } from '@/service/coin'
 import { columns, typeOption, statusOption } from './config'
-import { getDappList } from '@/service/dapp'
+import { getDappList, uploadDapp } from '@/service/dapp'
 import { usePagination } from 'ahooks'
-import { showError } from '@/components/TKMessage'
+import { showError, showSuccess } from '@/components/TKMessage'
+import { openModal } from '@/pages/systems/SmsManager/components/Modal'
+import { header } from '@/common/config'
+import UploadForm from './components/UploadForm'
+import EditForm from './components/EditForm'
 
 const PAGE_SIZE = 10
 export default function DappManager() {
   // 链列表
   const [chainList, setChainList] = useState()
+  const [modalForm] = Form.useForm()
+  const [editForm] = Form.useForm()
+
+  const [uploadImg, setUploadImg] = useState()
   // 获取dapp列表
   const { data, run, pagination } = usePagination(
     async (params) => {
@@ -34,8 +42,6 @@ export default function DappManager() {
       defaultParams: [{ pageSize: PAGE_SIZE, current: 1 }]
     }
   )
-  // 创建dapp
-  const createDapp = () => {}
   // 编辑dapp
   const editDapp = () => {}
   // 获取链列表
@@ -65,9 +71,66 @@ export default function DappManager() {
     run({ pageSize: PAGE_SIZE, current: 1, ...values })
   }
 
-  // TODO 创建dapp
+  // 设置upload上传
+  const upload = (val) => {
+    setUploadImg(val)
+  }
 
-  // TODO 新增dapp
+  // TODO 创建dapp
+  const handleCreateDapp = () => {
+    openModal({
+      title: '创建',
+      content: (
+        <UploadForm form={modalForm} chainList={chainList} upload={upload} />
+      ),
+      width: 700,
+      handleOk: async () => {
+        const result = await modalForm.validateFields()
+
+        result.dapp_type = result?.dapp_type.join()
+        result.file = uploadImg
+        try {
+          await uploadDapp(result)
+          run({ pageSize: PAGE_SIZE, current: 1 })
+          return showSuccess('上传成功')
+        } catch (err) {
+          showError('上传失败')
+          return Promise.reject()
+        }
+      }
+    })
+  }
+  // TODO 编辑dapp
+  const handleEditDapp = (record) => {
+    console.log(record)
+    editForm.setFieldsValue(record)
+    openModal({
+      title: '编辑',
+      content: (
+        <EditForm
+          form={editForm}
+          chainList={chainList}
+          upload={upload}
+          record={record}
+        />
+      ),
+      width: 700,
+      handleOk: async () => {
+        const result = await modalForm.validateFields()
+
+        result.dapp_type = result?.dapp_type.join()
+        result.file = uploadImg
+        try {
+          await uploadDapp(result)
+          run({ pageSize: PAGE_SIZE, current: 1 })
+          return showSuccess('上传成功')
+        } catch (err) {
+          showError('上传失败')
+          return Promise.reject()
+        }
+      }
+    })
+  }
   useEffect(() => {
     getChanList()
   }, [])
@@ -117,7 +180,9 @@ export default function DappManager() {
               </Form.Item>
             </Space>
             <Form.Item>
-              <Button type="primary">创建</Button>
+              <Button onClick={handleCreateDapp} type="primary">
+                创建
+              </Button>
             </Form.Item>
           </Space>
         </Form>
@@ -126,7 +191,7 @@ export default function DappManager() {
       <Table
         rowKey={(record) => record.id}
         dataSource={data?.list}
-        columns={columns(chainList)}
+        columns={columns(chainList, handleEditDapp)}
         pagination={{
           total: data?.total,
           pageSize: pagination.pageSize,
