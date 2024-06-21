@@ -30,12 +30,12 @@ export default function Login() {
   const navigate = useNavigate()
   // 登录
   const onFinish = async (values) => {
-    // TODO 预登录
+    // 预登录
     try {
       const { data } = await preLogin(values)
       const status = data.account_status
       const formValue = { ...data, ...values }
-      // TODO 根据返回的不同状态码做不同操作
+      // 根据返回的不同状态码做不同操作
       if (status === 0) {
         return showError('账号不存在，请检查。')
       } else if (status === 1) {

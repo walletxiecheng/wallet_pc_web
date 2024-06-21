@@ -1,11 +1,11 @@
 import React from 'react'
-import { Space, Table, Button, Form, Select, Input } from 'antd'
+import { Space, Table, Button, Form, Input } from 'antd'
 import { useState } from 'react'
 import { columns } from './config'
 import { openModal } from './components/Modal'
 import { SmsForm } from './components/Form'
 import { usePagination } from 'ahooks'
-import { getSmsList, addSmsRule } from '@/service/sms'
+import { getSmsList, addSmsRule, alertSmsRule } from '@/service/sms'
 import { showError, showSuccess } from '@/components/TKMessage'
 import { header } from '@/common/config'
 const PAGE_SIZE = 10
@@ -43,14 +43,14 @@ const SmsManager = () => {
       handleOk: async () => {
         const result = await form.validateFields()
         try {
-          // TODO 调用接口保存数据
+          //  调用接口保存数据
           await addSmsRule(result, header)
 
           smsRun({ current: 1, pageSize: PAGE_SIZE })
           return showSuccess('添加成功！')
         } catch (error) {
-          // TODO 提示保存失败
-          showError('新建失败，请重试。')
+          //  提示保存失败
+          showError('新建失败，请检查')
           return Promise.reject()
         }
       }
@@ -71,10 +71,14 @@ const SmsManager = () => {
       content: <SmsForm form={form} />,
       handleOk: async (modal) => {
         const result = await form.validateFields()
+        result.id = record.id
         try {
-          // TODO 调用接口保存数据
+          // 调用接口保存数据
+          await alertSmsRule(result)
+          smsRun({ current: 1, pageSize: PAGE_SIZE })
+          showSuccess('保存成功')
         } catch (error) {
-          // TODO 提示保存失败
+          showError('保存失败')
           return Promise.reject()
         }
       }

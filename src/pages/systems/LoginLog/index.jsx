@@ -21,7 +21,7 @@ const PAGE_SIZE = 10
 export default function LoginLog() {
   // 搜索表单
   const [form] = Form.useForm()
-  //TODO 数据分页请求
+  // 登录日志渲染
   const {
     data: logList,
     run: logRun,
@@ -73,7 +73,7 @@ export default function LoginLog() {
       ),
       okText: '复制',
       handleOk: async () => {
-        // TODO 复制
+        // 复制
         await navigator.clipboard.writeText(record.request_header)
         return showSuccess('复制成功')
       }

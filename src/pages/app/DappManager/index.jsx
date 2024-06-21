@@ -64,6 +64,10 @@ export default function DappManager() {
     values.date = undefined
     run({ pageSize: PAGE_SIZE, current: 1, ...values })
   }
+
+  // TODO 创建dapp
+
+  // TODO 新增dapp
   useEffect(() => {
     getChanList()
   }, [])
@@ -98,7 +102,11 @@ export default function DappManager() {
                 <Input placeholder="DApp ID、名称"></Input>
               </Form.Item>
               <Form.Item>
-                <Button style={{ border: '1px solid #3f78f9' }} type="link">
+                <Button
+                  style={{ border: '1px solid #3f78f9' }}
+                  htmlType="reset"
+                  type="link"
+                >
                   重置
                 </Button>
               </Form.Item>
