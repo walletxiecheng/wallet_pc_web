@@ -1,22 +1,26 @@
-import {
-  Checkbox,
-  Form,
-  Input,
-  Select,
-  Space,
-  Upload,
-  Typography,
-  Image
-} from 'antd'
-import React from 'react'
+import { Checkbox, Form, Input, Select, Space, Upload, Typography } from 'antd'
+import React, { useState } from 'react'
 import { typeOption } from '../../config'
 import { PlusOutlined } from '@ant-design/icons'
 export default function UploadForm(props) {
   const { form, chainList, upload, record } = props
+  const [fileList, setFileList] = useState([
+    {
+      uid: '-1',
+      name: 'image.png',
+      status: 'done',
+      url: record.icon
+    }
+  ])
   const beforeUpload = (file) => {
     upload(file)
     return false
   }
+
+  const onChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList)
+  }
+
   return (
     <div>
       <Form layout="vertical" form={form}>
@@ -51,33 +55,32 @@ export default function UploadForm(props) {
         </Form.Item>
 
         <Space>
-          <Form.Item label="logo">
-            <Space>
-              <Image width={100} src={record.icon} />
-              <Upload
-                listType="picture-card"
-                beforeUpload={beforeUpload}
-                maxCount={1}
-                multiple={false}
+          <Form.Item label="logo" name="file">
+            <Upload
+              listType="picture-card"
+              beforeUpload={beforeUpload}
+              maxCount={1}
+              fileList={fileList}
+              onChange={onChange}
+              multiple={false}
+            >
+              <button
+                style={{
+                  border: 0,
+                  background: 'none'
+                }}
+                type="button"
               >
-                <button
+                <PlusOutlined />
+                <div
                   style={{
-                    border: 0,
-                    background: 'none'
+                    marginTop: 8
                   }}
-                  type="button"
                 >
-                  <PlusOutlined />
-                  <div
-                    style={{
-                      marginTop: 8
-                    }}
-                  >
-                    重新上传
-                  </div>
-                </button>
-              </Upload>
-            </Space>
+                  重新上传
+                </div>
+              </button>
+            </Upload>
           </Form.Item>
 
           <Space direction="vertical">

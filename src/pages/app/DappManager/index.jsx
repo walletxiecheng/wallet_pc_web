@@ -11,7 +11,7 @@ import {
 } from 'antd'
 import { getSupportChainList } from '@/service/coin'
 import { columns, typeOption, statusOption } from './config'
-import { getDappList, uploadDapp } from '@/service/dapp'
+import { getDappList, uploadDapp, updateDapp } from '@/service/dapp'
 import { usePagination } from 'ahooks'
 import { showError, showSuccess } from '@/components/TKMessage'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
@@ -26,7 +26,6 @@ export default function DappManager() {
   const [modalForm] = Form.useForm()
   const [editForm] = Form.useForm()
 
-  const [uploadImg, setUploadImg] = useState()
   // 获取dapp列表
   const { data, run, pagination } = usePagination(
     async (params) => {
@@ -42,8 +41,6 @@ export default function DappManager() {
       defaultParams: [{ pageSize: PAGE_SIZE, current: 1 }]
     }
   )
-  // 编辑dapp
-  const editDapp = () => {}
   // 获取链列表
   const getChanList = async () => {
     try {
@@ -71,24 +68,18 @@ export default function DappManager() {
     run({ pageSize: PAGE_SIZE, current: 1, ...values })
   }
 
-  // 设置upload上传
-  const upload = (val) => {
-    setUploadImg(val)
-  }
-
   // TODO 创建dapp
   const handleCreateDapp = () => {
     openModal({
       title: '创建',
-      content: (
-        <UploadForm form={modalForm} chainList={chainList} upload={upload} />
-      ),
+      content: <UploadForm form={modalForm} chainList={chainList} />,
       width: 700,
       handleOk: async () => {
         const result = await modalForm.validateFields()
 
         result.dapp_type = result?.dapp_type.join()
-        result.file = uploadImg
+        result.file = result.file.fileList[0]
+        console.log(result)
         try {
           await uploadDapp(result)
           run({ pageSize: PAGE_SIZE, current: 1 })
@@ -102,26 +93,25 @@ export default function DappManager() {
   }
   // TODO 编辑dapp
   const handleEditDapp = (record) => {
-    console.log(record)
+    record.dapp_type =
+      record?.type?.split(',')?.map((item) => {
+        return parseInt(item)
+      }) || []
+
     editForm.setFieldsValue(record)
     openModal({
       title: '编辑',
       content: (
-        <EditForm
-          form={editForm}
-          chainList={chainList}
-          upload={upload}
-          record={record}
-        />
+        <EditForm form={editForm} chainList={chainList} record={record} />
       ),
       width: 700,
       handleOk: async () => {
-        const result = await modalForm.validateFields()
+        const result = await editForm.validateFields()
+        result.file = result?.file?.fileList[0] || record.icon
+        result.dapp_type = result?.dapp_type?.join() || record.dapp_type
 
-        result.dapp_type = result?.dapp_type.join()
-        result.file = uploadImg
         try {
-          await uploadDapp(result)
+          await updateDapp(result, header)
           run({ pageSize: PAGE_SIZE, current: 1 })
           return showSuccess('上传成功')
         } catch (err) {

@@ -34,12 +34,13 @@ export default function UploadForm(props) {
         </Form.Item>
 
         <Space>
-          <Form.Item label="file">
+          <Form.Item label="file" name="file">
             <Upload
               listType="picture-card"
               beforeUpload={beforeUpload}
               maxCount={1}
               multiple={false}
+              fileList={undefined}
             >
               <button
                 style={{
