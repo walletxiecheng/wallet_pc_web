@@ -1,6 +1,15 @@
-import { Checkbox, Form, Input, Select, Space, Upload, Typography } from 'antd'
+import {
+  Checkbox,
+  Form,
+  Input,
+  Select,
+  Space,
+  Upload,
+  Typography,
+  Radio
+} from 'antd'
 import React, { useState } from 'react'
-import { typeOption } from '../../config'
+import { typeOption, statusOption } from '../../config'
 import { PlusOutlined } from '@ant-design/icons'
 export default function UploadForm(props) {
   const { form, chainList, upload, record } = props
@@ -34,7 +43,7 @@ export default function UploadForm(props) {
         </Space>
         <Space>
           <Form.Item name="name" label="名称">
-            <Input placeholder="请输入"></Input>
+            <Input placeholder="请输入"/>
           </Form.Item>
           <Form.Item name="chain_id" label="所属链">
             <Select
@@ -45,10 +54,10 @@ export default function UploadForm(props) {
           </Form.Item>
         </Space>
         <Form.Item name="url" label="链接">
-          <Input placeholder="请输入"></Input>
+          <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item name="describe" label="描述">
-          <Input placeholder="请输入"></Input>
+          <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item name="dapp_type" label="标签类型">
           <Checkbox.Group options={typeOption} />
@@ -93,6 +102,9 @@ export default function UploadForm(props) {
             </Typography.Text>
           </Space>
         </Space>
+        <Form.Item label="状态" name="status">
+          <Radio.Group options={statusOption} />
+        </Form.Item>
       </Form>
     </div>
   )

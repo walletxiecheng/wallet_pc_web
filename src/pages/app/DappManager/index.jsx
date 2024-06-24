@@ -68,7 +68,7 @@ export default function DappManager() {
     run({ pageSize: PAGE_SIZE, current: 1, ...values })
   }
 
-  // TODO 创建dapp
+  // 创建dapp
   const handleCreateDapp = () => {
     openModal({
       title: '创建',
@@ -91,7 +91,7 @@ export default function DappManager() {
       }
     })
   }
-  // TODO 编辑dapp
+  // 编辑dapp
   const handleEditDapp = (record) => {
     record.dapp_type =
       record?.type?.split(',')?.map((item) => {
@@ -113,14 +113,15 @@ export default function DappManager() {
         try {
           await updateDapp(result, header)
           run({ pageSize: PAGE_SIZE, current: 1 })
-          return showSuccess('上传成功')
+          return showSuccess('修改成功')
         } catch (err) {
-          showError('上传失败')
+          showError('修改失败')
           return Promise.reject()
         }
       }
     })
   }
+  // TODO 更改状态
   useEffect(() => {
     getChanList()
   }, [])

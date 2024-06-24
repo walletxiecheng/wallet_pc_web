@@ -1,6 +1,5 @@
-import { Space, Button } from 'antd'
+import { Space, Button, Popconfirm, Divider, Radio, Form } from 'antd'
 import style from './index.module.less'
-import { render } from 'less'
 
 export const columns = (chainList, handleEditDapp) => {
   // 查找链
@@ -22,6 +21,11 @@ export const columns = (chainList, handleEditDapp) => {
       }
     })
     return label
+  }
+
+  // 更改状态
+  const changeStatus = (status) => {
+    console.log(status)
   }
 
   return [
@@ -50,11 +54,12 @@ export const columns = (chainList, handleEditDapp) => {
       dataIndex: 'status',
       width: '8%',
       render: (_, record) => (
-        <div>
-          <span style={{ color: '#00851D' }}>
-            {record.status === 2 ? '下架' : '上架'}
-          </span>
-        </div>
+        <Button
+          type="link"
+          style={{ color: record.status === 1 ? '#00851D' : '#000000' }}
+        >
+          {record.status === 1 ? '上架' : '下架'}
+        </Button>
       )
     },
     {
@@ -65,13 +70,13 @@ export const columns = (chainList, handleEditDapp) => {
       render: (_, record) => <span>{findChainList(record.chain_id)}</span>
     },
     {
-      key: 'type',
+      key: 'dapp_type',
       title: '标签类型',
-      dataIndex: 'type',
+      dataIndex: 'dapp_type',
       width: '8%',
       render: (_, record) => (
         <div>
-          <span>{findName(record.type)}</span>
+          <span>{findName(record.dapp_type)}</span>
         </div>
       )
     },
@@ -105,12 +110,31 @@ export const columns = (chainList, handleEditDapp) => {
           >
             编辑
           </Button>
-          <Button
-            style={{ color: record.status === 1 ? '#000000' : '#00851D' }}
-            type="link"
+          <Popconfirm
+            title="状态"
+            showCancel={false}
+            description={
+              <div>
+                <Divider />
+                <Form>
+                  <Form.Item
+                    label="DApp状态"
+                    name="status"
+                    initialValue={record.status}
+                  >
+                    <Radio.Group
+                      options={statusOption}
+                      onChange={(status) => {
+                        changeStatus(status)
+                      }}
+                    ></Radio.Group>
+                  </Form.Item>
+                </Form>
+              </div>
+            }
           >
-            {record.status === 1 ? '下架' : '上架'}
-          </Button>
+            <Button type="link">修改状态</Button>
+          </Popconfirm>
         </Space>
       )
     }
@@ -164,10 +188,10 @@ export const STATUS_MENU = {
 export const statusOption = [
   {
     value: STATUS_MENU.ENABLE,
-    label: '启用'
+    label: '上架'
   },
   {
     value: STATUS_MENU.DISABLE,
-    label: '禁用'
+    label: '下架'
   }
 ]
