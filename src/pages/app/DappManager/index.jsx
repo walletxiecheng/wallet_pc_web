@@ -121,7 +121,6 @@ export default function DappManager() {
       }
     })
   }
-  // TODO 更改状态
   useEffect(() => {
     getChanList()
   }, [])
@@ -180,11 +179,13 @@ export default function DappManager() {
       </div>
 
       <Table
-        rowKey={(record) => record.id}
-        dataSource={data?.list}
-        columns={columns(chainList, handleEditDapp)}
+        rowKey={(record) => record?.id}
+        dataSource={data?.list || []}
+        columns={columns(chainList, handleEditDapp, run)}
+        ellipsis={true}
+        loading={!data}
         pagination={{
-          total: data?.total,
+          total: data?.total || 0,
           pageSize: pagination.pageSize,
           current: pagination.current,
           onChange: pagination.onChange,

@@ -1,0 +1,7 @@
+.ellipsis_table {
+  overflow: hidden;
+  width: 30rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}

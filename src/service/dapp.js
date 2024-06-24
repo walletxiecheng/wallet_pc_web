@@ -16,6 +16,14 @@ export const updateDapp = (data, headers) => {
   return axiosDefine.post('/back/appPageManagement/dapp/update', data, headers)
 }
 
+// 更新dapp状态信息
+export const updatedDappStatus = (data, headers) => {
+  return axiosDefine.post(
+    '/back/appPageManagement/dapp/updatedDappStatus',
+    data,
+    headers
+  )
+}
 // 查询dapp信息
 export const getDappList = (params) => {
   return axiosDefine.get('/back/appPageManagement/dapp/getDappList', params)

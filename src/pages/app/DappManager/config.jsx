@@ -1,12 +1,14 @@
 import { Space, Button, Popconfirm, Divider, Radio, Form } from 'antd'
 import style from './index.module.less'
+import { updatedDappStatus } from '@/service/dapp'
+import { showError, showSuccess } from '@/components/TKMessage'
 
-export const columns = (chainList, handleEditDapp) => {
+export const columns = (chainList, handleEditDapp, run) => {
   // 查找链
   const findChainList = (value) => {
-    const label = chainList.map((item) => {
-      if (item.value == value) {
-        return item.label
+    const label = chainList?.map((item) => {
+      if (item?.value == value) {
+        return item?.label || ''
       }
     })
     return label
@@ -24,8 +26,20 @@ export const columns = (chainList, handleEditDapp) => {
   }
 
   // 更改状态
-  const changeStatus = (status) => {
-    console.log(status)
+  const changeStatus = async (id, status) => {
+    const req = {
+      id: id,
+      status: status.target.value
+    }
+    try {
+      await updatedDappStatus(req)
+      run({
+        current: 1,
+        pageSize: 10
+      })
+    } catch (err) {
+      showError(err.msg)
+    }
   }
 
   return [
@@ -113,6 +127,7 @@ export const columns = (chainList, handleEditDapp) => {
           <Popconfirm
             title="状态"
             showCancel={false}
+            icon={null}
             description={
               <div>
                 <Divider />
@@ -125,7 +140,7 @@ export const columns = (chainList, handleEditDapp) => {
                     <Radio.Group
                       options={statusOption}
                       onChange={(status) => {
-                        changeStatus(status)
+                        changeStatus(record.id, status)
                       }}
                     ></Radio.Group>
                   </Form.Item>
