@@ -15,5 +15,6 @@ export const URLS = {
   // 应用端管理
   dappManager: '/app/dappManager',
   newsManager: '/app/newsManager',
-  languageManager: '/app/languageManager'
+  languageManager: '/app/languageManager',
+  nodeManager: '/app/nodeManager'
 }

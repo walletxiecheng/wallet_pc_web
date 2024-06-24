@@ -12,9 +12,11 @@ import LoginLog from '@/pages/systems/LoginLog'
 import LanguageManager from '@/pages/app/LanguageManager'
 import NewsManager from '@/pages/app/NewsManager'
 import DappManager from '@/pages/app/DappManager'
+import NodeManager from '@/pages/app/NodeManager'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
 import { URLS } from './urls'
+import { useMap } from 'ahooks'
 
 export const routes = createBrowserRouter([
   {
@@ -77,6 +79,11 @@ export const routes = createBrowserRouter([
       {
         path: URLS.languageManager,
         element: <LanguageManager />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.nodeManager,
+        element: <NodeManager />,
         errorElement: <ErrorPage />
       }
     ]

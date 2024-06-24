@@ -106,7 +106,8 @@ export const menuItems = [
       },
       {
         label: '节点管理',
-        key: menuKeys.nodeManager
+        key: menuKeys.nodeManager,
+        path: URLS.nodeManager
       },
       {
         label: '代币管理',
