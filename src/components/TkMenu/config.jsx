@@ -101,7 +101,8 @@ export const menuItems = [
       },
       {
         label: '语言管理',
-        key: menuKeys.languageManager
+        key: menuKeys.languageManager,
+        path: URLS.languageManager
       },
       {
         label: '节点管理',

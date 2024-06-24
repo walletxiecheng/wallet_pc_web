@@ -1,4 +1,4 @@
-import { DatePicker, Form, Input, Space, Button, Table } from 'antd'
+import { DatePicker, Form, Input, Space, Button, Table, Divider } from 'antd'
 import React from 'react'
 import { columns } from './config'
 import { usePagination } from 'ahooks'
@@ -103,6 +103,10 @@ export default function NewsManager() {
   return (
     <div>
       {/* form表单 */}
+      <header>
+        <h2>资讯管理</h2>
+      </header>
+      <Divider />
       <div
         style={{
           display: 'flex',

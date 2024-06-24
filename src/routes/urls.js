@@ -14,5 +14,6 @@ export const URLS = {
   loginLogManager: '/systems/loginLogManager',
   // 应用端管理
   dappManager: '/app/dappManager',
-  newsManager: '/app/newsManager'
+  newsManager: '/app/newsManager',
+  languageManager: '/app/languageManager'
 }

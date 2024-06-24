@@ -128,7 +128,7 @@ export default function DappManager() {
   return (
     <div>
       <header>
-        <h3>DApp管理</h3>
+        <h2>DApp管理</h2>
       </header>
       <Divider />
       {/* 表单 */}

@@ -9,7 +9,7 @@ import HandleRule from '@/pages/systems/WarnSetting/pages/HandleRule'
 import AdminSetting from '@/pages/systems/AdminSetting'
 import OperateLog from '@/pages/systems/OperateLog'
 import LoginLog from '@/pages/systems/LoginLog'
-
+import LanguageManager from '@/pages/app/LanguageManager'
 import NewsManager from '@/pages/app/NewsManager'
 import DappManager from '@/pages/app/DappManager'
 import ErrorPage from '@/pages/ErrorPage'
@@ -72,6 +72,11 @@ export const routes = createBrowserRouter([
       {
         path: URLS.newsManager,
         element: <NewsManager />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.languageManager,
+        element: <LanguageManager />,
         errorElement: <ErrorPage />
       }
     ]
