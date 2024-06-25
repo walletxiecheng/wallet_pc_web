@@ -16,5 +16,6 @@ export const URLS = {
   dappManager: '/app/dappManager',
   newsManager: '/app/newsManager',
   languageManager: '/app/languageManager',
-  nodeManager: '/app/nodeManager'
+  nodeManager: '/app/nodeManager',
+  coinManager: '/app/coinManager'
 }

@@ -1,4 +1,6 @@
-export const nodeColumns = () => {
+import { Button } from 'antd'
+
+export const nodeColumns = (edit) => {
   return [
     {
       key: 'time',
@@ -38,7 +40,17 @@ export const nodeColumns = () => {
     {
       key: 'version',
       dataIndex: 'version',
-      title: '操作'
+      title: '操作',
+      render: (_, record) => (
+        <Button
+          type="link"
+          onClick={() => {
+            edit(record)
+          }}
+        >
+          编辑
+        </Button>
+      )
     }
   ]
 }

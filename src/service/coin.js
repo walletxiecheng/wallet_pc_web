@@ -3,7 +3,7 @@ import axiossDefine from '@/common/axiosSetting'
 
 // 获取支持的代币信息
 export const getSupportCoinList = (data) => {
-  return axiossDefine.post(
+  return axiossDefine.get(
     '/back/appPageManagement/coins/getSupportCoinList',
     data
   )

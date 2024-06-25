@@ -111,7 +111,8 @@ export const menuItems = [
       },
       {
         label: '代币管理',
-        key: menuKeys.coinManager
+        key: menuKeys.coinManager,
+        path: URLS.coinManager
       },
       {
         label: '法币管理',

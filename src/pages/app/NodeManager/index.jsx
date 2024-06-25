@@ -19,7 +19,7 @@ export default function NodeManager() {
   const edit = () => {
     openModal({
       title: '创建',
-      content: <div>cre</div>,
+      content: <NodeForm form={nodeForm} />,
       handleOk: () => {}
     })
   }
@@ -51,7 +51,7 @@ export default function NodeManager() {
             创建
           </Button>
         </header>
-        <Table columns={nodeColumns()} />
+        <Table columns={nodeColumns(edit)} />
       </div>
     </div>
   )
