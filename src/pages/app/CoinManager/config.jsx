@@ -1,4 +1,5 @@
 import { Button, Image, Space } from 'antd'
+import '@/assets/css/table.css'
 export const coinColumns = (chainList) => {
   // 获取链名称
   const getChainName = (chain_id) => {
@@ -49,17 +50,30 @@ export const coinColumns = (chainList) => {
     {
       key: 'creator',
       title: '创建者',
-      dataIndex: 'creator'
+      dataIndex: 'creator',
+      width: '10%',
+      render: (_, record) => (
+        <div style={{ width: '10rem' }} className="ellipsis_table">
+          {record.creator}
+        </div>
+      )
     },
     {
       key: 'upload_user_id',
       title: '添加人ID',
-      dataIndex: 'upload_user_id'
+      dataIndex: 'upload_user_id',
+      width: '10%'
     },
     {
       key: 'contract',
       title: '代币合约',
-      dataIndex: 'contract'
+      dataIndex: 'contract',
+      width: '15%',
+      render: (_, record) => (
+        <div style={{ width: '15rem' }} className="ellipsis_table">
+          {record.contract}
+        </div>
+      )
     },
     {
       key: 'symbol',

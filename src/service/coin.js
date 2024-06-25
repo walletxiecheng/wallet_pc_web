@@ -18,16 +18,17 @@ export const getSupportChainList = (params) => {
 }
 
 // 上传新的支持代币
-export const uploadSupportCoin = (data) => {
-  return axiossDefine.post(
+export const uploadSupportCoin = (data, headers) => {
+  return axiossDefine.put(
     '/back/appPageManagement/coins/uploadSupportCoin',
-    data
+    data,
+    headers
   )
 }
 
 // 上传新的支持链信息——传入表单格式数据
 export const uploadSupportChain = (data, headers) => {
-  return axiossDefine.post(
+  return axiossDefine.put(
     '/back/appPageManagement/coins/uploadSupportChain',
     data,
     headers

@@ -43,7 +43,7 @@ export default function UploadForm(props) {
         </Space>
         <Space>
           <Form.Item name="name" label="名称">
-            <Input placeholder="请输入"/>
+            <Input placeholder="请输入" />
           </Form.Item>
           <Form.Item name="chain_id" label="所属链">
             <Select

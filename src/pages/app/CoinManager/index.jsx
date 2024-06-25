@@ -3,12 +3,18 @@ import TKTitle from '@/components/TKTitle'
 import { Form, Select, Space, Input, Button, Table } from 'antd'
 import { coinColumns, statusOption, flagOption } from './config'
 import { usePagination } from 'ahooks'
-import { getSupportCoinList, getSupportChainList } from '@/service/coin'
-import { showError } from '@/components/TKMessage'
-
-const PAGE_SIZE = 10
+import {
+  getSupportCoinList,
+  getSupportChainList,
+  uploadSupportCoin
+} from '@/service/coin'
+import { showError, showSuccess } from '@/components/TKMessage'
+import CoinForm from './components/CoinForm'
+import { openModal } from '@/pages/systems/SmsManager/components/Modal'
+import { header, pageParams } from '@/common/config'
 export default function CoinManager() {
   const [chainList, setChainList] = useState([])
+  const [form] = Form.useForm()
   // 代币列表
   const { data, run, pagination } = usePagination(
     async (params) => {
@@ -19,16 +25,11 @@ export default function CoinManager() {
           list: data?.SupportCoinsInfoList || []
         }
       } catch (err) {
-        showError('没有此数据')
+        return showError(err.msg)
       }
     },
     {
-      defaultParams: [
-        {
-          current: 1,
-          pageSize: PAGE_SIZE
-        }
-      ]
+      defaultParams: [pageParams]
     }
   )
 
@@ -43,9 +44,49 @@ export default function CoinManager() {
   }
   // 查询
   const onFinish = async (values) => {
-    run({ ...values, current: 1, pageSize: PAGE_SIZE })
+    run({ ...values, ...pageParams })
   }
 
+  // TODO 创建
+  const createCoin = () => {
+    openModal({
+      title: '创建',
+      content: <CoinForm form={form} chainList={chainList} type={1} />,
+      handleOk: async () => {
+        const result = await form.validateFields()
+        result.file = result?.file?.fileList[0]
+        try {
+          await uploadSupportCoin(result, header)
+          showSuccess('创建成功')
+          run(pageParams)
+        } catch (err) {
+          showError('创建失败')
+          return Promise.reject()
+        }
+      }
+    })
+  }
+  // TODO 编辑
+  const edit = (record) => {
+    form.setFieldsValue(record)
+    openModal({
+      title: '创建',
+      content: <CoinForm form={form} chainList={chainList} type={2} />,
+      handleOk: async () => {
+        const result = await form.validateFields()
+        result.file = result?.file?.fileList[0]
+        // form.resetFields()
+        try {
+          await uploadSupportCoin(result, header)
+          showSuccess('创建成功')
+          run(pageParams)
+        } catch (err) {
+          showError('创建失败')
+          return Promise.reject()
+        }
+      }
+    })
+  }
   useEffect(() => {
     getChainListHandler()
   }, [])
@@ -80,7 +121,9 @@ export default function CoinManager() {
             </Form.Item>
           </Space>
         </Form>
-        <Button type="primary">创建</Button>
+        <Button type="primary" onClick={createCoin}>
+          创建
+        </Button>
       </div>
       {/* 表格 */}
       <Table
