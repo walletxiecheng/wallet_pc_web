@@ -3,6 +3,7 @@ import { Button, Divider, Form, Input, Select, Space, Table } from 'antd'
 import { nodeColumns, statusOption } from './config'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
 import NodeForm from './components/NodeForm'
+import TKTitle from '@/components/TKTitle'
 export default function NodeManager() {
   const [nodeForm] = Form.useForm()
 
@@ -25,9 +26,7 @@ export default function NodeManager() {
   }
   return (
     <div>
-      <header>
-        <h2>节点管理</h2>
-      </header>
+      <TKTitle header={'节点管理'} />
       <Divider />
       <div>
         <header style={{ display: 'flex', justifyContent: 'space-between' }}>

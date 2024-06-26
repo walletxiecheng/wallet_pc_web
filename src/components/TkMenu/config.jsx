@@ -116,7 +116,8 @@ export const menuItems = [
       },
       {
         label: '法币管理',
-        key: menuKeys.tenderManager
+        key: menuKeys.tenderManager,
+        path: URLS.legalManager
       },
       {
         label: '广告版管理',

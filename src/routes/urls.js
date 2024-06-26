@@ -17,5 +17,6 @@ export const URLS = {
   newsManager: '/app/newsManager',
   languageManager: '/app/languageManager',
   nodeManager: '/app/nodeManager',
-  coinManager: '/app/coinManager'
+  coinManager: '/app/coinManager',
+  legalManager: '/app/legalManager'
 }

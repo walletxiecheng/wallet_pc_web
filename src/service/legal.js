@@ -1,4 +1,4 @@
-//后台语言相关接口
+//法币管理
 import axiosDefine from '@/common/axiosSetting'
 
 // 获取法币信息列表
@@ -17,17 +17,18 @@ export const getReferenceRateAddress = (params) => {
   )
 }
 
-// 获取参考汇率地址信息
-export const addLegalTender = (params) => {
+// 添加法币信息
+export const addLegalTender = (data, headers) => {
   return axiosDefine.put(
     '/back/appPageManagement/tender/addLegalTender',
-    params
+    data,
+    headers
   )
 }
 
-// 获取参考汇率地址信息
+// 更新法币信息
 export const updateLegalTenderInfo = (params) => {
-  return axiosDefine.put(
+  return axiosDefine.post(
     '/back/appPageManagement/tender/updateLegalTenderInfo',
     params
   )

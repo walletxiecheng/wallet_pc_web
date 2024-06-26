@@ -15,7 +15,7 @@ import { getDappList, uploadDapp, updateDapp } from '@/service/dapp'
 import { usePagination } from 'ahooks'
 import { showError, showSuccess } from '@/components/TKMessage'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
-import { header } from '@/common/config'
+import { header, pageParams } from '@/common/config'
 import UploadForm from './components/UploadForm'
 import EditForm from './components/EditForm'
 
@@ -38,7 +38,7 @@ export default function DappManager() {
       }
     },
     {
-      defaultParams: [{ pageSize: PAGE_SIZE, current: 1 }]
+      defaultParams: [pageParams]
     }
   )
   // 获取链列表
