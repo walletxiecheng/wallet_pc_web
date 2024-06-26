@@ -136,6 +136,7 @@ export default function LoginLog() {
       <Table
         rowKey={(record) => record.id}
         dataSource={logList?.list || []}
+        loading={!logList}
         pagination={{
           total: logList?.total,
           current: logPagination.current,

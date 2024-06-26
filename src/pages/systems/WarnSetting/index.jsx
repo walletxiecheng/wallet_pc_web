@@ -79,6 +79,7 @@ export default function WarnSetting() {
         rowKey={(record) => record.id}
         dataSource={data?.list}
         columns={columns()}
+        loading={!data}
         pagination={{
           pageSize: pagination.pageSize,
           current: pagination.current,

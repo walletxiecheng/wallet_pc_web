@@ -131,6 +131,7 @@ const SmsManager = () => {
         dataSource={smsList?.list || []}
         rowKey={(record) => record.id}
         columns={columns(handleEditSms)}
+        loading={!smsList}
         pagination={{
           total: smsList?.total,
           current: smsPagination.current,

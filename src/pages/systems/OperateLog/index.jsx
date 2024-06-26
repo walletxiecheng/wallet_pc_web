@@ -104,6 +104,7 @@ export default function OperateLog() {
       <Table
         rowKey={(record) => record.operation_id}
         dataSource={data?.list || []}
+        loading={!data}
         columns={columns()}
       ></Table>
     </div>

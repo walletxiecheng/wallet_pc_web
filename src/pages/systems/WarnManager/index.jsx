@@ -124,6 +124,7 @@ export default function WarnManager() {
       <Table
         dataSource={warnList?.list || []}
         rowKey={(record) => record.id}
+        loading={!warnList}
         pagination={{
           total: warnList?.total,
           current: warnPagination.current,

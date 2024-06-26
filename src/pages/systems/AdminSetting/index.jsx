@@ -223,6 +223,7 @@ export default function AdminSetting() {
         )}
         dataSource={userList?.list || []}
         rowKey={(record) => record.ID}
+        loading={!userList}
         pagination={{
           total: userList?.total,
           current: userPagination.current,
