@@ -1,4 +1,4 @@
-import { Button } from 'antd'
+import { Button, message } from 'antd'
 
 export const legalColumns = (editLegal) => {
   return [
@@ -21,7 +21,7 @@ export const legalColumns = (editLegal) => {
       key: 'creator',
       dataIndex: 'creator',
       title: '创建人',
-      render: (_, record) => <span>{record?.creator?.character_name}</span>
+      render: (_, record) => <span>{record?.creator?.name}</span>
     },
     {
       key: 'time',
@@ -69,5 +69,12 @@ export const statusOption = [
   {
     value: 2,
     label: '禁用'
+  }
+]
+
+export const rules = [
+  {
+    require: true,
+    message: ''
   }
 ]

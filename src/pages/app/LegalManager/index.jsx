@@ -10,7 +10,7 @@ import {
   updateLegalTenderInfo,
   getReferenceRateAddress
 } from '@/service/legal'
-import { showError } from '@/components/TKMessage'
+import { showError, showSuccess } from '@/components/TKMessage'
 import { header, pageParams } from '@/common/config'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
 import LegalForm from './components/LegalForm'
@@ -22,7 +22,7 @@ export default function LegalManager() {
     async (params) => {
       try {
         const { data } = await getLegalTenderList(params)
-        return { total: 1, list: data?.list || [] }
+        return { total: data?.total, list: data?.legal_list || [] }
       } catch (err) {
         return showError('系统错误')
       }
@@ -80,7 +80,8 @@ export default function LegalManager() {
       handleOk: async () => {
         const result = await legalForm.validateFields()
         try {
-          await updateLegalTenderInfo(result, header)
+          await updateLegalTenderInfo(result)
+          showSuccess('创建成功')
         } catch (err) {
           showError(err.msg)
           return Promise.reject()
@@ -126,9 +127,7 @@ export default function LegalManager() {
       <Table
         columns={legalColumns(editLegal)}
         dataSource={data?.list || []}
-        rowKey={(record) => {
-          record.id
-        }}
+        rowKey={(record) => record.id}
         loading={!data && data?.total}
         pagination={{
           total: data?.total || 0,
