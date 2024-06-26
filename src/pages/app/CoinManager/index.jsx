@@ -6,7 +6,8 @@ import { usePagination } from 'ahooks'
 import {
   getSupportCoinList,
   getSupportChainList,
-  uploadSupportCoin
+  uploadSupportCoin,
+  updateSupportCoinList
 } from '@/service/coin'
 import { showError, showSuccess } from '@/components/TKMessage'
 import CoinForm from './components/CoinForm'
@@ -67,21 +68,23 @@ export default function CoinManager() {
     })
   }
   // TODO 编辑
-  const edit = (record) => {
+  const editCoin = (record) => {
     form.setFieldsValue(record)
     openModal({
-      title: '创建',
-      content: <CoinForm form={form} chainList={chainList} type={2} />,
+      title: '编辑',
+      content: (
+        <CoinForm form={form} chainList={chainList} type={2} record={record} />
+      ),
       handleOk: async () => {
         const result = await form.validateFields()
         result.file = result?.file?.fileList[0]
-        // form.resetFields()
         try {
-          await uploadSupportCoin(result, header)
-          showSuccess('创建成功')
+          await updateSupportCoinList(result, header)
+          showSuccess('修改成功')
           run(pageParams)
+          return Promise.reject()
         } catch (err) {
-          showError('创建失败')
+          showError('修改失败')
           return Promise.reject()
         }
       }
@@ -128,7 +131,7 @@ export default function CoinManager() {
       {/* 表格 */}
       <Table
         dataSource={data?.list || []}
-        columns={coinColumns(chainList)}
+        columns={coinColumns(chainList, editCoin)}
         loading={!data}
         rowKey={(record) => record.id}
         pagination={{

@@ -37,7 +37,7 @@ export const uploadSupportChain = (data, headers) => {
 
 // 修改的支持链信息
 export const updateSupportChain = (data, headers) => {
-  return axiossDefine.put(
+  return axiossDefine.post(
     '/back/appPageManagement/coins/updateSupportChain',
     data,
     headers
@@ -45,10 +45,11 @@ export const updateSupportChain = (data, headers) => {
 }
 
 // 修改的支持代币信息
-export const updateSupportCoinList = (data) => {
-  return axiossDefine.put(
+export const updateSupportCoinList = (data, headers) => {
+  return axiossDefine.post(
     '/back/appPageManagement/coins/updateSupportCoinList',
-    data
+    data,
+    headers
   )
 }
 

@@ -2,13 +2,23 @@ import React, { useState } from 'react'
 import { Form, Input, Upload, Radio, Space, Select } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 
+const statusOptions = [
+  {
+    value: 1,
+    label: '启用'
+  },
+  {
+    value: 3,
+    label: '禁用'
+  }
+]
 export default function CoinForm({ form, record, type, chainList }) {
   const [fileList, setFileList] = useState([
     {
       uid: '-1',
       name: 'image.png',
       status: 'done',
-      url: record?.icon
+      url: record?.logo
     }
   ])
 
@@ -27,26 +37,17 @@ export default function CoinForm({ form, record, type, chainList }) {
   }
 
   chainOptions()
-  const statusOptions = [
-    {
-      value: 1,
-      label: '启用'
-    },
-    {
-      value: 0,
-      label: '禁用'
-    }
-  ]
+
   return (
     <div>
       <Form layout="vertical" form={form}>
-        {/* { 
-           <Form.Item label="代币ID">
-           <Input placeholder="请输入" name="name" />
-         </Form.Item>
-        } */}
-        <Form.Item label="名称">
-          <Input placeholder="请输入" name="name" />
+        {type === 2 && (
+          <Form.Item label="代币ID" name="id">
+            <Input disabled placeholder="请输入" />
+          </Form.Item>
+        )}
+        <Form.Item label="名称" name="name">
+          <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item label="所属链" name="chain_id">
           <Select placeholder="请输入" options={chainOptions()} />
@@ -91,7 +92,7 @@ export default function CoinForm({ form, record, type, chainList }) {
             </button>
           </Upload>
         </Form.Item>
-        <Form.Item label="代币状态">
+        <Form.Item label="代币状态" name="status">
           <Radio.Group options={statusOptions} />
         </Form.Item>
       </Form>

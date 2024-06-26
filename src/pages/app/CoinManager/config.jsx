@@ -1,6 +1,6 @@
 import { Button, Image, Space } from 'antd'
 import '@/assets/css/table.css'
-export const coinColumns = (chainList) => {
+export const coinColumns = (chainList, editCoin) => {
   // 获取链名称
   const getChainName = (chain_id) => {
     return chainList.map((item) => {
@@ -39,10 +39,11 @@ export const coinColumns = (chainList) => {
         <Space>
           <span
             style={{
-              color: record.status === 0 ? 'red' : 'green'
+              color: record.status === 1 ? 'green' : 'red'
             }}
           >
-            {record.status === 0 ? '禁用' : '启用'}
+            {record.status === 1 && '启用'}
+            {record.status === 3 && '禁用'}
           </span>
         </Space>
       )
@@ -84,7 +85,16 @@ export const coinColumns = (chainList) => {
       key: 'operate',
       title: '操作',
       dataIndex: 'operate',
-      render: () => <Button type="link">编辑</Button>
+      render: (_, record) => (
+        <Button
+          type="link"
+          onClick={() => {
+            editCoin(record)
+          }}
+        >
+          编辑
+        </Button>
+      )
     }
   ]
 }
