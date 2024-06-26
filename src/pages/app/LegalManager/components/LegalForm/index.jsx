@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input, Select, Radio, Space } from 'antd'
-import { statusOption, rules } from '../../config'
+import { statusOption, rule } from '../../config'
 
 export default function LegalForm({ form, addrList }) {
   return (
@@ -11,12 +11,7 @@ export default function LegalForm({ form, addrList }) {
             label="法币名称"
             name="name"
             requiredMark={false}
-            rules={[
-              {
-                required: true,
-                message: '法币名称为必选参数'
-              }
-            ]}
+            rules={rule}
           >
             <Input style={{ width: '210px' }} placeholder="请输入" />
           </Form.Item>

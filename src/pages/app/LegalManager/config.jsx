@@ -72,9 +72,9 @@ export const statusOption = [
   }
 ]
 
-export const rules = [
+export const rule = [
   {
     require: true,
-    message: ''
+    message: '该字段为必选参数'
   }
 ]

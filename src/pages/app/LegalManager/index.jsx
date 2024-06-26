@@ -62,7 +62,7 @@ export default function LegalManager() {
         try {
           await addLegalTender(result, header)
         } catch (err) {
-          showError(err.msg)
+          showError('创建失败')
           return Promise.reject()
         }
       }
