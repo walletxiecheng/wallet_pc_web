@@ -1,4 +1,6 @@
-export const advertColumns = () => {
+import { Button, Image } from 'antd'
+
+export const advertColumns = (edit) => {
   return [
     {
       key: 'id',
@@ -18,7 +20,8 @@ export const advertColumns = () => {
     {
       key: 'image',
       dataIndex: 'image',
-      title: '插图'
+      title: '插图',
+      render: (_, record) => <Image height={40} src={record.image} />
     },
     {
       key: 'eff_time',
@@ -49,10 +52,26 @@ export const advertColumns = () => {
       key: 'ad_url',
       dataIndex: 'ad_url',
       title: '链接'
+    },
+    {
+      key: 'operate',
+      dataIndex: 'operate',
+      title: '操作',
+      render: (_, record) => (
+        <Button
+          type="link"
+          onClick={() => {
+            edit(record)
+          }}
+        >
+          编辑
+        </Button>
+      )
     }
   ]
 }
 
+// 优先级
 export const priorityOptions = [
   {
     value: 0,
@@ -77,5 +96,20 @@ export const priorityOptions = [
   {
     value: 5,
     label: '五级'
+  }
+]
+
+export const regionOptions = [
+  {
+    value: 1,
+    label: '首页'
+  },
+  {
+    value: 2,
+    label: '发现'
+  },
+  {
+    value: 3,
+    label: '行情'
   }
 ]

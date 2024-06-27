@@ -13,7 +13,8 @@ export const getAdvertisementList = (data) => {
 export const publishAdvertisement = (data, headers) => {
   return axiossDefine.put(
     '/back/appPageManagement/advertisement/publishAdvertisement',
-    data
+    data,
+    headers
   )
 }
 
@@ -21,6 +22,7 @@ export const publishAdvertisement = (data, headers) => {
 export const updateAdvertisement = (data, headers) => {
   return axiossDefine.post(
     '/back/appPageManagement/advertisement/updateAdvertisement',
-    data
+    data,
+    headers
   )
 }
