@@ -79,7 +79,6 @@ export default function DappManager() {
 
         result.dapp_type = result?.dapp_type.join()
         result.file = result.file.fileList[0]
-        console.log(result)
         try {
           await uploadDapp(result)
           run({ pageSize: PAGE_SIZE, current: 1 })

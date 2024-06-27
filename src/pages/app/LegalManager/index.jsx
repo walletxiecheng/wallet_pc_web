@@ -42,7 +42,6 @@ export default function LegalManager() {
         label: data[i]
       })
     }
-    console.log(list)
     return list
   }
   // 查询
@@ -61,6 +60,7 @@ export default function LegalManager() {
         const result = await legalForm.validateFields()
         try {
           await addLegalTender(result, header)
+          run(pageParams)
         } catch (err) {
           showError('创建失败')
           return Promise.reject()
@@ -69,19 +69,22 @@ export default function LegalManager() {
     })
   }
 
-  // TODO 创建
+  // TODO 编辑
   const editLegal = async (record) => {
     legalForm.resetFields()
     legalForm.setFieldsValue(record)
     openModal({
-      title: '创建',
+      title: '编辑',
       content: <LegalForm form={legalForm} addrList={await getAddrList()} />,
       width: 500,
       handleOk: async () => {
         const result = await legalForm.validateFields()
+        result.correct = Number(result.correct)
+        result.id = record.id
         try {
           await updateLegalTenderInfo(result)
-          showSuccess('创建成功')
+          showSuccess('编辑成功')
+          run(pageParams)
         } catch (err) {
           showError(err.msg)
           return Promise.reject()

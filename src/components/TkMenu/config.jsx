@@ -121,7 +121,8 @@ export const menuItems = [
       },
       {
         label: '广告版管理',
-        key: menuKeys.advertisement
+        key: menuKeys.advertisement,
+        path: URLS.advertManager
       },
       {
         label: '版本管理',

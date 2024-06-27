@@ -3,8 +3,6 @@ import style from './index.module.less'
 
 export default function ErrorPage() {
   const error = useRouteError()
-  console.error(error)
-
   return (
     <div className={style.errContainer}>
       <h1>Oops!</h1>

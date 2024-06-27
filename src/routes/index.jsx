@@ -15,6 +15,7 @@ import DappManager from '@/pages/app/DappManager'
 import NodeManager from '@/pages/app/NodeManager'
 import CoinManager from '@/pages/app/CoinManager'
 import LegalManager from '@/pages/app/LegalManager'
+import Advertisement from '@/pages/app/AdvertManager'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
 import { URLS } from './urls'
@@ -95,6 +96,11 @@ export const routes = createBrowserRouter([
       {
         path: URLS.legalManager,
         element: <LegalManager />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.advertManager,
+        element: <Advertisement />,
         errorElement: <ErrorPage />
       }
     ]

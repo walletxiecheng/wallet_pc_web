@@ -23,7 +23,6 @@ export default function CoinForm({ form, record, type, chainList }) {
   ])
 
   const chainOptions = () => {
-    // console.log(chainList)
     return chainList.map((item) => {
       return { value: item.id, label: item.name }
     })

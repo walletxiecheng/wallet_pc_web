@@ -9,9 +9,7 @@ const recordItems = [
   }
 ]
 export default function LanguageManager() {
-  const onFinish = (values) => {
-    console.log(values)
-  }
+  const onFinish = (values) => {}
 
   return (
     <div>
