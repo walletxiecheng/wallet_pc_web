@@ -126,7 +126,8 @@ export const menuItems = [
       },
       {
         label: '版本管理',
-        key: menuKeys.versionManager
+        key: menuKeys.versionManager,
+        path: URLS.versionManager
       }
     ]
   }

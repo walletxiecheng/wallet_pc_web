@@ -16,6 +16,7 @@ import NodeManager from '@/pages/app/NodeManager'
 import CoinManager from '@/pages/app/CoinManager'
 import LegalManager from '@/pages/app/LegalManager'
 import Advertisement from '@/pages/app/AdvertManager'
+import VersionManager from '@/pages/app/VersionManager'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
 import { URLS } from './urls'
@@ -101,6 +102,11 @@ export const routes = createBrowserRouter([
       {
         path: URLS.advertManager,
         element: <Advertisement />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.versionManager,
+        element: <VersionManager />,
         errorElement: <ErrorPage />
       }
     ]

@@ -1,5 +1,5 @@
 import { Button, Image } from 'antd'
-
+import '@/assets/css/table.css'
 export const advertColumns = (edit) => {
   return [
     {
@@ -15,7 +15,8 @@ export const advertColumns = (edit) => {
     {
       key: 'publisher',
       dataIndex: 'publisher',
-      title: '发布人'
+      title: '发布人',
+      render: (_, record) => <span>{record?.publisher?.name}</span>
     },
     {
       key: 'image',
@@ -51,7 +52,13 @@ export const advertColumns = (edit) => {
     {
       key: 'ad_url',
       dataIndex: 'ad_url',
-      title: '链接'
+      title: '链接',
+      width: '10%',
+      render: (_, record) => (
+        <div style={{ width: '120px' }} className="ellipsis_table">
+          {record.ad_url}
+        </div>
+      )
     },
     {
       key: 'operate',

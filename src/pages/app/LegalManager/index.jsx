@@ -131,7 +131,7 @@ export default function LegalManager() {
         columns={legalColumns(editLegal)}
         dataSource={data?.list || []}
         rowKey={(record) => record.id}
-        loading={!data && data?.total}
+        loading={!data}
         pagination={{
           total: data?.total || 0,
           current: pagination.current,

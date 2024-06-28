@@ -1,4 +1,4 @@
-import { Button, message } from 'antd'
+import { Button } from 'antd'
 
 export const legalColumns = (editLegal) => {
   return [
