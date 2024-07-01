@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Input, Button, Flex, Space, Table } from 'antd'
 import { versionColumns } from './config'
 import {
@@ -14,6 +14,8 @@ import VerifyForm from './components/VersionForm'
 
 export default function VersionManager() {
   const [versionForm] = Form.useForm()
+  const [code, setCode] = useState()
+
   const { data, run, pagination } = usePagination(
     async (params) => {
       try {
@@ -31,6 +33,11 @@ export default function VersionManager() {
     }
   )
 
+  // code码
+  const changeCode = (value) => {
+    setCode(value)
+    return value
+  }
   // 查询
   const onFinish = (values) => {
     run({ ...values, ...pageParams })
@@ -40,11 +47,11 @@ export default function VersionManager() {
   const create = () => {
     openModal({
       title: '创建',
-      content: <VerifyForm form={versionForm} />,
+      content: <VerifyForm form={versionForm} changeCode={changeCode} />,
       handleOk: async () => {
         const result = await versionForm.validateFields()
-        result.verify_code = '2356'
         result.online_time = result.online_time.format('YYYY-MM-DD hh:mm:ss')
+        result.verify_code = code
         console.log(result)
         try {
           await uploadAppVersion(result)
@@ -63,8 +70,34 @@ export default function VersionManager() {
   }
 
   // 修改
-  const edit = () => {}
+  const edit = () => {
+    openModal({
+      title: '创建',
+      content: <VerifyForm form={versionForm} changeCode={changeCode} />,
+      handleOk: async () => {
+        const result = await versionForm.validateFields()
+        result.online_time = result.online_time.format('YYYY-MM-DD hh:mm:ss')
+        result.verify_code = code
+        console.log(result)
+        try {
+          await updateAppVersion(result)
+        } catch (err) {
+          if (err.code === 3) {
+            showError('参数错误')
+          } else if (err.code === 407) {
+            showError('验证码错误')
+          } else {
+            showError('修改失败')
+          }
+          return Promise.reject()
+        }
+      }
+    })
+  }
 
+  useEffect(() => {
+    console.log(code)
+  }, [code])
   return (
     <div>
       <Flex justify="space-between">

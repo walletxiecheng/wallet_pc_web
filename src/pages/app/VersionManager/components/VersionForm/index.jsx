@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Input, DatePicker, Select, Radio, Button, Space } from 'antd'
 import { abandonOptions, forceOptions, platOptions } from '../../config'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
@@ -8,6 +8,7 @@ import { useUserStore } from '@/stores'
 
 export default function VersionForm({ form, changeCode }) {
   const [codeForm] = Form.useForm()
+  let [code, setCode] = useState()
   const phone_number = useUserStore.getState().userInfo.phone_number
   const sendCode = async () => {
     const req = {
@@ -25,7 +26,7 @@ export default function VersionForm({ form, changeCode }) {
 
   // 更改是否启用
   const onChange = () => {
-    openModal({
+    return openModal({
       title: '输入验证码以确认操作',
       content: (
         <Form form={codeForm}>
@@ -37,7 +38,7 @@ export default function VersionForm({ form, changeCode }) {
             <Input disabled />
           </Form.Item>
           <Space>
-            <Form.Item label="验证码" name="verify_type">
+            <Form.Item label="验证码" name="verify_code">
               <Input />
             </Form.Item>
             <Form.Item>
@@ -52,11 +53,11 @@ export default function VersionForm({ form, changeCode }) {
             </Form.Item>
           </Space>
         </Form>
-      ),
-      handleOk: async () => {
-        const code = codeForm.getFieldValue('verify_type')
-        form.setFieldValue('verify_type', code)
-      }
+      )
+      // handleOk: async () => {
+      //   const test = codeForm.getFieldValue('verify_code')
+      //   changeCode(test)
+      // }
     })
   }
   return (
