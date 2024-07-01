@@ -64,3 +64,39 @@ export const versionColumns = (edit) => {
     }
   ]
 }
+
+// 是否停用
+export const abandonOptions = [
+  {
+    value: 1,
+    label: '启用'
+  },
+  {
+    value: 2,
+    label: '停用'
+  }
+]
+
+// 是否强制更新
+export const forceOptions = [
+  {
+    value: 0,
+    label: '否'
+  },
+  {
+    value: 1,
+    label: '是'
+  }
+]
+
+// 所属系统类型
+export const platOptions = [
+  {
+    value: 1,
+    label: '安卓'
+  },
+  {
+    value: 2,
+    label: 'ios'
+  }
+]

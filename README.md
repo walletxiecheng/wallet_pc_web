@@ -1,8 +1,33 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 项目名称
 
-Currently, two official plugins are available:
+token13后台管理系统
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# 项目简介
+
+token13后台管理系统，主要包含系统/商户/邀请/闪兑/币币/财务/应用端管理/数据管理模块
+
+## 技术栈
+
+- **前端框架**: React
+- **构建工具**: Vite
+- **CSS**: LESS
+- **其他**: React Router，ant-design, prettier,Eslint
+
+```bash
+# 克隆项目
+git clone https://github.com/your-username/your-project.git
+
+# 进入项目目录
+cd  wallent_admin_web
+
+# 安装依赖
+yarn
+
+#本地启动
+yarn dev
+
+#打包
+yarn build
+```

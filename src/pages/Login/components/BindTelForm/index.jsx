@@ -22,7 +22,7 @@ export default function BindTelForm(props) {
   return (
     <Form form={form}>
       <Form.Item name="phone_number" label="手机号">
-        <Input placeholder="请输入手机号"></Input>
+        <Input placeholder="请输入手机号" />
       </Form.Item>
       <Space>
         <Form.Item
@@ -35,7 +35,7 @@ export default function BindTelForm(props) {
           name="verification_code"
           label="验证码"
         >
-          <Input placeholder="请输入验证码"></Input>
+          <Input placeholder="请输入验证码" />
         </Form.Item>
         <Form.Item>
           <Button type="link" onClick={sendCode}>

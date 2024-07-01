@@ -42,7 +42,22 @@ export default function VersionManager() {
       title: '创建',
       content: <VerifyForm form={versionForm} />,
       handleOk: async () => {
-        await uploadAppVersion()
+        const result = await versionForm.validateFields()
+        result.verify_code = '2356'
+        result.online_time = result.online_time.format('YYYY-MM-DD hh:mm:ss')
+        console.log(result)
+        try {
+          await uploadAppVersion(result)
+        } catch (err) {
+          if (err.code === 3) {
+            showError('参数错误')
+          } else if (err.code === 407) {
+            showError('验证码错误')
+          } else {
+            showError('修改失败')
+          }
+          return Promise.reject()
+        }
       }
     })
   }
@@ -80,7 +95,13 @@ export default function VersionManager() {
         </Button>
       </Flex>
 
-      <Table columns={versionColumns(edit)} />
+      <Table
+        columns={versionColumns(edit)}
+        dataSource={data?.list || []}
+        pagination={{
+          total: data?.total || 0
+        }}
+      />
     </div>
   )
 }
