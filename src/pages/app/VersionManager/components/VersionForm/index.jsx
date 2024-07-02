@@ -3,7 +3,7 @@ import { Form, Input, DatePicker, Select, Radio, Button, Space } from 'antd'
 import { abandonOptions, forceOptions, platOptions } from '../../config'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
 import { showError, showSuccess } from '@/components/TKMessage'
-import { sendLoginVerificationCode } from '@/service/login'
+import { login, sendLoginVerificationCode } from '@/service/login'
 import { useUserStore } from '@/stores'
 
 export default function VersionForm({ form, changeCode }) {
@@ -53,13 +53,14 @@ export default function VersionForm({ form, changeCode }) {
             </Form.Item>
           </Space>
         </Form>
-      )
-      // handleOk: async () => {
-      //   const test = codeForm.getFieldValue('verify_code')
-      //   changeCode(test)
-      // }
+      ),
+      handleOk: async () => {
+        const { verify_code } = codeForm.getFieldsValue()
+        form.setFieldValue('verify_code', verify_code)
+      }
     })
   }
+
   return (
     <div>
       <Form layout="vertical" form={form}>
@@ -89,6 +90,9 @@ export default function VersionForm({ form, changeCode }) {
         </Form.Item>
         <Form.Item label="是否停用" name="is_abandon">
           <Radio.Group options={abandonOptions} onChange={onChange} />
+        </Form.Item>
+        <Form.Item hidden={true} name="verify_code">
+          <Input />
         </Form.Item>
       </Form>
     </div>

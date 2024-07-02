@@ -1,3 +1,5 @@
+import { Button, Space } from 'antd'
+
 export const columns = () => {
   return [
     {
@@ -38,7 +40,15 @@ export const columns = () => {
     {
       key: 'operate',
       dataIndex: 'operate',
-      title: '操作'
+      title: '操作',
+      width: '18%',
+      render: () => (
+        <Space>
+          <Button type="link">查看</Button>
+          <Button type="link">设置邀请人</Button>
+          <Button type="link">更多</Button>
+        </Space>
+      )
     }
   ]
 }

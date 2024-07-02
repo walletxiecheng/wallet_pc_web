@@ -7,7 +7,7 @@ import {
   updateAppVersion
 } from '@/service/version'
 import { usePagination } from 'ahooks'
-import { showError } from '@/components/TKMessage'
+import { showError, showSuccess } from '@/components/TKMessage'
 import { pageParams } from '@/common/config'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
 import VerifyForm from './components/VersionForm'
@@ -51,10 +51,10 @@ export default function VersionManager() {
       handleOk: async () => {
         const result = await versionForm.validateFields()
         result.online_time = result.online_time.format('YYYY-MM-DD hh:mm:ss')
-        result.verify_code = code
-        console.log(result)
         try {
           await uploadAppVersion(result)
+          showSuccess('上传成功')
+          run(pageParams)
         } catch (err) {
           if (err.code === 3) {
             showError('参数错误')
@@ -77,8 +77,7 @@ export default function VersionManager() {
       handleOk: async () => {
         const result = await versionForm.validateFields()
         result.online_time = result.online_time.format('YYYY-MM-DD hh:mm:ss')
-        result.verify_code = code
-        console.log(result)
+
         try {
           await updateAppVersion(result)
         } catch (err) {
@@ -130,6 +129,7 @@ export default function VersionManager() {
 
       <Table
         columns={versionColumns(edit)}
+        rowKey={(record) => record.id}
         dataSource={data?.list || []}
         pagination={{
           total: data?.total || 0
