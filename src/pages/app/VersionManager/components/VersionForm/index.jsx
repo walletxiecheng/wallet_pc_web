@@ -8,7 +8,7 @@ import { useUserStore } from '@/stores'
 
 export default function VersionForm({ form, changeCode }) {
   const [codeForm] = Form.useForm()
-  let [code, setCode] = useState()
+  // let [code, setCode] = useState()
   const phone_number = useUserStore.getState().userInfo.phone_number
   const sendCode = async () => {
     const req = {

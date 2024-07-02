@@ -14,7 +14,6 @@ export const axiosInstance = axios.create({
 })
 
 handleInterceptors()
-
 const axiossDefine = {
   // GET 请求
   get: (url, params = {}) => axiosInstance.get(url, { params }),
