@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Input, Space, Button } from 'antd'
 import { sendLoginVerificationCode } from '@/service/login'
 import { showError } from '@/components/TKMessage'
-export default function VerifyForm(props) {
+export default function VForm(props) {
   const { form, values } = props
 
   const sendCode = async () => {

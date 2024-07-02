@@ -7,7 +7,6 @@ import { preLogin, bindPhoneNumber } from '@/service/login'
 import { resetSystemUserPassword } from '@/service/system'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
 import { showError, showSuccess, showWarning } from '@/components/TKMessage'
-import VerifyForm from './components/VerifyForm'
 import ForgetForm from './components/ForgetForm'
 import EditForm from './components/EditForm'
 import BindTelForm from './components/BindTelForm'
@@ -16,6 +15,7 @@ import { useUserStore, useTokenStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '@/routes/urls'
 import { header } from '@/common/config'
+import VForm from './components/VForm'
 
 export default function Login() {
   // 登录表单
@@ -91,7 +91,7 @@ export default function Login() {
     openModal({
       title: '验证登录',
       okText: '登录',
-      content: <VerifyForm form={modalForm} values={values} />,
+      content: <VForm form={modalForm} values={values} />,
       handleOk: async () => {
         const result = await modalForm.validateFields()
         try {
