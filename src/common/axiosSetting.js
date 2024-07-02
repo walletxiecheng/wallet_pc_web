@@ -8,8 +8,8 @@ export const axiosInstance = axios.create({
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
-    'x-token': useTokenStore.getState().token,
-    'x-user-id': useUserStore.getState().userInfo.ID
+    'x-token': useTokenStore?.getState()?.token || null,
+    'x-user-id': useUserStore?.getState()?.userInfo?.ID || 0
   }
 })
 
