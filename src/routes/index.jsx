@@ -19,6 +19,9 @@ import Advertisement from '@/pages/app/AdvertManager'
 import VersionManager from '@/pages/app/VersionManager'
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
+import AccountManager from '@/pages/commer/AccountManager'
+import BalanceManager from '@/pages/commer/BalanceManager'
+import RealNameManager from '@/pages/commer/RealNameManager'
 import { URLS } from './urls'
 
 export const routes = createBrowserRouter([
@@ -36,6 +39,22 @@ export const routes = createBrowserRouter([
       {
         path: URLS.warnManager,
         element: <WarnManager />,
+        errorElement: <ErrorPage />
+      },
+      // 商户管理
+      {
+        path: URLS.accountManager,
+        element: <AccountManager />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.realNameManager,
+        element: <RealNameManager />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.balanceManager,
+        element: <BalanceManager />,
         errorElement: <ErrorPage />
       },
       {

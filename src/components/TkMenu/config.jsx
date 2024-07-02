@@ -72,15 +72,18 @@ export const menuItems = [
     children: [
       {
         label: '账户管理',
-        key: menuKeys.accountManager
+        key: menuKeys.accountManager,
+        path: URLS.accountManager
       },
       {
         label: '实名管理',
-        key: menuKeys.realNameManager
+        key: menuKeys.realNameManager,
+        path: URLS.realNameManager
       },
       {
         label: '余额管理',
-        key: menuKeys.balanceManager
+        key: menuKeys.balanceManager,
+        path: URLS.balanceManager
       }
     ]
   },
