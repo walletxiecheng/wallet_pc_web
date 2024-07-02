@@ -3,8 +3,8 @@ import { handleInterceptors } from './interceptors'
 import { useTokenStore, useUserStore } from '@/stores'
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://18.143.170.163:9996',
-  // baseURL: 'http://wallet_admin:9996',
+  // baseURL: 'http://18.143.170.163:9996',
+  baseURL: 'http://wallet_admin:9996',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
