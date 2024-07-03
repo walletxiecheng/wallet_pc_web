@@ -6,9 +6,8 @@ import { showError, showSuccess } from '@/components/TKMessage'
 import { login, sendLoginVerificationCode } from '@/service/login'
 import { useUserStore } from '@/stores'
 
-export default function VersionForm({ form, changeCode }) {
+export default function VersionForm({ form }) {
   const [codeForm] = Form.useForm()
-  // let [code, setCode] = useState()
   const phone_number = useUserStore.getState().userInfo.phone_number
   const sendCode = async () => {
     const req = {

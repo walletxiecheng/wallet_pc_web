@@ -22,6 +22,7 @@ import NotFound from '@/pages/NotFound'
 import AccountManager from '@/pages/commer/AccountManager'
 import BalanceManager from '@/pages/commer/BalanceManager'
 import RealNameManager from '@/pages/commer/RealNameManager'
+import AccountDetail from '@/pages/commer/AccountDetail'
 import { URLS } from './urls'
 
 export const routes = createBrowserRouter([
@@ -45,6 +46,11 @@ export const routes = createBrowserRouter([
       {
         path: URLS.accountManager,
         element: <AccountManager />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.accountDetail,
+        element: <AccountDetail />,
         errorElement: <ErrorPage />
       },
       {

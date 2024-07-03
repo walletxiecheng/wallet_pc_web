@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Form, Input, Button, Flex, Space, Table } from 'antd'
 import { versionColumns } from './config'
 import {
@@ -14,8 +14,6 @@ import VerifyForm from './components/VersionForm'
 
 export default function VersionManager() {
   const [versionForm] = Form.useForm()
-  const [code, setCode] = useState()
-
   const { data, run, pagination } = usePagination(
     async (params) => {
       try {
@@ -33,11 +31,6 @@ export default function VersionManager() {
     }
   )
 
-  // code码
-  const changeCode = (value) => {
-    setCode(value)
-    return value
-  }
   // 查询
   const onFinish = (values) => {
     run({ ...values, ...pageParams })
@@ -47,7 +40,7 @@ export default function VersionManager() {
   const create = () => {
     openModal({
       title: '创建',
-      content: <VerifyForm form={versionForm} changeCode={changeCode} />,
+      content: <VerifyForm form={versionForm} />,
       handleOk: async () => {
         const result = await versionForm.validateFields()
         result.online_time = result.online_time.format('YYYY-MM-DD hh:mm:ss')
@@ -73,13 +66,14 @@ export default function VersionManager() {
   const edit = () => {
     openModal({
       title: '创建',
-      content: <VerifyForm form={versionForm} changeCode={changeCode} />,
+      content: <VerifyForm form={versionForm} />,
       handleOk: async () => {
         const result = await versionForm.validateFields()
         result.online_time = result.online_time.format('YYYY-MM-DD hh:mm:ss')
-
         try {
           await updateAppVersion(result)
+          showSuccess('修改成功')
+          run(pageParams)
         } catch (err) {
           if (err.code === 3) {
             showError('参数错误')
@@ -94,9 +88,6 @@ export default function VersionManager() {
     })
   }
 
-  useEffect(() => {
-    console.log(code)
-  }, [code])
   return (
     <div>
       <Flex justify="space-between">
@@ -132,7 +123,11 @@ export default function VersionManager() {
         rowKey={(record) => record.id}
         dataSource={data?.list || []}
         pagination={{
-          total: data?.total || 0
+          total: data?.total || 0,
+          current: pagination.current,
+          pageSize: pagination.pageSize,
+          onChange: pagination.onChange,
+          onShowSizeChange: pagination.onChange
         }}
       />
     </div>

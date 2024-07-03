@@ -13,9 +13,10 @@ export const URLS = {
   operateLogSetting: '/systems/operateLogSetting',
   loginLogManager: '/systems/loginLogManager',
   // 商户管理
-  accountManager: 'accountManager',
-  realNameManager: 'realNameManager',
-  balanceManager: 'balanceManager',
+  accountManager: '/commercial/accountManager',
+  accountDetail: '/commercial/accountManager/accountDetail',
+  realNameManager: '/commercial/realNameManager',
+  balanceManager: '/commercial/balanceManager',
   // 应用端管理
   dappManager: '/app/dappManager',
   newsManager: '/app/newsManager',

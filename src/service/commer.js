@@ -26,6 +26,22 @@ export const getCommercialAccountDetail = (prams) => {
   )
 }
 
+// 获取制定商户资产信息
+export const getCommercialAccountAssets = (prams) => {
+  return axiossDefine.get(
+    '/back/commercialManager/account/getCommercialAccountAssets',
+    prams
+  )
+}
+
+// 获取制定商户交易记录
+export const getCommercialTransactionRecord = (prams) => {
+  return axiossDefine.get(
+    '/back/commercialManager/account/getCommercialTransactionRecord',
+    prams
+  )
+}
+
 // 获取商户账户列表
 export const getCommercialAccountList = (prams) => {
   return axiossDefine.get(

@@ -1,6 +1,8 @@
 import { Button, Space } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
-export const columns = () => {
+export const columns = (URLS) => {
+  const navigate = useNavigate()
   return [
     {
       key: 'account_id',
@@ -42,9 +44,16 @@ export const columns = () => {
       dataIndex: 'operate',
       title: '操作',
       width: '18%',
-      render: () => (
+      render: (_, record) => (
         <Space>
-          <Button type="link">查看</Button>
+          <Button
+            type="link"
+            onClick={() => {
+              navigate(URLS.accountDetail, { state: record })
+            }}
+          >
+            查看
+          </Button>
           <Button type="link">设置邀请人</Button>
           <Button type="link">更多</Button>
         </Space>
