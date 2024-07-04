@@ -168,7 +168,7 @@ export default function AccountDetail() {
         <Tabs items={[{ key: '1', label: '用户资产' }]} />
         <Table
           columns={assetsColumns()}
-          dataSource={assetList?.assets || []}
+          dataSource={assetList?.list || []}
           rowKey={(record) => record.id}
           loading={!assetList}
           pagination={{

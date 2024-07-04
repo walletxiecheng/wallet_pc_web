@@ -91,7 +91,7 @@ export const setInvitor = (data) => {
 // 商户管理————实名管理
 // 查看实名证件信息
 export const getRealNameCertificateInfo = (data) => {
-  return axiossDefine.post(
+  return axiossDefine.get(
     '/back/commercialManager/realName/getRealNameCertificateInfo',
     data
   )
@@ -99,7 +99,7 @@ export const getRealNameCertificateInfo = (data) => {
 
 // 获取商户实名信息列表
 export const getRealNameInfo = (data) => {
-  return axiossDefine.post(
+  return axiossDefine.get(
     '/back/commercialManager/realName/getRealNameInfo',
     data
   )
