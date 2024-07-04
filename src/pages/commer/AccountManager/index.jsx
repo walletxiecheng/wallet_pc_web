@@ -7,7 +7,7 @@ import {
   getCommercialAccountList,
   exportCommercialInfo
 } from '@/service/commer'
-import { showError } from '@/components/TKMessage'
+import { showError, showWarning } from '@/components/TKMessage'
 import { pageParams } from '@/common/config'
 import { URLS } from '@/routes/urls'
 
@@ -48,9 +48,13 @@ export default function AccountManager() {
     })
   }
 
+  // 导出
   const exportCommercial = async () => {
     const req = {
       export_commercial_ids: selectID + ''
+    }
+    if (!req.export_commercial_ids) {
+      return showWarning('请选择导出记录')
     }
     try {
       const { data } = await exportCommercialInfo(req)

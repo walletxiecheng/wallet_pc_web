@@ -72,3 +72,61 @@ export const tradeColumns = () => {
     }
   ]
 }
+
+export const typeOptions = [
+  {
+    value: 0,
+    label: '全部'
+  },
+  {
+    value: 1,
+    label: '定投买入'
+  },
+  {
+    value: 2,
+    label: '定投卖出'
+  },
+  {
+    value: 3,
+    label: '购买定期'
+  },
+  {
+    value: 4,
+    label: '定期赎回'
+  },
+  {
+    value: 5,
+    label: '币本位合约划转转入'
+  },
+  {
+    value: 6,
+    label: '币本位合约划转转出'
+  },
+  {
+    value: 7,
+    label: 'U本位合约划转转入'
+  },
+  {
+    value: 8,
+    label: 'U本位合约划转转出'
+  },
+  {
+    value: 9,
+    label: '秒合约转入'
+  }
+]
+
+export const coinTypeOptions = [
+  {
+    value: 0,
+    label: '全部'
+  },
+  {
+    value: 1,
+    label: 'BTC'
+  },
+  {
+    value: 2,
+    label: 'ETH'
+  }
+]
