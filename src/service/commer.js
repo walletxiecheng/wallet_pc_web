@@ -112,3 +112,21 @@ export const reviewRealNameInfo = (data) => {
     data
   )
 }
+
+// 商户管理————余额管理
+
+// 获取商户余额信息列表
+export const getCommercialBalanceInfoList = (data) => {
+  return axiossDefine.get(
+    '/back/commercialManager/balance/getCommercialBalanceInfoList',
+    data
+  )
+}
+
+// 导出商户余额信息列表
+export const exportCommercialBalanceInfoList = (data) => {
+  return axiossDefine.get(
+    '/back/commercialManager/balance/exportCommercialBalanceInfoList',
+    data
+  )
+}

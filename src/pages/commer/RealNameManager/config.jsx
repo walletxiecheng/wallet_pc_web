@@ -63,6 +63,10 @@ export const rnColumns = (select, review) => {
 
 export const statusOptions = [
   {
+    value: 0,
+    label: '全部'
+  },
+  {
     value: 1,
     label: '未实名'
   },

@@ -47,14 +47,14 @@ export default function RenameForm({ form, accountId }) {
             className="formItem"
             name="certificate_by_hand	"
           >
-            <Image height={200} src={realNameImg?.certificate_by_hand} />
+            <Image height={200} src={realNameImg?.id_card_front_side} />
           </Form.Item>
           <Form.Item
             label="证件反面"
             className="formItem"
             name="certificate_back_side"
           >
-            <Image height={200} src={realNameImg?.certificate_back_side} />
+            <Image height={200} src={realNameImg?.id_card_back_side} />
           </Form.Item>
         </Space>
         <Form.Item
@@ -62,7 +62,7 @@ export default function RenameForm({ form, accountId }) {
           className="formItem"
           name="certificate_back_side"
         >
-          <Image height={200} src={realNameImg?.certificate_back_side} />
+          <Image height={200} src={realNameImg?.id_card_by_hand} />
         </Form.Item>
 
         <Space>
@@ -71,14 +71,14 @@ export default function RenameForm({ form, accountId }) {
             className="formItem"
             name="certificate_by_hand	"
           >
-            <Image height={200} src={realNameImg?.certificate_by_hand} />
+            <Image height={200} src={realNameImg?.certificate_front_side} />
           </Form.Item>
           <Form.Item
             label="手持营业执照"
             className="formItem"
             name="certificate_back_side"
           >
-            <Image height={200} src={realNameImg?.certificate_back_side} />
+            <Image height={200} src={realNameImg?.certificate_by_hand} />
           </Form.Item>
         </Space>
       </Form>
