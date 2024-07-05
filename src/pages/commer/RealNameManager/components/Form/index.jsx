@@ -54,7 +54,7 @@ export default function RenameForm({ form, accountId }) {
             className="formItem"
             name="certificate_back_side"
           >
-            <Image height={200} src={realNameImg.certificate_back_side} />
+            <Image height={200} src={realNameImg?.certificate_back_side} />
           </Form.Item>
         </Space>
         <Form.Item
@@ -62,8 +62,25 @@ export default function RenameForm({ form, accountId }) {
           className="formItem"
           name="certificate_back_side"
         >
-          <Image height={200} src={realNameImg.certificate_back_side} />
+          <Image height={200} src={realNameImg?.certificate_back_side} />
         </Form.Item>
+
+        <Space>
+          <Form.Item
+            label="营业执照"
+            className="formItem"
+            name="certificate_by_hand	"
+          >
+            <Image height={200} src={realNameImg?.certificate_by_hand} />
+          </Form.Item>
+          <Form.Item
+            label="手持营业执照"
+            className="formItem"
+            name="certificate_back_side"
+          >
+            <Image height={200} src={realNameImg?.certificate_back_side} />
+          </Form.Item>
+        </Space>
       </Form>
     </div>
   )

@@ -104,3 +104,11 @@ export const getRealNameInfo = (data) => {
     data
   )
 }
+
+// 审核实名信息
+export const reviewRealNameInfo = (data) => {
+  return axiossDefine.post(
+    '/back/commercialManager/realName/reviewRealNameInfo',
+    data
+  )
+}

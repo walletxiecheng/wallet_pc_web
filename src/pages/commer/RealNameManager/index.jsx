@@ -4,8 +4,8 @@ import TKButton from '@/components/TKButton'
 import React from 'react'
 import { rnColumns, statusOptions } from './config'
 import { usePagination } from 'ahooks'
-import { getRealNameInfo } from '@/service/commer'
-import { showError } from '@/components/TKMessage'
+import { getRealNameInfo, reviewRealNameInfo } from '@/service/commer'
+import { showError, showSuccess } from '@/components/TKMessage'
 import { pageParams } from '@/common/config'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
 import RenameForm from './components/Form'
@@ -13,6 +13,8 @@ import RenameForm from './components/Form'
 export default function RealNameManager() {
   // 渲染
   const [form] = Form.useForm()
+  const [rejectedForm] = Form.useForm()
+
   const getInfoHandler = async (prams) => {
     try {
       const { data } = await getRealNameInfo(prams)
@@ -35,16 +37,66 @@ export default function RealNameManager() {
     openModal({
       title: '查看',
       content: <RenameForm form={form} accountId={record.account_id} />,
+      width: 600
+    })
+  }
+
+  // 审核
+  const review = (record) => {
+    form.setFieldsValue(record)
+    openModal({
+      title: '审核',
+      content: <RenameForm form={form} accountId={record.account_id} />,
       width: 600,
+      okText: '通过',
+      cancelText: '驳回',
       handleOk: async () => {
-        return Promise.reject()
+        console.log('通过')
+        try {
+          const req = {
+            account_id: record.account_id,
+            review_result: 3
+          }
+          await reviewRealNameInfo(req)
+          showSuccess('审核已通过')
+        } catch (err) {
+          showError('审核通过失败请重试')
+          return Promise.reject()
+        }
+      },
+      handleCancel: () => {
+        openModal({
+          title: '驳回',
+          content: (
+            <Form form={rejectedForm}>
+              <Form.Item label="驳回原因">
+                <Select options={[{ value: 0, label: '自定义' }]} />
+              </Form.Item>
+              <Form.Item label="自定义内容" name="remark">
+                <Input placeholder="请输入" />
+              </Form.Item>
+            </Form>
+          ),
+          handleOk: async () => {
+            const result = rejectedForm.validateFields()
+            const req = {
+              account_id: record.account_id,
+              review_result: 4,
+              remark: result.remark
+            }
+            try {
+              await reviewRealNameInfo(req)
+              showSuccess('驳回成功')
+            } catch (err) {
+              showError('驳回失败,请重试。')
+              return Promise.reject()
+            }
+          }
+        })
       }
     })
   }
-  // 审核
-  const review = (record) => {
-    console.log('审核')
-  }
+
   return (
     <div>
       <TKTitle header={'实名管理'} />
@@ -72,20 +124,20 @@ export default function RealNameManager() {
             </Form.Item>
           </Space>
         </Flex>
-
-        <Table
-          columns={rnColumns(select, review)}
-          dataSource={data?.list}
-          rowKey={(record) => record.id}
-          pagination={{
-            total: data?.total || 0,
-            current: pagination.current,
-            pageSize: pagination.pageSize,
-            onChange: pagination.onChange,
-            onShowSizeChange: pagination.onChange
-          }}
-        />
       </Form>
+      <Table
+        columns={rnColumns(select, review)}
+        dataSource={data?.list}
+        loading={!data}
+        rowKey={(record) => record.id}
+        pagination={{
+          total: data?.total || 0,
+          current: pagination.current,
+          pageSize: pagination.pageSize,
+          onChange: pagination.onChange,
+          onShowSizeChange: pagination.onChange
+        }}
+      />
     </div>
   )
 }
