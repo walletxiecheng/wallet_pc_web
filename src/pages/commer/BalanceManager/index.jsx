@@ -8,7 +8,7 @@ import {
   getCommercialBalanceInfoList,
   exportCommercialBalanceInfoList
 } from '@/service/commer'
-import { showError } from '@/components/TKMessage'
+import { showError, showWarning } from '@/components/TKMessage'
 import { pageParams } from '@/common/config'
 
 export default function BalanceManager() {
@@ -30,7 +30,6 @@ export default function BalanceManager() {
 
   // 查询
   const onFinish = (values) => {
-    console.log(values)
     run({ ...values, ...pageParams })
   }
 
@@ -40,10 +39,11 @@ export default function BalanceManager() {
       assets_id: selectId + ''
     }
     if (!req.assets_id) {
-      
+      return showWarning('请选择导出记录')
     }
     try {
       const { data } = await exportCommercialBalanceInfoList(req)
+      window.open(data, '_blank')
     } catch (err) {
       showError('导出失败，请重试。')
     }

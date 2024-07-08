@@ -5,16 +5,19 @@ import { usePagination } from 'ahooks'
 import { columns, statusOptions, proxyOptions } from './config'
 import {
   getCommercialAccountList,
-  exportCommercialInfo
+  exportCommercialInfo,
+  setInvitor
 } from '@/service/commer'
-import { showError, showWarning } from '@/components/TKMessage'
+import { showError, showSuccess, showWarning } from '@/components/TKMessage'
 import { pageParams } from '@/common/config'
 import { URLS } from '@/routes/urls'
+import { openModal } from '@/pages/systems/SmsManager/components/Modal'
+import SetProp from './components/SetProp'
 
 export default function AccountManager() {
   const [selectionType, setSelectionType] = useState('checkbox')
-  const [selectID, setSelectID] = useState([])
-
+  const [selectID, setSelectID] = useState([]) //选中的id列表
+  const [setForm] = Form.useForm()
   const { data, run, pagination } = usePagination(
     async (prams) => {
       try {
@@ -58,10 +61,41 @@ export default function AccountManager() {
     }
     try {
       const { data } = await exportCommercialInfo(req)
+      window.open(data, '_blank')
     } catch (err) {
       return showError('导出失败')
     }
   }
+
+  // 设置邀请人
+  const setVisitor = (record) => {
+    const text = record.inviter_account_id ? '修改邀请人' : '设置邀请人'
+    setForm.setFieldValue('commercial_id', record.commercial_id)
+    setForm.setFieldValue(
+      'inviter_account_id',
+      record.inviter_account_id ? record.inviter_account_id : ''
+    )
+    openModal({
+      title: text,
+      content: <SetProp form={setForm} />,
+      handleOk: async () => {
+        const result = await setForm.validateFields()
+        result.invitor_id = Number(result.inviter_account_id)
+        try {
+          await setInvitor(result)
+          showSuccess('设置成功')
+
+          run(pageParams)
+        } catch (err) {
+          showError('设置失败，请重试。')
+          return Promise.reject()
+        }
+      }
+    })
+  }
+
+  const other = () => {}
+
   return (
     <div>
       <TKTitle header={'账户管理'} />
@@ -106,8 +140,8 @@ export default function AccountManager() {
           type: selectionType,
           ...rowSelection
         }}
-        rowKey={(record) => record.account_id}
-        columns={columns(URLS)}
+        rowKey={(record) => record.commercial_id}
+        columns={columns(URLS, setVisitor)}
         loading={!data}
         dataSource={data?.list || []}
         pagination={{

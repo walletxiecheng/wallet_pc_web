@@ -1,12 +1,13 @@
-import { Button, Space } from 'antd'
+import { Button, Space, Popconfirm } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import MoreProps from './components/MoreProp'
 
-export const columns = (URLS) => {
+export const columns = (URLS, setVisitor) => {
   const navigate = useNavigate()
   return [
     {
-      key: 'account_id',
-      dataIndex: 'account_id',
+      key: 'commercial_id',
+      dataIndex: 'commercial_id',
       title: '账号ID'
     },
     {
@@ -54,14 +55,33 @@ export const columns = (URLS) => {
           >
             查看
           </Button>
-          <Button type="link">设置邀请人</Button>
-          <Button type="link">更多</Button>
+          <Button
+            type="link"
+            style={{ color: record.inviter_account_id ? '#00851D' : '#3f78f9' }}
+            onClick={() => {
+              setVisitor(record)
+            }}
+          >
+            {record.inviter_account_id ? '修改邀请人' : '设置邀请人'}
+          </Button>
+          <Popconfirm
+            placement="bottom"
+            title={'更多'}
+            description={<MoreProps record={record} />}
+            okText="确定"
+            showCancel={false}
+            icon={null}
+            cancelText="No"
+          >
+            <Button type="link">更多</Button>
+          </Popconfirm>
         </Space>
       )
     }
   ]
 }
 
+// 状态
 export const statusOptions = [
   {
     label: '启用',
@@ -72,6 +92,20 @@ export const statusOptions = [
     value: 2
   }
 ]
+
+// 交易权限
+export const trapOptions = [
+  {
+    label: '允许',
+    value: 1
+  },
+  {
+    label: '禁止',
+    value: 2
+  }
+]
+
+// 代理商权限
 export const proxyOptions = [
   {
     label: '授权',
