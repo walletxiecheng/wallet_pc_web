@@ -51,8 +51,12 @@ export const getCommercialAccountList = (prams) => {
 }
 
 // 锁仓
-export const lockPosition = (data) => {
-  return axiossDefine.put('/back/commercialManager/account/lockPosition', data)
+export const lockPosition = (data, headers) => {
+  return axiossDefine.put(
+    '/back/commercialManager/account/lockPosition',
+    data,
+    headers
+  )
 }
 
 // 充币

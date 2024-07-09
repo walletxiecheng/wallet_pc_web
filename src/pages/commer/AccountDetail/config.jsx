@@ -1,5 +1,5 @@
 import { Space, Button } from 'antd'
-export const assetsColumns = () => {
+export const assetsColumns = (recharge, lockForm) => {
   return [
     {
       title: '币种',
@@ -30,10 +30,24 @@ export const assetsColumns = () => {
       title: '操作',
       key: 'operate',
       dataIndex: 'operate',
-      render: () => (
+      render: (_, record) => (
         <Space>
-          <Button type="link">锁仓</Button>
-          <Button type="link">充币</Button>
+          <Button
+            type="link"
+            onClick={() => {
+              lockForm(record)
+            }}
+          >
+            锁仓
+          </Button>
+          <Button
+            type="link"
+            onClick={() => {
+              recharge(record)
+            }}
+          >
+            充币
+          </Button>
           <Button type="link">更多</Button>
         </Space>
       )
@@ -45,34 +59,35 @@ export const tradeColumns = () => {
   return [
     {
       title: '账户ID',
-      key: 'token_type',
-      dataIndex: 'token_type'
+      key: 'commercial_id',
+      dataIndex: 'commercial_id'
     },
     {
       title: '交易类型',
-      key: 'token_type',
-      dataIndex: 'token_type'
+      key: 'transaction_type',
+      dataIndex: 'transaction_type'
     },
     ,
     {
       title: '交易金额',
-      key: 'token_type',
-      dataIndex: 'token_type'
+      key: 'amount',
+      dataIndex: 'amount'
     },
     ,
     {
       title: '手续费',
-      key: 'token_type',
-      dataIndex: 'token_type'
+      key: 'fee',
+      dataIndex: 'fee'
     },
     {
       title: '交易时间',
-      key: 'token_type',
-      dataIndex: 'token_type'
+      key: 'tx_time',
+      dataIndex: 'tx_time'
     }
   ]
 }
 
+// 类型
 export const typeOptions = [
   {
     value: 0,
@@ -116,6 +131,7 @@ export const typeOptions = [
   }
 ]
 
+// 币种类型
 export const coinTypeOptions = [
   {
     value: 0,
@@ -128,5 +144,29 @@ export const coinTypeOptions = [
   {
     value: 2,
     label: 'ETH'
+  }
+]
+
+// 锁仓类型
+export const transactionTypeOptions = [
+  {
+    value: 1,
+    label: '充值'
+  },
+  {
+    value: 2,
+    label: '提现'
+  },
+  {
+    value: 3,
+    label: '转账'
+  },
+  {
+    value: 4,
+    label: '手续费'
+  },
+  {
+    value: 5,
+    label: '活动补偿'
   }
 ]

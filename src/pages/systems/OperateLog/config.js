@@ -1,4 +1,3 @@
-import { Result } from 'antd'
 
 export const columns = () => {
   return [
@@ -14,8 +13,8 @@ export const columns = () => {
     },
     {
       title: '操作账号',
-      dataIndex: 'account',
-      key: 'account'
+      dataIndex: 'operation_account',
+      key: 'operation_account'
     },
     {
       title: '操作时间',

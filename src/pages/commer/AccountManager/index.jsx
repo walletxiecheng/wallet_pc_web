@@ -8,7 +8,7 @@ import {
   exportCommercialInfo,
   setInvitor
 } from '@/service/commer'
-import { showError, showSuccess, showWarning } from '@/components/TKMessage'
+import { showError, showSuccess } from '@/components/TKMessage'
 import { pageParams } from '@/common/config'
 import { URLS } from '@/routes/urls'
 import { openModal } from '@/pages/systems/SmsManager/components/Modal'
@@ -69,6 +69,7 @@ export default function AccountManager() {
 
   // 设置邀请人
   const setVisitor = (record) => {
+    setForm.resetFields()
     const text = record.inviter_account_id ? '修改邀请人' : '设置邀请人'
     setForm.setFieldValue('commercial_id', record.commercial_id)
     setForm.setFieldValue(
@@ -80,6 +81,9 @@ export default function AccountManager() {
       content: <SetProp form={setForm} />,
       handleOk: async () => {
         const result = await setForm.validateFields()
+        if (result.invitor_id == record.invitor_id) {
+          return
+        }
         result.invitor_id = Number(result.inviter_account_id)
         try {
           await setInvitor(result)
@@ -93,8 +97,6 @@ export default function AccountManager() {
       }
     })
   }
-
-  const other = () => {}
 
   return (
     <div>

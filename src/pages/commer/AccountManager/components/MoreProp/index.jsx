@@ -2,7 +2,7 @@ import { Form, Radio } from 'antd'
 import React from 'react'
 import { statusOptions, trapOptions, proxyOptions } from '../../config'
 import { setCommercialAccountStatus } from '@/service/commer'
-import { showError } from '@/components/TKMessage'
+import { showError, showSuccess } from '@/components/TKMessage'
 
 export default function MoreProps({ record }) {
   const changeStatus = async (type, status) => {
@@ -11,9 +11,10 @@ export default function MoreProps({ record }) {
       account_status: status,
       status_type: type
     }
-    console.log(req)
+
     try {
-      await setCommercialAccountStatus()
+      await setCommercialAccountStatus(req)
+      showSuccess('设置成功')
     } catch (err) {
       return showError('设置失败,请重试')
     }
@@ -25,8 +26,8 @@ export default function MoreProps({ record }) {
           <Radio.Group
             options={statusOptions}
             defaultValue={record?.account_status}
-            onChange={(status) => {
-              changeStatus(1, status)
+            onChange={(e) => {
+              changeStatus(1, e.target.value)
             }}
           />
         </Form.Item>
@@ -34,8 +35,8 @@ export default function MoreProps({ record }) {
           <Radio.Group
             options={trapOptions}
             defaultValue={record?.exchange_authority}
-            onChange={(status) => {
-              changeStatus(2, status)
+            onChange={(e) => {
+              changeStatus(2, e.target.value)
             }}
           />
         </Form.Item>
@@ -43,8 +44,8 @@ export default function MoreProps({ record }) {
           <Radio.Group
             options={proxyOptions}
             defaultValue={record?.proxy_authority}
-            onChange={() => {
-              changeStatus(3)
+            onChange={(e) => {
+              changeStatus(3, e.target.value)
             }}
           />
         </Form.Item>
