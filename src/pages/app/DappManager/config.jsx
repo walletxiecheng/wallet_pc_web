@@ -128,6 +128,7 @@ export const columns = (chainList, handleEditDapp, run) => {
             title="状态"
             showCancel={false}
             icon={null}
+            okButtonProps={{ style: { display: 'none' } }}
             description={
               <div>
                 <Divider />

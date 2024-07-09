@@ -1,27 +1,9 @@
 import { Space, Button, Popconfirm, Radio, Form, Divider } from 'antd'
-import {
-  setAssetAccountStatus,
-  resetAssetAccountAddress
-} from '@/service/commer'
-import { showError, showSuccess } from '@/components/TKMessage'
-import { openModal } from '@/pages/systems/SmsManager/components/Modal'
+import { setAssetAccountStatus } from '@/service/commer'
 
 export const assetsColumns = (recharge, lockForm) => {
   // 重置地址
-  const resetAddress = async (id) => {
-    openModal({
-      title: '确定要重置地址吗？',
-      handleOk: async () => {
-        try {
-          await resetAssetAccountAddress({ id: id })
-          return showSuccess('重置成功')
-        } catch (err) {
-          showError('重置失败，请重试。')
-          return Promise.reject()
-        }
-      }
-    })
-  }
+  const resetAddress = (id) => {}
 
   // 修改账号状态
   const changeStatus = async (id, status) => {
@@ -30,11 +12,11 @@ export const assetsColumns = (recharge, lockForm) => {
       id: id,
       status: status
     }
-    try {
+    try{
       await setAssetAccountStatus(req)
-      showSuccess('修改状态成功')
-    } catch (err) {
-      showError('修改状态失败请重试')
+
+    }catch(err){
+
     }
   }
   return [
@@ -100,7 +82,6 @@ export const assetsColumns = (recharge, lockForm) => {
                       onChange={(e) => {
                         changeStatus(record.id, e.target.value)
                       }}
-                      defaultValue={record.status}
                       options={[
                         { value: 1, label: '解禁' },
                         { value: 2, label: '禁用' }
@@ -126,39 +107,6 @@ export const assetsColumns = (recharge, lockForm) => {
           </Popconfirm>
         </Space>
       )
-    }
-  ]
-}
-
-// 记录列表
-export const tradeColumns = () => {
-  return [
-    {
-      title: '账户ID',
-      key: 'commercial_id',
-      dataIndex: 'commercial_id'
-    },
-    {
-      title: '交易类型',
-      key: 'transaction_type',
-      dataIndex: 'transaction_type'
-    },
-    ,
-    {
-      title: '交易金额',
-      key: 'amount',
-      dataIndex: 'amount'
-    },
-    ,
-    {
-      title: '手续费',
-      key: 'fee',
-      dataIndex: 'fee'
-    },
-    {
-      title: '交易时间',
-      key: 'tx_time',
-      dataIndex: 'tx_time'
     }
   ]
 }

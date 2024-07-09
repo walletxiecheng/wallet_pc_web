@@ -66,6 +66,7 @@ export const columns = (URLS, setVisitor) => {
           </Button>
           <Popconfirm
             placement="bottom"
+            okButtonProps={{ style: { display: 'none' } }}
             title={'更多'}
             description={<MoreProps record={record} />}
             okText="确定"
