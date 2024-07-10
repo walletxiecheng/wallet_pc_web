@@ -16,8 +16,8 @@ export const orderColumns = () => {
       title: '来源币种'
     },
     {
-      key: 'origin_amount',
-      dataIndex: 'origin_amount',
+      key: 'origin_coin_amount',
+      dataIndex: 'origin_coin_amount',
       title: '来源币种数量'
     },
     {
