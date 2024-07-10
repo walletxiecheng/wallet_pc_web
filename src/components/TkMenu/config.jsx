@@ -3,7 +3,7 @@ import { URLS } from '@/routes/urls'
 
 // 菜单列表
 export const menuKeys = {
-  systems: 'systems', //系统管理
+  systems: 'systems', //**系统管理
   smsManager: 'smsManager', //短信
   warnManager: 'warnManager', //报警管理
   warnSetting: 'warnSetting', //报警设置
@@ -11,12 +11,16 @@ export const menuKeys = {
   operateLogSetting: 'operateLogSetting', //操作日志
   loginLogManager: 'loginLogManager', //登录日志
 
-  merchantManager: 'merchantManager', //商户管理
-  accountManager: 'accountManager', //
-  realNameManager: 'realNameManager',
-  balanceManager: 'balanceManager',
+  merchantManager: 'merchantManager', //**商户管理
+  accountManager: 'accountManager', //账户管理
+  realNameManager: 'realNameManager', //实名管理
+  balanceManager: 'balanceManager', //余额管理
 
-  app: 'app', // 应用端管理
+  flash: 'flash', //一级菜单/闪兑管理,
+  flashCoinManager: 'flashCoinManager', //币种管理
+  orderManager: 'orderManager', //订单管理
+
+  app: 'app', // **应用端管理
   dappManager: 'dappManager', //dapp
   newsManager: 'newsManager', //咨讯
   languageManager: 'languageManager', //语言
@@ -84,6 +88,23 @@ export const menuItems = [
         label: '余额管理',
         key: menuKeys.balanceManager,
         path: URLS.balanceManager
+      }
+    ]
+  },
+  {
+    key: menuKeys.flash,
+    icon: <UserOutlined />,
+    label: '闪兑管理',
+    children: [
+      {
+        label: '币种管理',
+        key: menuKeys.flashCoinManager,
+        path: URLS.flashCoinManager
+      },
+      {
+        label: '订单管理',
+        key: menuKeys.orderManager,
+        path: URLS.orderManager
       }
     ]
   },

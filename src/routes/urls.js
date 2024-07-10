@@ -25,5 +25,8 @@ export const URLS = {
   coinManager: '/app/coinManager',
   legalManager: '/app/legalManager',
   advertManager: '/app/advertManager',
-  versionManager: '/app/versionManager'
+  versionManager: '/app/versionManager',
+  // 闪兑管理
+  flashCoinManager: '/flash/cionManager',
+  orderManager: '/flash/orderManager'
 }

@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
 import BaseLayout from '@/Layouts/BaseLayout'
+// 登陆
 import Login from '@/pages/Login'
+// 系统管理
 import SmsManager from '@/pages/systems/SmsManager'
 import WarnManager from '@/pages/systems/WarnManager'
 import WarnDetail from '@/pages/systems/WarnDetail'
@@ -9,6 +11,7 @@ import HandleRule from '@/pages/systems/WarnSetting/pages/HandleRule'
 import AdminSetting from '@/pages/systems/AdminSetting'
 import OperateLog from '@/pages/systems/OperateLog'
 import LoginLog from '@/pages/systems/LoginLog'
+// 应用端
 import LanguageManager from '@/pages/app/LanguageManager'
 import NewsManager from '@/pages/app/NewsManager'
 import DappManager from '@/pages/app/DappManager'
@@ -17,14 +20,19 @@ import CoinManager from '@/pages/app/CoinManager'
 import LegalManager from '@/pages/app/LegalManager'
 import Advertisement from '@/pages/app/AdvertManager'
 import VersionManager from '@/pages/app/VersionManager'
+// 错误页||404
 import ErrorPage from '@/pages/ErrorPage'
 import NotFound from '@/pages/NotFound'
+// 商户管理
 import AccountManager from '@/pages/commer/AccountManager'
 import BalanceManager from '@/pages/commer/BalanceManager'
 import RealNameManager from '@/pages/commer/RealNameManager'
 import AccountDetail from '@/pages/commer/AccountDetail'
 import { URLS } from './urls'
 
+// 闪兑管理
+import FlashCoinManager from '@/pages/flash/FlashCoinManager'
+import OrderManager from '@/pages/flash/OrderManager'
 export const routes = createBrowserRouter([
   {
     path: URLS.root,
@@ -46,6 +54,17 @@ export const routes = createBrowserRouter([
       {
         path: URLS.accountManager,
         element: <AccountManager />,
+        errorElement: <ErrorPage />
+      },
+      // 闪币管理
+      {
+        path: URLS.flashCoinManager,
+        element: <FlashCoinManager />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: URLS.orderManager,
+        element: <OrderManager />,
         errorElement: <ErrorPage />
       },
       {
