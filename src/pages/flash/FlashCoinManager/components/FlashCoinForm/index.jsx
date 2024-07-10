@@ -15,7 +15,7 @@ export default function FlashCoinForm({ form }) {
           <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item label="交易手续费率" name="fee_percent">
-          <Input placeholder="请输入" />
+          <Input addonAfter="%" placeholder="请输入" />
         </Form.Item>
         <Form.Item label="排序" name="sort">
           <Input placeholder="请输入" />
