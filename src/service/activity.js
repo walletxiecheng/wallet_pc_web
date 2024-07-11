@@ -26,5 +26,5 @@ export const getTotalCompensationAmount = (params) => {
 
 // 更新补偿规则
 export const updateCompensationRule = (data) => {
-  return axiossDefine.get('/back/activity/updateCompensationRule', data)
+  return axiossDefine.post('/back/activity/updateCompensationRule', data)
 }
