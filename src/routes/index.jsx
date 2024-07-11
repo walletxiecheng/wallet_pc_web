@@ -33,6 +33,9 @@ import { URLS } from './urls'
 // 闪兑管理
 import FlashCoinManager from '@/pages/flash/FlashCoinManager'
 import OrderManager from '@/pages/flash/OrderManager'
+
+// 活动管理
+import FeeReturn from '@/pages/Activity/FeeReturn'
 export const routes = createBrowserRouter([
   {
     path: URLS.root,
@@ -152,6 +155,12 @@ export const routes = createBrowserRouter([
         path: URLS.versionManager,
         element: <VersionManager />,
         errorElement: <ErrorPage />
+      },
+      // 活动管理
+      {
+        path: URLS.feeReturn,
+        element: <FeeReturn />,
+        ErrorPage: <ErrorPage />
       }
     ]
   },

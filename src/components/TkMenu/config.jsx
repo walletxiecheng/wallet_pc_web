@@ -28,7 +28,10 @@ export const menuKeys = {
   coinManager: 'coinManager', //代币
   tenderManager: 'tenderManager', //法币
   advertisement: 'advertisement', //广告版
-  versionManager: 'versionManager' //版本管理
+  versionManager: 'versionManager', //版本管理
+
+  activity: 'activity', //活动管理
+  feeReturn: 'feeReturn' //手续费返现
 }
 
 export const menuItems = [
@@ -152,6 +155,18 @@ export const menuItems = [
         label: '版本管理',
         key: menuKeys.versionManager,
         path: URLS.versionManager
+      }
+    ]
+  },
+  {
+    key: menuKeys.activity,
+    icon: <UserOutlined />,
+    label: '活动管理',
+    children: [
+      {
+        label: '手续费返现',
+        key: menuKeys.feeReturn,
+        path: URLS.feeReturn
       }
     ]
   }
