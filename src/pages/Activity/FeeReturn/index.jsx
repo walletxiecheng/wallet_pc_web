@@ -1,7 +1,8 @@
 import TKButton from '@/components/TKButton'
 import TKTitle from '@/components/TKTitle'
 import { Button, Flex, Form, Input, Space, Table } from 'antd'
-import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
 import { columns } from './config'
 import {
   getChargeReturnCashList,
@@ -15,9 +16,57 @@ import { openModal } from '@/pages/systems/SmsManager/components/Modal'
 import RuleForm from './components/RuleForm'
 import { showError, showSuccess } from '@/components/TKMessage'
 import moment from 'moment'
+import { URLS } from '@/routes/urls'
 
+const dataSource = [
+  {
+    id: 36,
+    transaction_index: 1,
+    chain: 'Tron',
+    user_id: 'a64903da4a4a6caf2c557e750975dcb6',
+    user_address: 'TYzEakncv32oNZgXse5jUqCkRb27MVkgZF',
+    coin_type: 'TRX',
+    fee: '0.267',
+    should_return_amount: '0.267',
+    transaction_time: '2024-07-11T03:49:09Z',
+    return_time: '0001-01-01T00:00:00Z',
+    status: 2,
+    children: [
+      {
+        id: 37,
+        transaction_index: 2,
+        chain: 'Tron',
+        user_id: 'a64903da4a4a6caf2c557e750975dcb6',
+        user_address: 'TYzEakncv32oNZgXse5jUqCkRb27MVkgZF',
+        coin_type: 'TRX',
+        fee: '0.267',
+        should_return_amount: '0.267',
+        transaction_time: '2024-07-11T05:55:24Z',
+        return_time: '0001-01-01T00:00:00Z',
+        status: 2
+      }
+    ]
+  }
+]
+const rowSelection = {
+  onChange: (selectedRowKeys, selectedRows) => {
+    console.log(
+      `selectedRowKeys: ${selectedRowKeys}`,
+      'selectedRows: ',
+      selectedRows
+    )
+  },
+  onSelect: (record, selected, selectedRows) => {
+    console.log(record, selected, selectedRows)
+  },
+  onSelectAll: (selected, selectedRows, changeRows) => {
+    console.log(selected, selectedRows, changeRows)
+  }
+}
 export default function FeeReturn() {
   const [form] = Form.useForm()
+  const navigate = useNavigate()
+  const [checkStrictly, setCheckStrictly] = useState(false)
   // 获取总手续费
   const getTotalFee = async () => {
     const { data } = await getTotalCompensationAmount()
@@ -29,7 +78,7 @@ export default function FeeReturn() {
   const getCashList = async (params) => {
     try {
       const { data } = await getChargeReturnCashList(params)
-      return { total: data?.total, list: data?.chargeReturnCashRecord }
+      return { total: data?.total, list: data?.ChargeReturnCashRecord }
     } catch (err) {
       showError(err?.msg || '系统错误')
       return { total: 0, list: [] }
@@ -98,7 +147,14 @@ export default function FeeReturn() {
             >
               套用规则
             </Button>
-            <Button type="primary">历史记录</Button>
+            <Button
+              type="primary"
+              onClick={() => {
+                navigate(URLS.feeHistory)
+              }}
+            >
+              历史记录
+            </Button>
           </Space>
         </Flex>
         <Flex justify="end" align="center">
@@ -108,9 +164,14 @@ export default function FeeReturn() {
       </Form>
       <Table
         columns={columns()}
-        dataSource={data?.list || []}
+        // dataSource={dataSource}
+        dataSource={data?.list}
         rowKey={(record) => record.id}
         loading={!data}
+        rowSelection={{
+          ...rowSelection,
+          checkStrictly
+        }}
         pagination={{
           current: pagination.current,
           pageSize: pagination.pageSize,

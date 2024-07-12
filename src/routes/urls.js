@@ -30,5 +30,6 @@ export const URLS = {
   flashCoinManager: '/flash/cionManager',
   orderManager: '/flash/orderManager',
   // 活动管理
-  feeReturn: '/activity/feeReturn'
+  feeReturn: '/activity/feeReturn',
+  feeHistory: '/activity/feeReturn/feeHistory'
 }

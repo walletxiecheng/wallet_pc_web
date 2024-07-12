@@ -36,6 +36,7 @@ import OrderManager from '@/pages/flash/OrderManager'
 
 // 活动管理
 import FeeReturn from '@/pages/Activity/FeeReturn'
+import FeeHistory from '@/pages/Activity/FeeHistory'
 export const routes = createBrowserRouter([
   {
     path: URLS.root,
@@ -160,6 +161,11 @@ export const routes = createBrowserRouter([
       {
         path: URLS.feeReturn,
         element: <FeeReturn />,
+        ErrorPage: <ErrorPage />
+      },
+      {
+        path: URLS.feeHistory,
+        element: <FeeHistory />,
         ErrorPage: <ErrorPage />
       }
     ]
