@@ -9,10 +9,11 @@ import { pageParams } from '@/common/config'
 import { columns } from './config'
 
 export default function FeeHistory() {
+  // 获取历史记录
   const getRecordList = async (params) => {
     try {
       const { data } = await getChargeReturnCashHistoryRecord(params)
-      return { total: data.total, list: data.chargeReturnCashRecord }
+      return { total: data.total, list: data.ChargeReturnCashRecord }
     } catch (err) {
       showError(err?.msg || '系统错误')
     }
@@ -20,10 +21,17 @@ export default function FeeHistory() {
   const { data, run, pagination } = usePagination(getRecordList, {
     defaultParams: [pageParams]
   })
+  // 查询记录
+  const onFinish = async (values) => {
+    if (values.date) {
+      values.date = values.date.format('YYYY-MM-DD')
+    }
+    run({ ...pageParams, ...values })
+  }
   return (
     <div>
       <TKTitle header="历史记录" />
-      <Form>
+      <Form onFinish={onFinish}>
         <Space>
           <Form.Item label="日期" name="date">
             <DatePicker />
@@ -38,7 +46,9 @@ export default function FeeHistory() {
             <TKButton />
           </Form.Item>
           <Form.Item>
-            <Button type="primary">查询</Button>
+            <Button type="primary" htmlType="submit">
+              查询
+            </Button>
           </Form.Item>
         </Space>
       </Form>

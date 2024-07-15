@@ -78,7 +78,7 @@ export default function FeeReturn() {
   const getCashList = async (params) => {
     try {
       const { data } = await getChargeReturnCashList(params)
-      return { total: data?.total, list: data?.ChargeReturnCashRecord }
+      return { total: data?.total, list: data?.charge_return_cash_record }
     } catch (err) {
       showError(err?.msg || '系统错误')
       return { total: 0, list: [] }
