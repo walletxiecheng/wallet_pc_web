@@ -1,35 +1,3 @@
 export const URLS = {
-  root: '/',
-  index: '/systems/smsManager',
-  login: '/login',
-  notFount: '*',
-  // 系统管理
-  smsManager: '/systems/smsManager',
-  warnManager: '/systems/warnManager',
-  warnDetail: '/systems/warnManager/warnDetail',
-  warnSetting: '/systems/warnSetting',
-  handleRule: '/systems/warnSetting/handleRule',
-  adminSetting: '/systems/adminSetting',
-  operateLogSetting: '/systems/operateLogSetting',
-  loginLogManager: '/systems/loginLogManager',
-  // 商户管理
-  accountManager: '/commercial/accountManager',
-  accountDetail: '/commercial/accountManager/accountDetail',
-  realNameManager: '/commercial/realNameManager',
-  balanceManager: '/commercial/balanceManager',
-  // 应用端管理
-  dappManager: '/app/dappManager',
-  newsManager: '/app/newsManager',
-  languageManager: '/app/languageManager',
-  nodeManager: '/app/nodeManager',
-  coinManager: '/app/coinManager',
-  legalManager: '/app/legalManager',
-  advertManager: '/app/advertManager',
-  versionManager: '/app/versionManager',
-  // 闪兑管理
-  flashCoinManager: '/flash/cionManager',
-  orderManager: '/flash/orderManager',
-  // 活动管理
-  feeReturn: '/activity/feeReturn',
-  feeHistory: '/activity/feeReturn/feeHistory'
+  root: '/'
 }
