@@ -8,10 +8,12 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
-  less: {
-    javascriptEnabled: true, // 支持内联 JavaScript
-    modifyVars: {
-      // 更改主题
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+        modifyVars: {} // 这个将被动态修改
+      }
     }
   },
   server: {
