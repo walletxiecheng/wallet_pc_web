@@ -27,12 +27,7 @@ export default function NavBar({ toggleColorMode }) {
           </Space>
           <img src={downloadNavIcon} />
           <img src={languageNavIcon} />
-          <img
-            src={modeNavIcon}
-            onClick={() => {
-              toggleColorMode()
-            }}
-          />
+          <img src={modeNavIcon} onClick={() => {}} />
         </Flex>
       </Flex>
     </nav>
