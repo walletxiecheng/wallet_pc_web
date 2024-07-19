@@ -11,6 +11,16 @@
     "banner": {
       "header": "真正的自我监护 Web3 钱包",
       "description": "Token 17钱包是在 Algorand 区块链上存储、购买和交换的最简单、最安全的方式。它可以在任何设备上发现并连接去中心化应用程序 (DApp)。"
+    },
+    "funDescribe": {
+      "title1": "发现 DApp",
+      "title2": "批量转账",
+      "title3": "快速闪兑",
+      "title4": "TRX 投票",
+      "content1": "Token 17 提供加密货币钱包、游戏和金融服务等DApp，用户可完全掌控数据和资产。",
+      "content2": "Token 17 提供快速便捷的去中心化交易，利用智能合约和跨链技术确保安全可靠。",
+      "content3": "通过 Token 17 用户可将TRX存入TRON网络并投票给超级代表获取奖励。",
+      "content4": "TRX 投票Token 17 提供快速便捷的去中心化交易，采用智能合约和跨链技术确保交易安全可靠。"
     }
   }
 }

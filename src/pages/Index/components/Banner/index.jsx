@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './index.module.less'
-import DownLoadGroup from '../DownloadGroup'
+import DownLoadGroup from '@/components/DownloadGroup'
 import { useTranslation } from 'react-i18next'
 
 export default function Banner() {
