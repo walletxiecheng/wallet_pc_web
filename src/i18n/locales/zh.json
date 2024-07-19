@@ -1,3 +1,8 @@
 {
-  "translation": {}
+  "translation": {
+    "banner": {
+      "header": "真正的自我监护 Web3 钱包",
+      "description": "Token 17钱包是在 Algorand 区块链上存储、购买和交换的最简单、最安全的方式。它可以在任何设备上发现并连接去中心化应用程序 (DApp)。"
+    }
+  }
 }

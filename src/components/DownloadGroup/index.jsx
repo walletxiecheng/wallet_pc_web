@@ -5,6 +5,7 @@ import appleLight from '@/assets/icon/light/icon-apple-fill.svg'
 import androidLight from '@/assets/icon/light/icon-android-fill.svg'
 import { Flex, Space, Image } from 'antd'
 import style from './index.module.less'
+
 export default function DownLoadGroup() {
   const [appleImg, setAppleImg] = useState(appleLight)
   const [androidImg, setAndroidImg] = useState(androidLight)
@@ -22,7 +23,7 @@ export default function DownLoadGroup() {
         }}
       >
         <Space>
-          <Image width={36} src={appleImg} />
+          <Image width={36} src={appleImg} preview={false} />
           <div>
             <div>Download on the</div>
             <div className={style.strongText}>Apple Store</div>
@@ -39,7 +40,7 @@ export default function DownLoadGroup() {
         }}
       >
         <Space>
-          <Image width={36} src={androidImg} />
+          <Image width={36} src={androidImg} preview={false} />
           <div>
             <div>Download APK</div>
             <div className={style.strongText}>Android</div>
