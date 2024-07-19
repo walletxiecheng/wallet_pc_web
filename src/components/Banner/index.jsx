@@ -1,5 +1,6 @@
 import React from 'react'
 import style from './index.module.less'
+import DownLoadGroup from '../DownloadGroup'
 
 export default function Banner() {
   return (
@@ -12,6 +13,7 @@ export default function Banner() {
           它可以在任何设备上发现并连接去中心化应用程序 (DApp)。
         </section>
         {/* 下载按钮组 */}
+        <DownLoadGroup />
       </div>
     </div>
   )
