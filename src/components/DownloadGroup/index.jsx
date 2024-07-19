@@ -10,6 +10,10 @@ export default function DownLoadGroup() {
   const [appleImg, setAppleImg] = useState(appleLight)
   const [androidImg, setAndroidImg] = useState(androidLight)
 
+  // 下载
+  const downLoad = () => {
+    window.open('https://apps.apple.com/vn/app/token17/id6504523429', '_blank')
+  }
   return (
     <div className={style.groupContainer}>
       {/* 苹果 */}
@@ -21,6 +25,7 @@ export default function DownLoadGroup() {
         onMouseOut={() => {
           setAppleImg(appleLight)
         }}
+        onClick={downLoad}
       >
         <Space>
           <Image width={36} src={appleImg} preview={false} />
@@ -38,6 +43,7 @@ export default function DownLoadGroup() {
         onMouseOut={() => {
           setAndroidImg(androidLight)
         }}
+        onClick={downLoad}
       >
         <Space>
           <Image width={36} src={androidImg} preview={false} />
