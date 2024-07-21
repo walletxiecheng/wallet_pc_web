@@ -1,0 +1,9 @@
+html[data-theme='dark'] {
+  --text-color: #babbbc;
+  --main-bg-color: #000;
+}
+
+:root {
+  --text-color: #8c8888;
+  --main-bg-color: #f4f4f3;
+}

@@ -50,7 +50,7 @@ export default function Billboards() {
         className={style.carousel}
         ref={carouselRef}
       >
-        <div style={{ width: '1200px' }}>
+        <div>
           <Flex>
             {page1.map((item, index) => (
               <Image
