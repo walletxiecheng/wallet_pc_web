@@ -20,7 +20,7 @@
 }
 
 .ant-table-tbody > tr:hover > td {
-  color: #cd1616 !important;
+  color: var(--color-text-pri) !important;
   background-color: var(--color-text-pri-select) !important;
 }
 

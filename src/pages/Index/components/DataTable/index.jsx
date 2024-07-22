@@ -1,9 +1,10 @@
 import React from 'react'
 import style from './index.module.less'
 import './table.css'
-import { Table, Flex } from 'antd'
+import { Table, Flex, Tag } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { columns } from './config.jsx'
+import icon from '@/assets/icon/icon-jump-line.svg'
 
 const dataSource = [
   {
@@ -37,7 +38,6 @@ export default function DataTable() {
           <SearchOutlined />
         </div>
       </Flex>
-
       {/* 数据区 */}
       <div style={{ marginTop: 40 }}>
         <Table
@@ -47,6 +47,10 @@ export default function DataTable() {
           dataSource={dataSource}
           pagination={false}
         />
+      </div>
+      <div className={style.moreButton}>
+        <span>查看更多</span>
+        <img src={icon} />
       </div>
     </div>
   )

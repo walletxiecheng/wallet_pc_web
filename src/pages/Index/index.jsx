@@ -5,6 +5,7 @@ import Brand from './components/Brand'
 import FunDescribe from './components/FunDescribe'
 import DataTable from './components/DataTable'
 import Billboards from './components/Billboards'
+import Important from './components/Important'
 
 export default function Index() {
   return (
@@ -19,6 +20,8 @@ export default function Index() {
       <DataTable />
       {/* 广告版 */}
       <Billboards />
+      {/* 重点介绍 */}
+      <Important />
     </div>
   )
 }
