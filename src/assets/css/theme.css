@@ -1,6 +1,23 @@
 html[data-theme='dark'] {
-  --text-color: #babbbc;
-  --main-bg-color: #000;
+  /* 文字重点色 */
+  --color-text-pri: #fcfcfd;
+  /* 段落色 */
+  --color-text-sec: #e0e1e1;
+  /* 普通文字颜色 */
+  --color-text-ter: #babbbc;
+  /* 表格标题颜色 */
+  --color-text-quat: #626364;
+  /* 选中切换背景重点色 */
+  --color-text-pri-select: #242424;
+
+  /* 表格选择色 */
+  --color-fill-quin: #242526;
+  /* 组件亮色背景 */
+  --color-fill-pri: #fcfcfd;
+  /* 背景色 */
+  --color-bg-pri: #08090a;
+  /* 边框色 */
+  --color-border-white8: #ffffff14;
 }
 
 :root {

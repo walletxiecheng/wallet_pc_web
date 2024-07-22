@@ -1,13 +1,33 @@
 import React from 'react'
 import style from './index.module.less'
-import { Tabs, Flex, Table, Input } from 'antd'
-// import { SearchOutlined } from 'ant-design/icons'
+import './table.css'
+import { Table, Flex } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
+import { columns } from './config.jsx'
+
+const dataSource = [
+  {
+    key: '1',
+    start: '1',
+    start: '1',
+    start: '1',
+    start: '1',
+    start: '1',
+    start: '1'
+  }
+]
+
 export default function DataTable() {
   return (
     <div className={style.dataBoardContainer}>
       <Flex justify="space-between">
-        <div>11</div>
+        <Flex className={style.tabBox}>
+          <div>自选</div>
+          <div>USDT</div>
+          <div>ETC</div>
+          <div>BTC</div>
+        </Flex>
+
         <div className={style.searchBox}>
           <input
             type="text"
@@ -17,6 +37,17 @@ export default function DataTable() {
           <SearchOutlined />
         </div>
       </Flex>
+
+      {/* 数据区 */}
+      <div style={{ marginTop: 40 }}>
+        <Table
+          bordered={false}
+          columns={columns()}
+          key={(record) => record.key}
+          dataSource={dataSource}
+          pagination={false}
+        />
+      </div>
     </div>
   )
 }
