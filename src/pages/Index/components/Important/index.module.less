@@ -2,11 +2,22 @@
   margin-top: 30px;
   height: 1306px;
   .imFloor {
-    justify-content: center;
+    display: flex;
+    align-items: center;
     .imBlock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 600px;
       padding: 26px 62px;
-      border: 1px solid red;
+      h1 {
+        font-size: 56px;
+        color: var(--color-text-pri);
+      }
+      h3 {
+        font-size: 24px;
+        color: var(--color-text-pri);
+      }
     }
   }
 }
