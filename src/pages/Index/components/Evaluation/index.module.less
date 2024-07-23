@@ -1,0 +1,43 @@
+.evalContainer {
+  margin-top: 68px;
+  padding-top: 98px;
+
+  h1 {
+    text-align: center;
+    font-size: 56px;
+    color: var(--color-text-pri);
+  }
+  .evaluationBox {
+    display: flex;
+    height: 1200px;
+    padding-top: 50px;
+    mask-image: linear-gradient(
+      180deg,
+      transparent,
+      #fff 20%,
+      #fff 20%,
+      transparent
+    );
+
+    .cardList {
+      display: flex;
+      flex-direction: column;
+      animation: animate 25s linear infinite;
+      @keyframes animate {
+        0% {
+          transform: translateY(0%);
+        }
+        50% {
+          transform: translateY(-50%);
+        }
+        100% {
+          transform: translateY(-100%);
+        }
+      }
+    }
+
+    .cardList:hover {
+      animation-play-state: paused;
+    }
+  }
+}

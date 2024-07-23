@@ -7,7 +7,7 @@ import DataTable from './components/DataTable'
 import Billboards from './components/Billboards'
 import Important from './components/Important'
 import Portfolio from './components/Portfolio'
-
+import Evaluation from './components/Evaluation'
 export default function Index() {
   return (
     <div className={style.homeContainer}>
@@ -25,6 +25,8 @@ export default function Index() {
       <Important />
       {/* 投资组合 */}
       <Portfolio />
+      {/* 用户评价组件 */}
+      <Evaluation />
     </div>
   )
 }
