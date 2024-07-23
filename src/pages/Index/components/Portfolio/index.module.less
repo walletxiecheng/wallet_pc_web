@@ -1,0 +1,77 @@
+.portfolioContainer {
+  text-align: center;
+  h1 {
+    color: var(--color-text-pri);
+    font-size: 56px;
+  }
+  .barrageBox {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #fff 20%,
+      #fff 80%,
+      transparent
+    );
+    div {
+      white-space: nowrap;
+      display: flex;
+      animation: animate var(--time) linear infinite;
+      @keyframes animate {
+        from {
+          transform: translate(100%);
+        }
+        to {
+          transform: translate(-100%);
+        }
+      }
+      @keyframes animate2 {
+        from {
+          transform: translate(0);
+        }
+        to {
+          transform: translate(-200%);
+        }
+      }
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 12px;
+        margin: 20px 10px;
+        background-color: var(--color-fill-quin);
+        border-radius: 99px;
+        img {
+          margin-right: 5px;
+        }
+      }
+    }
+    div:nth-child(2) {
+      animation: animate2 var(--time) linear infinite;
+      animation-delay: calc(var(--time) / -2);
+    }
+  }
+  .portfolioDataBox {
+    margin-top: 48px;
+    justify-content: space-around;
+
+    header {
+      font-family: Gilroy;
+      font-size: 56px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 68px;
+
+      background: radial-gradient(
+        115.26% 107.97% at 27.99% 7.95%,
+        #fcfcfd 0%,
+        #626364 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
