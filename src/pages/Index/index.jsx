@@ -8,6 +8,8 @@ import Billboards from './components/Billboards'
 import Important from './components/Important'
 import Portfolio from './components/Portfolio'
 import Evaluation from './components/Evaluation'
+import Bottom from './components/Bottom'
+
 export default function Index() {
   return (
     <div className={style.homeContainer}>
@@ -27,6 +29,8 @@ export default function Index() {
       <Portfolio />
       {/* 用户评价组件 */}
       <Evaluation />
+      {/* 底部 */}
+      <Bottom />
     </div>
   )
 }
