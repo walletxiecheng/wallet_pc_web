@@ -5,6 +5,37 @@ import im1 from '@/assets/image/im-1.png'
 import im2 from '@/assets/image/im-2.png'
 import im3 from '@/assets/image/im-3.png'
 
+import icon1 from '@/assets/icon/light/icon-safe-fill.svg'
+import icon2 from '@/assets/icon/light/icon-ecology-fill.svg'
+import icon3 from '@/assets/icon/light/icon-privacy-fill.svg'
+import icon4 from '@/assets/icon/light/icon-chart-fill.svg'
+
+const funDotList = [
+  {
+    id: 1,
+    title: '安全便捷',
+    content: '轻松掌管多链资产',
+    icon: icon1
+  },
+  {
+    id: 2,
+    title: '安全便捷',
+    content: '轻松掌管多链资产',
+    icon: icon2
+  },
+  {
+    id: 3,
+    title: '安全便捷',
+    content: '轻松掌管多链资产',
+    icon: icon3
+  },
+  {
+    id: 4,
+    title: '安全便捷',
+    content: '轻松掌管多链资产',
+    icon: icon4
+  }
+]
 export default function Important() {
   return (
     <div className={style.imContainer}>
@@ -43,6 +74,18 @@ export default function Important() {
           </span>
           <img src={im3} width={600} />
         </div>
+      </Flex>
+      {/* 描述词 */}
+      <Flex justify="space-between">
+        {funDotList.map((item) => (
+          <div className={style.funDot} key={item.id}>
+            <Flex>
+              <img src={item.icon} width={18} />
+              <h4>{item.title}</h4>
+            </Flex>
+            <div>{item.content}</div>
+          </div>
+        ))}
       </Flex>
     </div>
   )
