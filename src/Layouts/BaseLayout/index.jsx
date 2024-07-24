@@ -16,7 +16,7 @@ export default function BaseLayout() {
         <Content className={style.layoutContent}>
           <Outlet />
         </Content>
-        <Footer className={style.layoutFooter}>33</Footer>
+        {/* <Footer className={style.layoutFooter}>33</Footer> */}
       </Layout>
     </div>
   )

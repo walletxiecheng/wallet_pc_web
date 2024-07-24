@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import apple from '@/assets/icon/icon-apple-fill.svg'
-import android from '@/assets/icon/icon-android-fill.svg'
+import apple from '@/assets/icon/dark/icon-apple-fill.svg'
+import android from '@/assets/icon/dark/icon-android-fill.svg'
 import appleLight from '@/assets/icon/light/icon-apple-fill.svg'
 import androidLight from '@/assets/icon/light/icon-android-fill.svg'
 import { Flex, Space, Image } from 'antd'

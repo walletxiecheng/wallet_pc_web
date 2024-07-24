@@ -1,5 +1,5 @@
 import React from 'react'
-import dapp from '@/assets/icon/icon-dapp-sp.svg'
+import dapp from '@/assets/icon/dark/icon-dapp-sp.svg'
 import { Image, Flex } from 'antd'
 import style from './index.module.less'
 import { useTranslation } from 'react-i18next'
@@ -36,7 +36,7 @@ export default function FunDescribe() {
     <Flex className={style.funContainer}>
       {data.map((item) => (
         <div key={item.id} className={style.funItem}>
-          <Image src={dapp} width={112} />
+          <Image src={dapp} width={112} preview={false} />
           <div className={style.content}>
             <p>{t(item.title)}</p>
             <span>{t(item.content)}</span>

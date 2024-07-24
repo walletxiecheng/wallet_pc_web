@@ -1,4 +1,6 @@
 export const URLS = {
   root: '/',
-  index: '/index'
+  index: '/index',
+  login: '/login',
+  register: '/register'
 }

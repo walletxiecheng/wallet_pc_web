@@ -9,14 +9,18 @@
     justify-content: space-between;
     border-radius: 6px;
     margin: 0 6px;
-    border: 1px solid #ffffff14;
-    background: radial-gradient(62.66% 70.6% at 100% 0%, #ffffff0a, #000),
-      #08090a;
+    border: 1px solid var(--color-border-white8);
+    background: radial-gradient(
+        62.66% 70.6% at 100% 0%,
+        rgba(255, 255, 255, 0.04) 0%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      var(--color-bg-pri);
     .content {
       p {
         font-size: 21px;
         font-weight: 600;
-        color: #fcfcfd;
+        color: var(--color-text-pri);
       }
     }
   }

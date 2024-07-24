@@ -10,7 +10,7 @@ export default function Bottom() {
       <span>全面支持Web、iOS、Android，即刻下载开启交易新时代</span>
       <DownLoadGroup />
       <div>
-        <img src={pcImg} width={800} alt="" />
+        <img src={pcImg} width={1440} />
       </div>
     </div>
   )

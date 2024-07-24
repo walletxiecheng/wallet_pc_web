@@ -12,7 +12,8 @@ html[data-theme='dark'] {
 
   /* 选中切换背景重点色 */
   --color-text-pri-select: #242424;
-
+  /* 登录注册组件背景色 */
+  --color-fill-black2: #101112;
   /* 表格选择色 */
   --color-fill-quin: #242526;
   /* 组件亮色背景 */

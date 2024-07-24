@@ -4,7 +4,7 @@ import './table.css'
 import { Table, Flex, Tag } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { columns } from './config.jsx'
-import icon from '@/assets/icon/icon-jump-line.svg'
+import icon from '@/assets/icon/dark/icon-jump-line.svg'
 
 const dataSource = [
   {

@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './index.module.less'
-import icon from '@/assets/icon/icon-fill-dot.svg'
+import icon from '@/assets/icon/dark/icon-fill-dot.svg'
 import { Flex } from 'antd'
 
 const style1 = {

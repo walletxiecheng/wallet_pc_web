@@ -1,6 +1,5 @@
-import { Flex, Image, Space } from 'antd'
+import { Flex, Space } from 'antd'
 import React from 'react'
-import icon from '@/assets/icon/icon-dot-fill.svg'
 import style from './index.module.less'
 const brandList = [
   'Curve',

@@ -21,6 +21,20 @@
       "content2": "Token 17 提供快速便捷的去中心化交易，利用智能合约和跨链技术确保安全可靠。",
       "content3": "通过 Token 17 用户可将TRX存入TRON网络并投票给超级代表获取奖励。",
       "content4": "TRX 投票Token 17 提供快速便捷的去中心化交易，采用智能合约和跨链技术确保交易安全可靠。"
+    },
+    "login": {
+      "loginHeader": "欢迎注册Token 17",
+      "email": "邮箱",
+      "phone": "手机号",
+      "emailToast": "请输入邮箱",
+      "phoneToast": "请输入手机号",
+      "next": "下一步",
+      "loginTip": "已有账号?",
+      "login": "登录",
+      "readAndAgree": "我已阅读并同意",
+      "agreement": "用户协议",
+      "policy": "隐私条款",
+      "and": "和"
     }
   }
 }
