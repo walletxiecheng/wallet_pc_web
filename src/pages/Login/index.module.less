@@ -1,100 +1,12 @@
 .loginContainer {
   height: 100vh;
+  width: 100vw;
   color: var(--color-text-ter);
   background-image: url('@/assets/image/login-bg.png');
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  .loginBox {
-    width: 460px;
-    height: 440px;
-    padding: 37px;
-    margin-top: 200px;
-    border-radius: 16px;
-    border: 1px solid var(--color-border-white8);
-    background-color: var(--color-fill-black2);
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Alimama FangYuanTi VF';
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--color-text-pri);
-    }
-    .tabs {
-      width: 100px;
-      margin-top: 28px;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-      .active {
-        color: var(--color-text-pri);
-        position: relative;
-      }
-      .active::after {
-        content: '';
-        position: absolute;
-        top: 22px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: var(--color-text-pri);
-      }
-    }
-    .emailForm {
-      margin-top: 16px;
-    }
-    .telForm {
-      margin-top: 16px;
-    }
-  }
-  .inputBox {
-    display: flex;
-    width: 380px;
-    height: 52px;
-    color: var(--color-text-ter);
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 8px;
-    border: 0.5px solid var(--color-border-white8);
-    background: var(--color-fill-white2);
-    padding: 0 10px;
-    input {
-      height: 100%;
-      color: var(--color-text-ter);
-      background: var(--color-fill-white2);
-      border: none;
-      font-size: 14px;
-    }
-    input:focus {
-      outline: none;
-    }
-  }
-  .link {
-    margin-top: 10px;
-    color: var(--color-text-link);
-  }
-  button {
-    display: flex;
-    width: 380px;
-    height: 52px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    border: none;
-    margin-top: 16px;
-    color: var(--color-text-pri);
-    background: var(--color-fill-quin);
-  }
-  .fun {
-    margin-top: 28px;
-    display: flex;
-    justify-content: center;
-    span {
-      display: inline-block;
-      padding: 0 32px;
-    }
-  }
+  align-items: center;
+  background-color: var(--color-bg-pri);
 }
