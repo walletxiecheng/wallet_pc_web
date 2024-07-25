@@ -36,7 +36,7 @@ const options = [
     )
   }
 ]
-export default function RegisterForm() {
+export default function RegisterForm({ toggleCurrentStatus }) {
   const [checkTab, setCheckTab] = useState(1)
   return (
     <div className={style.registerBox}>
@@ -63,7 +63,13 @@ export default function RegisterForm() {
         style={{ display: checkTab === 1 ? 'block' : 'none' }}
       >
         <input placeholder="请输入邮箱" />
-        <button>下一步</button>
+        <button
+          onClick={() => {
+            toggleCurrentStatus(2, 1)
+          }}
+        >
+          下一步
+        </button>
       </div>
       {/* 手机号注册 */}
       <div
@@ -74,7 +80,13 @@ export default function RegisterForm() {
           <Select options={options} />
           <input placeholder="手机号" style={{ width: '264px' }} />
         </Flex>
-        <button>下一步</button>
+        <button
+          onClick={() => {
+            toggleCurrentStatus(2, 2)
+          }}
+        >
+          下一步
+        </button>
       </div>
       {/* 登录 */}
       <div className={style.login}>
