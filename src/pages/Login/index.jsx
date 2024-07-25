@@ -48,7 +48,8 @@ export default function Register() {
   }
   return (
     <div className={style.loginContainer}>
-      <div className={style.registerBox}>
+      {/* 注册框 */}
+      <div className={style.loginBox}>
         <header>
           <img src={icon} />
           欢迎登录Token17
@@ -84,9 +85,11 @@ export default function Register() {
               <img
                 src={passwordStatus ? eyeClose : eyeOpen}
                 onClick={togglePassword}
+                width={16}
               />
             </span>
           </div>
+          <div className={style.link}>忘记密码？</div>
           <button>下一步</button>
         </div>
         {/* 手机号注册 */}
@@ -100,7 +103,24 @@ export default function Register() {
               <input placeholder="手机号" style={{ width: '264px' }} />
             </div>
           </Flex>
+          <div className={style.inputBox} style={{ marginTop: '10px' }}>
+            <input
+              type={passwordStatus ? 'type' : 'password'}
+              placeholder="请输入密码"
+              name="password"
+            />
+            <span>
+              <img
+                src={passwordStatus ? eyeClose : eyeOpen}
+                onClick={togglePassword}
+                width={16}
+              />
+            </span>
+          </div>
           <button>下一步</button>
+        </div>
+        <div className={style.fun}>
+          <span>验证码登录</span>|<span>新用户注册</span>
         </div>
       </div>
     </div>

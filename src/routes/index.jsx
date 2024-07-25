@@ -16,18 +16,18 @@ export const routes = createBrowserRouter([
         path: URLS.index,
         element: <Index />,
         errorElement: <ErrorPage />
-      },
-      {
-        path: URLS.login,
-        element: <Login />,
-        errorElement: <ErrorPage />
-      },
-      {
-        path: URLS.register,
-        element: <Register />,
-        errorElement: <ErrorPage />
       }
     ]
+  },
+  {
+    path: URLS.login,
+    element: <Login />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: URLS.register,
+    element: <Register />,
+    errorElement: <ErrorPage />
   }
 ])
 
