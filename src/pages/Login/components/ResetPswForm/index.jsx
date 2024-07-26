@@ -33,7 +33,7 @@ const options = [
     )
   }
 ]
-export default function ResetPswForm() {
+export default function ResetPswForm({ toggleShowLogin, toggleStatus }) {
   const [checkTab, setCheckTab] = useState(1)
   return (
     <div className={style.resetContainer}>
@@ -64,7 +64,7 @@ export default function ResetPswForm() {
         <input placeholder="请输入邮箱" />
         <button
           onClick={() => {
-            toggleCurrentStatus(2, 1)
+            toggleStatus(2)
           }}
         >
           下一步
@@ -81,7 +81,7 @@ export default function ResetPswForm() {
         </Flex>
         <button
           onClick={() => {
-            toggleCurrentStatus(2, 2)
+            toggleStatus(2)
           }}
         >
           下一步

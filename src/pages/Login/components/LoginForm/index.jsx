@@ -38,7 +38,7 @@ const options = [
   }
 ]
 
-export default function LoginForm() {
+export default function LoginForm({ toggleShowLogin, toggleStatus }) {
   // 当前选中tab
   const [checkTab, setCheckTab] = useState(1)
   // 密码可见状态 0不可见/1可见
@@ -47,6 +47,14 @@ export default function LoginForm() {
   const togglePassword = () => {
     setPasswordStatus(passwordStatus === 0 ? 1 : 0)
   }
+
+  // 邮箱注册
+  const login = () => {
+    toggleStatus(1)
+    toggleShowLogin()
+  }
+  // 手机号注册
+
   return (
     <div className={style.loginBox}>
       <header>
@@ -89,7 +97,7 @@ export default function LoginForm() {
           </span>
         </div>
         <div className={style.link}>忘记密码？</div>
-        <button>下一步</button>
+        <button onClick={login}>下一步</button>
       </div>
       {/* 手机号注册 */}
       <div
@@ -116,7 +124,7 @@ export default function LoginForm() {
             />
           </span>
         </div>
-        <button>下一步</button>
+        <button onClick={login}>下一步</button>
       </div>
       <div className={style.fun}>
         <span>验证码登录</span>|<span>新用户注册</span>
