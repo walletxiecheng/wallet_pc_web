@@ -1,0 +1,59 @@
+.walletContainer {
+  width: 1200px;
+  height: 100vh;
+  margin: auto;
+  .walletCard {
+    display: flex;
+    width: 1200px;
+    padding: var(--spacing-24) var(--spacing-32);
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: var(--radius-8);
+    border: 1px solid var(--color-border-white8);
+    background: var(--color-fill-white4);
+    header {
+      color: var(--color-text-pri);
+      font-size: var(--font-size-title3);
+    }
+    .balance {
+      margin-top: var(--spacing-24);
+      color: var(--color-text-pri);
+      font-size: var(--font-size-title1);
+      .computed {
+        color: var(--color-text-ter);
+        font-size: var(--font-size-title3);
+        margin-left: var(--spacing-12);
+      }
+    }
+    .walletButtonGroup {
+      display: flex;
+      button {
+        width: 94px;
+        height: 48px;
+        margin-right: var(--spacing-16);
+      }
+      .history {
+        width: 154px;
+        border-radius: var(--radius-8);
+        border: 1px solid var(--color-border-white8);
+        background-color: var(--color-fill-white4);
+      }
+    }
+  }
+  .tableCard {
+    padding: var(--spacing-24);
+    border-radius: var(--radius-8);
+    border: 1px solid var(--color-border-white8);
+    background-color: var(--color-fill-white4);
+    margin-top: var(--spacing-24);
+    .tableHeader {
+      display: flex;
+      justify-content: space-between;
+    }
+    .tableContent {
+    }
+  }
+  .ant-table-wrapper .ant-table {
+    background-color: var(--color-bg-pri);
+  }
+}

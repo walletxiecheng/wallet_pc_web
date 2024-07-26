@@ -10,10 +10,14 @@ html[data-theme='dark'] {
   /* 文字链接色 */
   --color-text-link: #0099ff;
 
+  --color-text-quin: #08090a;
   /* 选中切换背景重点色 */
   --color-text-pri-select: #242424;
   /* 登录注册组件背景色 */
   --color-fill-black2: #101112;
+  --color-fill-white4: #131415;
+  --color-fill-white8: #252627;
+  --color-fill-blue: #0099ff;
   /* 表格选择色 */
   --color-fill-quin: #242526;
   /* 组件亮色背景 */
@@ -27,4 +31,24 @@ html[data-theme='dark'] {
 :root {
   --text-color: #8c8888;
   --main-bg-color: #f4f4f3;
+  /* 间距 */
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+
+  /* 边框 */
+  --radius-8: 8px;
+  --radius-6: 6px;
+
+  /* 字体 */
+  --font-size-headline: 17px;
+  --font-size-title1: 36px;
+  --font-size-title3: 21px;
+  --font-size-caption2: 11px;
+
+  /* 主体宽 */
+  --width-main: 1200px;
 }

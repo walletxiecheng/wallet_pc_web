@@ -1,0 +1,134 @@
+.carryContainer {
+  padding: var(--spacing-24) var(--spacing-32);
+  border-radius: var(--radius-8);
+  border: 1px solid var(--color-border-white8);
+  background: var(--color-fill-white4);
+  width: var(--width-main);
+  margin: 0 auto;
+  height: 708px;
+  display: flex;
+  .headline {
+    font-size: var(--font-size-headline);
+    color: var(--color-text-pri);
+    margin-bottom: var(--spacing-32);
+  }
+  .CoinTypeBox {
+    width: 380px;
+    .selectCoin {
+      span {
+        display: block;
+      }
+      .selectBox {
+        height: 40px;
+        margin-top: 5px;
+        background-color: var(--color-fill-white8);
+        border-radius: var(--radius-6);
+        border: 1px solid var(--color-border-white8);
+        padding: 0 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span {
+          margin-left: 5px;
+        }
+      }
+    }
+    .quota {
+      margin-top: 32px;
+      display: flex;
+      padding: var(--spacing-12) var(--spacing-16);
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: var(--radius-6);
+      border: 0.5px solid var(--color-border-white8);
+      background: var(--color-fill-white8);
+      .quotaItem {
+        margin: 6px 0;
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+    .carryCount {
+      margin-top: var(--spacing-6);
+      display: flex;
+      justify-content: space-between;
+    }
+    .tips {
+      color: var(--color-text-quat);
+      span {
+        display: inline-block;
+        line-height: 20px;
+        font-size: var(--font-size-caption2);
+      }
+    }
+  }
+  .CoinInfoBox {
+    width: 640px;
+    margin-left: 160px;
+    .carryAddress {
+      header {
+        display: flex;
+        justify-content: space-between;
+        .link {
+          color: var(--color-text-link);
+        }
+      }
+      .addrInput {
+        width: 100%;
+        height: 40px;
+        margin-top: var(--spacing-6);
+        border-radius: var(--radius-6);
+        border: 0.5px solid var(--color-border-white8);
+        background: var(--color-fill-white8);
+      }
+    }
+    .networkList {
+      display: flex;
+      flex-wrap: wrap;
+      .networkCard {
+        width: 292px;
+        display: flex;
+        height: 52px;
+        margin: var(--spacing-6);
+        padding: 0 var(--spacing-16);
+        justify-content: space-between;
+        align-items: center;
+        border-radius: var(--radius-6);
+        border: 0.5px solid var(--color-border-white8);
+        background: var(--color-fill-white8);
+      }
+    }
+    .carryAmount {
+      margin-top: var(--spacing-16);
+      .inputBox {
+        margin: var(--spacing-16) 0;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--color-fill-white8);
+        border-radius: var(--radius-8);
+
+        span {
+          display: inline-block;
+          margin: 0 12px;
+        }
+        .link {
+          color: var(--color-text-link);
+        }
+        input {
+          width: 75%;
+          border: none;
+        }
+        input:focus {
+          outline: none;
+        }
+      }
+    }
+    .carryButton {
+      width: 100%;
+      color: var(--color-text-pri);
+      background-color: var(--color-fill-blue);
+    }
+  }
+}

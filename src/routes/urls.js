@@ -2,5 +2,7 @@ export const URLS = {
   root: '/',
   index: '/index',
   login: '/login',
-  register: '/register'
+  register: '/register',
+  walletAccount: '/walletAccount',
+  carryCoin: 'carryCoin'
 }

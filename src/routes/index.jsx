@@ -4,6 +4,8 @@ import ErrorPage from '@/pages/ErrorPage'
 import Index from '@/pages/Index'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
+import WalletAccount from '@/pages/WalletAccount'
+import CarryCoin from '@/pages/WalletAccount/CarryCoin'
 import { URLS } from './urls'
 
 export const routes = createBrowserRouter([
@@ -27,6 +29,16 @@ export const routes = createBrowserRouter([
   {
     path: URLS.register,
     element: <Register />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: URLS.walletAccount,
+    element: <WalletAccount />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: URLS.carryCoin,
+    element: <CarryCoin />,
     errorElement: <ErrorPage />
   }
 ])
