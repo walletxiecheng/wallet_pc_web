@@ -1,20 +1,6 @@
-import axios from 'axios'
-import { handleInterceptors } from './interceptors'
-import { useTokenStore, useUserStore } from '@/stores'
+import axiosInstance from './interceptors'
 
-export const axiosInstance = axios.create({
-  baseURL: 'http://18.143.170.163:9996/',
-  // baseURL: 'http://wallet_admin:9996',
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json',
-    'x-token': useTokenStore?.getState()?.token || null,
-    'x-user-id': useUserStore?.getState()?.userInfo?.ID || 0
-  }
-})
-
-handleInterceptors()
-const axiossDefine = {
+const axiosDefine = {
   // GET 请求
   get: (url, params = {}) => axiosInstance.get(url, { params }),
 
@@ -29,4 +15,5 @@ const axiossDefine = {
   delete: (url, data = {}) => axiosInstance.delete(url, { data })
 }
 
-export default axiossDefine
+export default 
+axiosDefine

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NavBar from '@/components/NavBar'
 import style from './index.module.less'
 import coinTypeImg from '@/assets/image/image-coin-type.svg'
@@ -7,12 +7,16 @@ import { Flex } from 'antd'
 import Divider from '@/components/Divider'
 import checkIconOff from '@/assets/icon/dark/icon-checkBox-line-off.svg'
 import checkIconOn from '@/assets/icon/dark/icon-checkBox-line-on.svg'
+import BindToast from './BindToast'
 
 export default function CarryCoin() {
+  const [bindToast, setBindToast] = useState(false)
+  const showBindToast = () => setBindToast(true)
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar />
       <div className={style.carryContainer}>
+        {bindToast && <BindToast />}
         <div className={style.CoinTypeBox}>
           <header className={style.headline}>选择提币币种</header>
           {/* 币种 */}
@@ -101,7 +105,9 @@ export default function CarryCoin() {
               实际到账<span style={{ marginLeft: '32px' }}>0</span>
             </p>
           </div>
-          <button className={style.carryButton}>提币</button>
+          <button className={style.carryButton} onClick={showBindToast}>
+            提币
+          </button>
         </div>
       </div>
     </>

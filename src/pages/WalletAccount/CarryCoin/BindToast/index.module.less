@@ -1,0 +1,50 @@
+.bindContainer {
+  background-color: #000;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  .bindCard {
+    display: flex;
+    width: 429px;
+    height: 166px;
+    padding: var(--spacing-16);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--radius-8);
+    border: 1px solid var(--border-white8);
+    background: var(--color-fill-quin);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    header {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--color-text-pri);
+      font-size: 15px;
+    }
+    .buttonGroup {
+      display: flex;
+      justify-content: right;
+      width: 100%;
+      .setting {
+        width: 71px;
+        height: 32px;
+        background-color: var(--color-fill-blue);
+      }
+      .continue {
+        width: 149px;
+        height: 32px;
+        border-radius: var(--radius-6);
+        border: 1px solid var(--color-border-white8);
+        margin-left: var(--spacing-16);
+      }
+    }
+  }
+}

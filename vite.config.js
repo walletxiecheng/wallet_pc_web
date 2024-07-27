@@ -19,9 +19,10 @@ export default defineConfig({
   server: {
     proxy: {
       // 选项写法
-      '/back': {
-        target: 'http://18.143.170.163:9996/',
-        changeOrigin: true
+      '/api': {
+        target: 'http://token13.net:8888/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }
