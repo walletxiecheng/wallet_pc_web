@@ -22,7 +22,7 @@ export const register = (data) => {
 
 // 登录
 export const login = (data) => {
-  return axiosDefine.post('/account/register', data)
+  return axiosDefine.post('/account/login', data)
 }
 
 // 注册
@@ -56,18 +56,18 @@ export const enterpriseAuthentication = (data, header) => {
 }
 
 // 获取账户地址
-export const getAccountAddress = () => {
-  return axiosDefine.get('/account/{id}/address')
+export const getAccountAddress = (id) => {
+  return axiosDefine.get(`/account/${id}/address`)
 }
 
 // 获取提款记录
-export const getWithdrawRecord = (id) => {
-  return axiosDefine.get(`/crypto/withdraw/record/${id}`)
+export const getWithdrawRecord = (id, data) => {
+  return axiosDefine.get(`/crypto/withdraw/record/${id}`, data)
 }
 
 // 获取收款记录
-export const getReceiveRecord = (id) => {
-  return axiosDefine.get(`/crypto/receive/record/${id}`)
+export const getReceiveRecord = (id, data) => {
+  return axiosDefine.get(`/crypto/receive/record/${id}`, data)
 }
 
 // 获取加密交易

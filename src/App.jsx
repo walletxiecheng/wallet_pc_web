@@ -7,7 +7,7 @@ export default function App() {
   const test = async () => {
     getHealth()
   }
-  test()
+  // test()
   return (
     <div className={style.appContainer}>
       <RouterProvider router={routes} />

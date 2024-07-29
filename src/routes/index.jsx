@@ -7,6 +7,7 @@ import Register from '@/pages/Register'
 import WalletAccount from '@/pages/WalletAccount'
 import CarryCoin from '@/pages/WalletAccount/CarryCoin'
 import { URLS } from './urls'
+import Record from '@/pages/WalletAccount/Record'
 
 export const routes = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ export const routes = createBrowserRouter([
   {
     path: URLS.carryCoin,
     element: <CarryCoin />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: URLS.walletRecord,
+    element: <Record />,
     errorElement: <ErrorPage />
   }
 ])

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import style from './index.module.less'
 import LoginForm from './components/LoginForm'
 import ResetPswForm from './components/ResetPswForm'
+import Verify from './components/Verify'
 import Password from './components/Password'
 
 export default function Login() {
@@ -19,7 +20,7 @@ export default function Login() {
 
   return (
     <div className={style.loginContainer}>
-      {/* 注册框 */}
+      {/* 登录框 */}
       {showLogin && (
         <LoginForm
           toggleShowLogin={toggleShowLogin}
@@ -32,6 +33,7 @@ export default function Login() {
           toggleStatus={toggleStatus}
         />
       )}
+      {!showLogin && status === 2 && <Verify toggleStatus={toggleStatus} />}
     </div>
   )
 }

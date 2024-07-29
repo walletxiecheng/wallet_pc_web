@@ -20,6 +20,7 @@ html[data-theme='dark'] {
   --color-fill-blue: #0099ff;
   /* 表格选择色 */
   --color-fill-quin: #242526;
+  --color-fill-input: #353637;
   /* 组件亮色背景 */
   --color-fill-pri: #fcfcfd;
   /* 背景色 */

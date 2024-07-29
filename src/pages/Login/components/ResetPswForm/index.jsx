@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import style from './index.module.less'
 import { Flex, Select } from 'antd'
 import { CheckCircleFilled } from '@ant-design/icons'
-
+import Verify from '../Verify'
 const tabList = [
   {
     id: 1,
@@ -33,7 +33,10 @@ const options = [
     )
   }
 ]
-export default function ResetPswForm({ toggleShowLogin, toggleStatus }) {
+export default function ResetPswForm({ toggleStatus }) {
+  const emailRef = useRef()
+  const phoneRef = useRef()
+
   const [checkTab, setCheckTab] = useState(1)
   return (
     <div className={style.resetContainer}>
@@ -61,13 +64,13 @@ export default function ResetPswForm({ toggleShowLogin, toggleStatus }) {
         className={style.emailForm}
         style={{ display: checkTab === 1 ? 'block' : 'none' }}
       >
-        <input placeholder="请输入邮箱" />
+        <input placeholder="请输入邮箱" ref={emailRef} />
         <button
           onClick={() => {
             toggleStatus(2)
           }}
         >
-          下一步
+          提交
         </button>
       </div>
       {/* 手机号注册 */}
@@ -77,7 +80,11 @@ export default function ResetPswForm({ toggleShowLogin, toggleStatus }) {
       >
         <Flex>
           <Select options={options} />
-          <input placeholder="手机号" style={{ width: '264px' }} />
+          <input
+            placeholder="手机号"
+            ref={phoneRef}
+            style={{ width: '264px' }}
+          />
         </Flex>
         <button
           onClick={() => {

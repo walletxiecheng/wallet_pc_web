@@ -1,0 +1,26 @@
+.recordContainer {
+  height: calc(100vh - 80px);
+  width: 1200px;
+  margin: 0 auto;
+  .tabs {
+    width: 135px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    .active {
+      color: var(--color-text-pri);
+      position: relative;
+    }
+    .active::after {
+      content: '';
+      position: absolute;
+      top: 22px;
+      left: 5px;
+      // width: 100%;
+      width: 45px;
+      height: 2px;
+      background-color: var(--color-text-pri);
+    }
+  }
+}

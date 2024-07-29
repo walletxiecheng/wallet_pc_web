@@ -7,16 +7,20 @@ import { Flex } from 'antd'
 import Divider from '@/components/Divider'
 import checkIconOff from '@/assets/icon/dark/icon-checkBox-line-off.svg'
 import checkIconOn from '@/assets/icon/dark/icon-checkBox-line-on.svg'
-import BindToast from './BindToast'
+import BindToast from './components/BindToast'
+import PswModal from './components/PswModal'
 
 export default function CarryCoin() {
   const [bindToast, setBindToast] = useState(false)
   const showBindToast = () => setBindToast(true)
+  const closeBindToast = () => setBindToast(false)
   return (
     <>
       <NavBar />
       <div className={style.carryContainer}>
-        {bindToast && <BindToast />}
+        <BindToast bindToast={bindToast} closeBindToast={closeBindToast} />
+        {/* <PswModal /> */}
+
         <div className={style.CoinTypeBox}>
           <header className={style.headline}>选择提币币种</header>
           {/* 币种 */}

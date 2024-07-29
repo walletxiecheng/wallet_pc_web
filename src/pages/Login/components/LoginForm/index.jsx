@@ -5,6 +5,11 @@ import { CheckCircleFilled } from '@ant-design/icons'
 import icon from '@/assets/icon/dark/logIcon.svg'
 import eyeOpen from '@/assets/icon/dark/icon-eye-line-open.svg'
 import eyeClose from '@/assets/icon/dark/icon-eye-line-close.svg'
+import { useRef } from 'react'
+import { login } from '@/service'
+import { showError, showSuccess } from '@/common/message'
+import { useTokenStore, useUserStore } from '@/stores'
+import { useNavigate } from 'react-router-dom'
 
 const tabList = [
   {
@@ -43,15 +48,45 @@ export default function LoginForm({ toggleShowLogin, toggleStatus }) {
   const [checkTab, setCheckTab] = useState(1)
   // 密码可见状态 0不可见/1可见
   const [passwordStatus, setPasswordStatus] = useState(0)
+  // 邮箱
+  const emailInputRef = useRef(null)
+  const emailPasswordRef = useRef(null)
+
+  // 手机号
+  const phoneInputRef = useRef(null)
+  const phonePasswordRef = useRef(null)
+
+  const navigate = useNavigate()
 
   const togglePassword = () => {
     setPasswordStatus(passwordStatus === 0 ? 1 : 0)
   }
+  // 设置token
+  const { setToken } = useTokenStore()
+  // 设置用户信息
+  const { setUserInfo } = useUserStore()
 
-  // 邮箱注册
-  const login = () => {
-    toggleStatus(1)
-    toggleShowLogin()
+  // 注册
+  const loginHandler = async (type) => {
+    const req = {
+      account_type: type,
+      account:
+        type == 'email'
+          ? emailInputRef.current.value
+          : phoneInputRef.current.value,
+      password:
+        type === 'email'
+          ? emailPasswordRef.current.value
+          : phonePasswordRef.current.value
+    }
+    const res = await login(req)
+    if (res.code !== 0) {
+      return showError('用户名或密码错误')
+    }
+    setToken(res.data.token)
+    setUserInfo(res.data)
+    showSuccess('登录成功')
+    navigate('/index')
   }
   // 手机号注册
 
@@ -80,13 +115,13 @@ export default function LoginForm({ toggleShowLogin, toggleStatus }) {
         style={{ display: checkTab === 1 ? 'block' : 'none' }}
       >
         <div className={style.inputBox}>
-          <input placeholder="请输入邮箱" name="email" />
+          <input placeholder="请输入邮箱" ref={emailInputRef} />
         </div>
         <div className={style.inputBox} style={{ marginTop: '10px' }}>
           <input
             type={passwordStatus ? 'type' : 'password'}
             placeholder="请输入密码"
-            name="password"
+            ref={emailPasswordRef}
           />
           <span>
             <img
@@ -96,8 +131,22 @@ export default function LoginForm({ toggleShowLogin, toggleStatus }) {
             />
           </span>
         </div>
-        <div className={style.link}>忘记密码？</div>
-        <button onClick={login}>下一步</button>
+        <div
+          className={style.link}
+          onClick={() => {
+            toggleShowLogin()
+            toggleStatus(1)
+          }}
+        >
+          忘记密码？
+        </div>
+        <button
+          onClick={() => {
+            loginHandler('email')
+          }}
+        >
+          下一步
+        </button>
       </div>
       {/* 手机号注册 */}
       <div
@@ -107,14 +156,18 @@ export default function LoginForm({ toggleShowLogin, toggleStatus }) {
         <Flex>
           <Select options={options} />
           <div className={style.inputBox}>
-            <input placeholder="手机号" style={{ width: '264px' }} />
+            <input
+              placeholder="手机号"
+              style={{ width: '264px' }}
+              ref={phoneInputRef}
+            />
           </div>
         </Flex>
         <div className={style.inputBox} style={{ marginTop: '10px' }}>
           <input
             type={passwordStatus ? 'type' : 'password'}
             placeholder="请输入密码"
-            name="password"
+            ref={phonePasswordRef}
           />
           <span>
             <img
@@ -124,7 +177,13 @@ export default function LoginForm({ toggleShowLogin, toggleStatus }) {
             />
           </span>
         </div>
-        <button onClick={login}>下一步</button>
+        <button
+          onClick={() => {
+            loginHandler('phone')
+          }}
+        >
+          下一步
+        </button>
       </div>
       <div className={style.fun}>
         <span>验证码登录</span>|<span>新用户注册</span>

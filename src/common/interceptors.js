@@ -7,8 +7,7 @@ const axiosInstance = axios.create({
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
-    'x-token': useTokenStore?.getState()?.token || null,
-    'x-user-id': useUserStore?.getState()?.userInfo?.ID || 0
+    Authorization: 'Bearer ' + useTokenStore?.getState()?.token || null
   }
 })
 
