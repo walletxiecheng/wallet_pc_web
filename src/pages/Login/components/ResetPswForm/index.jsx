@@ -91,7 +91,7 @@ export default function ResetPswForm({ toggleStatus }) {
             toggleStatus(2)
           }}
         >
-          下一步
+          提交
         </button>
       </div>
     </div>

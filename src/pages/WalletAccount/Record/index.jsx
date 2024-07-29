@@ -7,6 +7,7 @@ import { withdrawColumns, receiveColumns } from './config'
 import { useRequest } from 'ahooks'
 import { useUserStore } from '@/stores'
 import { getWithdrawRecord, getReceiveRecord } from '@/service'
+import './index.less'
 
 const tabList = [
   {

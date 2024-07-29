@@ -8,6 +8,7 @@ import Password from './components/Password'
 export default function Login() {
   const [showLogin, setShowLogin] = useState(true)
   const [status, setStatus] = useState(1)
+  const [reset, setEmailObj] = useState({})
 
   // 登录组件显示或者隐藏
   const toggleShowLogin = () => {
@@ -18,6 +19,9 @@ export default function Login() {
     setStatus(status)
   }
 
+  const editForm = () => {
+    setForm()
+  }
   return (
     <div className={style.loginContainer}>
       {/* 登录框 */}

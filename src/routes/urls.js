@@ -5,5 +5,6 @@ export const URLS = {
   register: '/register',
   walletAccount: '/walletAccount',
   carryCoin: '/carryCoin',
-  walletRecord: '/walletRecord'
+  walletRecord: '/walletRecord',
+  personal: '/personal'
 }

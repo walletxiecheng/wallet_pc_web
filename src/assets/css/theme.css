@@ -21,6 +21,7 @@ html[data-theme='dark'] {
   /* 表格选择色 */
   --color-fill-quin: #242526;
   --color-fill-input: #353637;
+  --color-fill-header: #1b1c1d;
   /* 组件亮色背景 */
   --color-fill-pri: #fcfcfd;
   /* 背景色 */
