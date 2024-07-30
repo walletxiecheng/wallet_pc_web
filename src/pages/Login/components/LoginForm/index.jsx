@@ -43,7 +43,7 @@ const options = [
   }
 ]
 
-export default function LoginForm({ toggleShowLogin, toggleStatus }) {
+export default function LoginForm() {
   // 当前选中tab
   const [checkTab, setCheckTab] = useState(1)
   // 密码可见状态 0不可见/1可见
@@ -58,15 +58,12 @@ export default function LoginForm({ toggleShowLogin, toggleStatus }) {
 
   const navigate = useNavigate()
 
-  const togglePassword = () => {
-    setPasswordStatus(passwordStatus === 0 ? 1 : 0)
-  }
   // 设置token
   const { setToken } = useTokenStore()
   // 设置用户信息
   const { setUserInfo } = useUserStore()
 
-  // 注册
+  // 登录
   const loginHandler = async (type) => {
     const req = {
       account_type: type,
@@ -79,10 +76,15 @@ export default function LoginForm({ toggleShowLogin, toggleStatus }) {
           ? emailPasswordRef.current.value
           : phonePasswordRef.current.value
     }
+
+    if (!req.account || !req.password) {
+      return showError('用户名或者密码不能为空。')
+    }
     const res = await login(req)
     if (res.code !== 0) {
       return showError('用户名或密码错误')
     }
+
     setToken(res.data.token)
     setUserInfo(res.data)
     showSuccess('登录成功')
@@ -126,16 +128,17 @@ export default function LoginForm({ toggleShowLogin, toggleStatus }) {
           <span>
             <img
               src={passwordStatus ? eyeClose : eyeOpen}
-              onClick={togglePassword}
               width={16}
+              onClick={() => {
+                setPasswordStatus(!passwordStatus)
+              }}
             />
           </span>
         </div>
         <div
           className={style.link}
           onClick={() => {
-            toggleShowLogin()
-            toggleStatus(1)
+            navigate('/reset')
           }}
         >
           忘记密码？
@@ -172,8 +175,10 @@ export default function LoginForm({ toggleShowLogin, toggleStatus }) {
           <span>
             <img
               src={passwordStatus ? eyeClose : eyeOpen}
-              onClick={togglePassword}
               width={16}
+              onClick={() => {
+                setPasswordStatus(!passwordStatus)
+              }}
             />
           </span>
         </div>

@@ -1,6 +1,6 @@
 .personalContainer {
-  height: calc(100vh);
   padding-top: 80px;
+  padding-bottom: 32px;
   width: 1200px;
   margin: 0 auto;
   .info {
@@ -11,14 +11,49 @@
     border-radius: var(--radius-8);
     border: 1px solid var(--color-border-white8);
     background: var(--color-fill-white4);
+    .title {
+      margin-left: var(--spacing-12);
+      header {
+        font-size: var(--font-size-title3);
+        color: var(--color-text-pri);
+      }
+      .time {
+        margin-top: var(--spacing-6);
+        color: var(--color-text-quat);
+      }
+    }
     .card {
+      margin-top: var(--spacing-32);
+      background-color: var(--color-fill-header);
+      height: 154px;
+      border-radius: 16px;
+      padding: var(--spacing-24);
+      border: 1px solid var(--color-border-white8);
+      header {
+        display: flex;
+        justify-content: start;
+        .title {
+          margin-right: var(--spacing-12);
+          color: var(--color-text-pri);
+          font-size: var(--font-size-headline);
+        }
+      }
+      .description {
+        margin-top: var(--spacing-6);
+        font-size: var(--font-size-caption1);
+      }
+      button {
+        width: 100px;
+        height: 40px;
+        margin-right: var(--spacing-12);
+      }
     }
   }
   .verify {
-    height: 272px;
     margin-top: var(--spacing-16);
     border-radius: 16px;
     border: 1px solid var(--color-border-white8);
+    border-radius: 16px;
     background: var(--color-fill-white4);
 
     header {
@@ -30,13 +65,76 @@
       background-color: var(--color-fill-header);
     }
     .verifyList {
-      background-color: #fff;
+      background: var(--color-fill-white4);
+      padding: 0 var(--spacing-12);
       .verifyItem {
         padding: 16px 0;
+        border-bottom: 1px solid var(--color-border-white8);
+      }
+      .imgBox {
+        display: flex;
+        align-items: center;
+      }
+      .header {
+        margin-left: var(--spacing-12);
+
+        .title {
+          color: var(--color-text-pri);
+          font-size: var(--font-size-headline);
+        }
+        .content {
+          display: inline-block;
+          margin-top: var(--spacing-6);
+          font-size: var(--font-size-caption1);
+        }
+      }
+      button {
+        width: 58px;
+        height: 32px;
+        margin: 0;
+        background-color: var(--color-fill-white4);
+        border: 0.5px solid var(--color-border-white8);
       }
     }
   }
   .passWordManager {
-    background-color: aqua;
+    margin-top: var(--spacing-12);
+    background: var(--color-fill-white4);
+    border-radius: 16px;
+    header {
+      height: 56px;
+      line-height: 56px;
+      padding: 0 var(--spacing-16);
+      border-bottom: 1px solid var(--color-border-white8);
+      border-radius: 16px 16px 0 0;
+      background-color: var(--color-fill-header);
+    }
+    .passwordList {
+      padding: 0 var(--spacing-12);
+      .passwordItem {
+        padding: var(--spacing-12) 0;
+        .imgBox {
+          display: flex;
+          align-items: center;
+          margin-right: var(--spacing-6);
+        }
+        .title {
+          font-size: var(--font-size-headline);
+          color: var(--color-text-pri);
+        }
+        .content {
+          font-size: var(--font-size-caption1);
+          margin-top: var(--spacing-6);
+          display: inline-block;
+        }
+      }
+    }
+    button {
+      width: 58px;
+      height: 32px;
+      margin: 0;
+      background-color: var(--color-fill-white4);
+      border: 0.5px solid var(--color-border-white8);
+    }
   }
 }

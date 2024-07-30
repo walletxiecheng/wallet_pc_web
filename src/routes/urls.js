@@ -3,6 +3,7 @@ export const URLS = {
   index: '/index',
   login: '/login',
   register: '/register',
+  reset: '/reset',
   walletAccount: '/walletAccount',
   carryCoin: '/carryCoin',
   walletRecord: '/walletRecord',

@@ -1,106 +1,156 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NavBar from '@/components/NavBar'
 import style from './index.module.less'
 import avatar from '@/assets/image/avatar.png'
-import icon from '@/assets/icon/light/icon-safe-fill.svg'
 import { Flex, Tag, Space } from 'antd'
+import iconSate from '@/assets/icon/light/icon-safer-line.svg'
+import iconEmail from '@/assets/icon/light/icon-email-line.svg'
+import iconPhone from '@/assets/icon/light/icon-phone-line.svg'
+import iconGoggle from '@/assets/icon/light/icon-google-line.svg'
+import iconPassword from '@/assets/icon/light/icon-password-line.svg'
+import iconCode from '@/assets/icon/light/icon-code-line.svg'
+import { useUserStore } from '@/stores'
+import BindBaseTips from './components/BindBaseTips'
 
 const verifyList = [
   {
     id: 1,
     title: '安全等级：低',
     content: '强烈建立开启2项双重身份验证',
-    icon: icon
+    icon: iconSate
   },
   {
     id: 2,
     title: '邮箱',
     content: '用于登录、提币、找回密码，修改安全设置、管理API时进行安全验证',
-    icon: icon
+    icon: iconEmail
   },
   {
     id: 3,
     title: '手机',
     content: '用于登录、提币、找回密码，修改安全设置、管理API时进行安全验证',
-    icon: icon
+    icon: iconPhone
   },
   {
     id: 4,
     title: '绑定谷歌验证器',
     content: '用于登录、提币、找回密码，修改安全设置、管理API时进行安全验证',
-    icon: icon
+    icon: iconGoggle
   }
 ]
+
 export default function Personal() {
+  const { userInfo } = useUserStore()
+  const emailStatus = userInfo.email !== '' || false
+  const phoneStatus = userInfo.phone !== '' || false
+  // 高级认证状态
+  const largeStatus = userInfo.review_status
+
+  //提示认证
+  const [showBindTips, setShowBindTips] = useState(false)
+  const toggleTipsStatus = (status) => {
+    setShowBindTips(status)
+  }
+
   return (
     <>
       <NavBar />
+      <BindBaseTips
+        showBindTips={showBindTips}
+        toggleTipsStatus={toggleTipsStatus}
+      />
       <div className={style.personalContainer}>
         <div className={style.info}>
           <Flex>
             <Flex align="center" justify="center">
               <img src={avatar} width={52} />
             </Flex>
-            <div>
-              <div>用户昵称</div>
-              <div>
-                最后登录时间：<span>2024-6.24</span>
-                IP:<span>103.153.125.148</span>
+            <div className={style.title}>
+              <header>{userInfo.name}</header>
+              <div className={style.time}>
+                最后登录时间：
+                <span style={{ marginRight: 10 }}>
+                  {userInfo.last_login_time || '暂无'}
+                </span>
+                IP：
+                <span>{userInfo.last_login_ip || '暂无'}</span>
               </div>
             </div>
           </Flex>
 
           <div className={style.card}>
             <header>
-              身份认证 <Tag color="red">待审核</Tag>
-              <Tag color="green">已通过</Tag>
+              <div className={style.title}>身份认证</div>
+              {/* <Tag color="red">待审核</Tag> */}
+              {/* <Tag color="green">已通过</Tag> */}
             </header>
+            <div className={style.description}>
+              完成身份认证，有助于保护账户安全，提高提现额度及交易权限
+            </div>
+
             <Flex>
-              <div>基础认证</div>
-              <div>法币高级认证</div>
+              <button
+                onClick={() => {
+                  toggleTipsStatus(true)
+                }}
+              >
+                基础认证
+              </button>
+              <button>法币高级认证</button>
             </Flex>
           </div>
         </div>
         <div className={style.verify}>
           <header>双重身份验证</header>
           <div className={style.verifyList}>
-            {verifyList.map((item, index) => (
+            {verifyList.map((item) => (
               <Flex
                 justify="space-between"
                 key={item.id}
                 className={style.verifyItem}
+                style={{ border: item.id === 4 ? 'none' : '' }}
               >
                 <Flex>
-                  <div>
+                  <div className={style.imgBox}>
                     <img src={item.icon} />
                   </div>
-                  <div>
-                    <div>{item.title}</div>
-                    <span>{item.content}</span>
+                  <div className={style.header}>
+                    <div className={style.title}>{item.title}</div>
+                    <span className={style.content}>{item.content}</span>
                   </div>
                 </Flex>
 
                 {item.id === 1 && (
                   <Space>
-                    <div>关闭验证</div>
+                    <button style={{ width: 70 }}>关闭验证</button>
                   </Space>
                 )}
                 {item.id === 2 && (
                   <Space>
-                    {/* <span>2647418717@qq.com</span> */}
-                    <div>绑定</div>
+                    <div>{userInfo?.email}</div>
+                    <button style={{ display: emailStatus ? 'none' : 'block' }}>
+                      绑定
+                    </button>
+                    <button style={{ display: emailStatus ? 'block' : 'none' }}>
+                      换绑
+                    </button>
                   </Space>
                 )}
                 {item.id === 3 && (
-                  <Space>
-                    {/* <span>2647418717@qq.com</span> */}
-                    <div>绑定</div>
-                  </Space>
+                  <Flex>
+                    <div>{userInfo?.phone}</div>
+                    <button style={{ display: phoneStatus ? 'none' : 'block' }}>
+                      绑定
+                    </button>
+                    <button style={{ display: phoneStatus ? 'block' : 'none' }}>
+                      换绑
+                    </button>
+                  </Flex>
                 )}
                 {item.id === 4 && (
                   <Space>
-                    {/* <span>2647418717@qq.com</span> */}
-                    <div>绑定</div>
+                    {/* <div>2647418717@qq.com</div> */}
+                    <button>绑定</button>
                   </Space>
                 )}
               </Flex>
@@ -109,31 +159,35 @@ export default function Personal() {
         </div>
         <div className={style.passWordManager}>
           <header>安全密码管理</header>
-          <div>
-            <Flex justify="space-between">
+          <div className={style.passwordList}>
+            <Flex justify="space-between" className={style.passwordItem}>
               <Flex>
-                <div>
-                  <img src={icon} />
+                <div className={style.imgBox}>
+                  <img src={iconPassword} />
                 </div>
                 <div>
-                  <div>登录密码</div>
-                  <span>用于保护账户安全</span>
+                  <div className={style.title}>登录密码</div>
+                  <span className={style.content}>用于保护账户安全</span>
                 </div>
               </Flex>
-              <div>修改</div>
+              <button>修改</button>
             </Flex>
 
-            <Flex justify="space-between">
+            <Flex
+              justify="space-between"
+              className={style.passwordItem}
+              style={{ borderTop: '1px solid var(--color-border-white8)' }}
+            >
               <Flex>
-                <div>
-                  <img src={icon} />
+                <div className={style.imgBox}>
+                  <img src={iconCode} />
                 </div>
                 <div>
-                  <div>资金密码</div>
-                  <span>用于保护资金安全</span>
+                  <div className={style.title}>资金密码</div>
+                  <span className={style.content}>用于保护资金安全</span>
                 </div>
               </Flex>
-              <div>设置</div>
+              <button>设置</button>
             </Flex>
           </div>
         </div>
