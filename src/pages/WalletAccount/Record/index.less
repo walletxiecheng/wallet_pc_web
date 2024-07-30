@@ -1,0 +1,100 @@
+.recordContainer {
+  height: 100vh;
+  width: 1200px;
+  margin: 0 auto;
+  padding-top: 90px;
+  .tabs {
+    width: 160px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: c;
+    font-size: var(--font-size-headline);
+    justify-content: space-between;
+    .active {
+      color: var(--color-text-pri);
+      position: relative;
+      // font-size: var(--font-size-title3);
+    }
+    .active::after {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 6px;
+      // width: 100%;
+      width: 56px;
+      height: 4px;
+      border-radius: 2px;
+      background-color: var(--color-text-pri);
+    }
+  }
+  .tableHeader {
+    height: 56px;
+    margin-top: var(--spacing-24);
+    padding: var(--spacing-16);
+    background-color: var(--color-fill-header);
+    display: flex;
+    color: var(--color-text-pri);
+    font-size: var(--font-size-headline);
+    justify-content: space-between;
+    .filter {
+      select {
+        width: 156px;
+        height: 32px;
+        padding: 0 10px;
+        color: var(--color-text-pri);
+        background-color: var(--color-fill-select);
+        border-radius: var(--radius-6);
+        border: 0.5px solid var(--color-border-white8);
+      }
+    }
+  }
+  .tableBox {
+    .ant-table-wrapper table {
+      border-spacing: 0.5px;
+      background-color: var(--color-fill-white8);
+      border-radius: 0;
+    }
+    .ant-table {
+      border-radius: 0;
+      background-color: var(--color-fill-white8);
+    }
+
+    .ant-spin-container {
+      .ant-pagination {
+        display: flex;
+        align-items: center;
+        button {
+          color: var(--color-text-ter);
+        }
+      }
+
+      .ant-table-content {
+        .ant-table-thead {
+          .ant-table-cell {
+            color: var(--color-text-ter);
+            font-weight: 400;
+            font-size: 11px;
+            background-color: var(--color-fill-white4);
+            border-bottom: none;
+          }
+          .ant-table-cell::before {
+            width: 0 !important;
+          }
+        }
+        .ant-table-tbody {
+          .ant-table-cell {
+            background-color: var(--color-fill-white4);
+            border-bottom: none;
+            font-weight: 400;
+            font-size: 15px;
+            color: var(--color-text-pri);
+            .ant-empty-description {
+              color: var(--color-text-ter);
+            }
+          }
+        }
+      }
+    }
+  }
+}

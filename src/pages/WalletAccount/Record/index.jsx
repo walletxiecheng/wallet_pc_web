@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import NavBar from '@/components/NavBar'
-import style from './index.module.less'
 import backIcon from '@/assets/icon/light/icon-arrow-left-line.png'
 import { Flex, Table } from 'antd'
 import { withdrawColumns, receiveColumns } from './config'
@@ -8,6 +7,7 @@ import { useRequest } from 'ahooks'
 import { useUserStore } from '@/stores'
 import { getWithdrawRecord, getReceiveRecord } from '@/service'
 import './index.less'
+import { useNavigate } from 'react-router-dom'
 
 const tabList = [
   {
@@ -23,7 +23,7 @@ const tabList = [
 const data = [
   {
     time: '12.01',
-    coinType: 'BTC',
+    coin_type: 'BTC',
     type: 1,
     address: '0Xxxxxx'
   },
@@ -38,7 +38,7 @@ const data = [
 export default function Record() {
   // 用户信息
   const { userInfo } = useUserStore()
-  console.log(userInfo.token)
+  const navigate = useNavigate()
   // 当前选中tab
   const [checkTab, setCheckTab] = useState(1)
 
@@ -65,17 +65,22 @@ export default function Record() {
   return (
     <>
       <NavBar />
-      <div className={style.recordContainer}>
-        <Flex align="center">
+      <div className="recordContainer">
+        <Flex
+          onClick={() => {
+            navigate('-1')
+          }}
+          align="center"
+        >
           <img src={backIcon} width={16} />
           返回
         </Flex>
 
-        <div className={style.tabs}>
+        <div className="tabs">
           {tabList.map((item) => (
             <span
               key={item.id}
-              className={checkTab === item.id ? style.active : ''}
+              className={checkTab === item.id ? 'active' : ''}
               onClick={() => {
                 setCheckTab(item.id)
               }}
@@ -85,21 +90,24 @@ export default function Record() {
           ))}
         </div>
 
-        <div className={style.tableBox}>
+        <div className="tableHeader">
+          <div className="table-title">
+            {checkTab === 1 ? '提币记录' : '收款记录'}
+          </div>
+          <div className="filter">
+            <select name="" id="">
+              <option value="">全部币种</option>
+              <option value="">BTC</option>
+            </select>
+          </div>
+        </div>
+        <div className="tableBox">
           {checkTab === 1 && (
-            <Table
-              className={style.table}
-              columns={withdrawColumns()}
-              dataSource={withdrawList}
-            />
+            <Table columns={withdrawColumns()} dataSource={data} />
           )}
 
           {checkTab === 2 && (
-            <Table
-              className={style.table}
-              columns={receiveColumns()}
-              dataSource={receiveList}
-            />
+            <Table columns={receiveColumns()} dataSource={receiveList} />
           )}
         </div>
       </div>
