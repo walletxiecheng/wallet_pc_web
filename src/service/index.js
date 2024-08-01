@@ -77,7 +77,7 @@ export const getCryptoTransactions = (id) => {
 
 // 获取加密交易
 export const getCryptoTokens = (data) => {
-  return axiosDefine.get(`/crypto/tokens`, data)
+  return axiosDefine.get('/crypto/tokens', data)
 }
 
 // 存入加密货币

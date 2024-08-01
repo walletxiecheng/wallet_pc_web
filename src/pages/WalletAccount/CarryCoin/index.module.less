@@ -6,6 +6,7 @@
   width: var(--width-main);
   margin: 0 auto;
   height: 100vh;
+  padding-top: 90px;
   display: flex;
   .headline {
     font-size: var(--font-size-headline);
@@ -19,17 +20,22 @@
         display: block;
       }
       .selectBox {
+        width: 380px;
         height: 40px;
         margin-top: 5px;
-        background-color: var(--color-fill-white8);
-        border-radius: var(--radius-6);
-        border: 1px solid var(--color-border-white8);
-        padding: 0 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        span {
-          margin-left: 5px;
+        select {
+          width: 100%;
+          height: 100%;
+          padding: 0 16px;
+          border-radius: var(--radius-6);
+          color: inherit;
+          background-color: var(--color-fill-white8);
+          border: 1px solid var(--color-border-white8);
+          border: none;
+          position: relative;
         }
       }
     }
@@ -85,8 +91,9 @@
     .networkList {
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
       .networkCard {
-        width: 292px;
+        width: 46%;
         display: flex;
         height: 52px;
         margin: var(--spacing-6);

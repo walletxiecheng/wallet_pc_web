@@ -6,17 +6,46 @@ import arrowDownLineIcon from '@/assets/icon/light/icon-arrow-down-line.png'
 import { Flex } from 'antd'
 import Divider from '@/components/Divider'
 import checkIconOff from '@/assets/icon/dark/icon-checkBox-line-off.svg'
-import checkIconOn from '@/assets/icon/dark/icon-checkBox-line-on.svg'
+import checkIconOn from '@/assets/icon/light/icon-checkBox-line.svg'
 import BindToast from './components/BindToast'
 import PswModal from './components/PswModal'
+
+import { getCryptoTokens, getChains } from '@/service'
+import { useRequest } from 'ahooks'
+import { showError } from '@/common/message'
 
 export default function CarryCoin() {
   const [bindToast, setBindToast] = useState(false)
   const showBindToast = () => setBindToast(true)
   const closeBindToast = () => setBindToast(false)
+
+  const [currentChain, setCurrentChain] = useState('Tron')
+  // 币种列表
+  const { data: tokenList, run: tokenRun } = useRequest(async (chain) => {
+    const req = {
+      chain: chain || currentChain
+    }
+    try {
+      const { data } = await getCryptoTokens(req)
+      return data
+    } catch (err) {
+      showError(err.msg)
+    }
+  })
+  // 链列表
+  const { data: chainList } = useRequest(async () => {
+    try {
+      const { data } = await getChains()
+      return data.chain
+    } catch (err) {
+      showError(err.msg)
+    }
+  })
+
   return (
     <>
       <NavBar />
+
       <div className={style.carryContainer}>
         <BindToast bindToast={bindToast} closeBindToast={closeBindToast} />
         {/* <PswModal /> */}
@@ -27,12 +56,19 @@ export default function CarryCoin() {
           <div className={style.selectCoin}>
             <span>币种</span>
             <div className={style.selectBox}>
-              <Flex justify="center" align="center">
+              <select>
+                {tokenList?.map((item, index) => (
+                  <option key={item.coin_symbol} value={item.coin_symbol}>
+                    {item.coin_symbol}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {/* <Flex justify="center" align="center">
                 <img src={coinTypeImg} />
                 <span>USDT Tether USDT</span>
               </Flex>
-              <img src={arrowDownLineIcon} height={16} />
-            </div>
+              <img src={arrowDownLineIcon} height={16} /> */}
           </div>
           {/* 额度 */}
           <div className={style.quota}>
@@ -78,19 +114,30 @@ export default function CarryCoin() {
           </div>
           <header style={{ marginTop: 32 }}>充币网络</header>
           <div className={style.networkList}>
-            {Array(8)
-              .fill(null)
-              .map((item, index) => (
-                <div className={style.networkCard} key={index}>
-                  <img src={checkIconOff} width={24} />
-                  <div>TRC20</div>
-                  <div>
-                    <span>手续费 1USDT</span>
-                    <br />
-                    <span>≈0.91CNY</span>
-                  </div>
+            {chainList?.map((item, index) => (
+              <div
+                className={style.networkCard}
+                key={index}
+                style={{
+                  background: currentChain === item ? '#0099ff' : ''
+                }}
+                onClick={() => {
+                  setCurrentChain(item)
+                  tokenRun(item)
+                }}
+              >
+                <img
+                  src={currentChain === item ? checkIconOn : checkIconOff}
+                  width={24}
+                />
+                <div>{item}</div>
+                <div>
+                  <span>手续费 1USDT</span>
+                  <br />
+                  <span>≈0.91CNY</span>
                 </div>
-              ))}
+              </div>
+            ))}
           </div>
           <div className={style.carryAmount}>
             <header>提币数量</header>
