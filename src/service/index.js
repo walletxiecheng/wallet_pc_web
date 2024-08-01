@@ -40,7 +40,7 @@ export const bindAccountInfo = (data) => {
   return axiosDefine.post('/account/bind', data)
 }
 
-//绑定商户信息
+//修改商户信息
 export const updateAccountInfo = (id) => {
   return axiosDefine.put(`account/bind/${id}`, data)
 }
@@ -121,6 +121,11 @@ export const getFlowAssets = () => {
 }
 
 // 发送验证码
-export const sendRebindCode = (data) => {
-  return axiosDefine.post('/account/rebind/code', data)
+export const sendVerifyCode = (data) => {
+  return axiosDefine.post('/account/verifyCode/send', data)
+}
+
+// 获取账户资产列表
+export const getAccountAssets = (id, data) => {
+  return axiosDefine.get(`/account/${id}/assets`, data)
 }

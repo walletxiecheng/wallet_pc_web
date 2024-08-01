@@ -11,6 +11,8 @@ import iconPassword from '@/assets/icon/light/icon-password-line.svg'
 import iconCode from '@/assets/icon/light/icon-code-line.svg'
 import { useUserStore } from '@/stores'
 import BindBaseTips from './components/BindBaseTips'
+import BindEmail from './components/BindEmail'
+import BindPhone from './components/BindPhone'
 
 const verifyList = [
   {
@@ -52,6 +54,18 @@ export default function Personal() {
     setShowBindTips(status)
   }
 
+  //邮箱弹窗的显示与隐藏
+  const [showEmail, setShowEmail] = useState(false)
+  const toggleEmail = (status) => {
+    setShowEmail(status)
+  }
+
+  // 手机号弹窗的显示与隐藏
+  const [showPhone, setShowPhone] = useState(false)
+  const togglePhone = (status) => {
+    console.log(status)
+    setShowPhone(status)
+  }
   return (
     <>
       <NavBar />
@@ -59,6 +73,17 @@ export default function Personal() {
         showBindTips={showBindTips}
         toggleTipsStatus={toggleTipsStatus}
       />
+      <BindEmail
+        showEmail={showEmail}
+        toggleEmail={toggleEmail}
+        email={userInfo.email}
+      />
+      <BindPhone
+        showPhone={showPhone}
+        togglePhone={togglePhone}
+        phone={userInfo.phone}
+      />
+
       <div className={style.personalContainer}>
         <div className={style.info}>
           <Flex>
@@ -128,10 +153,20 @@ export default function Personal() {
                 {item.id === 2 && (
                   <Space>
                     <div>{userInfo?.email}</div>
-                    <button style={{ display: emailStatus ? 'none' : 'block' }}>
+                    <button
+                      style={{ display: emailStatus ? 'none' : 'block' }}
+                      onClick={() => {
+                        toggleEmail(true)
+                      }}
+                    >
                       绑定
                     </button>
-                    <button style={{ display: emailStatus ? 'block' : 'none' }}>
+                    <button
+                      style={{ display: emailStatus ? 'block' : 'none' }}
+                      onClick={() => {
+                        toggleEmail(true)
+                      }}
+                    >
                       换绑
                     </button>
                   </Space>
@@ -139,10 +174,20 @@ export default function Personal() {
                 {item.id === 3 && (
                   <Flex>
                     <div>{userInfo?.phone}</div>
-                    <button style={{ display: phoneStatus ? 'none' : 'block' }}>
+                    <button
+                      style={{ display: phoneStatus ? 'none' : 'block' }}
+                      onClick={() => {
+                        togglePhone(true)
+                      }}
+                    >
                       绑定
                     </button>
-                    <button style={{ display: phoneStatus ? 'block' : 'none' }}>
+                    <button
+                      style={{ display: phoneStatus ? 'block' : 'none' }}
+                      onClick={() => {
+                        togglePhone(true)
+                      }}
+                    >
                       换绑
                     </button>
                   </Flex>

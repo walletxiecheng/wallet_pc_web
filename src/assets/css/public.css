@@ -1,0 +1,6 @@
+.button-style {
+  width: 58px;
+  height: 32px;
+  background-color: inherit;
+  border: 1px solid var(--color-border-white8);
+}

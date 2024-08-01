@@ -3,11 +3,12 @@ import NavBar from '@/components/NavBar'
 import backIcon from '@/assets/icon/light/icon-arrow-left-line.png'
 import { Flex, Table } from 'antd'
 import { withdrawColumns, receiveColumns } from './config'
-import { useRequest } from 'ahooks'
+import { useRequest, usePagination } from 'ahooks'
 import { useUserStore } from '@/stores'
 import { getWithdrawRecord, getReceiveRecord } from '@/service'
 import './index.less'
 import { useNavigate } from 'react-router-dom'
+import { pageParams } from '@/common/config'
 
 const tabList = [
   {
@@ -43,24 +44,23 @@ export default function Record() {
   const [checkTab, setCheckTab] = useState(1)
 
   // 提币列表
-  const getWithdrawRecordHandler = async () => {
-    const req = {
-      coin_id: 0
-    }
+  const getWithdrawRecordHandler = async (req) => {
+    req.coin_id = 0
     const { data } = await getWithdrawRecord(userInfo.commercial_id, req)
-    return data
+    return { total: data.total, list: data.list }
   }
-  const { data: withdrawList } = useRequest(getWithdrawRecordHandler)
+  const { data: withdrawList } = usePagination(getWithdrawRecordHandler, {
+    defaultParams: [pageParams]
+  })
 
   // 收款列表
-  const getReceiveRecordHandler = async () => {
-    const req = {
-      coin_id: 0
-    }
+  const getReceiveRecordHandler = async (req) => {
+    req.coin_id = 0
+
     const { data } = await getReceiveRecord(userInfo.commercial_id, req)
-    return data
+    return { total: data.total, list: data.list }
   }
-  const { data: receiveList } = useRequest(getReceiveRecordHandler)
+  const { data: receiveList } = usePagination(getReceiveRecordHandler)
 
   return (
     <>
@@ -101,13 +101,17 @@ export default function Record() {
             </select>
           </div>
         </div>
+
         <div className="tableBox">
           {checkTab === 1 && (
-            <Table columns={withdrawColumns()} dataSource={data} />
+            <Table
+              columns={withdrawColumns()}
+              dataSource={withdrawList?.list}
+            />
           )}
 
           {checkTab === 2 && (
-            <Table columns={receiveColumns()} dataSource={receiveList} />
+            <Table columns={receiveColumns()} dataSource={receiveList?.data} />
           )}
         </div>
       </div>

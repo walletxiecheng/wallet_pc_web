@@ -13,16 +13,16 @@ html[data-theme='dark'] {
   --color-text-quin: #08090a;
   /* 选中切换背景重点色 */
   --color-text-pri-select: #242424;
-  /* 登录注册组件背景色 */
   --color-fill-black2: #101112;
-  --color-fill-white4: #131415;
-  --color-fill-white8: #252627;
+  --color-fill-white2: #ffffff05;
+  --color-fill-white4: #ffffff0a;
+  --color-fill-white8: #ffffff14;
   --color-fill-blue: #0099ff;
   /* 表格选择色 */
   --color-fill-quin: #242526;
   --color-fill-input: #353637;
   --color-fill-header: #1b1c1d;
-  --color-fill-select: #2e2f2f;
+  --color-fill-select: #012b2b;
   /* 组件亮色背景 */
   --color-fill-pri: #fcfcfd;
   /* 背景色 */
@@ -33,7 +33,7 @@ html[data-theme='dark'] {
 
 :root {
   --text-color: #8c8888;
-  --main-bg-color: #f4f4f3;
+  --color-bg-pri: #f4f4f3;
   /* 间距 */
   --spacing-6: 6px;
   --spacing-8: 8px;
@@ -49,6 +49,7 @@ html[data-theme='dark'] {
   /* 字体 */
   --font-size-headline: 17px;
   --font-size-title1: 36px;
+  --font-size-title2: 24px;
   --font-size-title3: 21px;
   --font-size-caption2: 11px;
 
