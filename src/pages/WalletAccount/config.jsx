@@ -1,6 +1,4 @@
 import '@/assets/css/public.css'
-import { useNavigate } from 'react-router-dom'
-
 export const assetsColumns = () => {
   return [
     {

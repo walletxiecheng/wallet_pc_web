@@ -7,6 +7,7 @@ import Register from '@/pages/Register'
 import WalletAccount from '@/pages/WalletAccount'
 import CarryCoin from '@/pages/WalletAccount/CarryCoin'
 import Personal from '@/pages/Personal'
+import APIManager from '@/pages/ApiManager'
 import { URLS } from './urls'
 import Record from '@/pages/WalletAccount/Record'
 import Reset from '@/pages/Reset'
@@ -58,6 +59,10 @@ export const routes = createBrowserRouter([
     path: URLS.personal,
     element: <Personal />,
     errorElement: <ErrorPage />
+  },
+  {
+    path: URLS.keyManager,
+    element: <APIManager />
   }
 ])
 

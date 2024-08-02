@@ -100,7 +100,12 @@ export const getAccountKeys = (id) => {
   return axiosDefine.get(`/account/${id}/keys`)
 }
 
-// 获取api密钥
+// 获取API调用记录
+export const getAccountKeyRecord = (id, data) => {
+  return axiosDefine.get(`/account/${id}/keys/records`, data)
+}
+
+// 创建api密钥
 export const createAccountKeys = (id) => {
   return axiosDefine.post(`/account/${id}/keys`)
 }

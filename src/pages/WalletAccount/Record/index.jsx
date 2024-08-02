@@ -66,7 +66,7 @@ export default function Record() {
     <>
       <NavBar />
       <div className="recordContainer">
-        <Flex
+        {/* <Flex
           onClick={() => {
             navigate('-1')
           }}
@@ -74,7 +74,7 @@ export default function Record() {
         >
           <img src={backIcon} width={16} />
           返回
-        </Flex>
+        </Flex> */}
 
         <div className="tabs">
           {tabList.map((item) => (

@@ -7,5 +7,6 @@ export const URLS = {
   walletAccount: '/walletAccount',
   carryCoin: '/carryCoin',
   walletRecord: '/walletRecord',
-  personal: '/personal'
+  personal: '/personal',
+  keyManager: '/keyManager' //api key
 }

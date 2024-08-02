@@ -37,27 +37,30 @@
     color: var(--color-text-pri);
     font-size: var(--font-size-headline);
     justify-content: space-between;
+    border-radius: var(--radius-6);
     .filter {
       select {
         width: 156px;
         height: 32px;
         padding: 0 10px;
         color: var(--color-text-pri);
-        background-color: var(--color-fill-select);
+        // background-color: var(--color-fill-select);
+        background-color: initial;
         border-radius: var(--radius-6);
         border: 0.5px solid var(--color-border-white8);
       }
     }
   }
   .tableBox {
-    .ant-table-wrapper table {
+    .ant-table-wrapper {
       border-spacing: 0.5px;
-      background-color: var(--color-fill-white8);
+      // background-color: var(--color-fill-white8);
       border-radius: 0;
+      background-color: inherit;
     }
     .ant-table {
       border-radius: 0;
-      background-color: var(--color-fill-white8);
+      background-color: inherit;
     }
 
     .ant-spin-container {

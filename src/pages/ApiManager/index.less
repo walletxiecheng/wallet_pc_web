@@ -1,0 +1,161 @@
+.apiContainer {
+  // height: 100vh;
+  padding: 100px 0 40px 0;
+  width: 1200px;
+  margin: 0 auto;
+
+  .creteAPI {
+    width: 100%;
+    height: 560px;
+    border-radius: var(--radius-8);
+    border: 1px solid var(--color-border-white8);
+    background: var(--color-fill-white4);
+    header {
+      height: 56px;
+      display: flex;
+      font-size: var(--font-size-headline);
+      color: var(--color-text-pri);
+      align-items: center;
+      padding: 0 var(--spacing-16);
+      border-bottom: 1px solid var(--color-border-white8);
+      background: var(--color-fill-white8);
+    }
+    main {
+      display: flex;
+      .createFormBox {
+        padding: var(--spacing-32);
+        width: 50%;
+        .form {
+          background: transparent;
+          label {
+            color: var(--color-text-ter);
+          }
+        }
+        input {
+          border-radius: 4px;
+          border: 0.5px solid var(--border---color-border-white8);
+          background: var(--color-fill-white8);
+          color: var(--color-text-pri);
+        }
+        input::placeholder {
+          color: var(--color-text-quat);
+        }
+        button {
+          width: 320px;
+          height: 48px;
+          background-color: var(--color-fill-blue);
+        }
+        textarea {
+          height: 120px;
+          border-radius: 4px;
+          color: var(--color-text-pri);
+          resize: none;
+          border: 0.5px solid var(--border---color-border-white8);
+          background: var(--color-fill-white8);
+        }
+        textarea::placeholder {
+          color: var(--color-text-quat);
+        }
+      }
+      .tips {
+        padding: var(--spacing-32);
+        width: 50%;
+        color: var(--color-text-quat);
+        .title {
+          color: var(--color-text-pri);
+        }
+        .content {
+          margin-top: var(--spacing-12);
+          line-height: 22px;
+          strong {
+            color: var(--color-text-ter);
+          }
+        }
+      }
+    }
+  }
+  .tableBox {
+    margin-top: var(--spacing-12);
+    .tableTitle {
+      background-color: var(--color-fill-white8);
+      height: 56px;
+      line-height: 56px;
+      border-radius: 8px 8px 0 0;
+      padding: 0 var(--spacing-12);
+      color: var(--color-text-pri);
+      font-size: var(--font-size-headline);
+      border: 0.5px solid var(--color-border-white8);
+    }
+    .ant-table-wrapper {
+      border-spacing: 0.5px;
+      border-radius: 0;
+      background-color: var(--color-fill-white4);
+
+      border: 0.5px solid var(--color-border-white8);
+    }
+
+    .ant-table {
+      border-radius: 0;
+      background-color: var(--color-fill-white8);
+      background-color: inherit;
+    }
+
+    .ant-spin-container {
+      .ant-pagination {
+        display: flex;
+        align-items: center;
+        button {
+          color: var(--color-text-ter);
+        }
+      }
+
+      .ant-table-content {
+        .ant-table-thead {
+          .ant-table-cell {
+            color: var(--color-text-ter);
+            font-weight: 400;
+            font-size: 11px;
+            border-bottom: none;
+            border-radius: 0;
+            background-color: inherit;
+          }
+          .ant-table-cell::before {
+            width: 0 !important;
+          }
+        }
+        .ant-table-tbody {
+          .ant-table-placeholder {
+            background-color: inherit;
+          }
+
+          .ant-table-cell {
+            border-bottom: none;
+            font-weight: 400;
+            font-size: 15px;
+            color: var(--color-text-pri);
+            .ant-empty-description {
+              color: var(--color-text-ter);
+            }
+          }
+          .ant-table-cell-row-hover {
+            background-color: var(--color-fill-white4);
+          }
+        }
+      }
+    }
+  }
+}
+
+:where(.css-dev-only-do-not-override-p8b6i).ant-table-wrapper
+  .ant-table-tbody
+  > tr.ant-table-placeholder:hover
+  > th,
+:where(.css-dev-only-do-not-override-p8b6i).ant-table-wrapper
+  .ant-table-tbody
+  > tr.ant-table-placeholder:hover
+  > td,
+:where(.css-dev-only-do-not-override-p8b6i).ant-table-wrapper
+  .ant-table-tbody
+  > tr.ant-table-placeholder {
+  background-color: inherit;
+}

@@ -9,6 +9,7 @@ import Important from './components/Important'
 import Portfolio from './components/Portfolio'
 import Evaluation from './components/Evaluation'
 import Bottom from './components/Bottom'
+import DataBoard from '@/assets/image/dataBoard.png'
 
 export default function Index() {
   return (
@@ -20,9 +21,10 @@ export default function Index() {
       {/* 功能介绍 */}
       <FunDescribe />
       {/* 数据表格 */}
-      <DataTable />
+      {/* <DataTable /> */}
+      <img src={DataBoard} width={1200} style={{ marginTop: '40px' }} />
       {/* 广告版 */}
-      <Billboards />
+      {/* <Billboards /> */}
       {/* 重点介绍 */}
       <Important />
       {/* 投资组合 */}
