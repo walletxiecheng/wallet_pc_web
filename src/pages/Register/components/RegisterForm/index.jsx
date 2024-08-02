@@ -2,12 +2,14 @@ import React, { useState, useRef } from 'react'
 import { Flex, Select } from 'antd'
 import { CheckCircleFilled } from '@ant-design/icons'
 import EmailVerify from '../EmailVerify'
+import PhoneVerify from '../PhoneVerify'
+import { useNavigate } from 'react-router-dom'
 import './select.less'
 // import icon from '@/assets/icon/light/logo_light.svg'
 import style from './index.module.less'
 import icon from '@/assets/icon/dark/logIcon.svg'
 import { sendVerifyCode } from '@/service'
-import { showSuccess, showError } from '@/common/message'
+import { showSuccess, showError, showWarning } from '@/common/message'
 // 当前组件状态 1登录表单，2
 // const [currentStatus, setCurrentStatus] = useState(1)
 // 注册方式-默认邮箱注册
@@ -25,7 +27,7 @@ const tabList = [
 
 const options = [
   {
-    value: 1,
+    value: 852,
     label: (
       <>
         <CheckCircleFilled />
@@ -34,11 +36,20 @@ const options = [
     )
   },
   {
-    value: 2,
+    value: 812,
     label: (
       <>
         <CheckCircleFilled />
         +812
+      </>
+    )
+  },
+  {
+    value: 86,
+    label: (
+      <>
+        <CheckCircleFilled />
+        +86
       </>
     )
   }
@@ -48,15 +59,23 @@ export default function RegisterForm() {
   // 当前table
   const [checkTab, setCheckTab] = useState(1)
   const [showVerify, setShowVerify] = useState(false)
+  const [showTel, setShowTel] = useState(false)
+  const navigate = useNavigate()
+
   // 邮箱号
   const emailRef = useRef()
-  // 区号
+  // 国家代号
   const areaCodeRef = useRef()
   // 手机号
   const phoneRef = useRef()
 
+  // 显示/隐藏邮箱
   const toggleShowVerify = (status) => {
     setShowVerify(status)
+  }
+  // 显示/隐藏手机号
+  const toggleShowTel = (status) => {
+    setShowTel(status)
   }
 
   // 发送邮箱验证码
@@ -64,7 +83,7 @@ export default function RegisterForm() {
     const req = {
       account_type: 'email',
       verify_type: 'Register',
-      account: emailRef.current.value
+      account: emailRef.current?.value
     }
     try {
       await sendVerifyCode(req)
@@ -74,6 +93,27 @@ export default function RegisterForm() {
       return showError('邮箱格式错误，请重新输入')
     }
   }
+
+  // 发送手机号验证码
+  const sendPhoneCodeHandler = async () => {
+    // const req = {
+    //   account_type: 'phone',
+    //   verify_type: 'Register',
+    //   account: phoneRef?.current?.value
+    // }
+    // try {
+    //   await sendVerifyCode(req)
+    //   showSuccess('发送验证码成功')
+    //   toggleShowVerify(true)
+    // } catch (err) {
+    //   return showError(err.msg)
+    // }
+    if (!phoneRef?.current?.value) {
+      return showWarning('请输入手机号')
+    }
+    toggleShowTel(true)
+  }
+
   return (
     <>
       <EmailVerify
@@ -81,7 +121,12 @@ export default function RegisterForm() {
         toggleShowVerify={toggleShowVerify}
         email={emailRef?.current?.value}
       />
-      {/* <Password toggleCurrentStatus={toggleCurrentStatus} /> */}
+
+      <PhoneVerify
+        showTel={showTel}
+        toggleShowTel={toggleShowTel}
+        phone={phoneRef?.current?.value}
+      />
       <div className={style.registerBox}>
         <header>
           <img src={icon} />
@@ -120,19 +165,32 @@ export default function RegisterForm() {
           style={{ display: checkTab === 2 ? 'block' : 'none' }}
         >
           <Flex>
-            <Select options={options} defaultValue={1} ref={areaCodeRef} />
+            <Select options={options} ref={areaCodeRef} defaultValue={86} />
             <input
               placeholder="手机号"
               style={{ width: '264px' }}
               ref={phoneRef}
             />
           </Flex>
-          <button>下一步</button>
+          <button
+            onClick={() => {
+              // 发送手机验证码
+              sendPhoneCodeHandler()
+            }}
+          >
+            下一步
+          </button>
         </div>
         {/* 登录 */}
         <div className={style.login}>
           已有账号？
-          <span>登录</span>
+          <span
+            onClick={() => {
+              navigate('/login')
+            }}
+          >
+            登录
+          </span>
         </div>
         {/* 分割线 */}
         <div className={style.line} />

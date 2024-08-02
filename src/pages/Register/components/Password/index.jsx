@@ -11,7 +11,8 @@ export default function Password({
   account,
   verifyCode,
   showPassword,
-  toggleShowPassword
+  toggleShowPassword,
+  type
 }) {
   const [passwordStatus, setPasswordStatus] = useState(0)
   const [newPasswordStatus, setNewPasswordStatus] = useState(0)
@@ -30,11 +31,12 @@ export default function Password({
 
   const registerHandler = async () => {
     // navigate('/index')
+    console.log(account, verifyCode, showPassword)
     if (passwordInputRef.current.value !== newPasswordInputRef.current.value) {
       showWarning('两次输入密码不一致')
     }
     const req = {
-      account_type: 'email',
+      account_type: type || 'email',
       account: account,
       verify_code: verifyCode,
       password: passwordInputRef.current?.value
@@ -43,7 +45,10 @@ export default function Password({
       await register(req)
       navigate('/login')
     } catch (err) {
-      showError(err.msg)
+      if (err.code === 4) {
+        return showError('该手机号已注册')
+      }
+      console.log(err)
     }
   }
   return (

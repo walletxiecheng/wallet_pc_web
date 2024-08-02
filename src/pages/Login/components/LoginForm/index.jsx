@@ -7,7 +7,7 @@ import eyeOpen from '@/assets/icon/dark/icon-eye-line-open.svg'
 import eyeClose from '@/assets/icon/dark/icon-eye-line-close.svg'
 import { useRef } from 'react'
 import { login } from '@/service'
-import { showError, showSuccess } from '@/common/message'
+import { showError, showSuccess, showWarning } from '@/common/message'
 import { useTokenStore, useUserStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
 
@@ -24,7 +24,7 @@ const tabList = [
 
 const options = [
   {
-    value: 1,
+    value: 853,
     label: (
       <>
         <CheckCircleFilled />
@@ -33,11 +33,20 @@ const options = [
     )
   },
   {
-    value: 2,
+    value: 812,
     label: (
       <>
         <CheckCircleFilled />
         +812
+      </>
+    )
+  },
+  {
+    value: 86,
+    label: (
+      <>
+        <CheckCircleFilled />
+        +86
       </>
     )
   }
@@ -56,42 +65,54 @@ export default function LoginForm() {
   const phoneInputRef = useRef(null)
   const phonePasswordRef = useRef(null)
 
-  const navigate = useNavigate()
+  // 区号
+  const area = useRef()
 
+  const navigate = useNavigate()
   // 设置token
   const { setToken } = useTokenStore()
   // 设置用户信息
   const { setUserInfo } = useUserStore()
 
-  // 登录
-  const loginHandler = async (type) => {
+  // 登录邮箱号
+  const loginEmailHandler = async () => {
     const req = {
-      account_type: type,
-      account:
-        type == 'email'
-          ? emailInputRef.current.value
-          : phoneInputRef.current.value,
-      password:
-        type === 'email'
-          ? emailPasswordRef.current.value
-          : phonePasswordRef.current.value
+      account_type: 'email',
+      account: emailInputRef.current.value,
+      password: emailPasswordRef.current.value
     }
 
     if (!req.account || !req.password) {
-      return showError('用户名或者密码不能为空。')
+      return showWarning('邮箱号或者密码不能为空。')
     }
-    const res = await login(req)
-    if (res.code !== 0) {
-      return showError('用户名或密码错误')
+    try {
+      await login(req)
+      setToken(res.data.token)
+      setUserInfo(res.data)
+      showSuccess('登录成功')
+      navigate('/index')
+    } catch (err) {
+      return showError('邮箱号或密码错误')
     }
-
-    setToken(res.data.token)
-    setUserInfo(res.data)
-    showSuccess('登录成功')
-    navigate('/index')
   }
-  // 手机号注册
-
+  // 手机号登录
+  const loginPhoneHandler = async () => {
+    const req = {
+      account_type: 'phone',
+      account: phoneInputRef.current.value,
+      password: phonePasswordRef.current.value
+    }
+    console.log(req)
+    try {
+      await login(req)
+      setToken(res.data.token)
+      setUserInfo(res.data)
+      showSuccess('登录成功')
+      navigate('/index')
+    } catch (err) {
+      return showError('手机号或密码错误')
+    }
+  }
   return (
     <div className={style.loginBox}>
       <header>
@@ -143,13 +164,7 @@ export default function LoginForm() {
         >
           忘记密码？
         </div>
-        <button
-          onClick={() => {
-            loginHandler('email')
-          }}
-        >
-          下一步
-        </button>
+        <button onClick={loginEmailHandler}>下一步</button>
       </div>
 
       {/* 手机号注册 */}
@@ -158,7 +173,7 @@ export default function LoginForm() {
         style={{ display: checkTab === 2 ? 'block' : 'none' }}
       >
         <Flex>
-          <Select options={options} defaultValue={1} />
+          <Select options={options} defaultValue={86} ref={area} />
           <div className={style.inputBox}>
             <input
               placeholder="手机号"
@@ -183,13 +198,7 @@ export default function LoginForm() {
             />
           </span>
         </div>
-        <button
-          onClick={() => {
-            loginHandler('phone')
-          }}
-        >
-          下一步
-        </button>
+        <button onClick={loginPhoneHandler}>下一步</button>
       </div>
       <div className={style.fun}>
         <span>验证码登录</span>|<span>新用户注册</span>

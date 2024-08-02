@@ -45,7 +45,6 @@ export default function CarryCoin() {
   return (
     <>
       <NavBar />
-
       <div className={style.carryContainer}>
         <BindToast bindToast={bindToast} closeBindToast={closeBindToast} />
         {/* <PswModal /> */}
