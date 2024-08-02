@@ -111,7 +111,7 @@ export default function LoginForm() {
           </span>
         ))}
       </div>
-      {/* 邮箱注册 */}
+      {/* 邮箱登录 */}
       <div
         className={style.emailForm}
         style={{ display: checkTab === 1 ? 'block' : 'none' }}
@@ -151,13 +151,14 @@ export default function LoginForm() {
           下一步
         </button>
       </div>
+
       {/* 手机号注册 */}
       <div
         className={style.telForm}
         style={{ display: checkTab === 2 ? 'block' : 'none' }}
       >
         <Flex>
-          <Select options={options} />
+          <Select options={options} defaultValue={1} />
           <div className={style.inputBox}>
             <input
               placeholder="手机号"

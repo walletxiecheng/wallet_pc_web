@@ -1,13 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import style from './index.module.less'
 import iconArrowLine from '@/assets/icon/light/icon-arrow-left-line.png'
 import eyeOpen from '@/assets/icon/dark/icon-eye-line-open.svg'
 import eyeClose from '@/assets/icon/dark/icon-eye-line-close.svg'
 import { useNavigate } from 'react-router-dom'
+import { showError, showWarning } from '@/common/message'
+import { register } from '@/service'
 
-export default function Password() {
+export default function Password({
+  account,
+  verifyCode,
+  showPassword,
+  toggleShowPassword
+}) {
   const [passwordStatus, setPasswordStatus] = useState(0)
   const [newPasswordStatus, setNewPasswordStatus] = useState(0)
+  const passwordInputRef = useRef()
+  const newPasswordInputRef = useRef()
+
   const navigate = useNavigate()
 
   const togglePassword = () => {
@@ -18,15 +28,33 @@ export default function Password() {
     setNewPasswordStatus(newPasswordStatus === 0 ? 1 : 0)
   }
 
-  const login = () => {
-    navigate('/index')
+  const registerHandler = async () => {
+    // navigate('/index')
+    if (passwordInputRef.current.value !== newPasswordInputRef.current.value) {
+      showWarning('两次输入密码不一致')
+    }
+    const req = {
+      account_type: 'email',
+      account: account,
+      verify_code: verifyCode,
+      password: passwordInputRef.current?.value
+    }
+    try {
+      await register(req)
+      navigate('/login')
+    } catch (err) {
+      showError(err.msg)
+    }
   }
   return (
-    <div className={style.passwordContainer}>
+    <div
+      className={style.passwordContainer}
+      style={{ display: showPassword ? 'block' : 'none' }}
+    >
       <div
         className={style.back}
         onClick={() => {
-          toggleCurrentStatus(1)
+          toggleShowPassword(false)
         }}
       >
         <img src={iconArrowLine} width={16} />
@@ -40,9 +68,9 @@ export default function Password() {
 
       <div className={style.passwordBox}>
         <input
+          ref={passwordInputRef}
           type={passwordStatus ? 'type' : 'password'}
           placeholder="请输入登录密码"
-          name="password"
         />
         <span>
           <img
@@ -54,9 +82,9 @@ export default function Password() {
       </div>
       <div className={style.passwordBox}>
         <input
+          ref={newPasswordInputRef}
           type={newPasswordStatus ? 'type' : 'password'}
           placeholder="请重复输入密码"
-          name="newPassword"
         />
         <span>
           <img
@@ -67,7 +95,7 @@ export default function Password() {
         </span>
       </div>
       <div>
-        <button onClick={login}>完成</button>
+        <button onClick={registerHandler}>完成</button>
       </div>
     </div>
   )
