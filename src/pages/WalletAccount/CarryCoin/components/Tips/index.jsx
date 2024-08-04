@@ -1,31 +1,43 @@
-import React, { useState } from 'react'
+import React from 'react'
 import style from './index.module.less'
 import closeIcon from '@/assets/icon/dark/icon-close-line.svg'
-import { showLoading } from '@/common/message'
-export default function BindToast({ bindToast, closeBindToast }) {
+import { useNavigate } from 'react-router-dom'
+
+export default function Tips({ toggleToast, tips }) {
   // 继续交易
   const next = () => {
     closeBindToast()
     // 判断是否有密码
     //没有密码直接调接口
   }
+
+  const navigate = useNavigate()
   return (
     <div
       className={style.bindContainer}
-      style={{ display: bindToast ? 'block' : 'none' }}
+      style={{ display: tips ? 'block' : 'none' }}
     >
       <div className={style.bindCard}>
         <header>
           <span>提醒</span>
-          <img src={closeIcon} onClick={closeBindToast} />
+          <img
+            src={closeIcon}
+            onClick={() => {
+              toggleToast(false)
+            }}
+          />
         </header>
         <div className={style.content}>
           当前账户并未绑定资金密码，为保障您的账户安全请绑定资金密码后在交易！
         </div>
         <div className={style.buttonGroup}>
-          <button className={style.setting}>去设置</button>
-          <button className={style.continue} onClick={next}>
-            了解风险，继续交易
+          <button
+            className={style.setting}
+            onClick={() => {
+              navigate('/personal')
+            }}
+          >
+            去设置
           </button>
         </div>
       </div>

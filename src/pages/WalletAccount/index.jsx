@@ -52,7 +52,14 @@ export default function WalletAccount() {
             >
               提币
             </button>
-            <button className="history">钱包历史记录</button>
+            <button
+              className="history"
+              onClick={() => {
+                navigate('/walletRecord')
+              }}
+            >
+              钱包历史记录
+            </button>
           </div>
         </div>
 

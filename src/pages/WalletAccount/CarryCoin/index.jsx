@@ -7,18 +7,25 @@ import { Flex } from 'antd'
 import Divider from '@/components/Divider'
 import checkIconOff from '@/assets/icon/dark/icon-checkBox-line-off.svg'
 import checkIconOn from '@/assets/icon/light/icon-checkBox-line.svg'
-import BindToast from './components/BindToast'
-import PswModal from './components/PswModal'
+import Tips from './components/Tips'
+import GoogleCodeModal from './components/GoogleCodeModal'
 
 import { getCryptoTokens, getChains } from '@/service'
 import { useRequest } from 'ahooks'
 import { showError } from '@/common/message'
+import { useUserStore } from '@/stores'
 
 export default function CarryCoin() {
-  const [bindToast, setBindToast] = useState(false)
-  const showBindToast = () => setBindToast(true)
-  const closeBindToast = () => setBindToast(false)
+  const { userInfo } = useUserStore()
+  // 是否显示tips
+  const [tips, setTips] = useState(false)
+  const toggleToast = (status) => setTips(status)
 
+  const [showGoogleModal, setShowPassWordModal] = useState(false)
+  const toggleGoogleModal = (status) => {
+    setShowPassWordModal(status)
+  }
+  // 当前链
   const [currentChain, setCurrentChain] = useState('Tron')
   // 币种列表
   const { data: tokenList, run: tokenRun } = useRequest(async (chain) => {
@@ -42,13 +49,23 @@ export default function CarryCoin() {
     }
   })
 
+  // 检查是否有资金密码和邮箱验证
+  const check = () => {
+    // if (!userInfo.google_verify_status) {
+    //   toggleToast(true)
+    // }
+    toggleGoogleModal(true)
+  }
+
   return (
     <>
       <NavBar />
       <div className={style.carryContainer}>
-        <BindToast bindToast={bindToast} closeBindToast={closeBindToast} />
-        {/* <PswModal /> */}
-
+        <Tips tips={tips} toggleToast={toggleToast} />
+        <GoogleCodeModal
+          showGoogleModal={showGoogleModal}
+          toggleGoogleModal={toggleGoogleModal}
+        />
         <div className={style.CoinTypeBox}>
           <header className={style.headline}>选择提币币种</header>
           {/* 币种 */}
@@ -155,7 +172,7 @@ export default function CarryCoin() {
               实际到账<span style={{ marginLeft: '32px' }}>0</span>
             </p>
           </div>
-          <button className={style.carryButton} onClick={showBindToast}>
+          <button className={style.carryButton} onClick={check}>
             提币
           </button>
         </div>

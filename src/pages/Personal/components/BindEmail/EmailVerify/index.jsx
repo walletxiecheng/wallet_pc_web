@@ -7,6 +7,7 @@ import { Flex } from 'antd'
 import { bindAccountInfo } from '@/service'
 import { useUserStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
+import { toggleFocus } from '@/common/method'
 
 export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
   const { userInfo } = useUserStore()
@@ -16,13 +17,13 @@ export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
   // 切换焦点
   const [isBind, setBind] = useState(false)
 
-  const toggleFocus = (e, index) => {
-    if (e.keyCode === 8 && inputRefs.current[index - 1]) {
-      inputRefs.current[index - 1].focus()
-    } else if (e.keyCode !== 8 && inputRefs.current[index + 1]) {
-      inputRefs.current[index + 1].focus()
-    }
-  }
+  // const toggleFocus = (e, index) => {
+  //   if (e.keyCode === 8 && inputRefs.current[index - 1]) {
+  //     inputRefs.current[index - 1].focus()
+  //   } else if (e.keyCode !== 8 && inputRefs.current[index + 1]) {
+  //     inputRefs.current[index + 1].focus()
+  //   }
+  // }
 
   // 绑定邮箱
   const bindEmailHandler = async () => {
@@ -90,7 +91,7 @@ export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
                 ref={(el) => (inputRefs.current[index] = el)}
                 // onInput={}
                 onKeyUp={(event) => {
-                  toggleFocus(event, index)
+                  toggleFocus(inputRefs, event, index)
                   setBind(true)
                 }}
               />

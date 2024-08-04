@@ -3,15 +3,10 @@ import style from './index.module.less'
 import iconArrowLine from '@/assets/icon/light/icon-arrow-left-line.png'
 import { Flex } from 'antd'
 import { showError } from '@/common/message'
+import { toggleFocus } from '@/common/method'
 
 export default function Verify({ toggleCurrentStatus }) {
   const inputRefs = useRef([])
-  // 切换焦点
-  const toggleFocus = (e, index) => {
-    if (inputRefs.current[index + 1]) {
-      inputRefs.current[index + 1].focus()
-    }
-  }
 
   // 邮箱验证码
   const handleVerifyCodeEmail = () => {
@@ -61,7 +56,7 @@ export default function Verify({ toggleCurrentStatus }) {
                   key={index}
                   maxLength={1}
                   ref={(el) => (inputRefs.current[index] = el)}
-                  onInput={(event) => toggleFocus(event, index)}
+                  onKeyUp={(event) => toggleFocus(inputRefs, event, index)}
                 />
               ))}
           </Flex>
