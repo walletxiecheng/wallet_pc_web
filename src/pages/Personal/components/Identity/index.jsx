@@ -1,18 +1,13 @@
+// 身份验证组件
 import React, { useState, useRef } from 'react'
 import { Flex, Select } from 'antd'
+import EmailVerify from '../../EmailVerify'
+import PhoneVerify from '../../PhoneVerify'
 import { CheckCircleFilled } from '@ant-design/icons'
-import EmailVerify from '../EmailVerify'
-import PhoneVerify from '../PhoneVerify'
-import { useNavigate } from 'react-router-dom'
-import './select.less'
-// import icon from '@/assets/icon/light/logo_light.svg'
 import style from './index.module.less'
-import icon from '@/assets/icon/dark/logIcon.svg'
 import { sendVerifyCode } from '@/service'
+import closeIcon from '@/assets/icon/dark/icon-close-line.svg'
 import { showSuccess, showError, showWarning } from '@/common/message'
-// 当前组件状态 1登录表单，2
-// const [currentStatus, setCurrentStatus] = useState(1)
-// 注册方式-默认邮箱注册
 
 const tabList = [
   {
@@ -55,12 +50,11 @@ const options = [
   }
 ]
 
-export default function RegisterForm() {
+export default function Identity({ toggleShowIdentity, showIdentity }) {
   // 当前table
   const [checkTab, setCheckTab] = useState(1)
   const [showVerify, setShowVerify] = useState(false)
   const [showTel, setShowTel] = useState(false)
-  const navigate = useNavigate()
 
   // 邮箱号
   const emailRef = useRef()
@@ -82,7 +76,7 @@ export default function RegisterForm() {
   const sendVerifyCodeHandler = async () => {
     const req = {
       account_type: 'email',
-      verify_type: 'Register',
+      verify_type: 'SetFundPassword',
       account: emailRef.current?.value
     }
     try {
@@ -96,6 +90,18 @@ export default function RegisterForm() {
 
   // 发送手机号验证码
   const sendPhoneCodeHandler = async () => {
+    // const req = {
+    //   account_type: 'phone',
+    //   verify_type: 'SetFundPassword',
+    //   account: phoneRef.current?.value
+    // }
+    // try {
+    //   await sendVerifyCode(req)
+    //   showSuccess('发送验证码成功')
+    //   toggleShowVerify(true)
+    // } catch (err) {
+    //   return showError('邮箱格式错误，请重新输入')
+    // }
     if (!phoneRef?.current?.value) {
       return showWarning('请输入手机号')
     }
@@ -115,11 +121,23 @@ export default function RegisterForm() {
         toggleShowTel={toggleShowTel}
         phone={phoneRef?.current?.value}
       />
-      <div className={style.registerBox}>
-        <header>
-          <img src={icon} />
-          欢迎注册Token17
-        </header>
+
+      <div
+        className={style.registerBox}
+        style={{ display: showIdentity ? 'block' : 'none' }}
+      >
+        <Flex
+          onClick={() => {
+            toggleShowIdentity(false)
+          }}
+        >
+          <img src={closeIcon} width={16} />
+          <span>关闭</span>
+        </Flex>
+        <div className={style.title}>
+          <header>身份验证</header>
+          <div className={style.desc}>请验证您所绑定的邮箱或手机号</div>
+        </div>
         <div className={style.tabs}>
           {tabList.map((item) => (
             <span
@@ -140,11 +158,12 @@ export default function RegisterForm() {
         >
           <input placeholder="请输入邮箱" ref={emailRef} />
           <button
+            className={style.verifyBtn}
             onClick={() => {
               sendVerifyCodeHandler()
             }}
           >
-            下一步
+            获取验证码
           </button>
         </div>
         {/* 手机号注册 */}
@@ -166,25 +185,8 @@ export default function RegisterForm() {
               sendPhoneCodeHandler()
             }}
           >
-            下一步
+            获取验证码
           </button>
-        </div>
-        {/* 登录 */}
-        <div className={style.login}>
-          已有账号？
-          <span
-            onClick={() => {
-              navigate('/login')
-            }}
-          >
-            登录
-          </span>
-        </div>
-        {/* 分割线 */}
-        <div className={style.line} />
-        {/* 协议链接 */}
-        <div className={style.protocol}>
-          我已阅读并同意<span>《用户协议》</span>和<span>《隐私协议》</span>
         </div>
       </div>
     </>

@@ -119,6 +119,10 @@ export const getAccountInfo = (data) => {
 export const getCurrentAssets = () => {
   return axiosDefine.get('/api/v1/assets/current')
 }
+// 设置资金密码
+export const setAssetsPassword = (data) => {
+  return axiosDefine.post('/account/fund/password/set', data)
+}
 
 // 获取资产流水
 export const getFlowAssets = () => {

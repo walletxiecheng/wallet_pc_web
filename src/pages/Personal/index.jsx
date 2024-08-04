@@ -13,6 +13,7 @@ import { useUserStore } from '@/stores'
 import BindBaseTips from './components/BindBaseTips'
 import BindEmail from './components/BindEmail'
 import BindPhone from './components/BindPhone'
+import Identity from './components/Identity'
 
 const verifyList = [
   {
@@ -66,6 +67,12 @@ export default function Personal() {
     console.log(status)
     setShowPhone(status)
   }
+
+  // 设置身份验证
+  const [showIdentity, setShowIdentity] = useState(false)
+  const toggleShowIdentity = (status) => {
+    setShowIdentity(status)
+  }
   return (
     <>
       <NavBar />
@@ -82,6 +89,10 @@ export default function Personal() {
         showPhone={showPhone}
         togglePhone={togglePhone}
         phone={userInfo.phone}
+      />
+      <Identity
+        showIdentity={showIdentity}
+        toggleShowIdentity={toggleShowIdentity}
       />
 
       <div className={style.personalContainer}>
@@ -215,9 +226,10 @@ export default function Personal() {
                   <span className={style.content}>用于保护账户安全</span>
                 </div>
               </Flex>
-              <button>修改</button>
+              <div>
+                <button>修改</button>
+              </div>
             </Flex>
-
             <Flex
               justify="space-between"
               className={style.passwordItem}
@@ -232,7 +244,16 @@ export default function Personal() {
                   <span className={style.content}>用于保护资金安全</span>
                 </div>
               </Flex>
-              <button>设置</button>
+              <div>
+                {/* <button>修改</button> */}
+                <button
+                  onClick={() => {
+                    toggleShowIdentity(true)
+                  }}
+                >
+                  设置
+                </button>
+              </div>
             </Flex>
           </div>
         </div>
