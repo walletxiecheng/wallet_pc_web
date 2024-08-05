@@ -2,19 +2,23 @@ import React, { useRef } from 'react'
 import style from './index.module.less'
 import closeIcon from '@/assets/icon/dark/icon-close-line.svg'
 import { Flex } from 'antd'
-import { toggleFocus } from '@/common/method'
+import { toggleFocus, codeComputed } from '@/common/method'
 import { cryptoWithdraw } from '@/service'
 import { showError } from '@/common/message'
 
 export default function PasswordModal({
   pswStatus,
   togglePswStatus,
-  goggleCode
+  goggleCode,
+  data
 }) {
   const inputRefs = useRef([])
   const caryCoinHandler = async () => {
     try {
-      await cryptoWithdraw()
+      const req = data
+      req.password = codeComputed(inputRefs)
+      // req.
+      await cryptoWithdraw(req)
     } catch (err) {
       showError('提币失败，请重试。')
     }

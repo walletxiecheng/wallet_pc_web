@@ -9,7 +9,8 @@ import PasswordModal from '../PasswordModal'
 
 export default function GoogleCodeModal({
   showGoogleModal,
-  toggleGoogleModal
+  toggleGoogleModal,
+  data
 }) {
   const inputRefs = useRef([])
 
@@ -40,6 +41,7 @@ export default function GoogleCodeModal({
       <PasswordModal
         togglePswStatus={togglePswStatus}
         pswStatus={pswStatus}
+        data={data}
         goggleCode={codeComputed()}
       />
       <div
@@ -57,10 +59,6 @@ export default function GoogleCodeModal({
 
         <div className={style.title}>
           <h3>谷歌验证码</h3>
-          <p>
-            验证码发送至：21313@gmail.com <br />
-            邮箱验证码可能被判定为垃圾邮件，请注意查收。
-          </p>
         </div>
 
         <Flex className={style.inputGroup}>
@@ -76,7 +74,6 @@ export default function GoogleCodeModal({
               />
             ))}
         </Flex>
-        <div className={style.link}> 忘记密码?</div>
         <button className={style.confirmButton} onClick={check}>
           确认
         </button>

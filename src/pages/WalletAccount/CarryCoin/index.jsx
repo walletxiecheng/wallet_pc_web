@@ -9,13 +9,13 @@ import Tips from './components/Tips'
 import GoogleCodeModal from './components/GoogleCodeModal'
 import { getCryptoTokens, getChains } from '@/service'
 import { useRequest } from 'ahooks'
-import { showError } from '@/common/message'
+import { showError, showSuccess, showWarning } from '@/common/message'
 import { useUserStore } from '@/stores'
 
 export default function CarryCoin() {
   const { userInfo } = useUserStore()
   const amountRef = useRef(0)
-  const withdrawAddrRef = useRef()
+  const arrivalAddrRef = useRef()
   // 是否显示tips
   const [tips, setTips] = useState(false)
   const toggleToast = (status) => setTips(status)
@@ -26,6 +26,8 @@ export default function CarryCoin() {
   }
   // 当前链
   const [currentChain, setCurrentChain] = useState('Tron')
+  // 当前token
+  const [currentTokenId, setCurrentTokenId] = useState(1)
   // 币种列表
   const { data: tokenList, run: tokenRun } = useRequest(async (chain) => {
     const req = {
@@ -33,6 +35,7 @@ export default function CarryCoin() {
     }
     try {
       const { data } = await getCryptoTokens(req)
+      setCurrentTokenId(data[0].id)
       return data
     } catch (err) {
       showError(err.msg)
@@ -48,12 +51,31 @@ export default function CarryCoin() {
     }
   })
 
+  const getFormData = () => {
+    const address = arrivalAddrRef?.current?.value || ''
+    const amount = amountRef?.current?.value || ''
+    return {
+      account_id: userInfo.commercial_id,
+      crypto_type: currentTokenId,
+      arrival_address: address,
+      withdraw_amount: amount
+    }
+  }
+
   // 检查是否有资金密码和邮箱验证
   const check = () => {
-    // if (!userInfo.google_verify_status) {
-    //   toggleToast(true)
-    // }
+    const address = arrivalAddrRef?.current?.value || ''
+    const amount = amountRef?.current?.value || ''
+    if (!address) {
+      return showWarning('提币地址不能为空')
+    } else if (!amount) {
+      return showWarning('提币数量不能为空')
+    }
+    if (!userInfo.google_verify_status || !userInfo.has_fund_password) {
+      return setTips(true)
+    }
     toggleGoogleModal(true)
+    // toggleGoogleModal(true)
   }
 
   return (
@@ -64,6 +86,7 @@ export default function CarryCoin() {
         <GoogleCodeModal
           showGoogleModal={showGoogleModal}
           toggleGoogleModal={toggleGoogleModal}
+          data={getFormData()}
         />
         <div className={style.CoinTypeBox}>
           <header className={style.headline}>选择提币币种</header>
@@ -125,6 +148,7 @@ export default function CarryCoin() {
               type="text"
               className={style.addrInput}
               placeholder="填写提币地址到这里"
+              ref={arrivalAddrRef}
             />
           </div>
           <header style={{ marginTop: 32 }}>充币网络</header>
@@ -157,7 +181,11 @@ export default function CarryCoin() {
           <div className={style.carryAmount}>
             <header>提币数量</header>
             <div className={style.inputBox}>
-              <input type="text" placeholder="最小输入数量为2" />
+              <input
+                type="text"
+                placeholder="最小输入数量为2"
+                ref={amountRef}
+              />
               <Flex>
                 <span>USDT</span>｜<span className={style.link}>全部</span>
               </Flex>

@@ -30,7 +30,7 @@ axiosInstance.interceptors.response.use(
     // 对响应数据做点什么
     const { data } = response
     const code = data.code
-    if (code === 27) {
+    if (code === 28) {
       showWarning('身份验证已过期，请重新登录。')
       window.location.pathname = 'login'
     }

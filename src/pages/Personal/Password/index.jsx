@@ -4,7 +4,7 @@ import iconArrowLine from '@/assets/icon/light/icon-arrow-left-line.png'
 import eyeOpen from '@/assets/icon/dark/icon-eye-line-open.svg'
 import eyeClose from '@/assets/icon/dark/icon-eye-line-close.svg'
 import { useNavigate } from 'react-router-dom'
-import { showError, showWarning } from '@/common/message'
+import { showError, showSuccess, showWarning } from '@/common/message'
 import { setAssetsPassword } from '@/service'
 import { useUserStore } from '@/stores'
 
@@ -41,9 +41,10 @@ export default function Password({
       commercial_id: userInfo.commercial_id,
       password: passwordInputRef.current?.value
     }
-    console.log(req)
     try {
       await setAssetsPassword(req)
+      showSuccess('设置资金密码成功')
+      // 手动更改本地的资金状态
     } catch (err) {
       showError('设置资金密码失败，请重试')
     }

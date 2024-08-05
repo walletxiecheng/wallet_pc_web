@@ -50,6 +50,11 @@ export default function Personal() {
   // 高级认证状态
   const largeStatus = userInfo.review_status
 
+  // 谷歌状态
+  const googleStatus = userInfo?.google_verify_status
+  console.log(userInfo)
+  // 资金密码状态
+  const has_fund_password = userInfo?.has_fund_password
   //提示认证
   const [showBindTips, setShowBindTips] = useState(false)
   const toggleTipsStatus = (status) => {
@@ -210,7 +215,17 @@ export default function Personal() {
                 {item.id === 4 && (
                   <Space>
                     {/* <div>2647418717@qq.com</div> */}
+
                     <button
+                      style={{ display: googleStatus ? 'block' : 'none' }}
+                      onClick={() => {
+                        setStatus(true)
+                      }}
+                    >
+                      换绑
+                    </button>
+                    <button
+                      style={{ display: googleStatus ? 'none' : 'block' }}
                       onClick={() => {
                         setStatus(true)
                       }}
@@ -257,11 +272,20 @@ export default function Personal() {
               <div>
                 {/* <button>修改</button> */}
                 <button
+                  style={{ display: has_fund_password ? 'none' : 'block' }}
                   onClick={() => {
                     toggleShowIdentity(true)
                   }}
                 >
                   设置
+                </button>
+                <button
+                  style={{ display: has_fund_password ? 'block' : 'none' }}
+                  onClick={() => {
+                    toggleShowIdentity(true)
+                  }}
+                >
+                  修改
                 </button>
               </div>
             </Flex>

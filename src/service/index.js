@@ -31,8 +31,8 @@ export const resetPassword = (data) => {
 }
 
 //验证商户信息
-export const verifyAccountInfo = (id) => {
-  return axiosDefine.put(`/account/${id}/verify`)
+export const verifyAccountInfo = (data) => {
+  return axiosDefine.put('/account/verify', data)
 }
 
 //绑定商户信息

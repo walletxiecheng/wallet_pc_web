@@ -6,7 +6,7 @@ import { useRequest } from 'ahooks'
 import { bindGoogleAuth, getGoogleAuth } from '@/service'
 import { QRCode } from 'antd'
 import { toggleFocus, codeComputed } from '@/common/method'
-import { showError } from '@/common/message'
+import { showError, showSuccess } from '@/common/message'
 
 export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
   const inputRefs = useRef([])
@@ -29,8 +29,11 @@ export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
     }
     try {
       await bindGoogleAuth(req)
+      showSuccess('绑定成功')
+      // setGoogleStatus(false)
+      // 手动设置localStorage
     } catch (err) {
-      return showError('绑定失败，请重试。')
+      return showError('验证码错误，请重试。')
     }
   }
   return (

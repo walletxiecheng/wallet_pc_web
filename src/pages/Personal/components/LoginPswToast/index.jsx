@@ -5,8 +5,13 @@ import eyeOpen from '@/assets/icon/dark/icon-eye-line-open.svg'
 import eyeClose from '@/assets/icon/dark/icon-eye-line-close.svg'
 import BindGoogleToast from '../BindGoogleToast'
 import { Flex } from 'antd'
+import { verifyAccountInfo } from '@/service'
+import { useUserStore } from '@/stores'
+import { showWarning } from '@/common/message'
 
 export default function LoginPswToast({ status, setStatus }) {
+  const { userInfo } = useUserStore()
+  console.log(userInfo)
   const [googleStatus, setGoogleStatus] = useState(false)
   // 密码状态
   const [passwordStatus, setPasswordStatus] = useState(false)
@@ -16,6 +21,19 @@ export default function LoginPswToast({ status, setStatus }) {
     setPasswordStatus(!passwordStatus)
   }
 
+  // 检查密码
+  const checkLoginPassword = async () => {
+    const req = {
+      password: passwordInputRef.current?.value || '',
+      id: userInfo.commercial_id
+    }
+    try {
+      await verifyAccountInfo(req)
+      setGoogleStatus(true)
+    } catch {
+      showWarning('密码输入错误，请重试。')
+    }
+  }
   return (
     <div
       className={style.passwordContainer}
@@ -25,7 +43,11 @@ export default function LoginPswToast({ status, setStatus }) {
         googleStatus={googleStatus}
         setGoogleStatus={setGoogleStatus}
       />
-      <Flex>
+      <Flex
+        onClick={() => {
+          setStatus(false)
+        }}
+      >
         <img src={iconArrowLine} width={16} />
         <span>关闭</span>
       </Flex>
@@ -51,13 +73,7 @@ export default function LoginPswToast({ status, setStatus }) {
       </div>
 
       <div>
-        <button
-          onClick={() => {
-            setGoogleStatus(true)
-          }}
-        >
-          确认
-        </button>
+        <button onClick={checkLoginPassword}>确认</button>
       </div>
     </div>
   )
