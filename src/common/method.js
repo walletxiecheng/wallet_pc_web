@@ -6,3 +6,12 @@ export const toggleFocus = (inputRefs, e, index) => {
     return inputRefs.current[index + 1].focus()
   }
 }
+
+// 计算输入框内容
+export const codeComputed = (inputRefs) => {
+  const goggleCode = []
+  inputRefs.current.map((item, index) => {
+    goggleCode[index] = item.value
+  })
+  return goggleCode.join('')
+}

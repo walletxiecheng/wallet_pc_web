@@ -14,6 +14,7 @@ import BindBaseTips from './components/BindBaseTips'
 import BindEmail from './components/BindEmail'
 import BindPhone from './components/BindPhone'
 import Identity from './components/Identity'
+import LoginPswToast from './components/LoginPswToast'
 
 const verifyList = [
   {
@@ -73,6 +74,8 @@ export default function Personal() {
   const toggleShowIdentity = (status) => {
     setShowIdentity(status)
   }
+
+  const [status, setStatus] = useState(false)
   return (
     <>
       <NavBar />
@@ -94,6 +97,7 @@ export default function Personal() {
         showIdentity={showIdentity}
         toggleShowIdentity={toggleShowIdentity}
       />
+      <LoginPswToast status={status} setStatus={setStatus} />
 
       <div className={style.personalContainer}>
         <div className={style.info}>
@@ -206,7 +210,13 @@ export default function Personal() {
                 {item.id === 4 && (
                   <Space>
                     {/* <div>2647418717@qq.com</div> */}
-                    <button>绑定</button>
+                    <button
+                      onClick={() => {
+                        setStatus(true)
+                      }}
+                    >
+                      绑定
+                    </button>
                   </Space>
                 )}
               </Flex>

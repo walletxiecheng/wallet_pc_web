@@ -1,15 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import NavBar from '@/components/NavBar'
 import style from './index.module.less'
-import coinTypeImg from '@/assets/image/image-coin-type.svg'
-import arrowDownLineIcon from '@/assets/icon/light/icon-arrow-down-line.png'
 import { Flex } from 'antd'
 import Divider from '@/components/Divider'
 import checkIconOff from '@/assets/icon/dark/icon-checkBox-line-off.svg'
 import checkIconOn from '@/assets/icon/light/icon-checkBox-line.svg'
 import Tips from './components/Tips'
 import GoogleCodeModal from './components/GoogleCodeModal'
-
 import { getCryptoTokens, getChains } from '@/service'
 import { useRequest } from 'ahooks'
 import { showError } from '@/common/message'
@@ -17,6 +14,8 @@ import { useUserStore } from '@/stores'
 
 export default function CarryCoin() {
   const { userInfo } = useUserStore()
+  const amountRef = useRef(0)
+  const withdrawAddrRef = useRef()
   // 是否显示tips
   const [tips, setTips] = useState(false)
   const toggleToast = (status) => setTips(status)
@@ -158,7 +157,7 @@ export default function CarryCoin() {
           <div className={style.carryAmount}>
             <header>提币数量</header>
             <div className={style.inputBox}>
-              <input type="number" placeholder="最小输入数量为2" />
+              <input type="text" placeholder="最小输入数量为2" />
               <Flex>
                 <span>USDT</span>｜<span className={style.link}>全部</span>
               </Flex>

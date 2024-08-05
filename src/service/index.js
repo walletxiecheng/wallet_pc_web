@@ -138,3 +138,13 @@ export const sendVerifyCode = (data) => {
 export const getAccountAssets = (id, data) => {
   return axiosDefine.get(`/account/${id}/assets`, data)
 }
+
+// 获取谷歌密钥
+export const getGoogleAuth = () => {
+  return axiosDefine.get('/account/google-auth/secret')
+}
+
+//
+export const bindGoogleAuth = (data) => {
+  return axiosDefine.post('/account/google-auth/bind', data)
+}

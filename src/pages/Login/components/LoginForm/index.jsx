@@ -85,10 +85,11 @@ export default function LoginForm() {
     if (!req.account || !req.password) {
       return showWarning('邮箱号或者密码不能为空。')
     }
+
     try {
-      await login(req)
-      setToken(res.data.token)
-      setUserInfo(res.data)
+      const { data } = await login(req)
+      setToken(data.token)
+      setUserInfo(data)
       showSuccess('登录成功')
       navigate('/index')
     } catch (err) {
@@ -102,7 +103,6 @@ export default function LoginForm() {
       account: phoneInputRef.current.value,
       password: phonePasswordRef.current.value
     }
-    console.log(req)
     try {
       await login(req)
       setToken(res.data.token)

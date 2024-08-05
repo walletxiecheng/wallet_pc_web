@@ -26,7 +26,7 @@ export default function GoogleCodeModal({
     return goggleCode.join('')
   }
 
-  // 车看
+  // 检测
   const check = () => {
     const goggleCode = codeComputed()
     if (goggleCode.length < 6) {
