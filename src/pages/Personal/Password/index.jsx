@@ -3,11 +3,11 @@ import style from './index.module.less'
 import iconArrowLine from '@/assets/icon/light/icon-arrow-left-line.png'
 import eyeOpen from '@/assets/icon/dark/icon-eye-line-open.svg'
 import eyeClose from '@/assets/icon/dark/icon-eye-line-close.svg'
-import { useNavigate } from 'react-router-dom'
 import { showError, showSuccess, showWarning } from '@/common/message'
 import { setAssetsPassword } from '@/service'
 import { useUserStore } from '@/stores'
 
+// 设置资金密码
 export default function Password({
   account,
   verifyCode,
@@ -20,7 +20,7 @@ export default function Password({
   const passwordInputRef = useRef()
   const newPasswordInputRef = useRef()
 
-  const { userInfo } = useUserStore()
+  const { userInfo, setUserInfo } = useUserStore()
   const togglePassword = () => {
     setPasswordStatus(passwordStatus === 0 ? 1 : 0)
   }
@@ -45,6 +45,9 @@ export default function Password({
       await setAssetsPassword(req)
       showSuccess('设置资金密码成功')
       // 手动更改本地的资金状态
+      const has_fund_password = true
+      console.log(has_fund_password)
+      setUserInfo({ ...userInfo, has_fund_password })
     } catch (err) {
       showError('设置资金密码失败，请重试')
     }

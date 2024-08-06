@@ -15,6 +15,7 @@ import BindEmail from './components/BindEmail'
 import BindPhone from './components/BindPhone'
 import Identity from './components/Identity'
 import LoginPswToast from './components/LoginPswToast'
+import { showSuccess } from '@/common/message'
 
 const verifyList = [
   {
@@ -52,7 +53,6 @@ export default function Personal() {
 
   // 谷歌状态
   const googleStatus = userInfo?.google_verify_status
-  console.log(userInfo)
   // 资金密码状态
   const has_fund_password = userInfo?.has_fund_password
   //提示认证
@@ -70,7 +70,6 @@ export default function Personal() {
   // 手机号弹窗的显示与隐藏
   const [showPhone, setShowPhone] = useState(false)
   const togglePhone = (status) => {
-    console.log(status)
     setShowPhone(status)
   }
 
@@ -80,6 +79,14 @@ export default function Personal() {
     setShowIdentity(status)
   }
 
+  const checkBaseAuth = () => {
+    console.log(userInfo)
+    if ((!userInfo.email || !useUserStore, phone)) {
+      toggleTipsStatus(true)
+    } else {
+      showSuccess('您已完成基础认证')
+    }
+  }
   const [status, setStatus] = useState(false)
   return (
     <>
@@ -126,21 +133,13 @@ export default function Personal() {
           <div className={style.card}>
             <header>
               <div className={style.title}>身份认证</div>
-              {/* <Tag color="red">待审核</Tag> */}
-              {/* <Tag color="green">已通过</Tag> */}
             </header>
             <div className={style.description}>
               完成身份认证，有助于保护账户安全，提高提现额度及交易权限
             </div>
 
             <Flex>
-              <button
-                onClick={() => {
-                  toggleTipsStatus(true)
-                }}
-              >
-                基础认证
-              </button>
+              <button onClick={checkBaseAuth}>基础认证</button>
               <button>法币高级认证</button>
             </Flex>
           </div>

@@ -7,8 +7,12 @@ import { bindGoogleAuth, getGoogleAuth } from '@/service'
 import { QRCode } from 'antd'
 import { toggleFocus, codeComputed } from '@/common/method'
 import { showError, showSuccess } from '@/common/message'
+import { useUserStore } from '@/stores'
 
+// 绑定谷歌验证码
 export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
+  const { userInfo, setUserInfo } = useUserStore()
+
   const inputRefs = useRef([])
   // 获取谷歌验证码
   const getRequestHandler = async () => {
@@ -31,6 +35,8 @@ export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
       await bindGoogleAuth(req)
       showSuccess('绑定成功')
       // setGoogleStatus(false)
+      const google_verify_status = true
+      setUserInfo({ ...userInfo, google_verify_status })
       // 手动设置localStorage
     } catch (err) {
       return showError('验证码错误，请重试。')
