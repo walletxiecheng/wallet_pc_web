@@ -1,44 +1,54 @@
 import '@/assets/css/public.css'
+import moment from 'moment'
+
 export const apiColumns = () => {
   return [
     {
-      key: 'token',
-      dataIndex: 'token',
-      title: '创建时间'
+      key: 'create_time',
+      dataIndex: 'create_time',
+      title: '创建时间',
+      render: (_, record) => (
+        <span>{moment(record.create_time).format('YYYY-MM-DD-HH:MM:SS')}</span>
+      )
     },
     {
-      key: 'available_balance',
-      dataIndex: 'available_balance',
+      key: 'remark',
+      dataIndex: 'remark',
       title: '备注'
     },
     {
-      key: 'frozen_balance',
-      dataIndex: 'frozen_balance',
+      key: 'usage',
+      dataIndex: 'usage',
       title: '用途'
     },
     {
-      key: 'valuation',
-      dataIndex: 'valuation',
+      key: 'auth',
+      dataIndex: 'auth',
       title: '权限'
     },
     {
-      key: 'lock_balance',
-      dataIndex: 'lock_balance',
-      title: '访问密钥Access Key'
+      key: 'content',
+      dataIndex: 'content',
+      title: '访问密钥Access Key',
+      render: (_, record) => (
+        <div style={{ width: 150 }} className="text-ellipsis">
+          {record.content}
+        </div>
+      )
     },
     {
-      key: 'lock_balance',
-      dataIndex: 'lock_balance',
+      key: 'bind_ip',
+      dataIndex: 'bind_ip',
       title: '绑定地址'
     },
     {
-      key: 'lock_balance',
-      dataIndex: 'lock_balance',
+      key: 'status',
+      dataIndex: 'status',
       title: '状态'
     },
     {
-      key: 'lock_balance',
-      dataIndex: 'lock_balance',
+      key: 'exchangeable',
+      dataIndex: 'exchangeable',
       title: '可交易对'
     },
     {

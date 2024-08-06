@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from '@/components/NavBar'
+import KeyToast from './KeyToast'
 import { Form, Input, Button, Checkbox, Table } from 'antd'
 import {
   getKeysPermissions,
@@ -9,10 +10,11 @@ import {
 import './index.less'
 import { usePagination, useRequest } from 'ahooks'
 import { showError } from '@/common/message'
-import { apiColumns, authorityOptions } from './config'
+import { apiColumns } from './config'
 import { pageParams } from '@/common/config'
 
 export default function APIManager() {
+  // 是否展示
   // 获取权限映射表
   const { data: permissionOptions } = useRequest(async () => {
     const { data } = await getKeysPermissions()
@@ -28,7 +30,7 @@ export default function APIManager() {
       const { data } = await getAccountKeys(params)
       return data
     } catch (err) {
-      showError(err.msg)
+      showError('获取apiKey记录失败')
     }
   }
   const {
@@ -52,6 +54,7 @@ export default function APIManager() {
   return (
     <>
       <NavBar />
+      <KeyToast />
       <div className="apiContainer">
         <div className="creteAPI">
           <header>创建API Key</header>
@@ -87,8 +90,8 @@ export default function APIManager() {
                 • Token17 为您提供了强大的API，您可以通过 API
                 使用行情查询、自动交易等服务。通过API 文档 查看如何使用。
                 <br />
-                • 每个用户最多创建20组API Key <br />•{' '}
-                <strong s> 请不要泄露您的APIKey， 以免造成资产损失。</strong>
+                • 每个用户最多创建20组API Key <br />•
+                <strong> 请不要泄露您的APIKey， 以免造成资产损失。</strong>
                 出于安全考虑，建议为API Key绑定IP，每个API
                 Key最多绑定20个IP地址或IP段。
                 单个IP地址或IP段直接填写，多个IP地址或IP段用半角逗号分隔，如：192.168.1.1,192.168.1.2,192.168.0.1/24
@@ -104,6 +107,7 @@ export default function APIManager() {
           <div className="tableTitle">我的API Key</div>
           <Table
             dataSource={apiList?.records || []}
+            rowKey={(record) => record.uid}
             pagination={{
               total: apiList?.total,
               current: pagination.current,
