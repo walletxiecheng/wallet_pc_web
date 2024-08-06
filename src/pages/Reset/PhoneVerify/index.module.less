@@ -5,6 +5,16 @@
   border: 1px solid var(--color-border-white8);
   background-color: var(--color-fill-black2);
   padding: 37px;
+  position: absolute;
+  z-index: 99;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .phone {
+    header {
+      margin-bottom: var(--spacing-12);
+    }
+  }
   .back {
     display: flex;
     width: 50px;
@@ -14,6 +24,7 @@
       font-size: 13px;
     }
   }
+
   .EmailInput {
     margin-top: 20px;
     justify-content: space-around;

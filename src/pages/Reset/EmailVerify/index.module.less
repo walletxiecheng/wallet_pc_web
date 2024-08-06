@@ -1,0 +1,46 @@
+.verifyContainer {
+  width: 460px;
+  height: 368px;
+  border-radius: 16px;
+  border: 1px solid var(--color-border-white8);
+  background: var(--color-fill-quin);
+
+  padding: 37px;
+  position: absolute;
+  z-index: 99;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .back {
+    display: flex;
+    width: 50px;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      font-size: 13px;
+    }
+  }
+  .EmailInput {
+    margin-top: 20px;
+    justify-content: space-around;
+    input {
+      width: 52px;
+      height: 52px;
+    }
+  }
+  .send {
+    text-align: right;
+    margin-top: 10px;
+    color: var(--color-text-link);
+  }
+  button {
+    display: flex;
+    width: 380px;
+    height: 52px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    opacity: 0.4;
+    background: var(--color-fill-white8);
+  }
+}
