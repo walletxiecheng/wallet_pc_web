@@ -42,11 +42,11 @@ export default function Record() {
   const navigate = useNavigate()
   // 当前选中tab
   const [checkTab, setCheckTab] = useState(1)
-
+  const [coinId, setCoinId] = useState(0)
   // 提币列表
   const getWithdrawRecordHandler = async (req) => {
-    req.coin_id = 0
-    const { data } = await getWithdrawRecord(userInfo.commercial_id, req)
+    req.coin_id = coinId
+    const { data } = await getWithdrawRecord(req)
     return { total: data.total, list: data.list }
   }
   const { data: withdrawList } = usePagination(getWithdrawRecordHandler, {
@@ -55,27 +55,20 @@ export default function Record() {
 
   // 收款列表
   const getReceiveRecordHandler = async (req) => {
-    req.coin_id = 0
+    req.coin_id = coinId
 
-    const { data } = await getReceiveRecord(userInfo.commercial_id, req)
+    const { data } = await getReceiveRecord(req)
+    console.log(data)
     return { total: data.total, list: data.list }
   }
-  const { data: receiveList } = usePagination(getReceiveRecordHandler)
+  const { data: receiveList } = usePagination(getReceiveRecordHandler, {
+    defaultParams: [pageParams]
+  })
 
   return (
     <>
       <NavBar />
       <div className="recordContainer">
-        {/* <Flex
-          onClick={() => {
-            navigate('-1')
-          }}
-          align="center"
-        >
-          <img src={backIcon} width={16} />
-          返回
-        </Flex> */}
-
         <div className="tabs">
           {tabList.map((item) => (
             <span

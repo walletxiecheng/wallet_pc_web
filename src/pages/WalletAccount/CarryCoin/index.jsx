@@ -75,7 +75,6 @@ export default function CarryCoin() {
       return setTips(true)
     }
     toggleGoogleModal(true)
-    // toggleGoogleModal(true)
   }
 
   return (

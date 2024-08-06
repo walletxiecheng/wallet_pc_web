@@ -1,19 +1,31 @@
 import React from 'react'
 import NavBar from '@/components/NavBar'
 import { Form, Input, Button, Checkbox, Table } from 'antd'
-import { getAccountKeys, createAccountKeys } from '@/service'
+import {
+  getKeysPermissions,
+  createAccountKeys,
+  getAccountKeys
+} from '@/service'
 import './index.less'
-import { usePagination } from 'ahooks'
-import { useUserStore } from '@/stores'
+import { usePagination, useRequest } from 'ahooks'
 import { showError } from '@/common/message'
 import { apiColumns, authorityOptions } from './config'
+import { pageParams } from '@/common/config'
 
 export default function APIManager() {
-  const { userInfo } = useUserStore()
-
+  // 获取权限映射表
+  const { data: permissionOptions } = useRequest(async () => {
+    const { data } = await getKeysPermissions()
+    data.map((item, index) => {
+      item.value = item.code
+      item.label = item.description
+    })
+    return data
+  })
+  // 获取apiKey记录
   const getAccountKeysHandler = async (params) => {
     try {
-      const { data } = await getAccountKeys(userInfo.commercial_id, params)
+      const { data } = await getAccountKeys(params)
       return data
     } catch (err) {
       showError(err.msg)
@@ -23,15 +35,16 @@ export default function APIManager() {
     data: apiList,
     run,
     pagination
-  } = usePagination(getAccountKeysHandler)
+  } = usePagination(getAccountKeysHandler, {
+    defaultParams: [pageParams]
+  })
 
   // 创建密钥
   const onFinish = async (values) => {
-    values.acl = values.acl.split(',')
-    values.expiration = 10
-    values.title = 'none'
+    // values.bind_ip = values?.bind_ip?.split(',') || ''
+    console.log(values)
     try {
-      await createAccountKeys(userInfo.commercial_id, values)
+      await createAccountKeys(values)
     } catch (err) {
       showError(err.msg)
     }
@@ -45,15 +58,19 @@ export default function APIManager() {
           <main>
             <div className="createFormBox">
               <Form layout="vertical" className="form" onFinish={onFinish}>
-                <Form.Item label="备注" name="description">
+                <Form.Item label="备注" name="remark">
                   <Input />
                 </Form.Item>
 
-                <Form.Item label="权限设置(可多选)" name="permissions">
-                  <Checkbox.Group options={authorityOptions} />
+                <Form.Item
+                  label="权限设置(可多选)"
+                  initialValue={0}
+                  name="permissions"
+                >
+                  <Checkbox.Group options={permissionOptions} />
                 </Form.Item>
 
-                <Form.Item label="绑定ID地址或IP段（选填）" name="acl">
+                <Form.Item label="绑定ID地址或IP段（选填）" name="bind_ip">
                   <Input.TextArea placeholder="多个IP地址请用英文逗号隔开，最多填写20个IP地址" />
                 </Form.Item>
 
@@ -85,7 +102,17 @@ export default function APIManager() {
 
         <div className="tableBox">
           <div className="tableTitle">我的API Key</div>
-          <Table dataSource={apiList} columns={apiColumns()} />
+          <Table
+            dataSource={apiList?.records || []}
+            pagination={{
+              total: apiList?.total,
+              current: pagination.current,
+              pageSize: pagination.pageSize,
+              onChange: pagination.onChange,
+              onShowSizeChange: pagination.onChange
+            }}
+            columns={apiColumns()}
+          />
         </div>
       </div>
     </>

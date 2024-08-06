@@ -4,7 +4,7 @@ import closeIcon from '@/assets/icon/dark/icon-close-line.svg'
 import { Flex } from 'antd'
 import { toggleFocus, codeComputed } from '@/common/method'
 import { cryptoWithdraw } from '@/service'
-import { showError } from '@/common/message'
+import { showError, showSuccess } from '@/common/message'
 
 export default function PasswordModal({
   pswStatus,
@@ -14,13 +14,17 @@ export default function PasswordModal({
 }) {
   const inputRefs = useRef([])
   const caryCoinHandler = async () => {
+    const req = data
+    req.password = codeComputed(inputRefs)
+    req.google_auth_code = goggleCode
+    console.log(req)
     try {
-      const req = data
-      req.password = codeComputed(inputRefs)
       // req.
       await cryptoWithdraw(req)
+      showSuccess('提币成功')
     } catch (err) {
       showError('提币失败，请重试。')
+      // showError(err)
     }
   }
   return (

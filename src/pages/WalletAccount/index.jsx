@@ -4,16 +4,12 @@ import './index.less'
 import { Radio, Table } from 'antd'
 import { getAccountAssets } from '@/service'
 import { usePagination } from 'ahooks'
-import { useUserStore } from '@/stores'
 import { pageParams } from '@/common/config'
 import { showError } from '@/common/message'
 import { assetsColumns } from './config'
 import { useNavigate } from 'react-router-dom'
 
 export default function WalletAccount() {
-  const { userInfo } = useUserStore()
-  const commercial_id = userInfo.commercial_id
-
   const navigate = useNavigate()
   // 是否隐藏资产
   const [showAssets, setShowAssets] = useState(false)
@@ -21,7 +17,7 @@ export default function WalletAccount() {
   // 获取加密交易列表
   const getTransactionHandler = async (params) => {
     try {
-      const { data } = await getAccountAssets(commercial_id, params)
+      const { data } = await getAccountAssets(params)
       return { total: data.total, list: data.records }
     } catch (err) {
       showError(err)

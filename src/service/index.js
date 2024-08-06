@@ -41,8 +41,8 @@ export const bindAccountInfo = (data) => {
 }
 
 //修改商户信息
-export const updateAccountInfo = (id) => {
-  return axiosDefine.put(`account/bind/${id}`, data)
+export const updateAccountInfo = (data) => {
+  return axiosDefine.put('account/bind/', data)
 }
 
 //上传个人认证信息/form表单格式
@@ -56,23 +56,23 @@ export const enterpriseAuthentication = (data, header) => {
 }
 
 // 获取账户地址
-export const getAccountAddress = (id) => {
-  return axiosDefine.get(`/account/${id}/address`)
+export const getAccountAddress = () => {
+  return axiosDefine.get('/account/address')
 }
 
 // 获取提款记录
-export const getWithdrawRecord = (id, data) => {
-  return axiosDefine.get(`/crypto/withdraw/record/${id}`, data)
+export const getWithdrawRecord = (data) => {
+  return axiosDefine.get('/crypto/withdraw/record', data)
 }
 
 // 获取收款记录
-export const getReceiveRecord = (id, data) => {
-  return axiosDefine.get(`/crypto/receive/record/${id}`, data)
+export const getReceiveRecord = (data) => {
+  return axiosDefine.get('/crypto/receive/record', data)
 }
 
 // 获取加密交易
-export const getCryptoTransactions = (id) => {
-  return axiosDefine.get(`/crypto/transactions/${id}`)
+export const getCryptoTransactions = () => {
+  return axiosDefine.get('/crypto/transactions')
 }
 
 // 获取加密交易
@@ -96,18 +96,18 @@ export const transfer = (data) => {
 }
 
 // 获取api密钥
-export const getAccountKeys = (id) => {
-  return axiosDefine.get(`/account/${id}/keys`)
+export const getAccountKeys = (data) => {
+  return axiosDefine.get('/account/keys', data)
 }
 
-// 获取API调用记录
-export const getAccountKeyRecord = (id, data) => {
-  return axiosDefine.get(`/account/${id}/keys/records`, data)
+// 获取API密钥记录
+export const getAccountKeyRecord = (data) => {
+  return axiosDefine.get('/account/keys/records', data)
 }
 
 // 创建api密钥
-export const createAccountKeys = (id) => {
-  return axiosDefine.post(`/account/${id}/keys`)
+export const createAccountKeys = (data) => {
+  return axiosDefine.post('/account/keys', data)
 }
 
 // 获取账户整体信息
@@ -135,8 +135,8 @@ export const sendVerifyCode = (data) => {
 }
 
 // 获取账户资产列表
-export const getAccountAssets = (id, data) => {
-  return axiosDefine.get(`/account/${id}/assets`, data)
+export const getAccountAssets = (data) => {
+  return axiosDefine.get('/account/assets', data)
 }
 
 // 获取谷歌密钥
@@ -144,7 +144,13 @@ export const getGoogleAuth = () => {
   return axiosDefine.get('/account/google-auth/secret')
 }
 
-//
+//  绑定谷歌验证器
 export const bindGoogleAuth = (data) => {
   return axiosDefine.post('/account/google-auth/bind', data)
+}
+
+//
+//  获取APIKey的权限映射表
+export const getKeysPermissions = () => {
+  return axiosDefine.get('/system/keys/permissions')
 }
