@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NavBar from '@/components/NavBar'
 import KeyToast from './KeyToast'
 import { Form, Input, Button, Checkbox, Table } from 'antd'
@@ -9,12 +9,17 @@ import {
 } from '@/service'
 import './index.less'
 import { usePagination, useRequest } from 'ahooks'
-import { showError } from '@/common/message'
+import { showError, showSuccess } from '@/common/message'
 import { apiColumns } from './config'
 import { pageParams } from '@/common/config'
 
 export default function APIManager() {
   // 是否展示
+  const [showToast, setShowToast] = useState(false)
+
+  const [accessKey, setAccessKey] = useState()
+  const [secretKey, setSecretKey] = useState()
+
   // 获取权限映射表
   const { data: permissionOptions } = useRequest(async () => {
     const { data } = await getKeysPermissions()
@@ -46,7 +51,12 @@ export default function APIManager() {
     // values.bind_ip = values?.bind_ip?.split(',') || ''
     console.log(values)
     try {
-      await createAccountKeys(values)
+      const { data } = await createAccountKeys(values)
+      setAccessKey(data.access_key)
+      setSecretKey(data.secret_key)
+      showSuccess('创建成功')
+      setShowToast(true)
+      run(pageParams)
     } catch (err) {
       showError(err.msg)
     }
@@ -54,7 +64,12 @@ export default function APIManager() {
   return (
     <>
       <NavBar />
-      <KeyToast />
+      <KeyToast
+        showToast={showToast}
+        setShowToast={setShowToast}
+        accessKey={accessKey}
+        secretKey={secretKey}
+      />
       <div className="apiContainer">
         <div className="creteAPI">
           <header>创建API Key</header>

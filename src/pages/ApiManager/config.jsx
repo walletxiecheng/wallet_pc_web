@@ -7,9 +7,8 @@ export const apiColumns = () => {
       key: 'create_time',
       dataIndex: 'create_time',
       title: '创建时间',
-      render: (_, record) => (
-        <span>{moment(record.create_time).format('YYYY-MM-DD-HH:MM:SS')}</span>
-      )
+      render: (_, record) => <span>{moment(record.create_time).format()}</span>
+      // render: (_, record) => <span>{record.create_time}</span>
     },
     {
       key: 'remark',
@@ -39,7 +38,12 @@ export const apiColumns = () => {
     {
       key: 'bind_ip',
       dataIndex: 'bind_ip',
-      title: '绑定地址'
+      title: '绑定地址',
+      render: (_, record) => (
+        <div style={{ width: 100 }} className="text-ellipsis">
+          {record.bind_ip}
+        </div>
+      )
     },
     {
       key: 'status',
@@ -54,7 +58,8 @@ export const apiColumns = () => {
     {
       key: 'operate',
       dataIndex: 'operate',
-      title: '操作'
+      title: '操作',
+      render: () => <button className="tableButton">编辑</button>
     }
   ]
 }

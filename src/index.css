@@ -16,3 +16,16 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.tableButton {
+  display: flex;
+  width: 52px;
+  height: 32px;
+  font-size: 13px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  border: 1px solid
+    var(--border---color-border-white8, rgba(255, 255, 255, 0.08));
+  background: var(--fill---color-fill-white8, rgba(255, 255, 255, 0.08));
+}

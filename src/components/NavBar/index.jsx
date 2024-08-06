@@ -123,7 +123,7 @@ export default function NavBar() {
         </Flex>
 
         <Flex justify="space-around" className={style.aidedNavList}>
-          <Space style={{ display: token ? 'none' : 'block' }}>
+          <Space style={{ display: token ? 'none' : 'flex' }}>
             <button
               className={style.loginButton}
               onClick={() => {
