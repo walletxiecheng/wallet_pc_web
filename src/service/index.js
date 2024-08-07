@@ -47,12 +47,12 @@ export const updateAccountInfo = (data) => {
 
 //上传个人认证信息/form表单格式
 export const personAuthentication = (data, header) => {
-  return axiosDefine.put('/account/authentication/personal', data, header)
+  return axiosDefine.post('/account/authentication/personal2', data, header)
 }
 
 //上传企业认证信息/form表单格式
 export const enterpriseAuthentication = (data, header) => {
-  return axiosDefine.put('/account/authentication/enterprise', data, header)
+  return axiosDefine.post('/account/authentication/enterprise2', data, header)
 }
 
 // 获取账户地址

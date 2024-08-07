@@ -47,23 +47,28 @@ export default function Record() {
   const getWithdrawRecordHandler = async (req) => {
     req.coin_id = coinId
     const { data } = await getWithdrawRecord(req)
-    return { total: data.total, list: data.list }
+    return { total: data.total, list: data.records }
   }
-  const { data: withdrawList } = usePagination(getWithdrawRecordHandler, {
-    defaultParams: [pageParams]
-  })
+  const { data: withdrawList, pagination: withdrawPagination } = usePagination(
+    getWithdrawRecordHandler,
+    {
+      defaultParams: [pageParams]
+    }
+  )
 
   // 收款列表
   const getReceiveRecordHandler = async (req) => {
     req.coin_id = coinId
 
     const { data } = await getReceiveRecord(req)
-    console.log(data)
-    return { total: data.total, list: data.list }
+    return { total: data.total, list: data.records }
   }
-  const { data: receiveList } = usePagination(getReceiveRecordHandler, {
-    defaultParams: [pageParams]
-  })
+  const { data: receiveList, pagination: receivePagination } = usePagination(
+    getReceiveRecordHandler,
+    {
+      defaultParams: [pageParams]
+    }
+  )
 
   return (
     <>
@@ -100,11 +105,28 @@ export default function Record() {
             <Table
               columns={withdrawColumns()}
               dataSource={withdrawList?.list}
+              pagination={{
+                total: withdrawList?.total,
+                current: withdrawPagination.current,
+                pageSize: withdrawPagination.pageSize,
+                onChange: withdrawPagination.onChange,
+                onShowSizeChange: withdrawPagination.onChange
+              }}
             />
           )}
 
           {checkTab === 2 && (
-            <Table columns={receiveColumns()} dataSource={receiveList?.data} />
+            <Table
+              columns={receiveColumns()}
+              dataSource={receiveList?.data}
+              pagination={{
+                total: receiveList?.total,
+                current: receivePagination.current,
+                pageSize: receivePagination.pageSize,
+                onChange: receivePagination.onChange,
+                onShowSizeChange: receivePagination.onChange
+              }}
+            />
           )}
         </div>
       </div>
