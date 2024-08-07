@@ -3,8 +3,8 @@ import { useTokenStore, useUserStore } from '@/stores'
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-  baseURL: '/api',
-  // baseURL: ' http://token13.net:8888',
+  // baseURL: '/api',
+  baseURL: ' http://token13.net:8888',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',

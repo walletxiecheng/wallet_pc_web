@@ -11,6 +11,8 @@ import APIManager from '@/pages/ApiManager'
 import { URLS } from './urls'
 import Record from '@/pages/WalletAccount/Record'
 import Reset from '@/pages/Reset'
+import AdvancedAuth from '@/pages/AdvancedAuth'
+
 // {
 //   path: URLS.root,
 //   element: <BaseLayout />,
@@ -72,6 +74,10 @@ export const routes = createBrowserRouter([
   {
     path: URLS.keyManager,
     element: <APIManager />
+  },
+  {
+    path: URLS.advancedAuth,
+    element: <AdvancedAuth />
   }
 ])
 

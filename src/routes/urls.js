@@ -8,5 +8,6 @@ export const URLS = {
   carryCoin: '/carryCoin',
   walletRecord: '/walletRecord',
   personal: '/personal',
-  keyManager: '/keyManager' //api key
+  keyManager: '/keyManager', //api key
+  advancedAuth: '/advancedAuth' //高级认证
 }
