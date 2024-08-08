@@ -15,5 +15,4 @@ const axiosDefine = {
   delete: (url, data = {}) => axiosInstance.delete(url, { data })
 }
 
-export default 
-axiosDefine
+export default axiosDefine
