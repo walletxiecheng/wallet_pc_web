@@ -82,6 +82,7 @@ export default function WalletAccount() {
               columns={assetsColumns()}
               dataSource={data?.list}
               rowKey={(record) => record.address}
+              loading={!data}
               pagination={{
                 total: data?.total,
                 current: pagination.current,

@@ -182,16 +182,16 @@ export default function Personal() {
                     </button>
                     <button
                       style={{ display: emailStatus ? 'block' : 'none' }}
-                      // onClick={() => {
-                      //   toggleEmail(true)
-                      // }}
+                      onClick={() => {
+                        toggleEmail(true)
+                      }}
                     >
-                      已绑定
+                      换绑
                     </button>
                   </Space>
                 )}
                 {item.id === 3 && (
-                  <Flex>
+                  <Space>
                     <div>{userInfo?.phone}</div>
                     <button
                       style={{ display: phoneStatus ? 'none' : 'block' }}
@@ -209,7 +209,7 @@ export default function Personal() {
                     >
                       换绑
                     </button>
-                  </Flex>
+                  </Space>
                 )}
                 {item.id === 4 && (
                   <Space>
@@ -217,11 +217,11 @@ export default function Personal() {
 
                     <button
                       style={{ display: googleStatus ? 'block' : 'none' }}
-                      onClick={() => {
-                        setStatus(true)
-                      }}
+                      // onClick={() => {
+                      //   setStatus(true)
+                      // }}
                     >
-                      换绑
+                      已绑定
                     </button>
                     <button
                       style={{ display: googleStatus ? 'none' : 'block' }}

@@ -25,6 +25,10 @@ export const login = (data) => {
   return axiosDefine.post('/account/login', data)
 }
 
+//退出登录
+export const loginOut = (data) => {
+  return axiosDefine.post('/account/logout', data)
+}
 // 注册
 export const resetPassword = (data) => {
   return axiosDefine.post('/account/password/reset', data)
@@ -149,8 +153,12 @@ export const bindGoogleAuth = (data) => {
   return axiosDefine.post('/account/google-auth/bind', data)
 }
 
-//
 //  获取APIKey的权限映射表
 export const getKeysPermissions = () => {
   return axiosDefine.get('/system/keys/permissions')
+}
+
+// 获取历史提币地址信息
+export const getWithDrawHistoryAddr = () => {
+  return axiosDefine.get('/crypto/withdraw/history/address')
 }

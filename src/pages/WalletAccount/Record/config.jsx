@@ -44,7 +44,18 @@ export const withdrawColumns = () => {
     {
       key: 'status',
       dataIndex: 'status',
-      title: '状态'
+      title: '状态',
+      render: (_, record) => (
+        <span>
+          {' '}
+          {record.status === 0 ? '待审核' : ''}
+          {record.status === 1 ? '未通过' : ''}
+          {record.status === 2 ? '待处理' : ''}
+          {record.status === 3 ? '提现失败' : ''}
+          {record.status === 4 ? '待确认' : ''}
+          {record.status === 5 ? '完成' : ''}
+        </span>
+      )
     }
   ]
 }

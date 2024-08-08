@@ -1,5 +1,5 @@
 import '@/assets/css/public.css'
-import moment from 'moment'
+import { timesTampDate } from '@/common/method'
 
 export const apiColumns = () => {
   return [
@@ -7,8 +7,7 @@ export const apiColumns = () => {
       key: 'create_time',
       dataIndex: 'create_time',
       title: '创建时间',
-      render: (_, record) => <span>{moment(record.create_time).format()}</span>
-      // render: (_, record) => <span>{record.create_time}</span>
+      render: (_, record) => <span>{timesTampDate(record.create_time)}</span>
     },
     {
       key: 'remark',
@@ -48,7 +47,10 @@ export const apiColumns = () => {
     {
       key: 'status',
       dataIndex: 'status',
-      title: '状态'
+      title: '状态',
+      render: (_, record) => (
+        <span>{record.status === 0 ? '成功' : '失败'}</span>
+      )
     },
     {
       key: 'exchangeable',
