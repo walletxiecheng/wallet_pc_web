@@ -105,6 +105,8 @@ export default function Record() {
             <Table
               columns={withdrawColumns()}
               dataSource={withdrawList?.list}
+              loading={!withdrawList}
+              rowKey={(record) => record.order_id}
               pagination={{
                 total: withdrawList?.total,
                 current: withdrawPagination.current,
@@ -119,6 +121,8 @@ export default function Record() {
             <Table
               columns={receiveColumns()}
               dataSource={receiveList?.data}
+              rowKey={(record) => record.order_id}
+              loading={!receiveList}
               pagination={{
                 total: receiveList?.total,
                 current: receivePagination.current,

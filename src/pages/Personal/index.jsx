@@ -182,11 +182,11 @@ export default function Personal() {
                     </button>
                     <button
                       style={{ display: emailStatus ? 'block' : 'none' }}
-                      onClick={() => {
-                        toggleEmail(true)
-                      }}
+                      // onClick={() => {
+                      //   toggleEmail(true)
+                      // }}
                     >
-                      换绑
+                      已绑定
                     </button>
                   </Space>
                 )}

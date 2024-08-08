@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import NavBar from '@/components/NavBar'
 import KeyToast from './KeyToast'
+import EditToast from './EditToast'
+import { openModal } from '@/components/Modal'
 import { Form, Input, Button, Checkbox, Table } from 'antd'
 import {
   getKeysPermissions,
@@ -48,8 +50,6 @@ export default function APIManager() {
 
   // 创建密钥
   const onFinish = async (values) => {
-    // values.bind_ip = values?.bind_ip?.split(',') || ''
-    console.log(values)
     try {
       const { data } = await createAccountKeys(values)
       setAccessKey(data.access_key)
@@ -61,6 +61,7 @@ export default function APIManager() {
       showError(err.msg)
     }
   }
+
   return (
     <>
       <NavBar />
