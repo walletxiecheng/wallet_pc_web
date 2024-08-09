@@ -11,7 +11,6 @@ import { showWarning } from '@/common/message'
 
 export default function LoginPswToast({ status, setStatus }) {
   const { userInfo } = useUserStore()
-  console.log(userInfo)
   const [googleStatus, setGoogleStatus] = useState(false)
   // 密码状态
   const [passwordStatus, setPasswordStatus] = useState(false)

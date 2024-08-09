@@ -17,7 +17,7 @@ export default function BindEmail({ showEmail, toggleEmail, email }) {
   const getVerifyCode = async () => {
     const req = {
       account_type: 'email',
-      verify_type: 'BindingEmail',
+      verify_type: 'BindingEmailOrPhone',
       account: emailInputRef.current.value
     }
     try {

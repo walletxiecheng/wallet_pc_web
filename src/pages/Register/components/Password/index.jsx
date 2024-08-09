@@ -30,8 +30,6 @@ export default function Password({
   }
 
   const registerHandler = async () => {
-    // navigate('/index')
-    console.log(account, verifyCode, showPassword)
     if (passwordInputRef.current.value !== newPasswordInputRef.current.value) {
       return showWarning('两次输入密码不一致')
     }

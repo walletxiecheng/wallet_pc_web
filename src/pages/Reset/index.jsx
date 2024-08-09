@@ -56,7 +56,6 @@ export default function Reset() {
       setShowEmail(true)
       return showSuccess('发送验证码成功')
     } catch (err) {
-      console.log(err)
       return showError('邮箱格式错误，请重新输入')
     }
   }

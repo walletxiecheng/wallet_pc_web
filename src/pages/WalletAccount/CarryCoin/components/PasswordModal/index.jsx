@@ -16,8 +16,7 @@ export default function PasswordModal({
   const caryCoinHandler = async () => {
     const req = data
     req.password = codeComputed(inputRefs)
-    req.google_auth_code = goggleCode
-    console.log(req)
+    req.google_auth_code = goggleCode(req)
     try {
       // req.
       await cryptoWithdraw(req)

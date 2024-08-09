@@ -100,7 +100,6 @@ export default function AdvancedAuth() {
                     </Upload>
                   </Form.Item>
                   <Form.Item label="证件反面" name="file2" className="right">
-                    {/* <img src={backImg} /> */}
                     <Upload
                       listType="picture-card"
                       beforeUpload={beforeUpload}
@@ -142,7 +141,11 @@ export default function AdvancedAuth() {
                   </Upload>
                 </Form.Item>
                 <Form.Item>
-                  <Button type="primary" htmlType="submit">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="submitBtn"
+                  >
                     确认
                   </Button>
                 </Form.Item>
@@ -188,7 +191,6 @@ export default function AdvancedAuth() {
                     name="file5"
                     className="right"
                   >
-                    {/* <img src={backImg} /> */}
                     <Upload
                       listType="picture-card"
                       beforeUpload={beforeUpload}
@@ -210,7 +212,11 @@ export default function AdvancedAuth() {
                   </Form.Item>
                 </Flex>
                 <Form.Item>
-                  <Button type="primary" htmlType="submit">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="submitBtn"
+                  >
                     确认
                   </Button>
                 </Form.Item>

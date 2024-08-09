@@ -20,20 +20,25 @@ export default function BindPhone({ showPhone, togglePhone, phone }) {
   const getVerifyCode = async () => {
     const req = {
       account_type: 'phone',
-      verify_type: 'BindingPhone',
-      account: codeSelectRef.current.value + '-' + phoneInputRef.current.value
+      verify_type: 'BindingEmailOrPhone',
+      account: codeSelectRef?.current?.value + '-' + phoneInputRef.current.value
     }
 
-    setShowVerify(true)
-    togglePhone(false)
     try {
       await sendVerifyCode(req)
+      togglePhone(false)
+      setShowVerify(true)
+      return showSuccess('发送验证码成功')
     } catch (err) {
-      return showError('手机号格式错误')
+      if (err.code === 17) {
+        showError('该手机号已绑定')
+        return false
+      }
+      return showError('发送验证码失败')
     }
-    showSuccess('发送验证码成功')
   }
   return (
+    //
     <>
       <PhoneVerity
         showVerify={showVerify}
@@ -67,8 +72,8 @@ export default function BindPhone({ showPhone, togglePhone, phone }) {
         </div>
         <div className="main">
           <Flex>
-            <select className="select" ref={codeSelectRef}>
-              <option value="853">+852</option>
+            <select className="select" ref={codeSelectRef} defaultValue={86}>
+              <option value="852">+852</option>
               <option value="86">+86</option>
             </select>
             <input
@@ -77,7 +82,7 @@ export default function BindPhone({ showPhone, togglePhone, phone }) {
               ref={phoneInputRef}
               defaultValue={phone}
               onInput={(e) => {
-                setIsSend(e.target.value === '' ? false : 'true')
+                setIsSend(e.target.value === '' ? false : true)
               }}
             />
           </Flex>

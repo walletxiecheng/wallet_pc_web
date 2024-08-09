@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import '@/assets/css/toast.less'
 import closeIcon from '@/assets/icon/dark/icon-close-line.svg'
 import { useRef } from 'react'
-import { showError } from '@/common/message'
 import { Flex } from 'antd'
 import { bindAccountInfo } from '@/service'
 import { useUserStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
 import { toggleFocus } from '@/common/method'
+import { showSuccess, showError } from '@/common/message'
 
 export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
-  const { userInfo } = useUserStore()
+  const { userInfo, setUserInfo } = useUserStore()
   const navigate = useNavigate()
   // 输入框列表
   const inputRefs = useRef([])
@@ -46,12 +46,19 @@ export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
     }
     try {
       await bindAccountInfo(req)
-      window.location.reload()
+      let data = userInfo
+      data.email = email
+      setUserInfo(data)
+
+      showSuccess('绑定成功')
+      // // 关闭弹窗
+      // toggleShowVerify(false)
+      // window.location.reload()
     } catch (err) {
       if (err?.code === 1) {
         return showError('参数校验错误')
       }
-      if (err?.code === 2) {
+      if (err?.code === 3) {
         return showError('验证码错误')
       }
     }

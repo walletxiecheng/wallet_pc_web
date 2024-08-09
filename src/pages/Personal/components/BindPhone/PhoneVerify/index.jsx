@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import '@/assets/css/toast.less'
 import closeIcon from '@/assets/icon/dark/icon-close-line.svg'
 import { useRef } from 'react'
-import { showError } from '@/common/message'
+import { showError, showSuccess } from '@/common/message'
 import { Flex } from 'antd'
 import { bindAccountInfo } from '@/service'
 import { useUserStore } from '@/stores'
+import { configConsumerProps } from 'antd/es/config-provider'
 
 export default function PhoneVerity({
   phone,
@@ -13,7 +14,7 @@ export default function PhoneVerity({
   showVerify,
   getVerifyCode
 }) {
-  const { userInfo } = useUserStore()
+  const { userInfo, setUserInfo } = useUserStore()
   // 验证码
   const verifyCodeRef = useRef()
 
@@ -21,7 +22,7 @@ export default function PhoneVerity({
 
   const [isReload, setIsReload] = useState(false)
 
-  // 绑定邮箱
+  // 绑定手机
   const bindPhoneHandler = async () => {
     const req = {
       id: userInfo.commercial_id,
@@ -31,12 +32,18 @@ export default function PhoneVerity({
     }
     try {
       await bindAccountInfo(req)
+      let data = userInfo
+      data.phone = phone
+      setUserInfo(data)
+      showSuccess('绑定成功')
+      // 关闭弹窗
+      toggleShowVerify(false)
       window.location.reload()
     } catch (err) {
       if (err?.code === 1) {
         return showError('参数校验错误')
       }
-      if (err?.code === 2) {
+      if (err?.code === 3) {
         return showError('验证码错误')
       }
     }
