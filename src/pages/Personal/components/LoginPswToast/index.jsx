@@ -60,7 +60,7 @@ export default function LoginPswToast({ status, setStatus }) {
         <input
           ref={passwordInputRef}
           type={passwordStatus ? 'type' : 'password'}
-          placeholder="请设置6位数资金密码"
+          placeholder="请输入六位登录密码"
         />
         <span>
           <img

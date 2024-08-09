@@ -38,7 +38,7 @@ export default function PhoneVerity({
       showSuccess('绑定成功')
       // 关闭弹窗
       toggleShowVerify(false)
-      window.location.reload()
+      // window.location.reload()
     } catch (err) {
       if (err?.code === 1) {
         return showError('参数校验错误')

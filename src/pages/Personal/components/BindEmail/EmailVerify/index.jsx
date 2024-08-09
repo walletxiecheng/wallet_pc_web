@@ -17,14 +17,6 @@ export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
   // 切换焦点
   const [isBind, setBind] = useState(false)
 
-  // const toggleFocus = (e, index) => {
-  //   if (e.keyCode === 8 && inputRefs.current[index - 1]) {
-  //     inputRefs.current[index - 1].focus()
-  //   } else if (e.keyCode !== 8 && inputRefs.current[index + 1]) {
-  //     inputRefs.current[index + 1].focus()
-  //   }
-  // }
-
   // 绑定邮箱
   const bindEmailHandler = async () => {
     let code = []
@@ -52,8 +44,7 @@ export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
 
       showSuccess('绑定成功')
       // // 关闭弹窗
-      // toggleShowVerify(false)
-      // window.location.reload()
+      toggleShowVerify(false)
     } catch (err) {
       if (err?.code === 1) {
         return showError('参数校验错误')
@@ -96,7 +87,6 @@ export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
                 key={index}
                 maxLength={1}
                 ref={(el) => (inputRefs.current[index] = el)}
-                // onInput={}
                 onKeyUp={(event) => {
                   toggleFocus(inputRefs, event, index)
                   setBind(true)

@@ -25,17 +25,20 @@ export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
 
   //绑定谷歌验证器
   const bindGoogleAuthHandler = async () => {
-    const code = codeComputed(inputRefs)(code)
+    const code = codeComputed(inputRefs)
     const req = {
       secret: secretData?.secret,
       code: code
     }
     try {
       await bindGoogleAuth(req)
-      showSuccess('绑定成功')
       const google_verify_status = true
       setUserInfo({ ...userInfo, google_verify_status })
       // 手动设置localStorage
+      showSuccess('绑定成功')
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
     } catch (err) {
       return showError('验证码错误，请重试。')
     }

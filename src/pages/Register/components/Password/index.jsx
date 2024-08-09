@@ -4,7 +4,7 @@ import iconArrowLine from '@/assets/icon/light/icon-arrow-left-line.png'
 import eyeOpen from '@/assets/icon/dark/icon-eye-line-open.svg'
 import eyeClose from '@/assets/icon/dark/icon-eye-line-close.svg'
 import { useNavigate } from 'react-router-dom'
-import { showError, showWarning } from '@/common/message'
+import { showError, showSuccess, showWarning } from '@/common/message'
 import { register } from '@/service'
 
 export default function Password({
@@ -41,6 +41,7 @@ export default function Password({
     }
     try {
       await register(req)
+      showSuccess('注册成功，去登录。')
       navigate('/login')
     } catch (err) {
       if (err.code === 4) {
@@ -49,7 +50,6 @@ export default function Password({
       if (err.code === 3) {
         return showError('验证码错误')
       }
-      console.log(err)
     }
   }
   return (

@@ -30,7 +30,6 @@ export default function Password({
   }
 
   const setAssetsPasswordHandler = async () => {
-    // navigate('/index')
     if (passwordInputRef.current.value !== newPasswordInputRef.current.value) {
       showWarning('两次输入密码不一致')
     }
@@ -47,7 +46,13 @@ export default function Password({
       // 手动更改本地的资金状态
       const has_fund_password = true
       setUserInfo({ ...userInfo, has_fund_password })
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
     } catch (err) {
+      if (err.code === 3) {
+        showError('验证码错误')
+      }
       return showError('设置资金密码失败，请重试')
     }
   }
@@ -68,7 +73,7 @@ export default function Password({
 
       <header>
         <h3>设置密码</h3>
-        <span>请为您的账户设置登录密码</span>
+        <span>请为您的账户设置资金密码</span>
       </header>
 
       <div className={style.passwordBox}>

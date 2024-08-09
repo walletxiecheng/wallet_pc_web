@@ -104,13 +104,13 @@ export default function LoginForm() {
       password: phonePasswordRef.current.value
     }
     try {
-      await login(req)
-      setToken(res.data.token)
-      setUserInfo(res.data)
+      const { data } = await login(req)
+      setToken(data.token)
+      setUserInfo(data)
       showSuccess('登录成功')
       navigate('/index')
     } catch (err) {
-      return showError('手机号或密码错误')
+      return showError('登录失败')
     }
   }
   return (
@@ -167,7 +167,7 @@ export default function LoginForm() {
         <button onClick={loginEmailHandler}>下一步</button>
       </div>
 
-      {/* 手机号注册 */}
+      {/* 手机号登录 */}
       <div
         className={style.telForm}
         style={{ display: checkTab === 2 ? 'block' : 'none' }}
@@ -201,7 +201,14 @@ export default function LoginForm() {
         <button onClick={loginPhoneHandler}>下一步</button>
       </div>
       <div className={style.fun}>
-        <span>验证码登录</span>|<span>新用户注册</span>
+        <span>验证码登录</span>|
+        <span
+          onClick={() => {
+            navigate('/register')
+          }}
+        >
+          新用户注册
+        </span>
       </div>
     </div>
   )
