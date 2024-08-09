@@ -66,7 +66,8 @@ export default function AdvancedAuth() {
         </Flex>
         <div className="advanceBox">
           <header>
-            <span className="important">*</span> <span>个人认证</span>
+            <span className="important">*</span>
+            <span>个人认证</span>
           </header>
           <main>
             <div className="formBox">
@@ -78,7 +79,7 @@ export default function AdvancedAuth() {
                   <Input placeholder="请输入证件号码" />
                 </Form.Item>
                 <Flex align="center" justify="space-between">
-                  <Form.Item label="证件正面" name="file1">
+                  <Form.Item label="证件正面" name="file1" className="left">
                     <Upload
                       listType="picture-card"
                       beforeUpload={beforeUpload}
@@ -98,7 +99,7 @@ export default function AdvancedAuth() {
                       </button>
                     </Upload>
                   </Form.Item>
-                  <Form.Item label="证件反面" name="file2">
+                  <Form.Item label="证件反面" name="file2" className="right">
                     {/* <img src={backImg} /> */}
                     <Upload
                       listType="picture-card"
@@ -162,7 +163,7 @@ export default function AdvancedAuth() {
                   <Input placeholder="请输入证件号码" />
                 </Form.Item>
                 <Flex align="center" justify="space-between">
-                  <Form.Item label="营业执照" name="file4">
+                  <Form.Item label="营业执照" name="file4" className="left">
                     <Upload
                       listType="picture-card"
                       beforeUpload={beforeUpload}
@@ -182,7 +183,11 @@ export default function AdvancedAuth() {
                       </button>
                     </Upload>
                   </Form.Item>
-                  <Form.Item label="手持营业执照" name="file5">
+                  <Form.Item
+                    label="手持营业执照"
+                    name="file5"
+                    className="right"
+                  >
                     {/* <img src={backImg} /> */}
                     <Upload
                       listType="picture-card"
