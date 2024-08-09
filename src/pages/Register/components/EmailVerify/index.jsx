@@ -6,7 +6,12 @@ import { showError } from '@/common/message'
 import Password from '../Password'
 import { toggleFocus } from '@/common/method'
 
-export default function EmailVerify({ showVerify, toggleShowVerify, email }) {
+export default function EmailVerify({
+  showVerify,
+  toggleShowVerify,
+  email,
+  sendVerifyCodeHandler
+}) {
   const inputRefs = useRef([])
   const [showPassword, setShowPassword] = useState(false)
 
@@ -71,7 +76,9 @@ export default function EmailVerify({ showVerify, toggleShowVerify, email }) {
                   />
                 ))}
             </Flex>
-            <div className={style.send}>重新发送</div>
+            <div className={style.send} onClick={sendVerifyCodeHandler}>
+              重新发送
+            </div>
             <button
               onClick={() => {
                 toggleShowPassword(true)

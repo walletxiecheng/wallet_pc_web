@@ -108,9 +108,12 @@ export default function Record() {
               loading={!withdrawList}
               rowKey={(record) => record.order_id}
               pagination={{
+                hideOnSinglePage: true,
+
                 total: withdrawList?.total,
                 current: withdrawPagination.current,
                 pageSize: withdrawPagination.pageSize,
+
                 onChange: withdrawPagination.onChange,
                 onShowSizeChange: withdrawPagination.onChange
               }}
@@ -124,6 +127,7 @@ export default function Record() {
               rowKey={(record) => record.order_id}
               loading={!receiveList}
               pagination={{
+                hideOnSinglePage: true,
                 total: receiveList?.total,
                 current: receivePagination.current,
                 pageSize: receivePagination.pageSize,

@@ -106,6 +106,7 @@ export default function RegisterForm() {
     <>
       <EmailVerify
         showVerify={showVerify}
+        sendVerifyCodeHandler={sendVerifyCodeHandler}
         toggleShowVerify={toggleShowVerify}
         email={emailRef?.current?.value}
       />

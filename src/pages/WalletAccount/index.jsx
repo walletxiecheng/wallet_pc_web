@@ -84,6 +84,8 @@ export default function WalletAccount() {
               rowKey={(record) => record.address}
               loading={!data}
               pagination={{
+                hideOnSinglePage: true,
+
                 total: data?.total,
                 current: pagination.current,
                 pageSize: pagination.pageSize,
