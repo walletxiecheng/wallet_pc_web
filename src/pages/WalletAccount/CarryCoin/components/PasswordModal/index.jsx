@@ -21,9 +21,17 @@ export default function PasswordModal({
       // req.
       await cryptoWithdraw(req)
       showSuccess('提币成功')
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
     } catch (err) {
-      showError('提币失败，请重试。')
-      // showError(err)
+      if (err.code == 2) {
+        return showError('提币地址错误')
+      }
+      if (err.code == 3) {
+        return showError('验证码错误')
+      }
+      return showError('提币失败，请重试。')
     }
   }
   return (

@@ -43,12 +43,14 @@ export default function Record() {
   // 当前选中tab
   const [checkTab, setCheckTab] = useState(1)
   const [coinId, setCoinId] = useState(0)
+
   // 提币列表
   const getWithdrawRecordHandler = async (req) => {
     req.coin_id = coinId
     const { data } = await getWithdrawRecord(req)
     return { total: data.total, list: data.records }
   }
+
   const { data: withdrawList, pagination: withdrawPagination } = usePagination(
     getWithdrawRecordHandler,
     {
@@ -63,6 +65,7 @@ export default function Record() {
     const { data } = await getReceiveRecord(req)
     return { total: data.total, list: data.records }
   }
+
   const { data: receiveList, pagination: receivePagination } = usePagination(
     getReceiveRecordHandler,
     {
@@ -119,11 +122,10 @@ export default function Record() {
               }}
             />
           )}
-
           {checkTab === 2 && (
             <Table
               columns={receiveColumns()}
-              dataSource={receiveList?.data}
+              dataSource={receiveList?.list}
               rowKey={(record) => record.order_id}
               loading={!receiveList}
               pagination={{

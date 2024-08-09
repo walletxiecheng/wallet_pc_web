@@ -28,7 +28,7 @@ export default function Tips({ toggleToast, tips }) {
           />
         </header>
         <div className={style.content}>
-          当前账户并未绑定资金密码，为保障您的账户安全请绑定资金密码后在交易！
+          当前账户并未绑定资金密码或谷歌验证码，为保障您的账户安全请同时绑定资金密码和谷歌验证码之后在交易！
         </div>
         <div className={style.buttonGroup}>
           <button

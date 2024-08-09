@@ -35,6 +35,7 @@ export const assetsColumns = () => {
       key: 'operate',
       dataIndex: 'operate',
       title: '操作',
+
       render: (record) => (
         <>
           <button className="button-style"> 提币</button>

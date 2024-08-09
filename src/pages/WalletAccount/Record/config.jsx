@@ -45,6 +45,7 @@ export const withdrawColumns = () => {
       key: 'status',
       dataIndex: 'status',
       title: '状态',
+      width: '8%',
       render: (_, record) => (
         <span>
           {' '}
