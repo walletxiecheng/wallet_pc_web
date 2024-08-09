@@ -23,7 +23,13 @@ export default function NavBar() {
   const navigate = useNavigate()
   const [icon, setIcon] = useState(iconArrowBottomFill)
   // 判断是否有token
-  const { token } = useTokenStore()
+  const { token, setToken } = useTokenStore()
+
+  // 退出登录
+  const loginOutHandler = () => {
+    setToken(null)
+    navigate('/login')
+  }
 
   // 钱包下拉菜单
   const walletDropdownItems = [
@@ -86,11 +92,7 @@ export default function NavBar() {
     {
       key: 'logOut',
       label: (
-        <div
-          onClick={() => {
-            // 退出登录
-          }}
-        >
+        <div onClick={loginOutHandler}>
           <img src={iconHistoryLine} />
           退出登录
         </div>
@@ -142,7 +144,11 @@ export default function NavBar() {
             </button>
           </Space>
 
-          <Flex justify="center" align="center">
+          <Flex
+            justify="center"
+            align="center"
+            style={{ display: token ? 'flex' : 'none' }}
+          >
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <Dropdown
                 menu={{

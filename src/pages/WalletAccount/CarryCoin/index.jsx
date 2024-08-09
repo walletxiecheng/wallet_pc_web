@@ -98,6 +98,8 @@ export default function CarryCoin() {
         showAddressModal={showAddressModal}
         setShowAddressModal={setShowAddressModal}
         setCurrentAddress={setCurrentAddress}
+        currentAddress={currentAddress}
+        chain={currentChain}
       />
       <div className={style.carryContainer}>
         <Flex

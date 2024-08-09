@@ -37,7 +37,7 @@ export const assetsColumns = () => {
       title: '操作',
       render: (record) => (
         <>
-          <button className="button-style">提币</button>
+          <button className="button-style"> 提币</button>
         </>
       )
     }

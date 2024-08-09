@@ -159,6 +159,6 @@ export const getKeysPermissions = () => {
 }
 
 // 获取历史提币地址信息
-export const getWithDrawHistoryAddr = () => {
-  return axiosDefine.get('/crypto/withdraw/history/address')
+export const getWithDrawHistoryAddr = (data) => {
+  return axiosDefine.get('/crypto/withdraw/history/address', data)
 }
