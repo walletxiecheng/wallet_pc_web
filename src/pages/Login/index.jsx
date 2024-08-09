@@ -6,7 +6,6 @@ export default function Login() {
   return (
     <div className={style.loginContainer}>
       {/* 登录框 */}
-
       <LoginForm />
     </div>
   )

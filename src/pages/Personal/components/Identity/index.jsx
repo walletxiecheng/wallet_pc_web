@@ -114,6 +114,7 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
         showVerify={showVerify}
         toggleShowVerify={toggleShowVerify}
         email={emailRef?.current?.value}
+        sendVerifyCodeHandler={sendVerifyCodeHandler}
       />
 
       <PhoneVerify

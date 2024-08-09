@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import NavBar from '@/components/NavBar'
 import style from './index.module.less'
 import avatar from '@/assets/image/avatar.png'
-import { Flex, Tag, Space } from 'antd'
+import { Flex, Space } from 'antd'
 import iconSate from '@/assets/icon/light/icon-safer-line.svg'
 import iconEmail from '@/assets/icon/light/icon-email-line.svg'
 import iconPhone from '@/assets/icon/light/icon-phone-line.svg'
@@ -15,6 +15,7 @@ import BindEmail from './components/BindEmail'
 import BindPhone from './components/BindPhone'
 import Identity from './components/Identity'
 import LoginPswToast from './components/LoginPswToast'
+import { useNavigate } from 'react-router-dom'
 import { showSuccess } from '@/common/message'
 
 const verifyList = [
@@ -45,6 +46,7 @@ const verifyList = [
 ]
 
 export default function Personal() {
+  const navigate = useNavigate()
   const { userInfo } = useUserStore()
   const emailStatus = userInfo.email !== '' || false
   const phoneStatus = userInfo.phone !== '' || false
@@ -79,12 +81,12 @@ export default function Personal() {
     setShowIdentity(status)
   }
 
+  // 检查基础认证
   const checkBaseAuth = () => {
-    console.log(userInfo)
-    if ((!userInfo.email || !useUserStore, phone)) {
+    if (!userInfo.email || !userInfo.phone) {
       toggleTipsStatus(true)
     } else {
-      showSuccess('您已完成基础认证')
+      return showSuccess('您已完成基础认证')
     }
   }
   const [status, setStatus] = useState(false)
@@ -140,7 +142,13 @@ export default function Personal() {
 
             <Flex>
               <button onClick={checkBaseAuth}>基础认证</button>
-              <button>法币高级认证</button>
+              <button
+                onClick={() => {
+                  navigate('/advancedAuth')
+                }}
+              >
+                法币高级认证
+              </button>
             </Flex>
           </div>
         </div>

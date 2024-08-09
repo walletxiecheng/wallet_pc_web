@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './index.less'
 import { Button, Form, Input, Upload, Flex } from 'antd'
 import frontImg from '@/assets/image/frontCertificate.svg'
@@ -8,13 +8,19 @@ import { header } from '@/common/config'
 import { personAuthentication, enterpriseAuthentication } from '@/service'
 import { showError, showSuccess } from '@/common/message'
 import NavBar from '@/components/NavBar'
+import arrowLeftIcon from '@/assets/icon/light/icon-arrow-left-line.png'
+import { useNavigate } from 'react-router-dom'
+import asteriskLineIcon from '@/assets/icon/light/icon-asterisk-line.svg'
 
 export default function AdvancedAuth() {
+  const navigate = useNavigate()
+
+  // 取消默认上传
   const beforeUpload = () => {
     return false
   }
 
-  //
+  //个人认证
   const personHandler = async (values) => {
     const req = {
       real_name: values.real_name,
@@ -26,12 +32,13 @@ export default function AdvancedAuth() {
 
     try {
       await personAuthentication(req, header)
-      showSuccess('上传成功')
+      return showSuccess('上传成功')
     } catch {
       showError('上传失败')
     }
   }
 
+  // 企业认证
   const enterpriseHandler = async (values) => {
     const req = {
       enterprise_name: values.enterprise_name,
@@ -47,11 +54,20 @@ export default function AdvancedAuth() {
   }
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar />
       <div className="advanceContainer">
-        <div>返回</div>
+        <Flex
+          onClick={() => {
+            navigate(-1)
+          }}
+        >
+          <img src={arrowLeftIcon} width={16} />
+          <span>返回</span>
+        </Flex>
         <div className="advanceBox">
-          <header>个人认证</header>
+          <header>
+            <span className="important">*</span> <span>个人认证</span>
+          </header>
           <main>
             <div className="formBox">
               <Form layout="vertical" className="form" onFinish={personHandler}>

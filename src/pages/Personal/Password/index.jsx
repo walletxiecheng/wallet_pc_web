@@ -46,10 +46,9 @@ export default function Password({
       showSuccess('设置资金密码成功')
       // 手动更改本地的资金状态
       const has_fund_password = true
-      console.log(has_fund_password)
       setUserInfo({ ...userInfo, has_fund_password })
     } catch (err) {
-      showError('设置资金密码失败，请重试')
+      return showError('设置资金密码失败，请重试')
     }
   }
   return (
