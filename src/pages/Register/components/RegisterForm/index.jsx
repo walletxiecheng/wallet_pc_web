@@ -90,7 +90,7 @@ export default function RegisterForm() {
       showSuccess('发送验证码成功')
       toggleShowVerify(true)
     } catch (err) {
-      return showError('邮箱格式错误，请重新输入')
+      return showError('发送邮箱验证码失败')
     }
   }
 
@@ -99,9 +99,21 @@ export default function RegisterForm() {
     if (!phoneRef?.current?.value) {
       return showWarning('请输入手机号')
     }
+    const req = {
+      account_type: 'phone',
+      verify_type: 'Register',
+      account: phoneRef.current?.value
+    }
     toggleShowTel(true)
-  }
 
+    try {
+      await sendVerifyCode(req)
+      showSuccess('发送验证码成功')
+      toggleShowTel(true)
+    } catch (err) {
+      return showError('发送手机验证码错误')
+    }
+  }
   return (
     <>
       <EmailVerify

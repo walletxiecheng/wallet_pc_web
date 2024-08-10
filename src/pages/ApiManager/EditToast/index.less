@@ -1,0 +1,53 @@
+.editIPcontainer {
+  width: 429px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-white8);
+  background: var(--color-fill-quin);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  .toastTitle {
+    display: flex;
+    font-size: 15px;
+    width: 100%;
+    color: var(--color-text-pri);
+    justify-content: space-between;
+  }
+  .line {
+    width: 380px;
+    height: 1px;
+    margin: 5px 0;
+    background-color: var(--color-border-white8);
+  }
+  .form {
+    background: transparent;
+    .ant-input-outlined {
+      background: var(--color-fill-white8);
+    }
+    label {
+      color: var(--color-text-ter);
+    }
+  }
+  input {
+    height: 52px;
+    border-radius: 4px;
+    border: 0.5px solid var(--border---color-border-white8);
+    background: var(--color-fill-white8);
+    color: var(--color-text-pri);
+  }
+  input::placeholder {
+    color: var(--color-text-quat);
+  }
+  button {
+    display: flex;
+    width: 58px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius---radius-6, 6px);
+    background: var(--fill---color-fill-blue, #09f);
+  }
+}

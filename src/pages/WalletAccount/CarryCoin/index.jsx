@@ -8,7 +8,7 @@ import checkIconOn from '@/assets/icon/light/icon-checkBox-line.svg'
 import Tips from './components/Tips'
 import GoogleCodeModal from './components/GoogleCodeModal'
 import AddressModal from './components/AddressModal'
-import { getCryptoTokens, getChains } from '@/service'
+import { getCryptoTokens, getChains, getAccountAddress } from '@/service'
 import { useRequest } from 'ahooks'
 import { showError, showSuccess, showWarning } from '@/common/message'
 import { useUserStore } from '@/stores'
@@ -59,6 +59,18 @@ export default function CarryCoin() {
     }
   })
 
+  const { data: accountAddress } = useRequest(async () => {
+    try {
+      const { data } = getAccountAddress()
+      return data
+    } catch (err) {
+      console.log(err)
+    }
+  })
+
+  console.log(accountAddress)
+
+  // 获取表单数据
   const getFormData = () => {
     const address = arrivalAddrRef?.current?.value || ''
     const amount = amountRef?.current?.value || ''

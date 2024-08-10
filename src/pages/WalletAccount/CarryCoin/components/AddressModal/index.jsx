@@ -67,7 +67,7 @@ export default function AddressModal({
             </div>
           </Flex>
         ))}
-        {addressList && <div>暂无，请手动输入</div>}
+        {!addressList && <div>暂无，请手动输入</div>}
       </div>
     </div>
   )

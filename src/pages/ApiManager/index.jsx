@@ -71,6 +71,7 @@ export default function APIManager() {
         accessKey={accessKey}
         secretKey={secretKey}
       />
+      <EditToast />
       <div className="apiContainer">
         <div className="creteAPI">
           <header>创建API Key</header>
@@ -129,6 +130,7 @@ export default function APIManager() {
               current: pagination.current,
               pageSize: pagination.pageSize,
               onChange: pagination.onChange,
+              hideOnSinglePage: true,
               onShowSizeChange: pagination.onChange
             }}
             columns={apiColumns()}

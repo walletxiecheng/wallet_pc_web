@@ -114,6 +114,11 @@ export const createAccountKeys = (data) => {
   return axiosDefine.post('/account/keys', data)
 }
 
+// 更新api密钥
+export const updateAccountKeys = (data) => {
+  return axiosDefine.put('/account/keys', data)
+}
+
 // 获取账户整体信息
 export const getAccountInfo = (data) => {
   return axiosDefine.get('/api/v1/account', data)
@@ -161,4 +166,9 @@ export const getKeysPermissions = () => {
 // 获取历史提币地址信息
 export const getWithDrawHistoryAddr = (data) => {
   return axiosDefine.get('/crypto/withdraw/history/address', data)
+}
+
+// 获取地址余额接口
+export const getWithDrawBalance = (data) => {
+  return axiosDefine.get('/crypto/withdraw/balance', data)
 }
