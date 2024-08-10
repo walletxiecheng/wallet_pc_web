@@ -18,7 +18,7 @@ export default function BindBaseTips({ showBindTips, toggleTipsStatus }) {
           }}
         />
       </div>
-      <div>绑定邮箱即可完成基础认证</div>
+      <div>绑定邮箱和手机号即可完成基础认证</div>
       <div className={style.buttonGroup}>
         <button className={style.bind} onClick={() => {}}>
           绑定

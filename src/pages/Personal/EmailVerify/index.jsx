@@ -25,7 +25,6 @@ export default function EmailVerify({
   }
 
   // 邮箱验证码
-
   const getEmailVerifyCode = () => {
     const verifyCode = []
     inputRefs.current.map((current, index) => {

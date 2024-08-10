@@ -3,7 +3,7 @@ import '@/assets/css/toast.less'
 import closeIcon from '@/assets/icon/dark/icon-close-line.svg'
 import { useRef } from 'react'
 import { sendVerifyCode } from '@/service'
-import { showError, showSuccess } from '@/common/message'
+import { showError, showSuccess, showWarning } from '@/common/message'
 import EmailVerity from './EmailVerify'
 export default function BindEmail({ showEmail, toggleEmail, email }) {
   const emailInputRef = useRef()
@@ -23,6 +23,9 @@ export default function BindEmail({ showEmail, toggleEmail, email }) {
     try {
       await sendVerifyCode(req)
     } catch (err) {
+      if (err.code === 17) {
+        return showWarning('该邮箱已绑定')
+      }
       return showError('邮箱格式错误，请重试。')
     }
     showSuccess('发送验证码成功')
