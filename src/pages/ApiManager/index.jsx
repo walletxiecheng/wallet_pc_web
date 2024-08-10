@@ -16,8 +16,14 @@ import { apiColumns } from './config'
 import { pageParams } from '@/common/config'
 
 export default function APIManager() {
-  // 是否展示
+  // 是否展示密钥提示
   const [showToast, setShowToast] = useState(false)
+
+  // 是否展示修改弹窗
+  const [showEdit, setShowEdit] = useState(false)
+
+  // 编辑数据
+  const [currentData, setCurrentData] = useState(null)
 
   const [accessKey, setAccessKey] = useState()
   const [secretKey, setSecretKey] = useState()
@@ -42,7 +48,7 @@ export default function APIManager() {
   }
   const {
     data: apiList,
-    run,
+    run: runApiList,
     pagination
   } = usePagination(getAccountKeysHandler, {
     defaultParams: [pageParams]
@@ -71,7 +77,12 @@ export default function APIManager() {
         accessKey={accessKey}
         secretKey={secretKey}
       />
-      <EditToast />
+      <EditToast
+        showEdit={showEdit}
+        setShowEdit={setShowEdit}
+        currentData={currentData}
+        runApiList={runApiList}
+      />
       <div className="apiContainer">
         <div className="creteAPI">
           <header>创建API Key</header>
@@ -133,7 +144,7 @@ export default function APIManager() {
               hideOnSinglePage: true,
               onShowSizeChange: pagination.onChange
             }}
-            columns={apiColumns()}
+            columns={apiColumns(setShowEdit, setCurrentData)}
           />
         </div>
       </div>

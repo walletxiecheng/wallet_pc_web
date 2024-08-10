@@ -1,7 +1,7 @@
 import '@/assets/css/public.css'
 import { timesTampDate } from '@/common/method'
 
-export const apiColumns = () => {
+export const apiColumns = (setShowEdit, setCurrentData) => {
   return [
     {
       key: 'create_time',
@@ -61,7 +61,17 @@ export const apiColumns = () => {
       key: 'operate',
       dataIndex: 'operate',
       title: '操作',
-      render: () => <button className="tableButton">编辑</button>
+      render: (_, record) => (
+        <button
+          className="tableButton"
+          onClick={() => {
+            setShowEdit(true)
+            setCurrentData(record)
+          }}
+        >
+          编辑
+        </button>
+      )
     }
   ]
 }

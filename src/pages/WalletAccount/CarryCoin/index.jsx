@@ -44,6 +44,7 @@ export default function CarryCoin() {
     try {
       const { data } = await getCryptoTokens(req)
       setCurrentTokenId(data[0].id)
+      console.log(currentTokenId)
       return data
     } catch (err) {
       showError(err.msg)
@@ -58,17 +59,6 @@ export default function CarryCoin() {
       showError(err.msg)
     }
   })
-
-  const { data: accountAddress } = useRequest(async () => {
-    try {
-      const { data } = getAccountAddress()
-      return data
-    } catch (err) {
-      console.log(err)
-    }
-  })
-
-  console.log(accountAddress)
 
   // 获取表单数据
   const getFormData = () => {

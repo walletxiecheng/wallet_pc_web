@@ -10,6 +10,11 @@ export const getChains = () => {
   return axiosDefine.get('/system/support/chains')
 }
 
+// // 获取系统token信息
+// export const getToken = (data) => {
+//   return axiosDefine.get('/system/support/token', data)
+// }
+
 // 发送验证码
 export const registerVerifyCode = (data) => {
   return axiosDefine.post('/system/support/chains', data)
