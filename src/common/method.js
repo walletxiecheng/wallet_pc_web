@@ -28,3 +28,13 @@ export const timesTampDate = (time) => {
   const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
   return formattedDateTime
 }
+
+// export const timerReload = setTimeout(() => {
+//   window.location.reload()
+// }, 1000)
+
+export const timerReload = () => {
+  return setTimeout(() => {
+    window.location.reload()
+  }, 1000)
+}

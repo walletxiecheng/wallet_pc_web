@@ -5,6 +5,7 @@ import { Form, Input, Button, Flex } from 'antd'
 import { updateAccountKeys } from '@/service'
 import { showError, showSuccess } from '@/common/message'
 import { pageParams } from '@/common/config'
+import { timerReload } from '@/common/method'
 
 export default function EditToast({
   showEdit,
@@ -14,11 +15,11 @@ export default function EditToast({
 }) {
   const onFinish = async (values) => {
     values.uid = currentData.uid
-    console.log(values)
     try {
       await updateAccountKeys(values)
       showSuccess('更新成功')
       runApiList(pageParams)
+      timerReload()
     } catch (err) {
       showError('更新失败')
     }

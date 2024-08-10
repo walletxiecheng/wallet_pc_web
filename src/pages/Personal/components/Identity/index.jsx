@@ -90,22 +90,21 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
 
   // 发送手机号验证码
   const sendPhoneCodeHandler = async () => {
-    // const req = {
-    //   account_type: 'phone',
-    //   verify_type: 'SetFundPassword',
-    //   account: phoneRef.current?.value
-    // }
-    // try {
-    //   await sendVerifyCode(req)
-    //   showSuccess('发送验证码成功')
-    //   toggleShowVerify(true)
-    // } catch (err) {
-    //   return showError('邮箱格式错误，请重新输入')
-    // }
+    const req = {
+      account_type: 'phone',
+      verify_type: 'SetFundPassword',
+      account: phoneRef.current?.value
+    }
+    try {
+      await sendVerifyCode(req)
+      showSuccess('发送验证码成功')
+      toggleShowTel(true)
+    } catch (err) {
+      return showError('邮箱格式错误，请重新输入')
+    }
     if (!phoneRef?.current?.value) {
       return showWarning('请输入手机号')
     }
-    toggleShowTel(true)
   }
 
   return (
@@ -181,6 +180,7 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
             />
           </Flex>
           <button
+            className={style.verifyBtn}
             onClick={() => {
               // 发送手机验证码
               sendPhoneCodeHandler()

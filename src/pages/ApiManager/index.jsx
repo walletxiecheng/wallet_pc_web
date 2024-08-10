@@ -62,7 +62,7 @@ export default function APIManager() {
       setSecretKey(data.secret_key)
       showSuccess('创建成功')
       setShowToast(true)
-      run(pageParams)
+      runApiList(pageParams)
     } catch (err) {
       showError(err.msg)
     }
