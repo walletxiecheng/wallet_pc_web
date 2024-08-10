@@ -180,7 +180,7 @@ export default function CarryCoin() {
                 ref={arrivalAddrRef}
               />
             </div>
-            <header style={{ marginTop: 32 }}>充币网络</header>
+            <header style={{ marginTop: 32 }}>网络</header>
             <div className={style.networkList}>
               {chainList?.map((item, index) => (
                 <div
