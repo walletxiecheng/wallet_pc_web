@@ -46,10 +46,8 @@ export default function CarryCoin() {
     }
     try {
       const { data } = await getCryptoTokens(req)
-      // setCurrentTokenId(data[0].id)
       setCurrentToken(data[0])
       runBalance(data[0].id)
-      // console.log(data[0])
 
       return data
     } catch (err) {
@@ -110,7 +108,6 @@ export default function CarryCoin() {
     const token = e.target.value
     tokenList.map((item) => {
       if (item.coin_symbol === token) {
-        console.log(item)
         setCurrentToken(item)
       }
     })
@@ -242,7 +239,7 @@ export default function CarryCoin() {
                   </Flex>
                   <div>
                     <span>
-                      手续费 {Number(currentToken.withdraw_fee) + ' '}
+                      手续费 {Number(currentToken?.withdraw_fee) + ' '}
                       USDT
                     </span>
                     <br />
