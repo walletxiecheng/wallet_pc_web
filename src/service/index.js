@@ -175,5 +175,5 @@ export const getWithDrawHistoryAddr = (data) => {
 
 // 获取地址余额接口
 export const getWithDrawBalance = (data) => {
-  return axiosDefine.get('/crypto/withdraw/balance', data)
+  return axiosDefine.post('/crypto/withdraw/balance', data)
 }

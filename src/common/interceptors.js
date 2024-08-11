@@ -35,6 +35,7 @@ axiosInstance.interceptors.response.use(
       showWarning('身份验证已过期，请重新登录。')
       return (window.location.pathname = 'login')
     } else if (code !== 0) {
+      // return showError(data.msg)
       return Promise.reject(data)
     }
 

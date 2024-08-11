@@ -8,7 +8,7 @@ import checkIconOn from '@/assets/icon/light/icon-checkBox-line.svg'
 import Tips from './components/Tips'
 import GoogleCodeModal from './components/GoogleCodeModal'
 import AddressModal from './components/AddressModal'
-import { getCryptoTokens, getChains, getAccountAddress } from '@/service'
+import { getCryptoTokens, getChains, getWithDrawBalance } from '@/service'
 import { useRequest } from 'ahooks'
 import { showError, showSuccess, showWarning } from '@/common/message'
 import { useUserStore } from '@/stores'
@@ -35,7 +35,10 @@ export default function CarryCoin() {
   // 当前链
   const [currentChain, setCurrentChain] = useState('Tron')
   // 当前token
-  const [currentTokenId, setCurrentTokenId] = useState(1)
+  // const [currentTokenId, setCurrentTokenId] = useState(1)
+
+  // 当前币种信息
+  const [currentToken, setCurrentToken] = useState()
   // 币种列表
   const { data: tokenList, run: tokenRun } = useRequest(async (chain) => {
     const req = {
@@ -43,8 +46,11 @@ export default function CarryCoin() {
     }
     try {
       const { data } = await getCryptoTokens(req)
-      setCurrentTokenId(data[0].id)
-      console.log(currentTokenId)
+      // setCurrentTokenId(data[0].id)
+      setCurrentToken(data[0])
+      runBalance(data[0].id)
+      // console.log(data[0])
+
       return data
     } catch (err) {
       showError(err.msg)
@@ -60,13 +66,26 @@ export default function CarryCoin() {
     }
   })
 
+  // 获取地址余额
+  const { data: balanceData, run: runBalance } = useRequest(async (id) => {
+    const req = {
+      coin_id: id || currentToken?.id || 1
+    }
+    try {
+      const { data } = await getWithDrawBalance(req)
+      return data
+    } catch (err) {
+      showError(err?.msg)
+    }
+  })
+
   // 获取表单数据
   const getFormData = () => {
     const address = arrivalAddrRef?.current?.value || ''
     const amount = amountRef?.current?.value || ''
     return {
       account_id: userInfo.commercial_id,
-      crypto_type: currentTokenId,
+      crypto_type: currentToken?.id || 1,
       arrival_address: address,
       withdraw_amount: amount
     }
@@ -87,6 +106,15 @@ export default function CarryCoin() {
     toggleGoogleModal(true)
   }
 
+  const toggleCurrentToken = (e) => {
+    const token = e.target.value
+    tokenList.map((item) => {
+      if (item.coin_symbol === token) {
+        console.log(item)
+        setCurrentToken(item)
+      }
+    })
+  }
   return (
     <>
       <NavBar />
@@ -120,7 +148,11 @@ export default function CarryCoin() {
             <div className={style.selectCoin}>
               <span>币种</span>
               <div className={style.selectBox}>
-                <select>
+                <select
+                  onChange={(e) => {
+                    toggleCurrentToken(e)
+                  }}
+                >
                   {tokenList?.map((item, index) => (
                     <option key={item.coin_symbol} value={item.coin_symbol}>
                       {item.coin_symbol}
@@ -133,20 +165,27 @@ export default function CarryCoin() {
             <div className={style.quota}>
               <Flex className={style.quotaItem}>
                 <span>24H累计提币额度</span>
-                <span>5 BTC</span>
+                <span>
+                  {balanceData?.total_24h_withdraw_amount}{' '}
+                  {currentToken?.coin_symbol}
+                </span>
               </Flex>
               <Flex className={style.quotaItem}>
                 <span>剩余额度</span>
-                <span>5 BTC</span>
+                <span>
+                  {balanceData?.remaining_amount} {currentToken?.coin_symbol}
+                </span>
               </Flex>
               <Flex className={style.quotaItem}>
                 <span>合约信息</span>
-                <span>***16as51584</span>
+                <span>***{currentToken?.contract_address.slice(2, 8)}***</span>
               </Flex>
             </div>
             <div className={style.carryCount}>
               <span>可提</span>
-              <span>0 USDT</span>
+              <span>
+                {balanceData?.available} {currentToken?.coin_symbol}
+              </span>
             </div>
             <Divider />
             <div className={style.tips}>
@@ -194,15 +233,20 @@ export default function CarryCoin() {
                     tokenRun(item)
                   }}
                 >
-                  <img
-                    src={currentChain === item ? checkIconOn : checkIconOff}
-                    width={24}
-                  />
-                  <div>{item}</div>
+                  <Flex align="center">
+                    <img
+                      src={currentChain === item ? checkIconOn : checkIconOff}
+                      width={24}
+                    />
+                    {item}
+                  </Flex>
                   <div>
-                    <span>手续费 1USDT</span>
+                    <span>
+                      手续费 {Number(currentToken.withdraw_fee) + ' '}
+                      USDT
+                    </span>
                     <br />
-                    <span>≈0.91CNY</span>
+                    <span>≈ 0 CNY</span>
                   </div>
                 </div>
               ))}
