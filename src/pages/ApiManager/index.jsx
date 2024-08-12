@@ -18,6 +18,8 @@ import { pageParams } from '@/common/config'
 export default function APIManager() {
   // 是否展示密钥提示
   const [showToast, setShowToast] = useState(false)
+  // form表
+  const [form] = Form.useForm()
 
   // 是否展示修改弹窗
   const [showEdit, setShowEdit] = useState(false)
@@ -56,6 +58,7 @@ export default function APIManager() {
 
   // 创建密钥
   const onFinish = async (values) => {
+    form.resetFields()
     try {
       const { data } = await createAccountKeys(values)
       setAccessKey(data.access_key)
@@ -88,7 +91,12 @@ export default function APIManager() {
           <header>创建API Key</header>
           <main>
             <div className="createFormBox">
-              <Form layout="vertical" className="form" onFinish={onFinish}>
+              <Form
+                layout="vertical"
+                className="form"
+                onFinish={onFinish}
+                form={form}
+              >
                 <Form.Item label="备注" name="remark">
                   <Input />
                 </Form.Item>

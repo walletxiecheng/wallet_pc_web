@@ -4,7 +4,10 @@ export const withdrawColumns = () => {
     {
       key: 'withdraw_time',
       dataIndex: 'withdraw_time',
-      title: '时间'
+      title: '时间',
+      render: (_, record) => (
+        <div className="text-ellipsis">{record.withdraw_time}</div>
+      )
     },
     {
       key: 'coin_type',
@@ -24,7 +27,13 @@ export const withdrawColumns = () => {
     {
       key: 'order_id',
       dataIndex: 'order_id',
-      title: '订单号'
+      title: '订单号',
+      width: '10%',
+      render: (_, record) => (
+        <div className="text-ellipsis" style={{ width: 150 }}>
+          {record.order_id}
+        </div>
+      )
     },
     {
       key: 'sequence_number',
@@ -48,7 +57,6 @@ export const withdrawColumns = () => {
       width: '8%',
       render: (_, record) => (
         <span>
-          {' '}
           {record.status === 0 ? '待审核' : ''}
           {record.status === 1 ? '未通过' : ''}
           {record.status === 2 ? '待处理' : ''}
@@ -66,12 +74,22 @@ export const receiveColumns = () => {
     {
       key: 'transaction_time',
       dataIndex: 'transaction_time',
-      title: '时间'
+      title: '时间',
+      width: '10%',
+      render: (_, record) => (
+        <div className="text-ellipsis">{record.transaction_time}</div>
+      )
     },
     {
       key: 'order_id',
       dataIndex: 'order_id',
-      title: '订单号'
+      title: '订单号',
+      width: '10%',
+      render: (_, record) => (
+        <div className="text-ellipsis" style={{ width: 120 }}>
+          {record.order_id}
+        </div>
+      )
     },
     {
       key: 'sequence_number',
@@ -81,7 +99,12 @@ export const receiveColumns = () => {
     {
       key: 'receive_address',
       dataIndex: 'receive_address',
-      title: '收款地址'
+      title: '收款地址',
+      render: (_, record) => (
+        <div className="text-ellipsis" style={{ width: 120 }}>
+          {record.receive_address}
+        </div>
+      )
     },
     {
       key: 'payment_address',
