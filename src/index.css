@@ -30,3 +30,7 @@ body {
     var(--border---color-border-white8, rgba(255, 255, 255, 0.08));
   background: var(--fill---color-fill-white8, rgba(255, 255, 255, 0.08));
 }
+
+input:focus {
+  outline: none;
+}

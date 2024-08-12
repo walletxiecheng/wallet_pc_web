@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import NavBar from '@/components/NavBar'
 import './index.less'
 import { Radio, Table } from 'antd'
 import { getAccountAssets } from '@/service'
 import { usePagination } from 'ahooks'
 import { pageParams } from '@/common/config'
-import { showError } from '@/common/message'
+import { showError, showWarning } from '@/common/message'
 import { assetsColumns } from './config'
 import { useNavigate } from 'react-router-dom'
+import { SearchOutlined } from '@ant-design/icons'
 
 export default function WalletAccount() {
   const navigate = useNavigate()
   // 是否隐藏资产
   const [showAssets, setShowAssets] = useState(false)
-
+  // 获取搜索框中的值
+  const searchRef = useRef()
   // 获取加密交易列表
   const getTransactionHandler = async (params) => {
     try {
@@ -27,6 +29,15 @@ export default function WalletAccount() {
     defaultParams: [pageParams]
   })
 
+  //
+  const search = () => {
+    const value = searchRef.current.value
+    if (!value) {
+      return showWarning('搜索条件不能为空')
+    }
+    run({ ...pageParams, key: value })
+    searchRef.current.value = ''
+  }
   return (
     <>
       <NavBar />
@@ -62,7 +73,8 @@ export default function WalletAccount() {
         <div className="tableCard">
           <header className="tableHeader">
             <div className="search">
-              <input type="text" placeholder="搜索" />
+              <input type="text" placeholder="搜索" ref={searchRef} />
+              <SearchOutlined width={16} onClick={search} />
             </div>
             <div className="hidden">
               <Radio
