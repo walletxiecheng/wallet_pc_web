@@ -9,9 +9,7 @@ export default function Banner() {
   return (
     <div className={style.bannerContainer}>
       <div className={style.bannerBox}>
-        <header>
-          {t('banner.header')}
-        </header>
+        <header>{t('banner.header')}</header>
         <section>{t('banner.description')}</section>
         {/* 下载按钮组 */}
         <DownLoadGroup />

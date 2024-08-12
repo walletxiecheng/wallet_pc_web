@@ -3,7 +3,7 @@ import style from './index.module.less'
 import Banner from './components/Banner'
 import Brand from './components/Brand'
 import FunDescribe from './components/FunDescribe'
-// import DataTable from './components/DataTable'
+import DataTable from './components/DataTable'
 import Billboards from './components/Billboards'
 import Important from './components/Important'
 import Portfolio from './components/Portfolio'
@@ -24,10 +24,10 @@ export default function Index() {
         {/* 功能介绍 */}
         <FunDescribe />
         {/* 数据表格 */}
-        {/* <DataTable /> */}
-        <img src={DataBoard} width={1200} style={{ marginTop: '40px' }} />
+        <DataTable />
+        {/* <img src={DataBoard} width={1200} style={{ marginTop: '40px' }} /> */}
         {/* 广告版 */}
-        {/* <Billboards /> */}
+        <Billboards />
         {/* 重点介绍 */}
         <Important />
         {/* 投资组合 */}
