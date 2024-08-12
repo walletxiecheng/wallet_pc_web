@@ -1,7 +1,7 @@
 import React from 'react'
 import DownLoadGroup from '@/components/DownloadGroup'
 import style from './index.module.less'
-import pcImg from '@/assets/image/pc.png'
+import pcImg from '@/assets/image/pc.svg'
 
 export default function Bottom() {
   return (

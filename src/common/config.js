@@ -6,4 +6,4 @@ export const header = {
 }
 
 // 分页请求参数
-export const pageParams = { current: 1, pageSize: 5 }
+export const pageParams = { current: 1, pageSize: 6 }

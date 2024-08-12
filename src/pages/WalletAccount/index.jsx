@@ -85,7 +85,6 @@ export default function WalletAccount() {
               loading={!data}
               pagination={{
                 hideOnSinglePage: true,
-
                 total: data?.total,
                 current: pagination.current,
                 pageSize: pagination.pageSize,
