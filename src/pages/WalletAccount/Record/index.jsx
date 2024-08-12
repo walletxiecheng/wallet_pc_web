@@ -50,7 +50,7 @@ export default function Record() {
     run: runWithdraw,
     pagination: withdrawPagination
   } = usePagination(getWithdrawRecordHandler, {
-    defaultParams: [pageParams]
+    defaultParams: [{ coin_id: coinId, ...pageParams }]
   })
 
   // 收款列表
@@ -64,7 +64,7 @@ export default function Record() {
     run: runReceive,
     pagination: receivePagination
   } = usePagination(getReceiveRecordHandler, {
-    defaultParams: [pageParams]
+    defaultParams: [{ coin_id: coinId, ...pageParams }]
   })
 
   // 过滤提币列表

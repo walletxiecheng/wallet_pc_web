@@ -34,7 +34,6 @@ export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
       await bindGoogleAuth(req)
       const google_verify_status = true
       setUserInfo({ ...userInfo, google_verify_status })
-      // 手动设置localStorage
       showSuccess('绑定成功')
       setTimeout(() => {
         window.location.reload()
@@ -62,7 +61,10 @@ export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
       </header>
 
       <div className={style.qrCode}>
-        <QRCode value={secretData?.secret_url} style={{ background: '#fff' }} />
+        <QRCode
+          value={secretData?.secret_url || 'abc'}
+          style={{ background: '#fff' }}
+        />
       </div>
 
       <div>
