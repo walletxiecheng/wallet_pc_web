@@ -51,7 +51,7 @@ export default function CarryCoin() {
 
       return data
     } catch (err) {
-      showError(err.msg)
+      return showError(err?.msg)
     }
   })
   // 链列表
@@ -60,7 +60,7 @@ export default function CarryCoin() {
       const { data } = await getChains()
       return data.chain
     } catch (err) {
-      showError(err.msg)
+      return showError(err?.msg)
     }
   })
 

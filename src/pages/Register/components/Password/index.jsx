@@ -44,12 +44,7 @@ export default function Password({
       showSuccess('注册成功，去登录。')
       navigate('/login')
     } catch (err) {
-      if (err.code === 4) {
-        return showError('该手机号已注册')
-      }
-      if (err.code === 3) {
-        return showError('验证码错误')
-      }
+      return showError(err?.msg)
     }
   }
   return (

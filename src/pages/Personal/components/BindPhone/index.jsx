@@ -30,11 +30,7 @@ export default function BindPhone({ showPhone, togglePhone, phone }) {
       setShowVerify(true)
       return showSuccess('发送验证码成功')
     } catch (err) {
-      if (err.code === 17) {
-        showError('该手机号已绑定')
-        return false
-      }
-      return showError('发送验证码失败')
+      return showError(err.msg)
     }
   }
   return (

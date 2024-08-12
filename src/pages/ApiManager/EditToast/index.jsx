@@ -21,7 +21,7 @@ export default function EditToast({
       runApiList(pageParams)
       timerReload()
     } catch (err) {
-      showError('更新失败')
+      return showError(err?.msg)
     }
   }
   return (

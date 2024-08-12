@@ -36,7 +36,9 @@ export default function Record() {
     try {
       const { data } = await getToken()
       return data
-    } catch (err) {}
+    } catch (err) {
+      return showError(err?.msg)
+    }
   })
 
   // 提币列表

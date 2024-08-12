@@ -20,7 +20,7 @@ export default function WalletAccount() {
       const { data } = await getAccountAssets(params)
       return { total: data.total, list: data.records }
     } catch (err) {
-      showError(err)
+      return showError(err?.msg)
     }
   }
   const { data, run, pagination } = usePagination(getTransactionHandler, {

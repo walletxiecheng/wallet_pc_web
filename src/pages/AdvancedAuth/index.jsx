@@ -33,8 +33,8 @@ export default function AdvancedAuth() {
     try {
       await personAuthentication(req, header)
       return showSuccess('上传成功')
-    } catch {
-      showError('上传失败')
+    } catch (err) {
+      return showError(err?.msg)
     }
   }
 

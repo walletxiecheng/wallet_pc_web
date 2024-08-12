@@ -26,7 +26,7 @@ export default function BindEmail({ showEmail, toggleEmail, email }) {
       if (err.code === 17) {
         return showWarning('该邮箱已绑定')
       }
-      return showError('邮箱格式错误，请重试。')
+      return showError(err.msg)
     }
     showSuccess('发送验证码成功')
     toggleEmail(false)

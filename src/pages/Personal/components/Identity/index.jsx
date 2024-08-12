@@ -84,7 +84,7 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
       showSuccess('发送验证码成功')
       toggleShowVerify(true)
     } catch (err) {
-      return showError('邮箱格式错误，请重新输入')
+      showError(err?.msg)
     }
   }
 
@@ -100,7 +100,7 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
       showSuccess('发送验证码成功')
       toggleShowTel(true)
     } catch (err) {
-      return showError('邮箱格式错误，请重新输入')
+      showError(err?.msg)
     }
     if (!phoneRef?.current?.value) {
       return showWarning('请输入手机号')

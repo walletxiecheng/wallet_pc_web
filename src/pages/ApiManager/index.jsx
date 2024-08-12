@@ -45,7 +45,7 @@ export default function APIManager() {
       const { data } = await getAccountKeys(params)
       return data
     } catch (err) {
-      showError('获取apiKey记录失败')
+      showError(err.msg)
     }
   }
   const {
@@ -67,7 +67,7 @@ export default function APIManager() {
       setShowToast(true)
       runApiList(pageParams)
     } catch (err) {
-      showError(err.msg)
+      showError(err?.msg)
     }
   }
 

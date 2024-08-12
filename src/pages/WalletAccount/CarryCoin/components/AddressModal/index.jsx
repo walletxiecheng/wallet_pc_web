@@ -24,7 +24,7 @@ export default function AddressModal({
       const { data } = await getWithDrawHistoryAddr(req)
       return data
     } catch (err) {
-      console.log(err.msg)
+      return showError(err?.msg)
     }
   })
 

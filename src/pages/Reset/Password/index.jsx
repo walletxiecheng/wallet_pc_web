@@ -45,10 +45,7 @@ export default function Password({
       showSuccess('修改密码成功')
       navigate('/login')
     } catch (err) {
-      if (err.code === 4) {
-        return showError('该手机号已注册')
-      }
-      console.log(err)
+      return showError(err?.msg)
     }
   }
   return (

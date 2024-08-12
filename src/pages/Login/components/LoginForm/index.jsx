@@ -93,7 +93,7 @@ export default function LoginForm() {
       showSuccess('登录成功')
       navigate('/index')
     } catch (err) {
-      return showError('邮箱号或密码错误')
+      return showError(err.msg)
     }
   }
   // 手机号登录
@@ -110,7 +110,7 @@ export default function LoginForm() {
       showSuccess('登录成功')
       navigate('/index')
     } catch (err) {
-      return showError('登录失败')
+      return showError(err.msg)
     }
   }
   return (

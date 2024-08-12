@@ -19,7 +19,9 @@ export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
     try {
       const { data } = await getGoogleAuth()
       return data
-    } catch (err) {}
+    } catch (err) {
+      return showError(err.msg)
+    }
   }
   const { data: secretData } = useRequest(getRequestHandler)
 
@@ -39,7 +41,7 @@ export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
         window.location.reload()
       }, 1000)
     } catch (err) {
-      return showError('验证码错误，请重试。')
+      return showError(err.msg)
     }
   }
   return (

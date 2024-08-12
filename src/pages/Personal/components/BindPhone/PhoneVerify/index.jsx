@@ -40,12 +40,7 @@ export default function PhoneVerity({
       toggleShowVerify(false)
       // window.location.reload()
     } catch (err) {
-      if (err?.code === 1) {
-        return showError('参数校验错误')
-      }
-      if (err?.code === 3) {
-        return showError('验证码错误')
-      }
+      return showError(err.msg)
     }
   }
 
