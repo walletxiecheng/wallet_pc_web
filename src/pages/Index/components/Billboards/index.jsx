@@ -10,21 +10,28 @@ import style from './index.module.less'
 import { useRef } from 'react'
 import { Carousel, Flex, Image } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+import { useRequest } from 'ahooks'
+import { getAdvertisement } from '@/service'
 const page1 = [banner01, banner02, banner03, banner04]
 const page2 = [banner04, banner05, banner06, banner07]
 
-const imageList = [
-  banner01,
-  banner02,
-  banner03,
-  banner04,
-  banner05,
-  banner06,
-  banner07
-]
 export default function Billboards() {
+  // 获取数据
+  const { data: avdList } = useRequest(async () => {
+    try {
+      const { data } = await getAdvertisement()
+      console.log(data)
+      return data
+    } catch (err) {}
+  })
+  console.log(avdList)
+
+  //  const page1 =  avdList?.slice(0, 4)
+  // 当前页
   const [page, setPage] = useState(1)
   const carouselRef = useRef(null)
+
+  // 上一页
   const onPrev = () => {
     carouselRef.current.prev()
     if (page === 1) {
@@ -32,6 +39,8 @@ export default function Billboards() {
     }
     setPage(page - 1)
   }
+
+  // 下一页
   const onNext = () => {
     carouselRef.current.next()
     if (page === 2) {

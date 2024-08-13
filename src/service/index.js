@@ -187,3 +187,8 @@ export const getMarket = (data) => {
 export const getPortfolio = (data) => {
   return axiosDefine.get('/home/investment/portfolio', data)
 }
+
+// 获取投资组合信息
+export const getAdvertisement = (data) => {
+  return axiosDefine.get('/home/advertisement', data)
+}

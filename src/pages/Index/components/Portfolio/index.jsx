@@ -6,10 +6,10 @@ import { getPortfolio } from '@/service'
 import { useRequest } from 'ahooks'
 
 const style1 = {
-  '--time': '20s'
+  '--time': '40s'
 }
 const style2 = {
-  '--time': '50s'
+  '--time': '60s'
 }
 export default function Portfolio() {
   // 获取投资组合

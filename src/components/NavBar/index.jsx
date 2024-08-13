@@ -13,10 +13,26 @@ import iconArrowTopFill from '@/assets/icon/light/icon-arrow-top-fill.png'
 import iconArrowBottomFill from '@/assets/icon/light/icon-arrow-down-fill.png'
 import iconSpotLine from '@/assets/icon/light/icon-spot-line.svg'
 import iconHistoryLine from '@/assets/icon/light/icon-history-line.svg'
-
 import { URLS } from '@/routes/urls'
+import { useLocation } from 'react-router-dom'
+
+const navLink = [
+  {
+    id: 1,
+    label: '首页',
+    url: URLS.index
+  },
+  {
+    id: 2,
+    label: '账户',
+    url: URLS.personal
+  }
+]
 
 export default function NavBar() {
+  const location = useLocation()
+  // 当前路由
+  const pathname = location.pathname
   // 更改主题
   const { toggleTheme } = useThemeStore()
   const { t } = useTranslation()
@@ -106,21 +122,32 @@ export default function NavBar() {
         <Flex>
           <img src={logo} width={108} />
           <Space className={style.linkList}>
-            <div
+            {/* <div
               onClick={() => {
                 navigate('/index')
               }}
             >
-              {t('nav.link1')}
+              首页
             </div>
-            {/* <div>{t('nav.link3')}</div> */}
+
             <div
               onClick={() => {
                 navigate('/personal')
               }}
             >
               账户
-            </div>
+            </div> */}
+            {navLink.map((item) => (
+              <div
+                className={item.url === pathname ? style.navActive : ''}
+                key={item.id}
+                onClick={() => {
+                  navigate(item.url)
+                }}
+              >
+                {item.label}
+              </div>
+            ))}
           </Space>
         </Flex>
 
@@ -183,7 +210,6 @@ export default function NavBar() {
           <img src={downloadNavIcon} />
           <img src={languageNavIcon} />
           <img src={modeNavIcon} />
-          {/* onClick={toggleTheme}  */}
         </Flex>
       </Flex>
     </nav>
