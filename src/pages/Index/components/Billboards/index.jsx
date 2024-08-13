@@ -20,13 +20,10 @@ export default function Billboards() {
   const { data: avdList } = useRequest(async () => {
     try {
       const { data } = await getAdvertisement()
-      console.log(data)
       return data
     } catch (err) {}
   })
-  console.log(avdList)
 
-  //  const page1 =  avdList?.slice(0, 4)
   // 当前页
   const [page, setPage] = useState(1)
   const carouselRef = useRef(null)

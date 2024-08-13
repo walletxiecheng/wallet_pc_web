@@ -227,7 +227,8 @@ export default function CarryCoin() {
                   className={style.networkCard}
                   key={index}
                   style={{
-                    background: currentChain === item ? '#0099ff' : ''
+                    background: currentChain === item ? '#0099ff' : '',
+                    color: currentChain === item ? '#fff' : ''
                   }}
                   onClick={() => {
                     setCurrentChain(item)
@@ -261,7 +262,15 @@ export default function CarryCoin() {
                   ref={amountRef}
                 />
                 <Flex>
-                  <span>USDT</span>｜<span className={style.link}>全部</span>
+                  <span>USDT</span>｜
+                  <span
+                    className={style.link}
+                    onClick={() => {
+                      amountRef.current.value = balanceData?.available
+                    }}
+                  >
+                    全部
+                  </span>
                 </Flex>
               </div>
             </div>
