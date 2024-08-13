@@ -44,8 +44,9 @@ axiosInstance.interceptors.response.use(
   function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
-    showError('请求出错，请重试。')
+    // showError('请求出错，请重试。')
     return Promise.reject(error)
+    // return 1
   }
 )
 

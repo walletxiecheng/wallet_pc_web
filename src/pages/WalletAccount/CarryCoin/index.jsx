@@ -22,7 +22,6 @@ export default function CarryCoin() {
   const navigate = useNavigate()
   const location = useLocation()
   const state = location?.state
-  // console.log(state)
   // 是否显示tips
   const [tips, setTips] = useState(false)
   // 是否显示提币列表

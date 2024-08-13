@@ -96,6 +96,8 @@ export default function Personal() {
       <BindBaseTips
         showBindTips={showBindTips}
         toggleTipsStatus={toggleTipsStatus}
+        toggleEmail={toggleEmail}
+        togglePhone={togglePhone}
       />
       <BindEmail
         showEmail={showEmail}
@@ -173,10 +175,12 @@ export default function Personal() {
                 </Flex>
 
                 {item.id === 2 && (
-                  <Space>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
                     <div>{userInfo?.email}</div>
                     <button
-                      style={{ display: emailStatus ? 'none' : 'block' }}
+                      style={{
+                        display: emailStatus ? 'none' : 'block'
+                      }}
                       onClick={() => {
                         toggleEmail(true)
                       }}
@@ -184,17 +188,20 @@ export default function Personal() {
                       绑定
                     </button>
                     <button
-                      style={{ display: emailStatus ? 'block' : 'none' }}
+                      style={{
+                        display: emailStatus ? 'block' : 'none',
+                        marginLeft: 6
+                      }}
                       onClick={() => {
                         toggleEmail(true)
                       }}
                     >
                       换绑
                     </button>
-                  </Space>
+                  </div>
                 )}
                 {item.id === 3 && (
-                  <Space>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
                     <div>{userInfo?.phone}</div>
                     <button
                       style={{ display: phoneStatus ? 'none' : 'block' }}
@@ -205,14 +212,17 @@ export default function Personal() {
                       绑定
                     </button>
                     <button
-                      style={{ display: phoneStatus ? 'block' : 'none' }}
+                      style={{
+                        display: phoneStatus ? 'block' : 'none',
+                        marginLeft: '6px'
+                      }}
                       onClick={() => {
                         togglePhone(true)
                       }}
                     >
                       换绑
                     </button>
-                  </Space>
+                  </div>
                 )}
                 {item.id === 4 && (
                   <div>

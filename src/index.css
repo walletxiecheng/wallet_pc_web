@@ -26,9 +26,8 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 6px;
-  border: 1px solid
-    var(--border---color-border-white8, rgba(255, 255, 255, 0.08));
-  background: var(--fill---color-fill-white8, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--color-border-white8);
+  background: var(--color-fill-white8);
 }
 
 input:focus {
