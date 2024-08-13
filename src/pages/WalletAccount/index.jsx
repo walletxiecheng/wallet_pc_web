@@ -35,7 +35,7 @@ export default function WalletAccount() {
     if (!value) {
       return showWarning('搜索条件不能为空')
     }
-    run({ ...pageParams, key: value })
+    run({ ...pageParams, symbol: value })
     searchRef.current.value = ''
   }
   return (
@@ -83,7 +83,7 @@ export default function WalletAccount() {
                   setShowAssets(!showAssets)
                 }}
               >
-                隐藏资产
+                隐藏0资产
               </Radio>
             </div>
           </header>

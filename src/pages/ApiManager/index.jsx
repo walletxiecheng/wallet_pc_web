@@ -144,6 +144,7 @@ export default function APIManager() {
           <Table
             dataSource={apiList?.records || []}
             rowKey={(record) => record.uid}
+            loading={!apiList}
             pagination={{
               total: apiList?.total,
               current: pagination.current,

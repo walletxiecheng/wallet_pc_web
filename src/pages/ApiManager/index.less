@@ -57,6 +57,7 @@
       }
       .tips {
         padding: var(--spacing-32);
+        cursor: default;
         width: 50%;
         color: var(--color-text-quat);
         .title {
@@ -88,14 +89,13 @@
       border-spacing: 0.5px;
       border-radius: 0;
       background-color: var(--color-fill-white4);
-
       border: 0.5px solid var(--color-border-white8);
     }
 
     .ant-table {
       border-radius: 0;
       background-color: var(--color-fill-white8);
-      background-color: inherit;
+      background-color: transparent;
     }
 
     .ant-spin-container {
@@ -115,7 +115,7 @@
             font-size: 11px;
             border-bottom: none;
             border-radius: 0;
-            background-color: inherit;
+            background-color: transparent;
           }
           .ant-table-cell::before {
             width: 0 !important;
@@ -123,7 +123,7 @@
         }
         .ant-table-tbody {
           .ant-table-placeholder {
-            background-color: inherit;
+            background-color: transparent;
           }
 
           .ant-table-cell {
@@ -142,18 +142,4 @@
       }
     }
   }
-}
-
-:where(.css-dev-only-do-not-override-p8b6i).ant-table-wrapper
-  .ant-table-tbody
-  > tr.ant-table-placeholder:hover
-  > th,
-:where(.css-dev-only-do-not-override-p8b6i).ant-table-wrapper
-  .ant-table-tbody
-  > tr.ant-table-placeholder:hover
-  > td,
-:where(.css-dev-only-do-not-override-p8b6i).ant-table-wrapper
-  .ant-table-tbody
-  > tr.ant-table-placeholder {
-  background-color: inherit;
 }

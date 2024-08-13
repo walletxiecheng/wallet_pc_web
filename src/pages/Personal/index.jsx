@@ -19,12 +19,12 @@ import { useNavigate } from 'react-router-dom'
 import { showSuccess } from '@/common/message'
 
 const verifyList = [
-  {
-    id: 1,
-    title: '安全等级：低',
-    content: '强烈建立开启2项双重身份验证',
-    icon: iconSate
-  },
+  // {
+  //   id: 1,
+  //   title: '安全等级：低',
+  //   content: '强烈建立开启2项双重身份验证',
+  //   icon: iconSate
+  // },
   {
     id: 2,
     title: '邮箱',
@@ -172,11 +172,6 @@ export default function Personal() {
                   </div>
                 </Flex>
 
-                {item.id === 1 && (
-                  <Space>
-                    <button style={{ width: 70 }}>关闭验证</button>
-                  </Space>
-                )}
                 {item.id === 2 && (
                   <Space>
                     <div>{userInfo?.email}</div>
@@ -220,7 +215,7 @@ export default function Personal() {
                   </Space>
                 )}
                 {item.id === 4 && (
-                  <Space>
+                  <div>
                     {/* <div>2647418717@qq.com</div> */}
 
                     <button
@@ -239,7 +234,7 @@ export default function Personal() {
                     >
                       绑定
                     </button>
-                  </Space>
+                  </div>
                 )}
               </Flex>
             ))}
