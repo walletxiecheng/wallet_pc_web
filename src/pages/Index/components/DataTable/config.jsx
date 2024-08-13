@@ -13,7 +13,7 @@ export const columns = () => {
       title: '收藏',
       render: () => (
         <div>
-          <img src={iconStarFill} />
+          <img src={iconStarLine} />
         </div>
       )
     },

@@ -1,5 +1,9 @@
 import '@/assets/css/public.css'
+import { useNavigate } from 'react-router-dom'
+import { URLS } from '@/routes/urls'
+
 export const assetsColumns = () => {
+  const navigate = useNavigate()
   return [
     {
       key: 'token',
@@ -36,10 +40,15 @@ export const assetsColumns = () => {
       dataIndex: 'operate',
       title: '操作',
 
-      render: (record) => (
-        <>
-          <button className="button-style"> 提币</button>
-        </>
+      render: (_, record) => (
+        <button
+          className="button-style"
+          onClick={() => {
+            navigate(URLS.carryCoin, { state: record })
+          }}
+        >
+          提币
+        </button>
       )
     }
   ]

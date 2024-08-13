@@ -13,13 +13,16 @@ import { useRequest } from 'ahooks'
 import { showError, showSuccess, showWarning } from '@/common/message'
 import { useUserStore } from '@/stores'
 import arrowBack from '@/assets/icon/light/icon-arrow-left-line.png'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export default function CarryCoin() {
   const { userInfo } = useUserStore()
   const amountRef = useRef(0)
   const arrivalAddrRef = useRef()
   const navigate = useNavigate()
+  const location = useLocation()
+  const state = location?.state
+  // console.log(state)
   // 是否显示tips
   const [tips, setTips] = useState(false)
   // 是否显示提币列表
@@ -32,11 +35,11 @@ export default function CarryCoin() {
   const toggleGoogleModal = (status) => {
     setShowPassWordModal(status)
   }
+
   // 当前链
   const [currentChain, setCurrentChain] = useState('Tron')
   // 当前token
   // const [currentTokenId, setCurrentTokenId] = useState(1)
-
   // 当前币种信息
   const [currentToken, setCurrentToken] = useState()
   // 币种列表
@@ -104,6 +107,7 @@ export default function CarryCoin() {
     toggleGoogleModal(true)
   }
 
+  // 当前币种变化时出发
   const toggleCurrentToken = (e) => {
     const token = e.target.value
     tokenList.map((item) => {
@@ -149,6 +153,7 @@ export default function CarryCoin() {
                   onChange={(e) => {
                     toggleCurrentToken(e)
                   }}
+                  // defaultValue={state?.token}
                 >
                   {tokenList?.map((item, index) => (
                     <option key={item.coin_symbol} value={item.coin_symbol}>
