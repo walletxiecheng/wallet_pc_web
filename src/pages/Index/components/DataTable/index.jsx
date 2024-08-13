@@ -1,55 +1,86 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import style from './index.module.less'
 import './table.less'
 import { Table, Flex, Tag } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { columns } from './config.jsx'
 import icon from '@/assets/icon/dark/icon-jump-line.svg'
+import { usePagination, useRequest } from 'ahooks'
+import { getMarket } from '@/service'
+import { showWarning } from '@/common/message'
 
-const dataSource = [
-  {
-    key: '1',
-    1: '1',
-    2: '1',
-    3: '1',
-    4: '1',
-    5: '1',
-    6: '1',
-    7: '1',
-    8: '1'
-  },
-  {
-    key: '2',
-    1: '1',
-    2: '1',
-    3: '1',
-    4: '1',
-    5: '1',
-    6: '1',
-    7: '1',
-    8: '1'
-  }
-]
+const columList = ['Custom', 'USDT', 'ETC', 'BTC']
+const pageParams = { current: 1, pageSize: 10 }
 
 export default function DataTable() {
+  // 当前列
+  const [column, setColumn] = useState('Custom')
+  // 当前页数
+  const [current, setCurrent] = useState(1)
+
+  // 输入框绑定
+  const inputTokenRef = useRef()
+
+  const getMarketHandler = async (params) => {
+    try {
+      const { data } = await getMarket(params)
+      return data
+    } catch (err) {}
+  }
+  const {
+    data: marketList,
+    run: runMarket,
+    pagination: marketPagination
+  } = usePagination(getMarketHandler, {
+    defaultParams: [{ column: 'Custom', ...pageParams }]
+  })
+
+  // 列变化
+  const toggleColumn = (column) => {
+    setColumn(column)
+    runMarket({ column: column, ...pageParams })
+  }
+
+  // 查看更多
+  const onRefreshTale = () => {
+    setCurrent(current + 1)
+    marketPagination.onChange(current, marketPagination.pageSize)
+  }
+
+  // 输入币种搜索
+  const search = () => {
+    const token = inputTokenRef.current.value
+    if (!token) {
+      return showWarning('input token,please!')
+    }
+    runMarket({ column: column, coinName: token, ...pageParams })
+  }
   return (
     <>
       <div className={style.dataBoardContainer}>
         <Flex justify="space-between">
           <Flex className={style.tabBox}>
-            <div>自选</div>
-            <div>USDT</div>
-            <div>ETC</div>
-            <div>BTC</div>
+            {columList.map((item) => (
+              <div
+                className={item === column ? style.active : ''}
+                key={item}
+                onClick={() => {
+                  toggleColumn(item)
+                }}
+              >
+                {item}
+              </div>
+            ))}
           </Flex>
 
           <div className={style.searchBox}>
             <input
               type="text"
+              ref={inputTokenRef}
               className={style.searchInput}
               placeholder="输入币种搜索"
             />
-            <SearchOutlined />
+            <SearchOutlined onClick={search} />
           </div>
         </Flex>
         {/* 数据区 */}
@@ -57,12 +88,13 @@ export default function DataTable() {
           <Table
             bordered={false}
             columns={columns()}
-            key={(record) => record.key}
-            dataSource={dataSource}
+            rowKey={(record) => record.id}
+            dataSource={marketList?.info}
             pagination={false}
+            loading={!marketList}
           />
         </div>
-        <div className={style.moreButton}>
+        <div className={style.moreButton} onClick={onRefreshTale}>
           <span>查看更多</span>
           <img src={icon} />
         </div>
