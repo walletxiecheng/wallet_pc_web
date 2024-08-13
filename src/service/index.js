@@ -177,3 +177,9 @@ export const getWithDrawHistoryAddr = (data) => {
 export const getWithDrawBalance = (data) => {
   return axiosDefine.post('/crypto/withdraw/balance', data)
 }
+
+//
+// 获取投资组合信息
+export const getPortfolio = () => {
+  return axiosDefine.get('/home/investment/portfolio')
+}

@@ -2,14 +2,24 @@ import React, { useRef, useState } from 'react'
 import style from './index.module.less'
 import iconArrowLine from '@/assets/icon/light/icon-arrow-left-line.png'
 import { Flex } from 'antd'
-import { showError } from '@/common/message'
+import { showError, showWarning } from '@/common/message'
 import Password from '../Password'
 
-export default function PhoneVerify({ showTel, toggleShowTel, phone }) {
+export default function PhoneVerify({
+  showTel,
+  toggleShowTel,
+  phone,
+  sendPhoneCodeHandler
+}) {
   const phoneInputRef = useRef()
   const [showPassword, setShowPassword] = useState(false)
   //是否显示密码
   const toggleShowPassword = (status) => {
+    const data = phoneInputRef.current.value
+    console.log(data)
+    if (!data) {
+      return showWarning('验证码不能为空')
+    }
     setShowPassword(status)
   }
 
@@ -49,7 +59,9 @@ export default function PhoneVerify({ showTel, toggleShowTel, phone }) {
             <Flex>
               <input placeholder="请输入" ref={phoneInputRef} />
             </Flex>
-            <div className={style.send}>重新发送</div>
+            <div className={style.send} onClick={sendPhoneCodeHandler}>
+              重新发送
+            </div>
             <button
               onClick={() => {
                 toggleShowPassword(true)

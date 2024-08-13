@@ -46,9 +46,6 @@
         margin: 20px 10px;
         background-color: var(--color-fill-quin);
         border-radius: 99px;
-        img {
-          margin-right: 5px;
-        }
       }
     }
     div:nth-child(2) {
@@ -56,6 +53,7 @@
       animation-delay: calc(var(--time) / -2);
     }
   }
+
   .portfolioDataBox {
     margin-top: 48px;
     justify-content: space-around;
@@ -76,5 +74,10 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+  }
+  img {
+    width: 24px;
+    border-radius: 50%;
+    margin-right: var(--spacing-6);
   }
 }

@@ -87,10 +87,10 @@ export default function RegisterForm() {
     }
     try {
       await sendVerifyCode(req)
-      showSuccess('发送验证码成功')
+      showSuccess('send success')
       toggleShowVerify(true)
     } catch (err) {
-      return showError('发送邮箱验证码失败')
+      return showError(err.msg)
     }
   }
 
@@ -108,10 +108,10 @@ export default function RegisterForm() {
 
     try {
       await sendVerifyCode(req)
-      showSuccess('发送验证码成功')
+      showSuccess('send success')
       toggleShowTel(true)
     } catch (err) {
-      return showError('发送手机验证码错误')
+      return showError(err.msg)
     }
   }
   return (
@@ -125,6 +125,7 @@ export default function RegisterForm() {
 
       <PhoneVerify
         showTel={showTel}
+        sendPhoneCodeHandler={sendPhoneCodeHandler}
         toggleShowTel={toggleShowTel}
         phone={phoneRef?.current?.value}
       />

@@ -2,6 +2,8 @@ import React from 'react'
 import style from './index.module.less'
 import icon from '@/assets/icon/dark/icon-fill-dot.svg'
 import { Flex } from 'antd'
+import { getPortfolio } from '@/service'
+import { useRequest } from 'ahooks'
 
 const style1 = {
   '--time': '20s'
@@ -10,24 +12,44 @@ const style2 = {
   '--time': '50s'
 }
 export default function Portfolio() {
-  const element = Array(10).fill(null)
+  // 获取投资组合
+  const { data } = useRequest(async () => {
+    const { data } = await getPortfolio()
+    return data
+  })
+
+  // 打开投资组合链接
+  const navigateTo = (url) => {
+    window.open(url, '_blank')
+  }
+
   return (
     <div className={style.portfolioContainer}>
       <h1>建立你的投资组合</h1>
       <div className={style.barrageBox} style={style1}>
         <div>
-          {element.map((item, index) => (
-            <span key={index}>
-              <img src={icon} />
-              Crypto
+          {data?.map((item, index) => (
+            <span
+              key={index}
+              onClick={() => {
+                navigateTo(item.link)
+              }}
+            >
+              <img src={item.icon} />
+              {item.name}
             </span>
           ))}
         </div>
         <div className={style.next}>
-          {element.map((item, index) => (
-            <span key={index}>
-              <img src={icon} />
-              Crypto
+          {data?.map((item, index) => (
+            <span
+              key={index}
+              onClick={() => {
+                navigateTo(item.link)
+              }}
+            >
+              <img src={item.icon} />
+              {item.name}
             </span>
           ))}
         </div>
@@ -35,18 +57,18 @@ export default function Portfolio() {
 
       <div className={style.barrageBox} style={style2}>
         <div>
-          {element.map((item, index) => (
+          {data?.map((item, index) => (
             <span key={index}>
-              <img src={icon} />
-              Crypto
+              <img src={item.icon} />
+              {item.name}
             </span>
           ))}
         </div>
         <div className={style.next}>
-          {element.map((item, index) => (
+          {data?.map((item, index) => (
             <span key={index}>
-              <img src={icon} />
-              Crypto
+              <img src={item.icon} />
+              {item.name}
             </span>
           ))}
         </div>
@@ -54,18 +76,28 @@ export default function Portfolio() {
 
       <div className={style.barrageBox} style={style1}>
         <div>
-          {element.map((item, index) => (
-            <span key={index}>
-              <img src={icon} />
-              Crypto
+          {data?.map((item, index) => (
+            <span
+              key={index}
+              onClick={() => {
+                navigateTo(item.link)
+              }}
+            >
+              <img src={item.icon} />
+              {item.name}
             </span>
           ))}
         </div>
         <div className={style.next}>
-          {element.map((item, index) => (
-            <span key={index}>
-              <img src={icon} />
-              Crypto
+          {data?.map((item, index) => (
+            <span
+              key={index}
+              onClick={() => {
+                navigateTo(item.link)
+              }}
+            >
+              <img src={item.icon} />
+              {item.name}
             </span>
           ))}
         </div>
@@ -73,18 +105,28 @@ export default function Portfolio() {
 
       <div className={style.barrageBox} style={style2}>
         <div>
-          {element.map((item, index) => (
-            <span key={index}>
-              <img src={icon} />
-              Crypto
+          {data?.map((item, index) => (
+            <span
+              key={index}
+              onClick={() => {
+                navigateTo(item.link)
+              }}
+            >
+              <img src={item.icon} />
+              {item.name}
             </span>
           ))}
         </div>
         <div className={style.next}>
-          {element.map((item, index) => (
-            <span key={index}>
-              <img src={icon} />
-              Crypto
+          {data?.map((item, index) => (
+            <span
+              key={index}
+              onClick={() => {
+                navigateTo(item.link)
+              }}
+            >
+              <img src={item.icon} />
+              {item.name}
             </span>
           ))}
         </div>

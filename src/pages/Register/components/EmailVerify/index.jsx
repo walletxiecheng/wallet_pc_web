@@ -2,9 +2,10 @@ import React, { useRef, useState } from 'react'
 import style from './index.module.less'
 import iconArrowLine from '@/assets/icon/light/icon-arrow-left-line.png'
 import { Flex } from 'antd'
-import { showError } from '@/common/message'
+import { showError, showWarning } from '@/common/message'
 import Password from '../Password'
 import { toggleFocus } from '@/common/method'
+import { codeComputed } from '@/common/method'
 
 export default function EmailVerify({
   showVerify,
@@ -17,6 +18,10 @@ export default function EmailVerify({
 
   //
   const toggleShowPassword = (status) => {
+    const data = codeComputed(inputRefs)
+    if (data.length < 6) {
+      return showWarning('验证码长度不足')
+    }
     setShowPassword(status)
   }
 
