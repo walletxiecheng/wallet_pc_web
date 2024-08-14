@@ -1,10 +1,11 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import style from './index.module.less'
 import closeIcon from '@/assets/icon/dark/icon-close-line.svg'
 import { Flex } from 'antd'
 import { toggleFocus, codeComputed } from '@/common/method'
 import { cryptoWithdraw } from '@/service'
 import { showError, showSuccess } from '@/common/message'
+import '@/assets/css/public.css'
 
 export default function PasswordModal({
   pswStatus,
@@ -32,6 +33,16 @@ export default function PasswordModal({
         return showError('验证码错误')
       }
       return showError('提币失败，请重试。')
+    }
+  }
+
+  const [active, setActive] = useState(false)
+  const toggleActive = () => {
+    const data = codeComputed(inputRefs)
+    if (data.length < 5) {
+      setActive(false)
+    } else {
+      setActive(true)
     }
   }
   return (
@@ -63,11 +74,15 @@ export default function PasswordModal({
               maxLength={1}
               ref={(el) => (inputRefs.current[index] = el)}
               onKeyUp={(event) => toggleFocus(inputRefs, event, index)}
+              onKeyDown={toggleActive}
             />
           ))}
       </Flex>
       <div className={style.link}> 忘记密码?</div>
-      <button className={style.confirmButton} onClick={caryCoinHandler}>
+      <button
+        className={active ? 'activeBtn' : 'unActiveBtn'}
+        onClick={caryCoinHandler}
+      >
         确认
       </button>
     </div>

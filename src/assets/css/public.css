@@ -8,3 +8,9 @@
   opacity: 1 !important;
   background: #0099ff !important;
 }
+
+.unActiveBtn {
+  border-radius: var(--radius-8);
+  opacity: 0.4;
+  background: var(--color-fill-white8);
+}

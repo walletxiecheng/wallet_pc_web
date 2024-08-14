@@ -6,6 +6,7 @@ import leftArrowLine from '@/assets/icon/light/icon-arrow-left-line.png'
 import { showWarning } from '@/common/message'
 import { toggleFocus } from '@/common/method'
 import PasswordModal from '../PasswordModal'
+import '@/assets/css/public.css'
 
 export default function GoogleCodeModal({
   showGoogleModal,
@@ -13,7 +14,6 @@ export default function GoogleCodeModal({
   data
 }) {
   const inputRefs = useRef([])
-
   const [pswStatus, setPswStatus] = useState(false)
   const togglePswStatus = (status) => {
     setPswStatus(status)
@@ -36,6 +36,18 @@ export default function GoogleCodeModal({
     togglePswStatus(true)
     toggleGoogleModal(false)
   }
+
+  const [active, setActive] = useState(false)
+
+  const toggleActive = () => {
+    const data = codeComputed(inputRefs)
+    if (data.length < 5) {
+      setActive(false)
+    } else {
+      setActive(true)
+    }
+  }
+
   return (
     <>
       <PasswordModal
@@ -71,10 +83,14 @@ export default function GoogleCodeModal({
                 maxLength={1}
                 ref={(el) => (inputRefs.current[index] = el)}
                 onKeyUp={(event) => toggleFocus(inputRefs, event, index)}
+                onKeyDown={toggleActive}
               />
             ))}
         </Flex>
-        <button className={style.confirmButton} onClick={check}>
+        <button
+          className={active ? 'activeBtn' : 'unActiveBtn'}
+          onClick={check}
+        >
           确认
         </button>
       </div>
