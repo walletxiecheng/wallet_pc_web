@@ -12,6 +12,7 @@ import { Carousel, Flex, Image } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { useRequest } from 'ahooks'
 import { getAdvertisement } from '@/service'
+import { groupArr } from '@/common/method'
 const page1 = [banner01, banner02, banner03, banner04]
 const page2 = [banner04, banner05, banner06, banner07]
 
@@ -20,10 +21,12 @@ export default function Billboards() {
   const { data: avdList } = useRequest(async () => {
     try {
       const { data } = await getAdvertisement()
-      return data
+      if (!data) {
+        return []
+      }
+      return groupArr(data, 4)
     } catch (err) {}
   })
-
   // 当前页
   const [page, setPage] = useState(1)
   const carouselRef = useRef(null)
@@ -56,30 +59,24 @@ export default function Billboards() {
         className={style.carousel}
         ref={carouselRef}
       >
-        <div>
-          <Flex>
-            {page1.map((item, index) => (
-              <Image
-                src={item}
-                preview={false}
-                key={index}
-                className={style.image}
-              />
-            ))}
-          </Flex>
-        </div>
-        <div>
-          <Flex>
-            {page2.map((item, index) => (
-              <Image
-                src={item}
-                preview={false}
-                key={index}
-                className={style.image}
-              />
-            ))}
-          </Flex>
-        </div>
+        {avdList?.map((item, idx1) => (
+          <div key={idx1}>
+            <Flex justify="space-between">
+              {item.map((item2, idx2) => (
+                <Image
+                  src={item2.image_url}
+                  width={282}
+                  preview={false}
+                  key={idx2}
+                  onClick={() => {
+                    window.open(item2.advertisement_url, '_blank')
+                  }}
+                  className={style.image}
+                />
+              ))}
+            </Flex>
+          </div>
+        ))}
       </Carousel>
       <div className={style.moveBut} onClick={onNext}>
         <RightOutlined style={{ color: page === 2 ? '#626364' : '' }} />

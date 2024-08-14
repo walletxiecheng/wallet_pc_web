@@ -29,12 +29,26 @@ export const timesTampDate = (time) => {
   return formattedDateTime
 }
 
-// export const timerReload = setTimeout(() => {
-//   window.location.reload()
-// }, 1000)
-
 export const timerReload = () => {
   return setTimeout(() => {
     window.location.reload()
   }, 1000)
+}
+
+// 数组分组
+export const groupArr = (arr, len) => {
+  const res = []
+  let temp = []
+  for (let i = 0; i < arr.length; i++) {
+    if (temp.length === len) {
+      res.push(temp)
+      temp = []
+    }
+    temp.push(arr[i])
+  }
+  if (temp.length > 0) {
+    res.push(temp)
+  }
+
+  return res
 }
