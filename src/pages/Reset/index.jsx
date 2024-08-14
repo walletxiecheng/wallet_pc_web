@@ -2,9 +2,10 @@ import React, { useState, useRef } from 'react'
 import style from './index.module.less'
 import { Flex, Select } from 'antd'
 import { CheckCircleFilled } from '@ant-design/icons'
-import { showError, showSuccess } from '@/common/message'
+import { showError, showSuccess, showWarning } from '@/common/message'
 import { sendVerifyCode } from '@/service'
 import EmailVerify from './EmailVerify'
+import PhoneVerify from './PhoneVerify'
 
 const tabList = [
   {
@@ -18,7 +19,16 @@ const tabList = [
 ]
 const options = [
   {
-    value: 1,
+    value: 86,
+    label: (
+      <>
+        <CheckCircleFilled />
+        +86
+      </>
+    )
+  },
+  {
+    value: 852,
     label: (
       <>
         <CheckCircleFilled />
@@ -27,7 +37,7 @@ const options = [
     )
   },
   {
-    value: 2,
+    value: 812,
     label: (
       <>
         <CheckCircleFilled />
@@ -41,9 +51,13 @@ export default function Reset() {
   const [showEmail, setShowEmail] = useState(false)
   const [showPhone, setShowPhone] = useState(false)
 
+  const areaCodeRef = useRef()
   const emailRef = useRef()
   const phoneRef = useRef()
 
+  const toggleShowTel = (status) => {
+    setShowPhone(status)
+  }
   // 发送邮箱验证码
   const sendEmailCodeHandler = async () => {
     const req = {
@@ -62,15 +76,20 @@ export default function Reset() {
 
   // 发送手机号验证码
   const sendPhoneCodeHandler = async () => {
-    // const req = {
-    //   account_type: 'phone',
-    //   verify_type: 'ResetPassword',
-    //   account: phoneRef.current?.value
-    // }
     if (!phoneRef?.current?.value) {
-      return showWarning('请输入手机号')
+      return showWarning('Input phone number,please!')
     }
-    setShowPhone(true)
+    const req = {
+      account_type: 'phone',
+      verify_type: 'ResetPassword',
+      account: phoneRef.current?.value
+    }
+    try {
+      await sendVerifyCode(req)
+      showSuccess('发送验证码成功')
+    } catch (err) {
+      showError(err?.msg)
+    }
   }
 
   return (
@@ -79,6 +98,11 @@ export default function Reset() {
         showVerify={showEmail}
         setShowEmail={setShowEmail}
         email={emailRef?.current?.value || ''}
+      />
+      <PhoneVerify
+        showPhone={showPhone}
+        toggleShowTel={toggleShowTel}
+        phone={phoneRef?.current?.value || ''}
       />
       <div className={style.resetBox}>
         <header>
@@ -114,7 +138,7 @@ export default function Reset() {
           style={{ display: checkTab === 2 ? 'block' : 'none' }}
         >
           <Flex>
-            <Select options={options} />
+            <Select options={options} defaultValue={86} ref={areaCodeRef} />
             <input
               placeholder="手机号"
               ref={phoneRef}

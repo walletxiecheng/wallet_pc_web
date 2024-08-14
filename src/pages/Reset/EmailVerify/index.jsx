@@ -4,9 +4,10 @@ import iconArrowLine from '@/assets/icon/light/icon-arrow-left-line.png'
 import { Flex } from 'antd'
 import { showError, showWarning } from '@/common/message'
 import Password from '../Password'
-import { toggleFocus } from '@/common/method'
-
+import { toggleFocus, codeComputed } from '@/common/method'
+import '@/assets/css/public.css'
 export default function EmailVerify({ showVerify, setShowEmail, email }) {
+  const [active, setActive] = useState(false)
   const inputRefs = useRef([])
   const [showPassword, setShowPassword] = useState(false)
 
@@ -71,12 +72,22 @@ export default function EmailVerify({ showVerify, setShowEmail, email }) {
                     key={index}
                     maxLength={1}
                     ref={(el) => (inputRefs.current[index] = el)}
+                    onKeyDown={() => {
+                      const data = codeComputed(inputRefs)
+
+                      if (data.length <= 1) {
+                        setActive(false)
+                      } else {
+                        setActive(true)
+                      }
+                    }}
                     onKeyUp={(event) => toggleFocus(inputRefs, event, index)}
                   />
                 ))}
             </Flex>
             <div className={style.send}>重新发送</div>
             <button
+              className={active ? 'activeBtn' : ''}
               onClick={() => {
                 toggleShowPassword(true)
               }}
