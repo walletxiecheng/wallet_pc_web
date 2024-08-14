@@ -6,6 +6,7 @@ import eyeClose from '@/assets/icon/dark/icon-eye-line-close.svg'
 import { showError, showSuccess, showWarning } from '@/common/message'
 import { setAssetsPassword } from '@/service'
 import { useUserStore } from '@/stores'
+import '@/assets/css/public.css'
 
 // 设置资金密码
 export default function Password({
@@ -15,11 +16,14 @@ export default function Password({
   toggleShowPassword,
   type
 }) {
+  // 密码可见状态
   const [passwordStatus, setPasswordStatus] = useState(0)
   const [newPasswordStatus, setNewPasswordStatus] = useState(0)
+  // 密码
   const passwordInputRef = useRef()
   const newPasswordInputRef = useRef()
 
+  const [active, setActive] = useState(false)
   const { userInfo, setUserInfo } = useUserStore()
   const togglePassword = () => {
     setPasswordStatus(passwordStatus === 0 ? 1 : 0)
@@ -94,6 +98,13 @@ export default function Password({
         <input
           ref={newPasswordInputRef}
           type={newPasswordStatus ? 'type' : 'password'}
+          onKeyUp={(e) => {
+            if (e.target.value) {
+              setActive(true)
+            } else {
+              setActive(false)
+            }
+          }}
           placeholder="请重复输入资金密码"
         />
         <span>
@@ -105,7 +116,12 @@ export default function Password({
         </span>
       </div>
       <div>
-        <button onClick={setAssetsPasswordHandler}>完成</button>
+        <button
+          className={active ? 'activeBtn' : 'unActiveBtn'}
+          onClick={setAssetsPasswordHandler}
+        >
+          完成
+        </button>
       </div>
     </div>
   )

@@ -8,6 +8,7 @@ import style from './index.module.less'
 import { sendVerifyCode } from '@/service'
 import closeIcon from '@/assets/icon/dark/icon-close-line.svg'
 import { showSuccess, showError, showWarning } from '@/common/message'
+import '@/assets/css/public.css'
 
 const tabList = [
   {
@@ -56,6 +57,10 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
   const [showVerify, setShowVerify] = useState(false)
   const [showTel, setShowTel] = useState(false)
 
+  //
+  const [phoneActive, setPhoneActive] = useState(false)
+  const [emailActive, setEmailActive] = useState(false)
+
   // 邮箱号
   const emailRef = useRef()
   // 国家代号
@@ -81,7 +86,8 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
     }
     try {
       await sendVerifyCode(req)
-      showSuccess('发送验证码成功')
+
+      showSuccess('success')
       toggleShowVerify(true)
     } catch (err) {
       showError(err?.msg)
@@ -95,15 +101,15 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
       verify_type: 'SetFundPassword',
       account: phoneRef.current?.value
     }
+    if (!phoneRef?.current?.value) {
+      return
+    }
     try {
       await sendVerifyCode(req)
-      showSuccess('发送验证码成功')
+      showSuccess('success')
       toggleShowTel(true)
     } catch (err) {
       showError(err?.msg)
-    }
-    if (!phoneRef?.current?.value) {
-      return showWarning('请输入手机号')
     }
   }
 
@@ -156,9 +162,19 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
           className={style.emailForm}
           style={{ display: checkTab === 1 ? 'block' : 'none' }}
         >
-          <input placeholder="请输入邮箱" ref={emailRef} />
+          <input
+            placeholder="请输入邮箱"
+            ref={emailRef}
+            onKeyUp={(e) => {
+              if (e.target.value) {
+                setEmailActive(true)
+              } else {
+                setEmailActive(false)
+              }
+            }}
+          />
           <button
-            className={style.verifyBtn}
+            className={emailActive ? 'activeBtn' : 'unActiveBtn'}
             onClick={() => {
               sendVerifyCodeHandler()
             }}
@@ -177,10 +193,18 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
               placeholder="手机号"
               style={{ width: '264px' }}
               ref={phoneRef}
+              onKeyUp={(e) => {
+                if (e.target.value) {
+                  setPhoneActive(true)
+                } else {
+                  setPhoneActive(false)
+                }
+              }}
             />
           </Flex>
           <button
-            className={style.verifyBtn}
+            // className={style.verifyBtn}
+            className={phoneActive ? 'activeBtn' : 'unActiveBtn'}
             onClick={() => {
               // 发送手机验证码
               sendPhoneCodeHandler()

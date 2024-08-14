@@ -8,9 +8,12 @@ import { Flex } from 'antd'
 import { verifyAccountInfo } from '@/service'
 import { useUserStore } from '@/stores'
 import { showWarning } from '@/common/message'
+import '@/assets/css/public.css'
 
 export default function LoginPswToast({ status, setStatus }) {
   const { userInfo } = useUserStore()
+  // 确认状态
+  const [active, setActive] = useState(false)
   const [googleStatus, setGoogleStatus] = useState(false)
   // 密码状态
   const [passwordStatus, setPasswordStatus] = useState(false)
@@ -61,6 +64,9 @@ export default function LoginPswToast({ status, setStatus }) {
           ref={passwordInputRef}
           type={passwordStatus ? 'type' : 'password'}
           placeholder="请输入六位登录密码"
+          onKeyUp={(e) => {
+            setActive(e.target.value ? true : false)
+          }}
         />
         <span>
           <img
@@ -72,7 +78,12 @@ export default function LoginPswToast({ status, setStatus }) {
       </div>
 
       <div>
-        <button onClick={checkLoginPassword}>确认</button>
+        <button
+          onClick={checkLoginPassword}
+          className={active ? 'activeBtn' : ''}
+        >
+          确认
+        </button>
       </div>
     </div>
   )

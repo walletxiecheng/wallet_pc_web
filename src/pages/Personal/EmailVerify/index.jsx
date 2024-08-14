@@ -4,7 +4,9 @@ import iconArrowLine from '@/assets/icon/light/icon-arrow-left-line.png'
 import { Flex } from 'antd'
 import { showError, showWarning } from '@/common/message'
 import Password from '../Password'
-import { toggleFocus } from '@/common/method'
+
+import { toggleFocus, codeComputed } from '@/common/method'
+import '@/assets/css/public.css'
 
 export default function EmailVerify({
   showVerify,
@@ -19,7 +21,7 @@ export default function EmailVerify({
   const toggleShowPassword = (status) => {
     const code = getEmailVerifyCode()
     if (code.length < 6) {
-      return showWarning('验证码长度不足')
+      return
     }
     setShowPassword(status)
   }
@@ -35,6 +37,17 @@ export default function EmailVerify({
     })
     return verifyCode.join('')
   }
+
+  const [active, setActive] = useState()
+  const toggleActive = () => {
+    const data = codeComputed(inputRefs)
+    if (data.length < 6) {
+      setActive(false)
+    } else {
+      setActive(true)
+    }
+  }
+
   return (
     <>
       <Password
@@ -75,7 +88,10 @@ export default function EmailVerify({
                     key={index}
                     maxLength={1}
                     ref={(el) => (inputRefs.current[index] = el)}
-                    onKeyUp={(event) => toggleFocus(inputRefs, event, index)}
+                    onKeyUp={(event) => {
+                      toggleFocus(inputRefs, event, index)
+                      toggleActive()
+                    }}
                   />
                 ))}
             </Flex>
@@ -83,6 +99,7 @@ export default function EmailVerify({
               重新发送
             </div>
             <button
+              className={active ? 'activeBtn' : 'unActiveBtn'}
               onClick={() => {
                 toggleShowPassword(true)
               }}

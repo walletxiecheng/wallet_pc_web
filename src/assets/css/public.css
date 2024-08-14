@@ -11,6 +11,6 @@
 
 .unActiveBtn {
   border-radius: var(--radius-8);
-  opacity: 0.4;
+  opacity: 0.4 !important;
   background: var(--color-fill-white8);
 }

@@ -226,13 +226,8 @@ export default function Personal() {
                 )}
                 {item.id === 4 && (
                   <div>
-                    {/* <div>2647418717@qq.com</div> */}
-
                     <button
                       style={{ display: googleStatus ? 'block' : 'none' }}
-                      // onClick={() => {
-                      //   setStatus(true)
-                      // }}
                     >
                       已绑定
                     </button>

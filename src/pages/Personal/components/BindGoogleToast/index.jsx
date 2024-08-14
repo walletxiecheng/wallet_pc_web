@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import style from './index.module.less'
 import iconArrowLine from '@/assets/icon/light/icon-arrow-left-line.png'
 import { Flex } from 'antd'
@@ -6,13 +6,14 @@ import { useRequest } from 'ahooks'
 import { bindGoogleAuth, getGoogleAuth } from '@/service'
 import { QRCode } from 'antd'
 import { toggleFocus, codeComputed } from '@/common/method'
-import { showError, showSuccess } from '@/common/message'
+import { showError, showSuccess, showWarning } from '@/common/message'
 import { useUserStore } from '@/stores'
+import '@/assets/css/public.css'
 
 // 绑定谷歌验证码
 export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
   const { userInfo, setUserInfo } = useUserStore()
-
+  const [active, setActive] = useState(false)
   const inputRefs = useRef([])
   // 获取谷歌验证码
   const getRequestHandler = async () => {
@@ -28,6 +29,9 @@ export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
   //绑定谷歌验证器
   const bindGoogleAuthHandler = async () => {
     const code = codeComputed(inputRefs)
+    if (code.length < 6) {
+      return
+    }
     const req = {
       secret: secretData?.secret,
       code: code
@@ -44,6 +48,16 @@ export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
       return showError(err.msg)
     }
   }
+
+  const toggleActive = () => {
+    const data = codeComputed(inputRefs)
+    if (data.length < 6) {
+      setActive(false)
+    } else {
+      setActive(true)
+    }
+  }
+
   return (
     <div
       className={style.googleContainer}
@@ -79,12 +93,17 @@ export default function BindGoogleToast({ googleStatus, setGoogleStatus }) {
                 key={index}
                 maxLength={1}
                 ref={(el) => (inputRefs.current[index] = el)}
-                onKeyUp={(event) => toggleFocus(inputRefs, event, index)}
+                onKeyUp={(event) => {
+                  toggleFocus(inputRefs, event, index)
+                  toggleActive()
+                  // setActive(event.target.value.length > 5 ? true : false)
+                }}
                 style={{ width: 52 }}
               />
             ))}
         </Flex>
         <button
+          className={active ? 'activeBtn' : 'unActiveBtn'}
           onClick={() => {
             bindGoogleAuthHandler()
           }}
