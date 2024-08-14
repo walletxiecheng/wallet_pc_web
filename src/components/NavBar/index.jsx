@@ -8,7 +8,7 @@ import style from './index.module.less'
 import { useTranslation } from 'react-i18next'
 import { useThemeStore, useTokenStore, useUserStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
-import avatar from '@/assets/image/avatar.png'
+import avatar from '@/assets/image/avatar.svg'
 import iconArrowTopFill from '@/assets/icon/light/icon-arrow-top-fill.png'
 import iconArrowBottomFill from '@/assets/icon/light/icon-arrow-down-fill.png'
 import iconSpotLine from '@/assets/icon/light/icon-spot-line.svg'
@@ -177,7 +177,7 @@ export default function NavBar() {
                 menu={{
                   items: walletDropdownItems
                 }}
-                placement="bottom"
+                placement="bottomCenter"
                 overlayClassName={style.dropdownBox}
                 onOpenChange={(open) => {
                   if (open) {
