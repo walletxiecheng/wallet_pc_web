@@ -17,7 +17,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 export default function CarryCoin() {
   const { userInfo } = useUserStore()
-  const amountRef = useRef(0)
+  const amountRef = useRef()
   const arrivalAddrRef = useRef()
   const navigate = useNavigate()
   const location = useLocation()
@@ -115,6 +115,8 @@ export default function CarryCoin() {
       }
     })
   }
+
+  const [sum, setSum] = useState(0)
   return (
     <>
       <NavBar />
@@ -260,9 +262,14 @@ export default function CarryCoin() {
                   type="text"
                   placeholder="最小输入数量为2"
                   ref={amountRef}
+                  onChange={() => {
+                    setSum(
+                      amountRef?.current?.value - currentToken.withdraw_fee
+                    )
+                  }}
                 />
                 <Flex>
-                  <span>USDT</span>｜
+                  <span>{currentToken?.coin_symbol}</span>｜
                   <span
                     className={style.link}
                     onClick={() => {
@@ -276,10 +283,15 @@ export default function CarryCoin() {
             </div>
             <div>
               <p>
-                手续费<span style={{ marginLeft: '32px' }}>0USDT</span>
+                手续费
+                <span style={{ marginLeft: '32px' }}>
+                  {Number(currentToken?.withdraw_fee) + ' '}
+                  {currentToken?.coin_symbol}
+                </span>
               </p>
               <p>
-                实际到账<span style={{ marginLeft: '32px' }}>0</span>
+                实际到账
+                <span style={{ marginLeft: '32px' }}>{sum}</span>
               </p>
             </div>
             <button className={style.carryButton} onClick={check}>
