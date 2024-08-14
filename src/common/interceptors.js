@@ -1,5 +1,5 @@
 import { showError, showWarning } from './message'
-import { useTokenStore, useUserStore } from '@/stores'
+import { useTokenStore } from '@/stores'
 import axios from 'axios'
 
 const axiosInstance = axios.create({
@@ -16,6 +16,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
+    // console.log(config)
     return config
   },
   function (error) {

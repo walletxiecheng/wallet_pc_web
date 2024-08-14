@@ -5,6 +5,7 @@ import tendencyDown from '@/assets/image/tendency-down.svg'
 import { Space } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '@/routes/urls'
+import { useTokenStore } from '@/stores'
 
 export const columns = () => {
   const navigate = useNavigate()
@@ -76,7 +77,11 @@ export const columns = () => {
       render: () => (
         <button
           onClick={() => {
-            navigate(URLS.carryCoin)
+            if (useTokenStore?.getState()?.token) {
+              navigate(URLS.carryCoin)
+            } else {
+              navigate(URLS.login)
+            }
           }}
         >
           交易

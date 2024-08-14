@@ -1,4 +1,4 @@
-import { Flex, Space, Dropdown, Button } from 'antd'
+import { Flex, Space, Dropdown } from 'antd'
 import React, { useState } from 'react'
 import logo from '@/assets/icon/dark/logo_light.svg'
 import downloadNavIcon from '@/assets/icon/dark/icon-download-line.svg'
@@ -6,7 +6,7 @@ import languageNavIcon from '@/assets/icon/dark/icon-language-line.svg'
 import modeNavIcon from '@/assets/icon/dark/icon-lightMod-line.svg'
 import style from './index.module.less'
 import { useTranslation } from 'react-i18next'
-import { useThemeStore, useTokenStore } from '@/stores'
+import { useThemeStore, useTokenStore, useUserStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
 import avatar from '@/assets/image/avatar.png'
 import iconArrowTopFill from '@/assets/icon/light/icon-arrow-top-fill.png'
@@ -15,6 +15,8 @@ import iconSpotLine from '@/assets/icon/light/icon-spot-line.svg'
 import iconHistoryLine from '@/assets/icon/light/icon-history-line.svg'
 import { URLS } from '@/routes/urls'
 import { useLocation } from 'react-router-dom'
+import { loginOut } from '@/service'
+import { showSuccess, showWarning } from '@/common/message'
 
 const navLink = [
   {
@@ -40,11 +42,20 @@ export default function NavBar() {
   const [icon, setIcon] = useState(iconArrowBottomFill)
   // 判断是否有token
   const { token, setToken } = useTokenStore()
+  const { setUserInfo } = useUserStore()
 
+  const linkTo = (url) => {
+    if (!token && url !== '/index') {
+      return showWarning('暂未登录')
+    }
+    navigate(url)
+  }
   // 退出登录
-  const loginOutHandler = () => {
+  const loginOutHandler = async () => {
+    navigate('/index')
     setToken(null)
-    navigate('/login')
+    setUserInfo(null)
+    await loginOut()
   }
 
   // 钱包下拉菜单
@@ -54,7 +65,7 @@ export default function NavBar() {
       label: (
         <div
           onClick={() => {
-            navigate(URLS.walletAccount)
+            linkTo(URLS.walletAccount)
           }}
         >
           <img src={iconSpotLine} />
@@ -67,7 +78,7 @@ export default function NavBar() {
       label: (
         <div
           onClick={() => {
-            navigate(URLS.walletRecord)
+            linkTo(URLS.walletRecord)
           }}
         >
           <img src={iconHistoryLine} />
@@ -84,7 +95,7 @@ export default function NavBar() {
       label: (
         <div
           onClick={() => {
-            navigate(URLS.personal)
+            linkTo(URLS.personal)
           }}
         >
           <img src={iconSpotLine} />
@@ -97,7 +108,7 @@ export default function NavBar() {
       label: (
         <div
           onClick={() => {
-            navigate(URLS.keyManager)
+            linkTo(URLS.keyManager)
           }}
         >
           <img src={iconHistoryLine} />
@@ -122,27 +133,12 @@ export default function NavBar() {
         <Flex>
           <img src={logo} width={108} />
           <Space className={style.linkList}>
-            {/* <div
-              onClick={() => {
-                navigate('/index')
-              }}
-            >
-              首页
-            </div>
-
-            <div
-              onClick={() => {
-                navigate('/personal')
-              }}
-            >
-              账户
-            </div> */}
             {navLink.map((item) => (
               <div
                 className={item.url === pathname ? style.navActive : ''}
                 key={item.id}
                 onClick={() => {
-                  navigate(item.url)
+                  linkTo(item.url)
                 }}
               >
                 {item.label}
