@@ -6,7 +6,7 @@ import { Flex } from 'antd'
 import { bindAccountInfo } from '@/service'
 import { useUserStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
-import { toggleFocus } from '@/common/method'
+import { toggleFocus, codeComputed } from '@/common/method'
 import { showSuccess, showError } from '@/common/message'
 
 export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
@@ -16,7 +16,7 @@ export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
   const inputRefs = useRef([])
   // 切换焦点
   const [isBind, setBind] = useState(false)
-
+  const [active, setActive] = useState(false)
   // 绑定邮箱
   const bindEmailHandler = async () => {
     let code = []
@@ -41,12 +41,20 @@ export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
       let data = userInfo
       data.email = email
       setUserInfo(data)
-
       showSuccess('绑定成功')
       // // 关闭弹窗
       toggleShowVerify(false)
     } catch (err) {
       return showError(err.msg)
+    }
+  }
+
+  const toggleActive = () => {
+    const data = codeComputed(inputRefs)
+    if (data.length < 5) {
+      setActive(false)
+    } else {
+      setActive(true)
     }
   }
 
@@ -84,7 +92,7 @@ export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
                 ref={(el) => (inputRefs.current[index] = el)}
                 onKeyUp={(event) => {
                   toggleFocus(inputRefs, event, index)
-                  setBind(true)
+                  toggleActive(inputRefs)
                 }}
               />
             ))}
@@ -100,10 +108,7 @@ export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
         </Flex>
         <button
           onClick={bindEmailHandler}
-          style={{
-            backgroundColor: isBind ? 'var(--color-fill-blue)' : '',
-            opacity: isBind ? 1 : 0.4
-          }}
+          className={active ? 'activeBtn' : 'unActiveBtn'}
         >
           确认
         </button>

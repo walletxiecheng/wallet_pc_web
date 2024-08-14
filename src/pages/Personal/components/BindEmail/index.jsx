@@ -5,6 +5,8 @@ import { useRef } from 'react'
 import { sendVerifyCode } from '@/service'
 import { showError, showSuccess, showWarning } from '@/common/message'
 import EmailVerity from './EmailVerify'
+import '@/assets/css/public.css'
+
 export default function BindEmail({ showEmail, toggleEmail, email }) {
   const emailInputRef = useRef()
 
@@ -22,15 +24,15 @@ export default function BindEmail({ showEmail, toggleEmail, email }) {
     }
     try {
       await sendVerifyCode(req)
+      showSuccess('发送验证码成功')
+      toggleEmail(false)
+      toggleShowVerify(true)
     } catch (err) {
       if (err.code === 17) {
         return showWarning('该邮箱已绑定')
       }
       return showError(err.msg)
     }
-    showSuccess('发送验证码成功')
-    toggleEmail(false)
-    toggleShowVerify(true)
   }
   return (
     <>
@@ -72,10 +74,11 @@ export default function BindEmail({ showEmail, toggleEmail, email }) {
           />
           <button
             onClick={getVerifyCode}
-            style={{
-              backgroundColor: isSend || email ? 'var(--color-fill-blue)' : '',
-              opacity: isSend || email ? 1 : 0.4
-            }}
+            className={isSend ? 'activeBtn' : ''}
+            // style={{
+            //   backgroundColor: isSend || email ? 'var(--color-fill-blue)' : '',
+            //   opacity: isSend || email ? 1 : 0.4
+            // }}
           >
             获取验证码
           </button>

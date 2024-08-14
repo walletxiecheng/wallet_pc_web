@@ -73,7 +73,7 @@ export default function PhoneVerity({
           placeholder="请输入验证码"
           ref={verifyCodeRef}
           onKeyDown={(e) => {
-            setBind(e.target.value === '' ? false : true)
+            setBind(e.target.value.length <= 1 ? false : true)
           }}
         />
         <Flex
