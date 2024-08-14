@@ -50,13 +50,23 @@ export default function DataTable() {
   // 输入币种搜索
   const search = () => {
     const token = inputTokenRef.current.value
-    inputTokenRef.current.value = ''
-
     if (!token) {
       return showWarning('input token,please!')
     }
     runMarket({ column: column, coinName: token, ...pageParams })
   }
+
+  const handleKeypress = (e) => {
+    const code = e.keyCode
+    if (code === 13) {
+      return search()
+    }
+    if (code === 8 && inputTokenRef.current.value === '') {
+      console.log(code)
+      runMarket({ column: column, ...pageParams })
+    }
+  }
+
   return (
     <>
       <div className={style.dataBoardContainer}>
@@ -81,11 +91,7 @@ export default function DataTable() {
               ref={inputTokenRef}
               className={style.searchInput}
               placeholder="输入币种搜索"
-              onKeyDown={(e) => {
-                if (e?.keyCode === 13) {
-                  search()
-                }
-              }}
+              onKeyUp={handleKeypress}
             />
             <SearchOutlined onClick={search} />
           </div>
