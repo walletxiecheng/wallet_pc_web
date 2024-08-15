@@ -8,7 +8,12 @@ import checkIconOn from '@/assets/icon/light/icon-checkBox-line.svg'
 import Tips from './components/Tips'
 import GoogleCodeModal from './components/GoogleCodeModal'
 import AddressModal from './components/AddressModal'
-import { getCryptoTokens, getChains, getWithDrawBalance } from '@/service'
+import {
+  getCryptoTokens,
+  getChains,
+  getWithDrawBalance,
+  verifyAddress
+} from '@/service'
 import { useRequest } from 'ahooks'
 import { showError, showSuccess, showWarning } from '@/common/message'
 import { useUserStore } from '@/stores'
@@ -92,18 +97,36 @@ export default function CarryCoin() {
   }
 
   // 检查是否有资金密码和邮箱验证
-  const check = () => {
+  const check = async () => {
     const address = arrivalAddrRef?.current?.value || ''
-    const amount = amountRef?.current?.value || ''
+    const amount = Number(amountRef?.current?.value) || ''
+    const available = Number(balanceData?.available)
     if (!address) {
       return showWarning('提币地址不能为空')
     } else if (!amount) {
       return showWarning('提币数量不能为空')
     }
+
+    // 查看可提额度
+    if (available < amount) {
+      return showWarning('可提额度不足')
+    }
+
+    // 查看是否有资金密码和谷歌验证码
     if (!userInfo.google_verify_status || !userInfo.has_fund_password) {
       return setTips(true)
     }
-    toggleGoogleModal(true)
+    // 校验地址
+    try {
+      const req = {
+        chain: currentChain,
+        address: address
+      }
+      await verifyAddress(req)
+      toggleGoogleModal(true)
+    } catch (err) {
+      showError(err.msg)
+    }
   }
 
   // 当前币种变化时出发

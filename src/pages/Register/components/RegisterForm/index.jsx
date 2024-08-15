@@ -104,7 +104,7 @@ export default function RegisterForm() {
       verify_type: 'Register',
       account: phoneRef.current?.value
     }
-    toggleShowTel(true)
+    // toggleShowTel(true)
 
     try {
       await sendVerifyCode(req)

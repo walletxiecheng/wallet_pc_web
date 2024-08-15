@@ -177,7 +177,7 @@ export default function NavBar() {
                 menu={{
                   items: walletDropdownItems
                 }}
-                placement="bottomCenter"
+                placement="bottom"
                 overlayClassName={style.dropdownBox}
                 onOpenChange={(open) => {
                   if (open) {

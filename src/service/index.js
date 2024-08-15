@@ -192,3 +192,8 @@ export const getPortfolio = (data) => {
 export const getAdvertisement = (data) => {
   return axiosDefine.get('/home/advertisement', data)
 }
+
+// 校验地址是否正确
+export const verifyAddress = (data) => {
+  return axiosDefine.put('/crypto/token/address/verify', data)
+}
