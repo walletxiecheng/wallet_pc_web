@@ -8,6 +8,7 @@ import icon from '@/assets/icon/dark/icon-jump-line.svg'
 import { usePagination, useRequest } from 'ahooks'
 import { getMarket } from '@/service'
 import { showWarning } from '@/common/message'
+import { useUserStore } from '@/stores'
 
 const columList = ['Custom', 'USDT', 'ETC', 'BTC']
 const pageParams = { current: 1, pageSize: 10 }
@@ -18,10 +19,13 @@ export default function DataTable() {
   // 当前页数
   const [current, setCurrent] = useState(1)
 
+  const { userInfo } = useUserStore()
+  const id = userInfo?.commercial_id
   // 输入框绑定
   const inputTokenRef = useRef()
 
   const getMarketHandler = async (params) => {
+    params.commercial_id = id
     try {
       const { data } = await getMarket(params)
       return data
@@ -100,7 +104,7 @@ export default function DataTable() {
         <div style={{ marginTop: 40 }} className="tableBox">
           <Table
             bordered={false}
-            columns={columns()}
+            columns={columns(runMarket, column)}
             rowKey={(record) => record.id}
             dataSource={marketList?.info}
             pagination={false}

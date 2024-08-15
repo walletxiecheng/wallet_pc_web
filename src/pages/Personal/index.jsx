@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import NavBar from '@/components/NavBar'
 import style from './index.module.less'
-import avatar from '@/assets/image/avatar.png'
-import { Flex, Space } from 'antd'
-import iconSate from '@/assets/icon/light/icon-safer-line.svg'
+import avatar from '@/assets/image/avatar.svg'
+import { Flex } from 'antd'
+// import iconSate from '@/assets/icon/light/icon-safer-line.svg'
 import iconEmail from '@/assets/icon/light/icon-email-line.svg'
 import iconPhone from '@/assets/icon/light/icon-phone-line.svg'
 import iconGoggle from '@/assets/icon/light/icon-google-line.svg'
@@ -17,7 +17,8 @@ import Identity from './components/Identity'
 import LoginPswToast from './components/LoginPswToast'
 import { useNavigate } from 'react-router-dom'
 import { showSuccess } from '@/common/message'
-
+import { URLS } from '@/routes/urls'
+import StatusTag from '@/components/StatusTag'
 const verifyList = [
   // {
   //   id: 1,
@@ -136,7 +137,10 @@ export default function Personal() {
 
           <div className={style.card}>
             <header>
-              <div className={style.title}>身份认证</div>
+              <div className={style.title}>
+                <div>身份认证</div>
+                <StatusTag />
+              </div>
             </header>
             <div className={style.description}>
               完成身份认证，有助于保护账户安全，提高提现额度及交易权限
@@ -146,7 +150,7 @@ export default function Personal() {
               <button onClick={checkBaseAuth}>基础认证</button>
               <button
                 onClick={() => {
-                  navigate('/advancedAuth')
+                  navigate(URLS.advancedAuth)
                 }}
               >
                 法币高级认证

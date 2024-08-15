@@ -197,3 +197,8 @@ export const getAdvertisement = (data) => {
 export const verifyAddress = (data) => {
   return axiosDefine.put('/crypto/token/address/verify', data)
 }
+
+// 收藏代币
+export const favoriteCoin = (data) => {
+  return axiosDefine.post('/home/coin/favorite', data)
+}

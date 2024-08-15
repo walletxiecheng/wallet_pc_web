@@ -93,7 +93,7 @@ export default function WalletAccount() {
             <Table
               columns={assetsColumns()}
               dataSource={data?.list}
-              rowKey={(record) => record.address}
+              rowKey={(record) => record.id}
               loading={!data}
               pagination={{
                 hideOnSinglePage: true,

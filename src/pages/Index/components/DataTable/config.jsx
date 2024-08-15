@@ -6,17 +6,51 @@ import { Space } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '@/routes/urls'
 import { useTokenStore } from '@/stores'
+import { favoriteCoin } from '@/service'
+import { showError, showSuccess, showWarning } from '@/common/message'
+import { useUserStore } from '@/stores'
+import { pageParams } from '@/common/config'
 
-export const columns = () => {
+export const columns = (runMarket, column) => {
   const navigate = useNavigate()
+  // 收藏代币
+  const starCoin = async (id, status) => {
+    if (!useUserStore?.getState()?.userInfo?.commercial_id) {
+      return showWarning('请登录后再执行此操作')
+    }
+    const req = { coin_id: id, action: status }
+
+    try {
+      await favoriteCoin(req)
+      // showSuccess('操作成功')
+      runMarket({ column: column, ...pageParams })
+    } catch (err) {
+      showError(err.msg)
+    }
+  }
   return [
     {
-      key: 'key',
-      dataIndex: 'key',
+      key: 'is_collected',
+      dataIndex: 'is_collected',
       title: '收藏',
-      render: () => (
+      render: (_, record) => (
         <div>
-          <img src={iconStarLine} />
+          {record.is_collected && (
+            <img
+              onClick={() => {
+                starCoin(record.id, 2)
+              }}
+              src={iconStarFill}
+            />
+          )}
+          {!record.is_collected && (
+            <img
+              onClick={() => {
+                starCoin(record.id, 1)
+              }}
+              src={iconStarLine}
+            />
+          )}
         </div>
       )
     },
