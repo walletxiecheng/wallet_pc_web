@@ -43,7 +43,6 @@ const verifyList = [
 export default function Personal() {
   const navigate = useNavigate()
   const { userInfo } = useUserStore()
-  console.log(userInfo)
   const emailStatus = userInfo.email !== '' || false
   const phoneStatus = userInfo.phone !== '' || false
   // 高级认证状态
