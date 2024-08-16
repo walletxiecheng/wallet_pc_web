@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Flex, Select } from 'antd'
+import { Button, Flex, Input, Select } from 'antd'
 import { CheckCircleFilled } from '@ant-design/icons'
 import EmailVerify from '../EmailVerify'
 import PhoneVerify from '../PhoneVerify'
@@ -10,7 +10,7 @@ import style from './index.module.less'
 import icon from '@/assets/icon/dark/logIcon.svg'
 import { sendVerifyCode } from '@/service'
 import { showSuccess, showError, showWarning } from '@/common/message'
-import { validateEmail } from '@/common/regex'
+import { validateEmail, validatePhone } from '@/common/regex'
 // 当前组件状态 1登录表单，2
 // const [currentStatus, setCurrentStatus] = useState(1)
 // 注册方式-默认邮箱注册
@@ -66,7 +66,7 @@ export default function RegisterForm() {
   // 邮箱号
   const emailRef = useRef()
   // 国家代号
-  const areaCodeRef = useRef()
+  const [areaCode, setAreaCode] = useState(86)
   // 手机号
   const phoneRef = useRef()
 
@@ -102,25 +102,27 @@ export default function RegisterForm() {
 
   // 发送手机号验证码
   const sendPhoneCodeHandler = async () => {
-    console.log(areaCodeRef)
-
-    if (!phoneRef?.current?.value) {
-      return showWarning('请输入手机号')
+    // 校验手机号
+    const resStatus = validatePhone(phoneRef?.current?.value)
+    if (!resStatus) {
+      return showWarning('Please enter a valid phone number')
     }
+
     const req = {
       account_type: 'phone',
       verify_type: 'Register',
-      account: phoneRef.current?.value
+      account: areaCode + '-' + phoneRef.current?.value
     }
 
     try {
       await sendVerifyCode(req)
-      showSuccess('send success')
+      showSuccess('send verifyCode success')
       toggleShowTel(true)
     } catch (err) {
       return showError(err.msg)
     }
   }
+
   return (
     <>
       <EmailVerify
@@ -134,7 +136,7 @@ export default function RegisterForm() {
         showTel={showTel}
         sendPhoneCodeHandler={sendPhoneCodeHandler}
         toggleShowTel={toggleShowTel}
-        phone={phoneRef?.current?.value}
+        phone={areaCode + '-' + phoneRef.current?.value}
       />
       <div className={style.registerBox}>
         <header>
@@ -174,7 +176,13 @@ export default function RegisterForm() {
           style={{ display: checkTab === 2 ? 'block' : 'none' }}
         >
           <Flex>
-            <Select options={options} defaultValue={86}></Select>
+            <Select
+              options={options}
+              defaultValue={areaCode}
+              onChange={(val) => {
+                setAreaCode(val)
+              }}
+            />
             <input
               placeholder="手机号"
               style={{ width: '264px' }}

@@ -10,6 +10,8 @@ import { login } from '@/service'
 import { showError, showSuccess, showWarning } from '@/common/message'
 import { useTokenStore, useUserStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
+import { URLS } from '@/routes/urls'
+import { validatePassword, validatePhone } from '@/common/regex'
 
 const tabList = [
   {
@@ -66,7 +68,7 @@ export default function LoginForm() {
   const phonePasswordRef = useRef(null)
 
   // 区号
-  const area = useRef()
+  const [area, setArea] = useState(86)
 
   const navigate = useNavigate()
   // 设置token
@@ -98,10 +100,17 @@ export default function LoginForm() {
   }
   // 手机号登录
   const loginPhoneHandler = async () => {
+    if (!validatePhone(phoneInputRef?.current?.value)) {
+      return showWarning('Please enter a valid phone number')
+    }
+
     const req = {
       account_type: 'phone',
-      account: phoneInputRef.current.value,
-      password: phonePasswordRef.current.value
+      account: area + '-' + phoneInputRef?.current?.value,
+      password: phonePasswordRef?.current?.value
+    }
+    if (!validatePassword(req.password)) {
+      return showWarning('Please enter a valid password')
     }
     try {
       const { data } = await login(req)
@@ -159,7 +168,7 @@ export default function LoginForm() {
         <div
           className={style.link}
           onClick={() => {
-            navigate('/reset')
+            navigate(URLS.reset)
           }}
         >
           忘记密码？
@@ -173,7 +182,13 @@ export default function LoginForm() {
         style={{ display: checkTab === 2 ? 'block' : 'none' }}
       >
         <Flex>
-          <Select options={options} defaultValue={86} ref={area} />
+          <Select
+            options={options}
+            defaultValue={86}
+            onChange={(value) => {
+              setArea(value)
+            }}
+          />
           <div className={style.inputBox}>
             <input
               placeholder="手机号"

@@ -9,3 +9,9 @@ export const validateEmail = (email) => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return regex.test(email)
 }
+
+// 校验邮箱
+export const validatePhone = (phone) => {
+  const regex = /^\d{10,15}$/
+  return regex.test(phone)
+}
