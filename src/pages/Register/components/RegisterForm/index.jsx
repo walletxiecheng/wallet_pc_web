@@ -10,6 +10,7 @@ import style from './index.module.less'
 import icon from '@/assets/icon/dark/logIcon.svg'
 import { sendVerifyCode } from '@/service'
 import { showSuccess, showError, showWarning } from '@/common/message'
+import { validateEmail } from '@/common/regex'
 // 当前组件状态 1登录表单，2
 // const [currentStatus, setCurrentStatus] = useState(1)
 // 注册方式-默认邮箱注册
@@ -85,9 +86,14 @@ export default function RegisterForm() {
       verify_type: 'Register',
       account: emailRef.current?.value
     }
+    // 邮箱号校验
+    const checkRes = validateEmail(req.account)
+    if (!checkRes) {
+      return showWarning('Please enter a valid email')
+    }
     try {
       await sendVerifyCode(req)
-      showSuccess('send success')
+      showSuccess('send verifyCode success')
       toggleShowVerify(true)
     } catch (err) {
       return showError(err.msg)
@@ -96,6 +102,8 @@ export default function RegisterForm() {
 
   // 发送手机号验证码
   const sendPhoneCodeHandler = async () => {
+    console.log(areaCodeRef)
+
     if (!phoneRef?.current?.value) {
       return showWarning('请输入手机号')
     }
@@ -104,7 +112,6 @@ export default function RegisterForm() {
       verify_type: 'Register',
       account: phoneRef.current?.value
     }
-    // toggleShowTel(true)
 
     try {
       await sendVerifyCode(req)
@@ -167,7 +174,7 @@ export default function RegisterForm() {
           style={{ display: checkTab === 2 ? 'block' : 'none' }}
         >
           <Flex>
-            <Select options={options} ref={areaCodeRef} defaultValue={86} />
+            <Select options={options} defaultValue={86}></Select>
             <input
               placeholder="手机号"
               style={{ width: '264px' }}

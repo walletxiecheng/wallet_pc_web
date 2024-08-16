@@ -9,7 +9,7 @@ import PhoneVerity from './PhoneVerify'
 
 export default function BindPhone({ showPhone, togglePhone, phone }) {
   const phoneInputRef = useRef()
-  const codeSelectRef = useRef() //代码，默认852
+  const codeSelectRef = useRef() //代码，默认86
   const [isSend, setIsSend] = useState(false) //控制按钮的样式
   const [showVerify, setShowVerify] = useState(false) //是否显示验证码
 

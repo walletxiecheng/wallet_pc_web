@@ -6,6 +6,7 @@ import eyeClose from '@/assets/icon/dark/icon-eye-line-close.svg'
 import { useNavigate } from 'react-router-dom'
 import { showError, showSuccess, showWarning } from '@/common/message'
 import { register } from '@/service'
+import { validatePassword } from '@/common/regex'
 
 export default function Password({
   account,
@@ -39,6 +40,12 @@ export default function Password({
       verify_code: verifyCode,
       password: passwordInputRef.current?.value
     }
+    // 校验登录密码
+    const checkRes = validatePassword(req.password)
+    if (!checkRes) {
+      return showWarning('Please enter a valid password')
+    }
+
     try {
       await register(req)
       showSuccess('注册成功，去登录。')

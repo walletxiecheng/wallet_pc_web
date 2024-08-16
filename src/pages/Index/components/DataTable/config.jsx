@@ -22,7 +22,6 @@ export const columns = (runMarket, column) => {
 
     try {
       await favoriteCoin(req)
-      // showSuccess('操作成功')
       runMarket({ column: column, ...pageParams })
     } catch (err) {
       showError(err.msg)
