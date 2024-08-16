@@ -3,9 +3,10 @@ import '@/assets/css/toast.less'
 import closeIcon from '@/assets/icon/dark/icon-close-line.svg'
 import { useRef } from 'react'
 import { sendVerifyCode } from '@/service'
-import { showError, showSuccess } from '@/common/message'
+import { showError, showSuccess, showWarning } from '@/common/message'
 import { Flex } from 'antd'
 import PhoneVerity from './PhoneVerify'
+import { validatePhone } from '@/common/regex'
 
 export default function BindPhone({ showPhone, togglePhone, phone }) {
   const phoneInputRef = useRef()
@@ -21,9 +22,12 @@ export default function BindPhone({ showPhone, togglePhone, phone }) {
     const req = {
       account_type: 'phone',
       verify_type: 'BindingEmailOrPhone',
-      account: codeSelectRef?.current?.value + '-' + phoneInputRef.current.value
+      account:
+        codeSelectRef?.current?.value + '-' + phoneInputRef?.current?.value
     }
-
+    if (!validatePhone(phoneInputRef?.current?.value)) {
+      return showWarning('Please enter a valid phone number')
+    }
     try {
       await sendVerifyCode(req)
       togglePhone(false)

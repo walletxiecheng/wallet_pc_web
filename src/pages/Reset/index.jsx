@@ -6,6 +6,7 @@ import { showError, showSuccess, showWarning } from '@/common/message'
 import { sendVerifyCode } from '@/service'
 import EmailVerify from './EmailVerify'
 import PhoneVerify from './PhoneVerify'
+import { validateEmail, validatePhone } from '@/common/regex'
 
 const tabList = [
   {
@@ -51,7 +52,7 @@ export default function Reset() {
   const [showEmail, setShowEmail] = useState(false)
   const [showPhone, setShowPhone] = useState(false)
 
-  const areaCodeRef = useRef()
+  const [area, setArea] = useState(86)
   const emailRef = useRef()
   const phoneRef = useRef()
 
@@ -65,6 +66,9 @@ export default function Reset() {
       verify_type: 'ResetPassword',
       account: emailRef.current?.value
     }
+    if (validateEmail(req.account)) {
+      return showWarning('Please enter a valid email')
+    }
     try {
       await sendVerifyCode(req)
       setShowEmail(true)
@@ -76,13 +80,14 @@ export default function Reset() {
 
   // 发送手机号验证码
   const sendPhoneCodeHandler = async () => {
-    if (!phoneRef?.current?.value) {
-      return showWarning('Input phone number,please!')
+    if (!validatePhone(phoneRef?.current?.value)) {
+      return showWarning('Please enter a valid phone number')
     }
+
     const req = {
       account_type: 'phone',
       verify_type: 'ResetPassword',
-      account: phoneRef.current?.value
+      account: area + '-' + phoneRef.current?.value
     }
     try {
       await sendVerifyCode(req)
@@ -97,12 +102,12 @@ export default function Reset() {
       <EmailVerify
         showVerify={showEmail}
         setShowEmail={setShowEmail}
-        email={emailRef?.current?.value || ''}
+        email={emailRef?.current?.value}
       />
       <PhoneVerify
         showPhone={showPhone}
         toggleShowTel={toggleShowTel}
-        phone={phoneRef?.current?.value || ''}
+        phone={area + '-' + phoneRef.current?.value}
       />
       <div className={style.resetBox}>
         <header>
@@ -138,7 +143,13 @@ export default function Reset() {
           style={{ display: checkTab === 2 ? 'block' : 'none' }}
         >
           <Flex>
-            <Select options={options} defaultValue={86} ref={areaCodeRef} />
+            <Select
+              options={options}
+              defaultValue={86}
+              onChange={(val) => {
+                setArea(val)
+              }}
+            />
             <input
               placeholder="手机号"
               ref={phoneRef}

@@ -9,6 +9,7 @@ import { sendVerifyCode } from '@/service'
 import closeIcon from '@/assets/icon/dark/icon-close-line.svg'
 import { showSuccess, showError, showWarning } from '@/common/message'
 import '@/assets/css/public.css'
+import { validateEmail, validatePhone } from '@/common/regex'
 
 const tabList = [
   {
@@ -64,7 +65,7 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
   // 邮箱号
   const emailRef = useRef()
   // 国家代号
-  const areaCodeRef = useRef()
+  const [area, setArea] = useState(86)
   // 手机号
   const phoneRef = useRef()
 
@@ -84,9 +85,12 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
       verify_type: 'SetFundPassword',
       account: emailRef.current?.value
     }
+
+    if (!validateEmail(req.account)) {
+      return showWarning('Please enter a valid email')
+    }
     try {
       await sendVerifyCode(req)
-
       showSuccess('success')
       toggleShowVerify(true)
     } catch (err) {
@@ -96,14 +100,15 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
 
   // 发送手机号验证码
   const sendPhoneCodeHandler = async () => {
+    if (!validatePhone(phoneRef?.current?.value)) {
+      return showWarning('Please enter a valid phone number')
+    }
     const req = {
       account_type: 'phone',
       verify_type: 'SetFundPassword',
-      account: phoneRef.current?.value
+      account: area + '-' + phoneRef?.current?.value
     }
-    if (!phoneRef?.current?.value) {
-      return
-    }
+
     try {
       await sendVerifyCode(req)
       showSuccess('success')
@@ -125,7 +130,7 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
       <PhoneVerify
         showTel={showTel}
         toggleShowTel={toggleShowTel}
-        phone={phoneRef?.current?.value}
+        phone={area + '-' + phoneRef.current?.value}
       />
 
       <div
@@ -188,7 +193,13 @@ export default function Identity({ toggleShowIdentity, showIdentity }) {
           style={{ display: checkTab === 2 ? 'block' : 'none' }}
         >
           <Flex>
-            <Select options={options} ref={areaCodeRef} defaultValue={86} />
+            <Select
+              options={options}
+              onChange={(val) => {
+                setArea(val)
+              }}
+              defaultValue={86}
+            />
             <input
               placeholder="手机号"
               style={{ width: '264px' }}

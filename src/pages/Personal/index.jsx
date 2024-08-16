@@ -20,12 +20,6 @@ import { showSuccess } from '@/common/message'
 import { URLS } from '@/routes/urls'
 import StatusTag from '@/components/StatusTag'
 const verifyList = [
-  // {
-  //   id: 1,
-  //   title: '安全等级：低',
-  //   content: '强烈建立开启2项双重身份验证',
-  //   icon: iconSate
-  // },
   {
     id: 2,
     title: '邮箱',
@@ -49,6 +43,7 @@ const verifyList = [
 export default function Personal() {
   const navigate = useNavigate()
   const { userInfo } = useUserStore()
+  console.log(userInfo)
   const emailStatus = userInfo.email !== '' || false
   const phoneStatus = userInfo.phone !== '' || false
   // 高级认证状态
@@ -114,7 +109,7 @@ export default function Personal() {
         showIdentity={showIdentity}
         toggleShowIdentity={toggleShowIdentity}
       />
-      <LoginPswToast status={status} setStatus={setStatus} />
+      {status && <LoginPswToast status={status} setStatus={setStatus} />}
 
       <div className={style.personalContainer}>
         <div className={style.info}>
@@ -139,7 +134,10 @@ export default function Personal() {
             <header>
               <div className={style.title}>
                 <div>身份认证</div>
-                <StatusTag />
+                <StatusTag
+                  status_p={userInfo.personal_review_status}
+                  status_e={userInfo?.enterprise_review_status}
+                />
               </div>
             </header>
             <div className={style.description}>

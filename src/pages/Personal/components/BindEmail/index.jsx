@@ -6,6 +6,7 @@ import { sendVerifyCode } from '@/service'
 import { showError, showSuccess, showWarning } from '@/common/message'
 import EmailVerity from './EmailVerify'
 import '@/assets/css/public.css'
+import { validateEmail } from '@/common/regex'
 
 export default function BindEmail({ showEmail, toggleEmail, email }) {
   const emailInputRef = useRef()
@@ -22,15 +23,15 @@ export default function BindEmail({ showEmail, toggleEmail, email }) {
       verify_type: 'BindingEmailOrPhone',
       account: emailInputRef.current.value
     }
+    if (!validateEmail(req.account)) {
+      return showWarning('Please enter a valid email')
+    }
     try {
       await sendVerifyCode(req)
       showSuccess('发送验证码成功')
       toggleEmail(false)
       toggleShowVerify(true)
     } catch (err) {
-      if (err.code === 17) {
-        return showWarning('该邮箱已绑定')
-      }
       return showError(err.msg)
     }
   }
@@ -72,14 +73,7 @@ export default function BindEmail({ showEmail, toggleEmail, email }) {
               setIsSend(e.target.value !== '' ? true : false)
             }}
           />
-          <button
-            onClick={getVerifyCode}
-            className={isSend ? 'activeBtn' : ''}
-            // style={{
-            //   backgroundColor: isSend || email ? 'var(--color-fill-blue)' : '',
-            //   opacity: isSend || email ? 1 : 0.4
-            // }}
-          >
+          <button onClick={getVerifyCode} className={isSend ? 'activeBtn' : ''}>
             获取验证码
           </button>
         </div>
