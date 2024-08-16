@@ -97,7 +97,13 @@ export default function APIManager() {
                 onFinish={onFinish}
                 form={form}
               >
-                <Form.Item label="备注" name="remark">
+                <Form.Item
+                  label="备注"
+                  name="remark"
+                  rules={[
+                    { required: false, message: 'Please input your remark!' }
+                  ]}
+                >
                   <Input />
                 </Form.Item>
 

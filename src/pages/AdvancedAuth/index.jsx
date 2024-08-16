@@ -11,6 +11,7 @@ import NavBar from '@/components/NavBar'
 import arrowLeftIcon from '@/assets/icon/light/icon-arrow-left-line.png'
 import { useNavigate } from 'react-router-dom'
 import asteriskLineIcon from '@/assets/icon/light/icon-asterisk-line.svg'
+import { URLS } from '@/routes/urls'
 
 export default function AdvancedAuth() {
   const navigate = useNavigate()
@@ -23,16 +24,17 @@ export default function AdvancedAuth() {
   //个人认证
   const personHandler = async (values) => {
     const req = {
-      real_name: values.real_name,
-      id_card_number: values.id_card_number,
+      real_name: values?.real_name,
+      id_card_number: values?.id_card_number,
       id_card_front: values?.file1?.file,
-      id_card_back: values.file2.file,
-      id_card_by_hand: values.file3.file
+      id_card_back: values?.file2?.file,
+      id_card_by_hand: values?.file3?.file
     }
 
     try {
       await personAuthentication(req, header)
-      return showSuccess('上传成功')
+      showSuccess('Upload Success')
+      navigate(URLS.personal)
     } catch (err) {
       return showError(err?.msg)
     }
@@ -41,15 +43,16 @@ export default function AdvancedAuth() {
   // 企业认证
   const enterpriseHandler = async (values) => {
     const req = {
-      enterprise_name: values.enterprise_name,
-      business_license: values.file4.file,
-      business_license_by_hand: values.file4.file
+      enterprise_name: values?.enterprise_name,
+      business_license: values?.file4?.file,
+      business_license_by_hand: values?.file4?.file
     }
     try {
       await enterpriseAuthentication(req, header)
-      showSuccess('上传成功')
-    } catch {
-      showError('上传失败')
+      navigate(URLS.personal)
+      showSuccess('Upload Success')
+    } catch (err) {
+      showError(err.msg)
     }
   }
   return (
@@ -72,14 +75,36 @@ export default function AdvancedAuth() {
           <main>
             <div className="formBox">
               <Form layout="vertical" className="form" onFinish={personHandler}>
-                <Form.Item label="真实姓名" name="real_name">
+                <Form.Item
+                  label="真实姓名"
+                  name="real_name"
+                  rules={[
+                    { required: false, message: 'Please input your name!' }
+                  ]}
+                >
                   <Input placeholder="请输入真实姓名" />
                 </Form.Item>
-                <Form.Item label="证件号码" name="id_card_number">
+                <Form.Item
+                  label="证件号码"
+                  name="id_card_number"
+                  rules={[
+                    { required: false, message: 'Please input your ID number!' }
+                  ]}
+                >
                   <Input placeholder="请输入证件号码" />
                 </Form.Item>
                 <Flex align="center" justify="space-between">
-                  <Form.Item label="证件正面" name="file1" className="left">
+                  <Form.Item
+                    label="证件正面"
+                    name="file1"
+                    className="left"
+                    rules={[
+                      {
+                        required: false,
+                        message: 'Please upload !'
+                      }
+                    ]}
+                  >
                     <Upload
                       listType="picture-card"
                       beforeUpload={beforeUpload}
@@ -99,7 +124,17 @@ export default function AdvancedAuth() {
                       </button>
                     </Upload>
                   </Form.Item>
-                  <Form.Item label="证件反面" name="file2" className="right">
+                  <Form.Item
+                    label="证件反面"
+                    name="file2"
+                    className="right"
+                    rules={[
+                      {
+                        required: false,
+                        message: 'Please upload !'
+                      }
+                    ]}
+                  >
                     <Upload
                       listType="picture-card"
                       beforeUpload={beforeUpload}
@@ -120,7 +155,16 @@ export default function AdvancedAuth() {
                     </Upload>
                   </Form.Item>
                 </Flex>
-                <Form.Item label="手持证件" name="file3">
+                <Form.Item
+                  label="手持证件"
+                  name="file3"
+                  rules={[
+                    {
+                      required: false,
+                      message: 'Please upload !'
+                    }
+                  ]}
+                >
                   <Upload
                     listType="picture-card"
                     beforeUpload={beforeUpload}
