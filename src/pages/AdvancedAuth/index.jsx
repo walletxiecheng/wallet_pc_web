@@ -12,10 +12,11 @@ import arrowLeftIcon from '@/assets/icon/light/icon-arrow-left-line.png'
 import { useNavigate } from 'react-router-dom'
 import asteriskLineIcon from '@/assets/icon/light/icon-asterisk-line.svg'
 import { URLS } from '@/routes/urls'
+import { useUserStore } from '@/stores'
 
 export default function AdvancedAuth() {
   const navigate = useNavigate()
-
+  const { userInfo, setUserInfo } = useUserStore()
   // 取消默认上传
   const beforeUpload = () => {
     return false
@@ -33,6 +34,7 @@ export default function AdvancedAuth() {
 
     try {
       await personAuthentication(req, header)
+      setUserInfo({ ...userInfo, personal_review_status: 2 })
       showSuccess('Upload Success')
       navigate(URLS.personal)
     } catch (err) {
