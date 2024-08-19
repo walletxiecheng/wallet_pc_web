@@ -28,7 +28,6 @@ export default function Portfolio() {
   const { data: staticData } = useRequest(async () => {
     try {
       const { data } = await getStatistics()
-      console.log(data)
       return data
     } catch (err) {}
   })

@@ -19,20 +19,20 @@ const funDotList = [
   },
   {
     id: 2,
-    title: '安全便捷',
-    content: '轻松掌管多链资产',
+    title: '丰富生态',
+    content: '支持NFTs，DeFi，DApp，数据行情，行业资讯',
     icon: icon2
   },
   {
     id: 3,
-    title: '安全便捷',
-    content: '轻松掌管多链资产',
+    title: '注重隐私',
+    content: '采用安全的加密协议，并只存在设备之上，保护数据安全。',
     icon: icon3
   },
   {
     id: 4,
-    title: '安全便捷',
-    content: '轻松掌管多链资产',
+    title: '行情数据',
+    content: '查看各种加密货币的价格、市值排名、24小时交易量',
     icon: icon4
   }
 ]
