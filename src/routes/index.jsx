@@ -12,19 +12,8 @@ import { URLS } from './urls'
 import Record from '@/pages/WalletAccount/Record'
 import Reset from '@/pages/Reset'
 import AdvancedAuth from '@/pages/AdvancedAuth'
+import Calculator from '@/pages/subPages/Calculator'
 
-// {
-//   path: URLS.root,
-//   element: <BaseLayout />,
-//   errorElement: <ErrorPage />,
-//   children: [
-//     {
-//       path: URLS.index,
-//       element: <Index />,
-//       errorElement: <ErrorPage />
-//     }
-//   ]
-// },
 export const routes = createBrowserRouter([
   {
     path: URLS.root,
@@ -73,11 +62,19 @@ export const routes = createBrowserRouter([
   },
   {
     path: URLS.keyManager,
-    element: <APIManager />
+    element: <APIManager />,
+    errorElement: <ErrorPage />
   },
   {
     path: URLS.advancedAuth,
-    element: <AdvancedAuth />
+    element: <AdvancedAuth />,
+    errorElement: <ErrorPage />
+  },
+  //辅助页面
+  {
+    path: URLS.calculator,
+    element: <Calculator />,
+    errorElement: <ErrorPage />
   }
 ])
 

@@ -202,3 +202,13 @@ export const verifyAddress = (data) => {
 export const favoriteCoin = (data) => {
   return axiosDefine.post('/home/coin/favorite', data)
 }
+
+// 获取代币对USDT和美元对法币的汇率信息
+export const getRate = (data) => {
+  return axiosDefine.get('/market/rate', data)
+}
+
+// 统计用户量、成交量、优质数字资产量的接口
+export const getStatistics = (data) => {
+  return axiosDefine.get('/home/statistics', data)
+}

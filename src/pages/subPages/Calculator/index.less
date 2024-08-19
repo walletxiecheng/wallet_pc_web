@@ -1,0 +1,84 @@
+.calContainer {
+  min-height: 100vh;
+  display: flex;
+  padding-top: 90px;
+  flex-direction: column;
+  align-items: center;
+  .box {
+    margin-top: 48px;
+    width: 588px;
+    text-align: center;
+    margin-bottom: 34px;
+    header {
+      color: var(--color-text-pri);
+      font-size: 56px;
+    }
+    .desc {
+      font-size: 13px;
+      margin-top: 12px;
+    }
+  }
+  .coinBox {
+    // margin-top: 34px;
+    width: 588px;
+    height: 80px;
+    border-radius: 8px;
+    border: 0.5px solid var(--color-border-white8);
+    background: var(--color-fill-white8);
+    padding: 10px;
+    display: flex;
+    font-size: 13px;
+    align-items: center;
+    justify-content: space-between;
+
+    .left {
+      padding-top: 10px;
+      .outInput {
+        height: 52px;
+        font-size: 16px;
+        color: var(--color-text-pri);
+        display: flex;
+        align-items: center;
+      }
+      .coinInput {
+        border: none;
+        color: var(--color-text-pri);
+        font-size: 16px;
+        background-color: transparent;
+      }
+    }
+  }
+  .changeImg {
+    margin: 12px 0;
+  }
+
+  .tips {
+    width: 588px;
+    padding: 10px 0;
+    .tipBox {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      width: 278px;
+      color: #f76b15;
+      padding: 8px;
+      border-radius: 4px;
+      border: 0.5px solid #66350c;
+      background: #331e0b;
+      font-size: 11px; /* 145.455% */
+    }
+  }
+  .ant-select {
+    border-radius: var(--radius---radius-6, 6px);
+    border: 0.5px solid var(--color-border-white8);
+    width: 148px;
+    height: 56px;
+    background: var(--color-fill-white8);
+    .ant-select-selector {
+      border: none !important;
+      .ant-select-selection-placeholder {
+        color: var(--color-text-quat);
+      }
+    }
+  }
+}
