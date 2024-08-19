@@ -4,8 +4,7 @@ import waitIcon from '@/assets/icon/dark/icon-history-waiting-line.svg'
 import successIcon from '@/assets/icon/dark/icon-safe-success-line.svg'
 // import
 
-export default function StatusTag({ status_e, status_p }) {
-  const status = status_e > status_p ? status_e : status_p
+export default function StatusTag({ status }) {
   return (
     <div>
       {status == 1 && (

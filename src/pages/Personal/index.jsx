@@ -133,10 +133,8 @@ export default function Personal() {
             <header>
               <div className={style.title}>
                 <div>身份认证</div>
-                <StatusTag
-                  status_p={userInfo.personal_review_status}
-                  status_e={userInfo?.enterprise_review_status}
-                />
+                <StatusTag status={userInfo.personal_review_status} />
+                <StatusTag status={userInfo.enterprise_review_status} />
               </div>
             </header>
             <div className={style.description}>
