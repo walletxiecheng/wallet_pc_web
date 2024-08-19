@@ -1,8 +1,7 @@
 import React from 'react'
 import style from './index.module.less'
-import icon from '@/assets/icon/dark/icon-fill-dot.svg'
 import { Flex } from 'antd'
-import { getPortfolio } from '@/service'
+import { getPortfolio, getStatistics } from '@/service'
 import { useRequest } from 'ahooks'
 
 const style1 = {
@@ -14,14 +13,25 @@ const style2 = {
 export default function Portfolio() {
   // 获取投资组合
   const { data } = useRequest(async () => {
-    const { data } = await getPortfolio()
-    return data
+    try {
+      const { data } = await getPortfolio()
+      return data
+    } catch (err) {}
   })
 
   // 打开投资组合链接
   const navigateTo = (url) => {
     window.open(url, '_blank')
   }
+
+  // 获取用户量/24小时成交量/优质资产数量
+  const { data: staticData } = useRequest(async () => {
+    try {
+      const { data } = await getStatistics()
+      console.log(data)
+      return data
+    } catch (err) {}
+  })
 
   return (
     <div className={style.portfolioContainer}>
@@ -134,15 +144,15 @@ export default function Portfolio() {
 
       <Flex className={style.portfolioDataBox}>
         <div>
-          <header>45+</header>
+          <header>{staticData?.user_amount}+</header>
           <span>百万用户首选</span>
         </div>
         <div>
-          <header>4040</header>
+          <header>{staticData?.trading_volume_24h}</header>
           <span>24小时成交量</span>
         </div>
         <div>
-          <header>700+</header>
+          <header>{staticData?.assets_amount}+</header>
           <span>优质数字资产</span>
         </div>
       </Flex>
