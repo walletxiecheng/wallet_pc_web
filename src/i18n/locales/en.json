@@ -1,8 +1,44 @@
 {
   "translation": {
+    "nav": {
+      "link1": "Home",
+      "link2": "Buy Crypto",
+      "link3": "2",
+      "link4": "3",
+      "login": "Login",
+      "register": "Register"
+    },
     "banner": {
-      "header": "header",
-      "description": "description"
+      "header": "True Self Custodial Web3 Wallet",
+      "description": "The Token 17 Wallet is the easiest and most secure way to store, buy and exchange on the Algorand blockchain.Discover and connect decentralized applications (DApps) on any device."
+    },
+    "funDescribe": {
+      "title1": "Discover DApp",
+      "title2": "Batch Transfer",
+      "title3": "Flash Exchange",
+      "title4": "TRX Vote",
+      "content1": "There are various DApps such as cryptocurrency wallets and financial services on Token 17. and have full control over their own data and assets",
+      "content2": "Use Token 17 to send assets to multiple addresses at once, saving handling fees and time. Improve efficiency and reduce the risk of human error.",
+      "content3": "Token 17 is a fast and convenient decentralized transaction method. Use smart contracts and cross-chain technology to ensure transaction security and reliability.",
+      "content4": "Deposit TRX tokens via Token 17 to vote for super representatives on the TRON network and get rewards."
+    },
+    "bottom": {
+      "title": "Open secure transactions at any time",
+      "description": "Fully supports web, iOS, and Android, download now and start a new era of trading"
+    },
+    "login": {
+      "loginHeader": "欢迎注册Token 17",
+      "email": "邮箱",
+      "phone": "手机号",
+      "emailToast": "请输入邮箱",
+      "phoneToast": "请输入手机号",
+      "next": "下一步",
+      "loginTip": "已有账号?",
+      "login": "登录",
+      "readAndAgree": "我已阅读并同意",
+      "agreement": "用户协议",
+      "policy": "隐私条款",
+      "and": "和"
     }
   }
 }

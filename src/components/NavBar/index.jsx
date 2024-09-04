@@ -21,17 +21,20 @@ import { showSuccess, showWarning } from '@/common/message'
 const navLink = [
   {
     id: 1,
-    label: '首页',
+    label: 'link1',
     url: URLS.index
   },
   {
     id: 2,
-    label: '账户',
+    label: 'link2',
     url: URLS.personal
   }
 ]
 
 export default function NavBar() {
+  const { i18n } = useTranslation()
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.language)
+  console.log(currentLanguage)
   const location = useLocation()
   // 当前路由
   const pathname = location.pathname
@@ -43,6 +46,11 @@ export default function NavBar() {
   // 判断是否有token
   const { token, setToken } = useTokenStore()
   const { setUserInfo } = useUserStore()
+
+  const change = () => {
+    i18n.changeLanguage(currentLanguage === 'zh' ? 'en' : 'zh')
+    setCurrentLanguage(i18n.language)
+  }
 
   const linkTo = (url) => {
     if (!token && url !== '/index') {
@@ -141,7 +149,7 @@ export default function NavBar() {
                   linkTo(item.url)
                 }}
               >
-                {item.label}
+                {t(`nav.${item.label}`)}
               </div>
             ))}
           </Space>
@@ -204,7 +212,7 @@ export default function NavBar() {
           </Flex>
 
           <img src={downloadNavIcon} />
-          <img src={languageNavIcon} />
+          <img src={languageNavIcon} onClick={change} />
           <img src={modeNavIcon} />
         </Flex>
       </Flex>
