@@ -13,6 +13,8 @@ import Record from '@/pages/WalletAccount/Record'
 import Reset from '@/pages/Reset'
 import AdvancedAuth from '@/pages/AdvancedAuth'
 import Calculator from '@/pages/subPages/Calculator'
+import Privacy from '@/pages/Privacy'
+import Agreement from '@/pages/Agreement'
 
 export const routes = createBrowserRouter([
   {
@@ -74,6 +76,16 @@ export const routes = createBrowserRouter([
   {
     path: URLS.calculator,
     element: <Calculator />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: URLS.privacy,
+    element: <Privacy />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: URLS.agreement,
+    element: <Agreement />,
     errorElement: <ErrorPage />
   }
 ])

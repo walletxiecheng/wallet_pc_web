@@ -28,6 +28,16 @@ const navLink = [
     id: 2,
     label: 'link2',
     url: URLS.personal
+  },
+  {
+    id: 2,
+    label: 'link3',
+    url: URLS.privacy
+  },
+  {
+    id: 2,
+    label: 'link4',
+    url: URLS.agreement
   }
 ]
 

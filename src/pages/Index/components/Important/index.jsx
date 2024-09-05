@@ -4,11 +4,12 @@ import { Flex } from 'antd'
 import im1 from '@/assets/image/im-1.png'
 import im2 from '@/assets/image/im-2.png'
 import im3 from '@/assets/image/im-3.png'
-
 import icon1 from '@/assets/icon/light/icon-safe-fill.svg'
 import icon2 from '@/assets/icon/light/icon-ecology-fill.svg'
 import icon3 from '@/assets/icon/light/icon-privacy-fill.svg'
 import icon4 from '@/assets/icon/light/icon-chart-fill.svg'
+
+import { useTranslation } from 'react-i18next'
 
 const funDotList = [
   {
