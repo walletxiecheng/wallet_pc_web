@@ -30,12 +30,12 @@ const navLink = [
     url: URLS.personal
   },
   {
-    id: 2,
+    id: 3,
     label: 'link3',
     url: URLS.privacy
   },
   {
-    id: 2,
+    id: 4,
     label: 'link4',
     url: URLS.agreement
   }
@@ -44,7 +44,6 @@ const navLink = [
 export default function NavBar() {
   const { i18n } = useTranslation()
   const [currentLanguage, setCurrentLanguage] = useState(i18n.language)
-  console.log(currentLanguage)
   const location = useLocation()
   // 当前路由
   const pathname = location.pathname
@@ -206,7 +205,7 @@ export default function NavBar() {
                 }}
               >
                 <Flex align="center">
-                  <div>钱包</div>
+                  <div>{t('nav.wallet')}</div>
                   <img src={icon} width={18} />
                 </Flex>
               </Dropdown>

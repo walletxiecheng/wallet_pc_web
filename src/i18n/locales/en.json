@@ -5,6 +5,7 @@
       "link2": "Buy Crypto",
       "link3": "Policy",
       "link4": "Agreement",
+      "wallet": "Wallet",
       "login": "Login",
       "register": "Register"
     },
@@ -22,23 +23,74 @@
       "content3": "Token 17 is a fast and convenient decentralized transaction method. Use smart contracts and cross-chain technology to ensure transaction security and reliability.",
       "content4": "Deposit TRX tokens via Token 17 to vote for super representatives on the TRON network and get rewards."
     },
+    "important": {
+      "title1": "Multiple\nverification",
+      "title2": "Easily manage digital assets.",
+      "title3": "Generate passwords and keys locally.",
+      "description1": "Token 17 is a mobile application that provides bank-level security and multi-factor authentication to help you manage and protect digital assets. Whether it's cryptocurrencies, digital collectibles, or other digital assets, Token 17 can meet your needs and allow you to securely manage financial assets.",
+      "description2": "Token 17 is the simplest and most secure way to connect with blockchain applications, allowing you to stay in control when interacting with decentralized networks. It effortlessly manages digital assets, ensures security, and maintains complete control.",
+      "description3": "Token 17 is the simplest and most secure way to connect with blockchain applications, allowing you to stay in control when interacting with decentralized networks. It enables you to easily and securely manage digital assets while maintaining control at all times.。",
+      "subTitle1": "Safe and convenient",
+      "subTitle2": "Enriching Ecology",
+      "subTitle3": "Pay attention to privacy",
+      "subTitle4": "Market data",
+      "subDescription1": "A set of mnemonic words to easily manage multi chain assets",
+      "subDescription2": "Support NFTs, DeFi, DApps, data trends, industry news",
+      "subDescription3": "Adopting secure encryption protocols and only existing on the device to protect data security.",
+      "subDescription4": "View the prices, market value rankings, and 24-hour trading volumes of various cryptocurrencies"
+    },
+    "portfolio": {
+      "title": "Establish your investment portfolio",
+      "content1": "First choice for millions of users",
+      "content2": "24-hour trading volume",
+      "content3": "High quality digital assets"
+    },
     "bottom": {
       "title": "Open secure transactions at any time",
       "description": "Fully supports web, iOS, and Android, download now and start a new era of trading"
     },
     "login": {
-      "loginHeader": "欢迎注册Token 17",
-      "email": "邮箱",
-      "phone": "手机号",
-      "emailToast": "请输入邮箱",
-      "phoneToast": "请输入手机号",
-      "next": "下一步",
-      "loginTip": "已有账号?",
-      "login": "登录",
-      "readAndAgree": "我已阅读并同意",
-      "agreement": "用户协议",
-      "policy": "隐私条款",
-      "and": "和"
+      "registerHeader": "Welcome",
+      "loginHeader": "Welcome",
+      "email": "Email",
+      "phone": "Phone",
+      "forgetPassWord": "Forgot password?",
+      "emailToast": "Please enter your email address",
+      "phoneToast": "Please input a password",
+      "passwordToast": "Please input a password",
+      "newUserRegistration": "New user registration",
+      "verificationCodeLogin": "Verification code login",
+      "next": "next step",
+      "loginTip": "Do you already have an account? ",
+      "login": " Sign in",
+      "readAndAgree": "I have read and agree to the",
+      "agreement": "User Agreement",
+      "policy": "Privacy Policy",
+      "and": "and"
+    },
+    "toast": {
+      "back": "Back",
+      "confirm": "Confirm",
+      "veryCode": {
+        "title": "Verification code",
+        "emailDesc": "Send verification code to: ",
+        "emailDesc2": "The email verification code may be classified as spam, please check your inbox carefully.",
+        "enter": "Please enter",
+        "phoneDesc": "Please enter the verification code sent to:",
+        "Resend": "Resend",
+        "next": "Next"
+      },
+      "password": {
+        "title": "Set password",
+        "desc": "Please set a login password for your account",
+        "input1": "Please enter your login password",
+        "input2": "Please repeat the login password"
+      },
+      "reset": {
+        "title": "Reset login password",
+        "tip": "Withdrawal and OTC transfers are prohibited within 24 hours after resetting the login password",
+        "submit": "Submit"
+      }
     }
   }
 }

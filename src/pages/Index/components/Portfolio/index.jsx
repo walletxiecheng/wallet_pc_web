@@ -3,7 +3,7 @@ import style from './index.module.less'
 import { Flex } from 'antd'
 import { getPortfolio, getStatistics } from '@/service'
 import { useRequest } from 'ahooks'
-
+import { useTranslation } from 'react-i18next'
 const style1 = {
   '--time': '40s'
 }
@@ -11,6 +11,7 @@ const style2 = {
   '--time': '60s'
 }
 export default function Portfolio() {
+  const { t } = useTranslation()
   // 获取投资组合
   const { data } = useRequest(async () => {
     try {
@@ -34,7 +35,7 @@ export default function Portfolio() {
 
   return (
     <div className={style.portfolioContainer}>
-      <h1>建立你的投资组合</h1>
+      <h1>{t('portfolio.title')}</h1>
       <div className={style.barrageBox} style={style1}>
         <div>
           {data?.map((item, index) => (
@@ -144,15 +145,15 @@ export default function Portfolio() {
       <Flex className={style.portfolioDataBox}>
         <div>
           <header>{staticData?.user_amount}+</header>
-          <span>百万用户首选</span>
+          <span>{t('portfolio.content1')}</span>
         </div>
         <div>
           <header>{staticData?.trading_volume_24h}</header>
-          <span>24小时成交量</span>
+          <span>{t('portfolio.content2')}</span>
         </div>
         <div>
           <header>{staticData?.assets_amount}+</header>
-          <span>优质数字资产</span>
+          <span>{t('portfolio.content3')}</span>
         </div>
       </Flex>
     </div>

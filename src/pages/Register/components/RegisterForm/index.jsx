@@ -5,6 +5,7 @@ import EmailVerify from '../EmailVerify'
 import PhoneVerify from '../PhoneVerify'
 import { useNavigate } from 'react-router-dom'
 import './select.less'
+import { useTranslation } from 'react-i18next'
 // import icon from '@/assets/icon/light/logo_light.svg'
 import style from './index.module.less'
 import icon from '@/assets/icon/dark/logIcon.svg'
@@ -18,11 +19,11 @@ import { validateEmail, validatePhone } from '@/common/regex'
 const tabList = [
   {
     id: 1,
-    label: '邮箱'
+    label: 'login.email'
   },
   {
     id: 2,
-    label: '手机号'
+    label: 'login.phone'
   }
 ]
 
@@ -62,7 +63,7 @@ export default function RegisterForm() {
   const [showVerify, setShowVerify] = useState(false)
   const [showTel, setShowTel] = useState(false)
   const navigate = useNavigate()
-
+  const { t } = useTranslation()
   // 邮箱号
   const emailRef = useRef()
   // 国家代号
@@ -141,7 +142,7 @@ export default function RegisterForm() {
       <div className={style.registerBox}>
         <header>
           <img src={icon} />
-          欢迎注册Token17
+          {t('login.registerHeader')}
         </header>
         <div className={style.tabs}>
           {tabList.map((item) => (
@@ -152,7 +153,7 @@ export default function RegisterForm() {
                 setCheckTab(item.id)
               }}
             >
-              {item.label}
+              {t(item.label)}
             </span>
           ))}
         </div>
@@ -161,13 +162,13 @@ export default function RegisterForm() {
           className={style.emailForm}
           style={{ display: checkTab === 1 ? 'block' : 'none' }}
         >
-          <input placeholder="请输入邮箱" ref={emailRef} />
+          <input placeholder={t('login.emailToast')} ref={emailRef} />
           <button
             onClick={() => {
               sendVerifyCodeHandler()
             }}
           >
-            下一步
+            {t('login.next')}
           </button>
         </div>
         {/* 手机号注册 */}
@@ -184,7 +185,7 @@ export default function RegisterForm() {
               }}
             />
             <input
-              placeholder="手机号"
+              placeholder={t('login.phoneToast')}
               style={{ width: '264px' }}
               ref={phoneRef}
             />
@@ -195,25 +196,28 @@ export default function RegisterForm() {
               sendPhoneCodeHandler()
             }}
           >
-            下一步
+            {t('login.next')}
           </button>
         </div>
         {/* 登录 */}
         <div className={style.login}>
-          已有账号？
+          {t('login.loginTip')}
           <span
             onClick={() => {
               navigate('/login')
             }}
           >
-            登录
+            {t('login.login')}
           </span>
         </div>
         {/* 分割线 */}
         <div className={style.line} />
         {/* 协议链接 */}
         <div className={style.protocol}>
-          我已阅读并同意<span>《用户协议》</span>和<span>《隐私协议》</span>
+          {t('login.readAndAgree')}
+          <span> {t('login.agreement')} </span>
+          {t('login.and')}
+          <span> {t('login.policy')} </span>
         </div>
       </div>
     </>

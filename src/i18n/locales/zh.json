@@ -3,8 +3,9 @@
     "nav": {
       "link1": "首页",
       "link2": "账户",
-      "link3": "用户协议",
-      "link4": "隐私政策",
+      "link3": "隐私政策",
+      "link4": "用户协议",
+      "wallet": "钱包",
       "login": "登录",
       "register": "注册"
     },
@@ -23,30 +24,73 @@
       "content4": "TRX 投票Token 17 提供快速便捷的去中心化交易，采用智能合约和跨链技术确保交易安全可靠。"
     },
     "important": {
-      "title1": "提供银行等级 <br/> 安全保障 多重验证",
+      "title1": "提供银行等级 \n 安全保障 多重验证",
       "title2": "轻松管理数字资产始终尽在掌握",
       "title3": "只在您的设备上生成密码和密钥",
       "description1": "Token 17是一款移动应用程序，提供银行级安全保障和多重验证功能，帮助您管理和保护数字资产。无论是加密货币、数字藏品还是其他数字资产，Token 17都能满足您的需求，让您安心管理财务资产。",
       "description2": "Token 17是连接区块链应用程序最简单、安全的方式，让您在与去中心化网络交互时始终掌控局面。它轻松管理数字资产，确保安全，并保持完全控制。",
-      "description3": "Token 17是连接区块链应用程序最简单、安全的方式，让您在与去中心化网络交互时始终掌控局面。它让您轻松、安全地管理数字资产，始终保持控制。"
+      "description3": "Token 17是连接区块链应用程序最简单、安全的方式，让您在与去中心化网络交互时始终掌控局面。它让您轻松、安全地管理数字资产，始终保持控制。",
+      "subTitle1": "安全便捷",
+      "subTitle2": "丰富生态",
+      "subTitle3": "注重隐私",
+      "subTitle4": "行情数据",
+      "subDescription1": "一套助记词，轻松掌管多链资产",
+      "subDescription2": "支持NFTs，DeFi，DApp，数据行情，行业资讯",
+      "subDescription3": "采用安全的加密协议，并只存在设备之上，保护数据安全。",
+      "subDescription4": "查看各种加密货币的价格、市值排名、24小时交易量"
+    },
+    "portfolio": {
+      "title": "建立你的投资组合",
+      "content1": "百万用户首选",
+      "content2": "24小时成交量",
+      "content3": "优质数字资产"
     },
     "bottom": {
       "title": "随时随地开启安全交易",
       "description": "全面支持Web、iOS、Android，即刻下载开启交易新时代"
     },
     "login": {
-      "loginHeader": "欢迎注册Token 17",
+      "registerHeader": "欢迎注册Token 17",
+      "loginHeader": "欢迎登录Token 17",
       "email": "邮箱",
       "phone": "手机号",
+      "forgetPassWord": "忘记密码",
       "emailToast": "请输入邮箱",
       "phoneToast": "请输入手机号",
+      "passwordToast": "请输入密码",
+      "newUserRegistration": "新用户注册",
+      "verificationCodeLogin": "验证码登录",
       "next": "下一步",
       "loginTip": "已有账号?",
       "login": "登录",
       "readAndAgree": "我已阅读并同意",
-      "agreement": "用户协议",
-      "policy": "隐私条款",
+      "agreement": "《用户协议》",
+      "policy": "《隐私条款》",
       "and": "和"
+    },
+    "toast": {
+      "back": "返回",
+      "confirm": "完成",
+      "veryCode": {
+        "title": "请输入验证码",
+        "emailDesc": "验证码发送至:",
+        "emailDesc2": "邮箱验证码可能被判定为垃圾邮件，请注意查收.",
+        "enter": "请输入",
+        "phoneDesc": "请输入发送至:",
+        "Resend": "重新发送",
+        "next": "下一步"
+      },
+      "password": {
+        "title": "设置密码",
+        "desc": "请为您的账户设置登录密码",
+        "input1": "请输入登录密码",
+        "input2": "请重复登录密码"
+      },
+      "reset": {
+        "title": "重置登录密码",
+        "tip": "重置登录密码后，24小时内禁止提币和OTC划转",
+        "submit": "提交"
+      }
     }
   }
 }

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { showError, showSuccess, showWarning } from '@/common/message'
 import { register } from '@/service'
 import { validatePassword } from '@/common/regex'
-
+import { useTranslation } from 'react-i18next'
 export default function Password({
   account,
   verifyCode,
@@ -21,7 +21,7 @@ export default function Password({
   const newPasswordInputRef = useRef()
 
   const navigate = useNavigate()
-
+  const { t } = useTranslation()
   const togglePassword = () => {
     setPasswordStatus(passwordStatus === 0 ? 1 : 0)
   }
@@ -43,7 +43,9 @@ export default function Password({
     // 校验登录密码
     const checkRes = validatePassword(req.password)
     if (!checkRes) {
-      return showWarning('Please enter a valid password')
+      return showWarning(
+        '密码长度为8-24，由大小写字母，数字，下划线和特殊字符组成。'
+      )
     }
 
     try {
@@ -66,19 +68,19 @@ export default function Password({
         }}
       >
         <img src={iconArrowLine} width={16} />
-        <span>返回</span>
+        <span> {t('toast.back')}</span>
       </div>
 
       <header>
-        <h3>设置密码</h3>
-        <span>请为您的账户设置登录密码</span>
+        <h3> {t('toast.password.title')}</h3>
+        <span>{t('toast.password.desc')}</span>
       </header>
 
       <div className={style.passwordBox}>
         <input
           ref={passwordInputRef}
           type={passwordStatus ? 'type' : 'password'}
-          placeholder="请输入登录密码"
+          placeholder={t('toast.password.input1')}
         />
         <span>
           <img
@@ -92,7 +94,7 @@ export default function Password({
         <input
           ref={newPasswordInputRef}
           type={newPasswordStatus ? 'type' : 'password'}
-          placeholder="请重复输入密码"
+          placeholder={t('toast.password.input2')}
         />
         <span>
           <img
@@ -103,7 +105,7 @@ export default function Password({
         </span>
       </div>
       <div>
-        <button onClick={registerHandler}>完成</button>
+        <button onClick={registerHandler}>{t('toast.confirm')}</button>
       </div>
     </div>
   )

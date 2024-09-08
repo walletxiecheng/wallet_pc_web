@@ -6,6 +6,7 @@ import { showError, showWarning } from '@/common/message'
 import Password from '../Password'
 import { toggleFocus } from '@/common/method'
 import { codeComputed } from '@/common/method'
+import { useTranslation } from 'react-i18next'
 
 export default function EmailVerify({
   showVerify,
@@ -15,7 +16,7 @@ export default function EmailVerify({
 }) {
   const inputRefs = useRef([])
   const [showPassword, setShowPassword] = useState(false)
-
+  const { t } = useTranslation()
   //
   const toggleShowPassword = (status) => {
     const data = codeComputed(inputRefs)
@@ -56,15 +57,15 @@ export default function EmailVerify({
           }}
         >
           <img src={iconArrowLine} width={16} />
-          <span>返回</span>
+          <span>{t('toast.back')}</span>
         </div>
         <div className={style.email}>
           <header>
-            <h3>请输入验证码</h3>
+            <h3>{t('toast.veryCode.title')}</h3>
             <span>
-              验证码发送至 {email}
+              {t('toast.veryCode.emailDesc')} {email}
               <br />
-              邮箱验证码可能判定为垃圾邮件，请注意查收
+              {t('toast.veryCode.emailDesc2')}
             </span>
           </header>
           <div>
@@ -82,14 +83,14 @@ export default function EmailVerify({
                 ))}
             </Flex>
             <div className={style.send} onClick={sendVerifyCodeHandler}>
-              重新发送
+              {t('toast.veryCode.Resend')}
             </div>
             <button
               onClick={() => {
                 toggleShowPassword(true)
               }}
             >
-              下一步
+              {t('toast.veryCode.next')}
             </button>
           </div>
         </div>
