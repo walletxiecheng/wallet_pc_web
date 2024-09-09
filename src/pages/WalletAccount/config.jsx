@@ -1,6 +1,7 @@
 import '@/assets/css/public.css'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '@/routes/urls'
+import { Space } from 'antd'
 
 export const assetsColumns = () => {
   const navigate = useNavigate()
@@ -41,14 +42,17 @@ export const assetsColumns = () => {
       title: '操作',
 
       render: (_, record) => (
-        <button
-          className="button-style"
-          onClick={() => {
-            navigate(URLS.carryCoin, { state: record })
-          }}
-        >
-          提币
-        </button>
+        <Space>
+          <button>归集</button>
+          <button
+            className="button-style"
+            onClick={() => {
+              navigate(URLS.carryCoin, { state: record })
+            }}
+          >
+            提币
+          </button>
+        </Space>
       )
     }
   ]

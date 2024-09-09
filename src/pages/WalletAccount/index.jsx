@@ -9,7 +9,13 @@ import { showError, showWarning } from '@/common/message'
 import { assetsColumns } from './config'
 import { useNavigate } from 'react-router-dom'
 import { SearchOutlined } from '@ant-design/icons'
-
+import Collection from './components/Collection'
+const test = [
+  {
+    id: 1,
+    coin: '1'
+  }
+]
 export default function WalletAccount() {
   const navigate = useNavigate()
   // 是否隐藏资产
@@ -41,6 +47,7 @@ export default function WalletAccount() {
   return (
     <>
       <NavBar />
+      <Collection />
       <div className="walletContainer">
         <div className="walletCard">
           <header>账户</header>
@@ -92,7 +99,8 @@ export default function WalletAccount() {
             <div className="tableTitle">加密货币</div>
             <Table
               columns={assetsColumns()}
-              dataSource={data?.list}
+              // dataSource={data?.list}
+              dataSource={test}
               rowKey={(record) => record.id}
               loading={!data}
               pagination={{
