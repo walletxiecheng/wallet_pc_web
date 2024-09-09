@@ -91,6 +91,38 @@
         "tip": "Withdrawal and OTC transfers are prohibited within 24 hours after resetting the login password",
         "submit": "Submit"
       }
+    },
+    "crypto": {
+      "lastLoginTime": "Last login time:",
+      "authTitle": "identity authentication",
+      "authDesc": "Completing identity authentication helps protect account security, increase withdrawal limits and transaction permissions",
+      "authTagFail": "Review",
+      "authTagSuccess": "Passed",
+      "authLabel1": "Basic certification",
+      "authLabel2": "Advanced authentication of fiat currency",
+      "section1": {
+        "header": "Two factor authentication",
+        "binding": "binding",
+        "change": "change",
+        "bound": "bound",
+        "title1": "Security level: Low",
+        "content1": "Strongly recommend enabling two factor authentication",
+        "title2": "mailbox",
+        "content2": "Used for security verification during login, withdrawal, password recovery, security settings modification, and API management",
+        "title3": "mobile phone",
+        "content3": "Used for security verification during login, withdrawal, password recovery, security settings modification, and API management",
+        "title4": "goggle Authentication",
+        "content4": "Used for security verification during login, withdrawal, password recovery, security settings modification, and API management"
+      },
+      "section2": {
+        "header": "Secure Password Management",
+        "title1": "Login password",
+        "content1": "Used to protect account security",
+        "title2": "Login password",
+        "content2": "Used to protect account security",
+        "modify": "modify",
+        "setUp": "set up"
+      }
     }
   }
 }

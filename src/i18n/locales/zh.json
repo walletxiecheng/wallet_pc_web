@@ -91,6 +91,38 @@
         "tip": "重置登录密码后，24小时内禁止提币和OTC划转",
         "submit": "提交"
       }
+    },
+    "crypto": {
+      "lastLoginTime": "最后登录时间",
+      "authTitle": "身份认证",
+      "authDesc": "完成身份认证，有助于保护账户安全，提高提现额度及交易权限",
+      "authTagFail": "待审核",
+      "authTagSuccess": "已通过",
+      "authLabel1": "基础认证",
+      "authLabel2": "法币高级认证",
+      "section1": {
+        "header": "双重身份验证",
+        "binding": "绑定",
+        "bound": "已绑定",
+        "change": "换绑",
+        "title1": "安全等级： 低",
+        "content1": "强烈建议开启2项双重身份验证",
+        "title2": "邮箱",
+        "content2": "用于登录、提币、找回密码、修改安全设置、管理API时进行安全验证",
+        "title3": "手机",
+        "content3": "用于登录、提币、找回密码、修改安全设置、管理API时进行安全验证",
+        "title4": "绑定谷歌验证器",
+        "content4": "用于登录、提币、找回密码、修改安全设置、管理API时进行安全验证"
+      },
+      "section2": {
+        "header": "安全密码管理",
+        "title1": "登录密码",
+        "content1": "用于保护账户安全",
+        "title2": "资金密码",
+        "content2": "用于保护资产安全",
+        "modify": "修改",
+        "setUp": "设置"
+      }
     }
   }
 }

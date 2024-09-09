@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import NavBar from '@/components/NavBar'
 import style from './index.module.less'
 import avatar from '@/assets/image/avatar.svg'
-import { Flex } from 'antd'
+import { Flex, Space } from 'antd'
 // import iconSate from '@/assets/icon/light/icon-safer-line.svg'
 import iconEmail from '@/assets/icon/light/icon-email-line.svg'
 import iconPhone from '@/assets/icon/light/icon-phone-line.svg'
@@ -19,29 +19,32 @@ import { useNavigate } from 'react-router-dom'
 import { showSuccess } from '@/common/message'
 import { URLS } from '@/routes/urls'
 import StatusTag from '@/components/StatusTag'
+import { useTranslation } from 'react-i18next'
+
 const verifyList = [
   {
     id: 2,
-    title: '邮箱',
-    content: '用于登录、提币、找回密码，修改安全设置、管理API时进行安全验证',
+    title: 'crypto.section1.title2',
+    content: 'crypto.section1.content2',
     icon: iconEmail
   },
   {
     id: 3,
-    title: '手机',
-    content: '用于登录、提币、找回密码，修改安全设置、管理API时进行安全验证',
+    title: 'crypto.section1.title3',
+    content: 'crypto.section1.content3',
     icon: iconPhone
   },
   {
     id: 4,
-    title: '绑定谷歌验证器',
-    content: '用于登录、提币、找回密码，修改安全设置、管理API时进行安全验证',
+    title: 'crypto.section1.title4',
+    content: 'crypto.section1.content4',
     icon: iconGoggle
   }
 ]
 
 export default function Personal() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const { userInfo } = useUserStore()
   const emailStatus = userInfo.email !== '' || false
   const phoneStatus = userInfo.phone !== '' || false
@@ -119,7 +122,7 @@ export default function Personal() {
             <div className={style.title}>
               <header>{userInfo.name}</header>
               <div className={style.time}>
-                最后登录时间：
+                {t('crypto.section1.lastLoginTime')}
                 <span style={{ marginRight: 10 }}>
                   {userInfo.last_login_time || '暂无'}
                 </span>
@@ -132,29 +135,27 @@ export default function Personal() {
           <div className={style.card}>
             <header>
               <div className={style.title}>
-                <div>身份认证</div>
+                <div>{t('crypto.authTitle')}</div>
                 <StatusTag status={userInfo.personal_review_status} />
                 <StatusTag status={userInfo.enterprise_review_status} />
               </div>
             </header>
-            <div className={style.description}>
-              完成身份认证，有助于保护账户安全，提高提现额度及交易权限
-            </div>
+            <div className={style.description}>{t('crypto.authDesc')}</div>
 
-            <Flex>
-              <button onClick={checkBaseAuth}>基础认证</button>
+            <Space style={{ width: '500px' }}>
+              <button onClick={checkBaseAuth}>{t('crypto.authLabel1')}</button>
               <button
                 onClick={() => {
                   navigate(URLS.advancedAuth)
                 }}
               >
-                法币高级认证
+                {t('crypto.authLabel2')}
               </button>
-            </Flex>
+            </Space>
           </div>
         </div>
         <div className={style.verify}>
-          <header>双重身份验证</header>
+          <header>{t('crypto.section1.header')}</header>
           <div className={style.verifyList}>
             {verifyList.map((item) => (
               <Flex
@@ -168,8 +169,8 @@ export default function Personal() {
                     <img src={item.icon} />
                   </div>
                   <div className={style.header}>
-                    <div className={style.title}>{item.title}</div>
-                    <span className={style.content}>{item.content}</span>
+                    <div className={style.title}>{t(item.title)}</div>
+                    <span className={style.content}>{t(item.content)}</span>
                   </div>
                 </Flex>
 
@@ -184,7 +185,7 @@ export default function Personal() {
                         toggleEmail(true)
                       }}
                     >
-                      绑定
+                      {t('crypto.section1.binding')}
                     </button>
                     <button
                       style={{
@@ -195,7 +196,7 @@ export default function Personal() {
                         toggleEmail(true)
                       }}
                     >
-                      换绑
+                      {t('crypto.section1.change')}
                     </button>
                   </div>
                 )}
@@ -208,7 +209,7 @@ export default function Personal() {
                         togglePhone(true)
                       }}
                     >
-                      绑定
+                      {t('crypto.section1.binding')}
                     </button>
                     <button
                       style={{
@@ -219,7 +220,7 @@ export default function Personal() {
                         togglePhone(true)
                       }}
                     >
-                      换绑
+                      {t('crypto.section1.change')}
                     </button>
                   </div>
                 )}
@@ -228,7 +229,7 @@ export default function Personal() {
                     <button
                       style={{ display: googleStatus ? 'block' : 'none' }}
                     >
-                      已绑定
+                      {t('crypto.section1.bound')}
                     </button>
                     <button
                       style={{ display: googleStatus ? 'none' : 'block' }}
@@ -236,7 +237,7 @@ export default function Personal() {
                         setStatus(true)
                       }}
                     >
-                      绑定
+                      {t('crypto.section1.binding')}
                     </button>
                   </div>
                 )}
@@ -245,7 +246,7 @@ export default function Personal() {
           </div>
         </div>
         <div className={style.passWordManager}>
-          <header>安全密码管理</header>
+          <header>{t('crypto.section2.header')}</header>
           <div className={style.passwordList}>
             <Flex justify="space-between" className={style.passwordItem}>
               <Flex>
@@ -253,12 +254,17 @@ export default function Personal() {
                   <img src={iconPassword} />
                 </div>
                 <div>
-                  <div className={style.title}>登录密码</div>
-                  <span className={style.content}>用于保护账户安全</span>
+                  <div className={style.title}>
+                    {' '}
+                    {t('crypto.section2.title1')}
+                  </div>
+                  <span className={style.content}>
+                    {t('crypto.section2.content1')}
+                  </span>
                 </div>
               </Flex>
               <div>
-                <button>修改</button>
+                <button>{t('crypto.section2.modify')}</button>
               </div>
             </Flex>
             <Flex
@@ -271,8 +277,12 @@ export default function Personal() {
                   <img src={iconCode} />
                 </div>
                 <div>
-                  <div className={style.title}>资金密码</div>
-                  <span className={style.content}>用于保护资金安全</span>
+                  <div className={style.title}>
+                    {t('crypto.section2.title2')}
+                  </div>
+                  <span className={style.content}>
+                    {t('crypto.section2.title2')}
+                  </span>
                 </div>
               </Flex>
               <div>
@@ -283,7 +293,7 @@ export default function Personal() {
                     toggleShowIdentity(true)
                   }}
                 >
-                  设置
+                  {t('crypto.section2.setUp')}
                 </button>
                 <button
                   style={{ display: has_fund_password ? 'block' : 'none' }}
@@ -291,7 +301,7 @@ export default function Personal() {
                     toggleShowIdentity(true)
                   }}
                 >
-                  修改
+                  {t('crypto.section2.modify')}
                 </button>
               </div>
             </Flex>
