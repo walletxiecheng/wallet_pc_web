@@ -18,6 +18,7 @@ const test = [
 ]
 export default function WalletAccount() {
   const navigate = useNavigate()
+  const [showTotal, setShowTotal] = useState(false)
   // 是否隐藏资产
   const [showAssets, setShowAssets] = useState(false)
   // 获取搜索框中的值
@@ -47,7 +48,7 @@ export default function WalletAccount() {
   return (
     <>
       <NavBar />
-      <Collection />
+      {showTotal && <Collection setShowTotal={setShowTotal} />}
       <div className="walletContainer">
         <div className="walletCard">
           <header>账户</header>
@@ -98,7 +99,7 @@ export default function WalletAccount() {
           <div className="tableBox" style={{ opacity: showAssets ? '0' : '1' }}>
             <div className="tableTitle">加密货币</div>
             <Table
-              columns={assetsColumns()}
+              columns={assetsColumns(setShowTotal)}
               // dataSource={data?.list}
               dataSource={test}
               rowKey={(record) => record.id}

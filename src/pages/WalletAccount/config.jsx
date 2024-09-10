@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { URLS } from '@/routes/urls'
 import { Space } from 'antd'
 
-export const assetsColumns = () => {
+export const assetsColumns = (setShowTotal) => {
   const navigate = useNavigate()
   return [
     {
@@ -43,7 +43,13 @@ export const assetsColumns = () => {
 
       render: (_, record) => (
         <Space>
-          <button>归集</button>
+          <button
+            onClick={() => {
+              setShowTotal(true)
+            }}
+          >
+            归集
+          </button>
           <button
             className="button-style"
             onClick={() => {

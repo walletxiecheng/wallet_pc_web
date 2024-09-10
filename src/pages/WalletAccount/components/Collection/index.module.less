@@ -10,16 +10,75 @@
   border-radius: 8px;
   background-color: red;
   padding: 8px;
+  cursor: default;
   border: 1px solid var(--color-border-white8);
   background-color: var(--color-fill-quin);
+  .amount {
+    border-radius: 4px;
+    width: 150px;
+    height: 28px;
+    display: flex;
+    margin-top: 5px;
+    align-items: center;
+    padding-left: 5px;
+    border: 0.5px solid var(--color-border-white8);
+    background: var(--color-fill-white8);
+  }
+  .line {
+    margin: 10px 0;
+    border-bottom: 1px solid var(--color-border-white8);
+  }
   .totalBox {
     width: 50%;
   }
   .collectBox {
     width: 50%;
-    button {
+    .computedBtn {
       width: 58px;
       height: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      margin-left: 5px;
+      border: 0.5px solid var(--color-border-white8);
+      background: var(--color-fill-white8);
+    }
+    .computeResult {
+      margin-top: 10px;
+      span {
+        display: inline;
+        margin-left: 10px;
+      }
+      .importantText {
+        font-size: 15px;
+        color: var(--color-text-pri);
+        text-decoration: underline;
+      }
+    }
+  }
+  .btnGroup {
+    width: 40%;
+    display: flex;
+    position: absolute;
+    right: 10px;
+    justify-content: space-between;
+    font-size: 13px;
+    button {
+      height: 32px;
+      cursor: pointer;
+    }
+    .confirm {
+      width: 100px;
+      border-radius: 6px;
+      border: 1px solid var(--color-border-white8);
+      background: var(--color-fill-blue);
+    }
+    .cancel {
+      width: 58px;
+      border-radius: 6px;
+      border: 1px solid var(--color-border-white8);
     }
   }
 }
