@@ -2,44 +2,46 @@ import '@/assets/css/public.css'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '@/routes/urls'
 import { Space } from 'antd'
+import { useTranslation } from 'react-i18next'
 
 export const assetsColumns = (setShowTotal) => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   return [
     {
       key: 'token',
       dataIndex: 'token',
-      title: '币种',
+      title: t('account.column1'),
       width: '15%'
     },
     {
       key: 'available_balance',
       dataIndex: 'available_balance',
-      title: '可用',
+      title: t('account.column2'),
       width: '18%'
     },
     {
       key: 'frozen_balance',
       dataIndex: 'frozen_balance',
-      title: '下单冻结',
+      title: t('account.column3'),
       width: '18%'
     },
     {
       key: 'valuation',
       dataIndex: 'valuation',
-      title: 'BTC估值',
+      title: t('account.column4'),
       width: '18%'
     },
     {
       key: 'lock_balance',
-      dataIndex: 'lock_balance',
+      dataIndex: t('account.column5'),
       title: '锁仓',
       width: '18%'
     },
     {
       key: 'operate',
       dataIndex: 'operate',
-      title: '操作',
+      title: t('account.column6'),
 
       render: (_, record) => (
         <Space>
@@ -48,7 +50,7 @@ export const assetsColumns = (setShowTotal) => {
               setShowTotal(true)
             }}
           >
-            归集
+            {t('account.Payment')}
           </button>
           <button
             className="button-style"
@@ -56,7 +58,7 @@ export const assetsColumns = (setShowTotal) => {
               navigate(URLS.carryCoin, { state: record })
             }}
           >
-            提币
+            {t('account.Withdrawal')}
           </button>
         </Space>
       )

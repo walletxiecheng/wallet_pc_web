@@ -123,6 +123,45 @@
         "modify": "modify",
         "setUp": "set up"
       }
+    },
+    "account": {
+      "title": "Account",
+      "Payment": "Payment",
+      "History": "History",
+      "hide": "Hide 0 assets",
+      "Withdrawal": "Withdrawal",
+      "search": "search",
+      "Cryptocurrency": "Cryptocurrency",
+      "column1": "Crypto",
+      "column2": "available",
+      "column3": "Order freeze",
+      "column4": "BTC valuation",
+      "column5": "Lock the warehouse",
+      "column6": "operation"
+    },
+    "carryCoin": {
+      "title1": "Select withdrawal currency",
+      "currency": "currency",
+      "info1": "24-hour cumulative withdrawal limit",
+      "info2": "Remaining credit limit",
+      "info3": "Contract Information",
+      "mentioned": "Can be mentioned",
+      "text1": "Token 17 platform address recommends enabling fast withdrawal and enjoying 0 transaction fees.",
+      "text2": "The minimum withdrawal amount is 1 USDT (TRC20).",
+      "text3": "To ensure the security of funds, we will manually review withdrawals when your account security policy changes or password changes occur. Please be patient and wait for our staff to contact you by phone or email.",
+      "text4": "• Please ensure the security of your computer and browser to prevent information from being tampered with or leaked.",
+      "title2": "Fill in withdrawal information",
+      "address": "Withdrawal address",
+      "management": "Withdrawal address management",
+      "addressTip": "Fill in the withdrawal address here",
+      "network": "Coin deposit network",
+      "quantity": "Withdrawal quantity",
+      "quantityTip": "The minimum input quantity is 2",
+      "whole": "whole",
+      "charge": "Service Charge",
+      "actualReceipt": "Actual Receipt",
+      "Withdrawal": "Withdrawal of currency",
+      "fee": "Handling fee"
     }
   }
 }

@@ -10,6 +10,7 @@ import { assetsColumns } from './config'
 import { useNavigate } from 'react-router-dom'
 import { SearchOutlined } from '@ant-design/icons'
 import Collection from './components/Collection'
+import { useTranslation } from 'react-i18next'
 const test = [
   {
     id: 1,
@@ -18,6 +19,7 @@ const test = [
 ]
 export default function WalletAccount() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const [showTotal, setShowTotal] = useState(false)
   // 是否隐藏资产
   const [showAssets, setShowAssets] = useState(false)
@@ -51,7 +53,7 @@ export default function WalletAccount() {
       {showTotal && <Collection setShowTotal={setShowTotal} />}
       <div className="walletContainer">
         <div className="walletCard">
-          <header>账户</header>
+          <header>{t('account.title')}</header>
           <div className="balance">
             0.00000000 BTC
             <span className="computed">≈ 0.00 USD</span>
@@ -65,7 +67,7 @@ export default function WalletAccount() {
                 navigate('/carryCoin')
               }}
             >
-              提币
+              {t('account.Withdrawal')}
             </button>
             <button
               className="history"
@@ -73,7 +75,7 @@ export default function WalletAccount() {
                 navigate('/walletRecord')
               }}
             >
-              钱包历史记录
+              {t('account.History')}
             </button>
           </div>
         </div>
@@ -91,7 +93,7 @@ export default function WalletAccount() {
                   setShowAssets(!showAssets)
                 }}
               >
-                隐藏0资产
+                {t('account.hide')}
               </Radio>
             </div>
           </header>

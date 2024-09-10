@@ -123,6 +123,45 @@
         "modify": "修改",
         "setUp": "设置"
       }
+    },
+    "account": {
+      "title": "账户",
+      "Payment": "归集",
+      "History": "钱包历史记录",
+      "hide": "隐藏 0 资产",
+      "Withdrawal": "提币",
+      "search": "搜索",
+      "Cryptocurrency": "加密货币",
+      "column1": "币种",
+      "column2": "可用",
+      "column3": "下单冻结",
+      "column4": "BTC 估值",
+      "column5": "锁仓",
+      "column6": "操作"
+    },
+    "carryCoin": {
+      "title1": "选择提币币种",
+      "currency": "币种",
+      "info1": "24H累计提币额度",
+      "info2": "剩余额度",
+      "info3": "合约信息",
+      "mentioned": "可提",
+      "text1": "Token 17平台地址推荐开启快速提币，享受0手续费。",
+      "text2": "最小提币数量为：1 USDT (TRC20)。",
+      "text3": "为保障资金安全，当您账户安全策略变更、密码修改、我们会对提币进行人工审核，请耐心等待工作人员电话或邮件联系。",
+      "text4": "请务必确认电脑及浏览器安全，防止信息被篡改或泄露。",
+      "title2": "填写提币信息",
+      "address": "提币地址",
+      "management": "提币地址管理",
+      "addressTip": "填写提币地址到这里",
+      "network": "充币网络",
+      "quantity": "提币数量",
+      "quantityTip": "最小输入数量为2",
+      "whole": "全部",
+      "charge": "手续费",
+      "actualReceipt": "实际到账",
+      "Withdrawal": "提币",
+      "fee": "手续费"
     }
   }
 }

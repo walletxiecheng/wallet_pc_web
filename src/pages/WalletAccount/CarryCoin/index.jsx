@@ -19,8 +19,10 @@ import { showError, showSuccess, showWarning } from '@/common/message'
 import { useUserStore } from '@/stores'
 import arrowBack from '@/assets/icon/light/icon-arrow-left-line.png'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export default function CarryCoin() {
+  const { t } = useTranslation()
   const { userInfo } = useUserStore()
   const amountRef = useRef()
   const arrivalAddrRef = useRef()
@@ -164,14 +166,14 @@ export default function CarryCoin() {
           }}
         >
           <img src={arrowBack} width={16} />
-          返回
+          {t('toast.back')}
         </Flex>
         <main>
           <div className={style.CoinTypeBox}>
-            <header className={style.headline}>选择提币币种</header>
+            <header className={style.headline}>{t('carryCoin.title1')}</header>
             {/* 币种 */}
             <div className={style.selectCoin}>
-              <span>币种</span>
+              <span>{t('carryCoin.currency')}</span>
               <div className={style.selectBox}>
                 <select
                   onChange={(e) => {
@@ -190,62 +192,66 @@ export default function CarryCoin() {
             {/* 额度 */}
             <div className={style.quota}>
               <Flex className={style.quotaItem}>
-                <span>24H累计提币额度</span>
+                <span>{t('carryCoin.info1')}</span>
                 <span>
                   {balanceData?.total_24h_withdraw_amount}{' '}
                   {currentToken?.coin_symbol}
                 </span>
               </Flex>
               <Flex className={style.quotaItem}>
-                <span>剩余额度</span>
+                <span>
+                  <span>{t('carryCoin.info2')}</span>
+                </span>
                 <span>
                   {balanceData?.remaining_amount} {currentToken?.coin_symbol}
                 </span>
               </Flex>
               <Flex className={style.quotaItem}>
-                <span>合约信息</span>
+                <span>
+                  <span>{t('carryCoin.info3')}</span>
+                </span>
                 <span>***{currentToken?.contract_address.slice(2, 8)}***</span>
               </Flex>
             </div>
             <div className={style.carryCount}>
-              <span>可提</span>
+              <span>
+                <span>{t('carryCoin.mentioned')}</span>
+              </span>
               <span>
                 {balanceData?.available} {currentToken?.coin_symbol}
               </span>
             </div>
             <Divider />
             <div className={style.tips}>
-              <span>• Token 17平台地址推荐开启快速提币，享受0手续费。</span>
-              <span>• 最小提币数量为：1 USDT (TRC20)。</span>
-              <span>
-                • 为保障资金安全，当您账户安全策略变更、密码修改、我们会对提币进行人工审核，请耐心等待工作人员电话或邮件联系。
-              </span>
-              <span> •请务必确认电脑及浏览器安全，防止信息被篡改或泄露。</span>
+              <span>•{t('carryCoin.text1')}</span>
+              <span>•{t('carryCoin.text2')}</span>
+              <span>• {t('carryCoin.text3')}</span>
+              <span> •{t('carryCoin.text4')}。</span>
             </div>
           </div>
           <div className={style.CoinInfoBox}>
-            <header className={style.headline}>填写提币信息</header>
+            <header className={style.headline}>{t('carryCoin.title2')}</header>
             <div className={style.carryAddress}>
               <header>
-                <span>提币地址</span>
+                <span>{t('carryCoin.address')}</span>
                 <span
                   className={style.link}
                   onClick={() => {
                     setShowAddressModal(true)
                   }}
                 >
-                  提币地址管理
+                  {t('carryCoin.management')}
                 </span>
               </header>
               <input
                 type="text"
                 className={style.addrInput}
-                placeholder="填写提币地址到这里"
+                placeholder={t('carryCoin.quantityTip')}
                 defaultValue={currentAddress}
                 ref={arrivalAddrRef}
               />
             </div>
-            <header style={{ marginTop: 32 }}>网络</header>
+            <header style={{ marginTop: 32 }}>{t('carryCoin.network')}</header>
             <div className={style.networkList}>
               {chainList?.map((item, index) => (
                 <div
@@ -269,7 +275,8 @@ export default function CarryCoin() {
                   </Flex>
                   <div>
                     <span>
-                      手续费 {Number(currentToken?.withdraw_fee) + ' '}
+                      {t('carryCoin.fee')}{' '}
+                      {Number(currentToken?.withdraw_fee) + ' '}
                       USDT
                     </span>
                     <br />
@@ -279,11 +286,11 @@ export default function CarryCoin() {
               ))}
             </div>
             <div className={style.carryAmount}>
-              <header>提币数量</header>
+              <header>{t('carryCoin.quantity')}</header>
               <div className={style.inputBox}>
                 <input
                   type="text"
-                  placeholder="最小输入数量为2"
+                  placeholder={t('carryCoin.quantityTip')}
                   ref={amountRef}
                   onChange={() => {
                     setSum(
@@ -299,26 +306,27 @@ export default function CarryCoin() {
                       amountRef.current.value = balanceData?.available
                     }}
                   >
-                    全部
+                    {t('carryCoin.whole')}
                   </span>
                 </Flex>
               </div>
             </div>
             <div>
               <p>
-                手续费
+                {t('carryCoin.charge')}
                 <span style={{ marginLeft: '32px' }}>
                   {Number(currentToken?.withdraw_fee) + ' '}
                   {currentToken?.coin_symbol}
                 </span>
               </p>
               <p>
-                实际到账
+                {t('carryCoin.actualReceipt')}
+
                 <span style={{ marginLeft: '32px' }}>{sum}</span>
               </p>
             </div>
             <button className={style.carryButton} onClick={check}>
-              提币
+              {t('carryCoin.Withdrawal')}
             </button>
           </div>
         </main>
