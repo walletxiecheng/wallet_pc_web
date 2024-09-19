@@ -62,7 +62,15 @@ export default function NavBar() {
   }
 
   const linkTo = (url) => {
-    if (!token && url !== '/index') {
+    console.log(url)
+    if (
+      url !== '/index' &&
+      !token &&
+      url !== '/privacy' &&
+      !token &&
+      url !== '/agreement' &&
+      !token
+    ) {
       return showWarning('暂未登录')
     }
     navigate(url)
