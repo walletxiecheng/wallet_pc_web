@@ -23,7 +23,7 @@ export default function Privacy() {
           <section>
             <p>
               {t(
-                'If you use the services of the Token 17 platform, it means that you agree with what we have stated in this policy. Token 17 will inform you in this policy how we collect, process and protect your personal information. Please read carefully and accept the contents of this policy before using Token 17 services. After we update our privacy policy, we will promptly remind you of the new situation. If you continue to use our products or services, it means that you agree to the contents of our privacy policy (including the updated version).'
+                'If you use the services of the token B platform, it means that you agree with what we have stated in this policy. token B will inform you in this policy how we collect, process and protect your personal information. Please read carefully and accept the contents of this policy before using token B services. After we update our privacy policy, we will promptly remind you of the new situation. If you continue to use our products or services, it means that you agree to the contents of our privacy policy (including the updated version).'
               )}
             </p>
           </section>
@@ -32,12 +32,12 @@ export default function Privacy() {
             <h4>{t('How we collect your personal information')}</h4>
             <p>
               {t(
-                '1. When you create and use a Token 17 account, you will be asked to provide personal information, including but not limited to password, mobile phone number, email address, etc. Some network services provided by Token 17 may require you to perform identity authentication. We may collect your name, gender, age, ID number, occupation and other information. If you do not provide this information, we will not be able to provide related services.'
+                '1. When you create and use a token B account, you will be asked to provide personal information, including but not limited to password, mobile phone number, email address, etc. Some network services provided by token B may require you to perform identity authentication. We may collect your name, gender, age, ID number, occupation and other information. If you do not provide this information, we will not be able to provide related services.'
               )}
             </p>
             <p>
               {t(
-                '2. We may obtain your personal information from a third party or other indirect means. At this time, you can choose to authorize Token 17 to read the information you registered, published, and recorded on the third-party platform in compliance with relevant laws and regulations. Public information (including but not limited to nickname, avatar, etc.).'
+                '2. We may obtain your personal information from a third party or other indirect means. At this time, you can choose to authorize token B to read the information you registered, published, and recorded on the third-party platform in compliance with relevant laws and regulations. Public information (including but not limited to nickname, avatar, etc.).'
               )}
             </p>
           </section>
@@ -51,7 +51,7 @@ export default function Privacy() {
             </p>
             <p>
               {t(
-                '1. Used for identity verification, fraud checking, fraud monitoring, customer service, archiving and backup when providing services to ensure the security of the services and products Token 17 provides you.'
+                '1. Used for identity verification, fraud checking, fraud monitoring, customer service, archiving and backup when providing services to ensure the security of the services and products token B provides you.'
               )}
             </p>
             <p>
@@ -78,7 +78,7 @@ export default function Privacy() {
             <h4>{t('How we use cookies and similar technologies')}</h4>
             <p>
               {t(
-                'When you use our services, we will store small data files called Cookies on your computer or mobile device. Cookies usually contain an identifier, the site name, and some numbers and characters. We use this information to determine whether registered users have logged in, provide you with more thoughtful personalized services, and optimize user experience. If you do not want your personal information to be stored in cookies, you can disable or delete cookies in your browser. Disabling the cookie function may affect your access to Token 17 or be unable to fully obtain the services provided by Token 17.'
+                'When you use our services, we will store small data files called Cookies on your computer or mobile device. Cookies usually contain an identifier, the site name, and some numbers and characters. We use this information to determine whether registered users have logged in, provide you with more thoughtful personalized services, and optimize user experience. If you do not want your personal information to be stored in cookies, you can disable or delete cookies in your browser. Disabling the cookie function may affect your access to token B or be unable to fully obtain the services provided by token B.'
               )}
             </p>
           </section>
@@ -92,7 +92,7 @@ export default function Privacy() {
             <h5>{t('1. Share')}</h5>
             <p>
               {t(
-                "Token 17 will not provide your personal information to third parties without your consent or authorization. After obtaining your explicit consent, we may share your personal information with other parties or Token 17's partners. We will sign strict confidentiality Privacys with companies, organizations and individuals with whom we share personal information, requiring them to handle personal information in accordance with our instructions, this Privacy Policy and any other relevant confidentiality and security measures. We may share your personal information externally in accordance with laws and regulations, litigation and dispute resolution needs, or as required by administrative and judicial authorities in accordance with the law."
+                "token B will not provide your personal information to third parties without your consent or authorization. After obtaining your explicit consent, we may share your personal information with other parties or token B's partners. We will sign strict confidentiality Privacys with companies, organizations and individuals with whom we share personal information, requiring them to handle personal information in accordance with our instructions, this Privacy Policy and any other relevant confidentiality and security measures. We may share your personal information externally in accordance with laws and regulations, litigation and dispute resolution needs, or as required by administrative and judicial authorities in accordance with the law."
               )}
             </p>
             <h5>{t('2. Transfer')}</h5>
@@ -128,7 +128,7 @@ export default function Privacy() {
             <h4>{t('How we process personal information of minors')}</h4>
             <p>
               {t(
-                "Token 17 attaches great importance to the protection of minors’ personal information. If you are a minor, you must obtain the consent of your guardian before using Token 17's services. If you apply to register an account on Token 17, Token 17 will default to the fact that you have obtained the aforementioned consent. If the guardian finds that we have collected the personal information of minors without the guardian's consent, please contact us through the contact information on the Token 17 official website and we will delete the relevant data as soon as possible."
+                "token B attaches great importance to the protection of minors’ personal information. If you are a minor, you must obtain the consent of your guardian before using token B's services. If you apply to register an account on token B, token B will default to the fact that you have obtained the aforementioned consent. If the guardian finds that we have collected the personal information of minors without the guardian's consent, please contact us through the contact information on the token B official website and we will delete the relevant data as soon as possible."
               )}
             </p>
           </section>
@@ -137,7 +137,7 @@ export default function Privacy() {
             <h4>{t('Modifications to Privacy Policy')}</h4>
             <p>
               {t(
-                "In order to provide you with better services, we will modify and update the content of this policy from time to time. We will notify you through website announcements or other appropriate means before the updated version takes effect. If you do not agree to the changes, you can stop using Token 17's products and services. If you continue to use our products and services, you agree to be bound by them. Revised Privacy Policy."
+                "In order to provide you with better services, we will modify and update the content of this policy from time to time. We will notify you through website announcements or other appropriate means before the updated version takes effect. If you do not agree to the changes, you can stop using token B's products and services. If you continue to use our products and services, you agree to be bound by them. Revised Privacy Policy."
               )}
             </p>
           </section>
@@ -146,7 +146,7 @@ export default function Privacy() {
             <h4>{t('Contact US')}</h4>
             <p>
               {t(
-                'If you have any questions, comments or suggestions about this policy, you can contact us through the contact information provided on the Token 17 official website, or send an email tosupport@Token 17.com, we will process your request promptly.'
+                'If you have any questions, comments or suggestions about this policy, you can contact us through the contact information provided on the token B official website, or send an email tosupport@token B.com, we will process your request promptly.'
               )}
             </p>
           </section>
