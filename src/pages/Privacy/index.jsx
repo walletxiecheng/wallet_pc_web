@@ -8,7 +8,7 @@ export default function Privacy() {
   const { t } = useTranslation()
   return (
     <div className={style.privacyBox}>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className={style.privacyContainer}>
         <div className={style.privacyTop}>
           {/* <img className={style.headerIcon} src={union} alt="" /> */}
