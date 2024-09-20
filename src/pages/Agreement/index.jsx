@@ -7,11 +7,9 @@ export default function Agreement() {
   const { t } = useTranslation()
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className={style.agreeContainer}>
-        <div className={style.privacyTop}>
-          {/* <img className={style.headerIcon} src={union} alt="" /> */}
-        </div>
+        <div className={style.privacyTop}></div>
         <header>
           <h2> {t('User Agreement')}</h2>
           <div className={style.updateDate}>
