@@ -99,17 +99,16 @@ export default function WalletAccount() {
             </div>
           </header>
 
-          <div className="tableBox" style={{ opacity: showAssets ? '0' : '1' }}>
+          <div className="tableBox">
             <div className="tableTitle">加密货币</div>
             <Table
               columns={assetsColumns(setShowTotal)}
-              dataSource={data?.list}
-              // dataSource={test}
-              rowKey={(record) => record.id}
+              dataSource={showAssets ? [] : data?.list}
+              rowKey={(record) => record?.id}
               loading={!data}
               pagination={{
                 hideOnSinglePage: true,
-                total: data?.total,
+                total: showAssets ? 0 : data?.total,
                 current: pagination.current,
                 pageSize: pagination.pageSize,
                 onChange: pagination.onChange,
