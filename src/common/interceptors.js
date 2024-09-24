@@ -2,14 +2,17 @@ import { showError, showWarning } from './message'
 import { useTokenStore } from '@/stores'
 import axios from 'axios'
 
-const axiosInstance = axios.create({
-  // baseURL: '/api',
-  baseURL: 'https://service.token13.net',
-  timeout: 10000,
-  headers: {
+export const getDefaultHeader = () => {
+  return {
     'Content-Type': 'application/json',
     Authorization: 'Bearer ' + useTokenStore?.getState()?.token || null
   }
+}
+
+const axiosInstance = axios.create({
+  // baseURL: '/api',
+  baseURL: 'https://service.token13.net',
+  timeout: 10000
 })
 
 // 请求拦截器
