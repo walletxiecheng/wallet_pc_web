@@ -1,6 +1,8 @@
 // 校验密码
 export const validatePassword = (password) => {
-  const regex = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d@$!%*?&]{8,16}$/
+  const regex =
+    /^(?![\d]+$)(?![a-z]+$)(?![A-Z]+$)(?![!#$%^&*]+$)[\da-zA-z!_@^#$%^&*]{8,16}$/
+
   return regex.test(password)
 }
 

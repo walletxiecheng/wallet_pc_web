@@ -42,9 +42,10 @@ export default function Password({
     }
     // 校验登录密码
     const checkRes = validatePassword(req.password)
+    console.log(checkRes)
     if (!checkRes) {
       return showWarning(
-        '密码长度为8-24，由大小写字母，数字，下划线和特殊字符组成。'
+        '密码长度为8-16位，由大小写字母，数字，下划线和特殊字符组成。'
       )
     }
 
