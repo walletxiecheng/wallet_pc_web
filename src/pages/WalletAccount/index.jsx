@@ -18,6 +18,7 @@ const test = [
   }
 ]
 export default function WalletAccount() {
+  const [assetsData, setAssetsData] = useState()
   const navigate = useNavigate()
   const { t } = useTranslation()
   const [showTotal, setShowTotal] = useState(false)
@@ -29,7 +30,7 @@ export default function WalletAccount() {
   const getTransactionHandler = async (params) => {
     try {
       const { data } = await getAccountAssets(params)
-      return { total: data.total, list: data.records }
+      return { total: data?.total || 0, list: data?.records || [] }
     } catch (err) {
       return showError(err?.msg)
     }
@@ -102,8 +103,8 @@ export default function WalletAccount() {
             <div className="tableTitle">加密货币</div>
             <Table
               columns={assetsColumns(setShowTotal)}
-              // dataSource={data?.list}
-              dataSource={test}
+              dataSource={data?.list}
+              // dataSource={test}
               rowKey={(record) => record.id}
               loading={!data}
               pagination={{
