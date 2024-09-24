@@ -45,13 +45,13 @@ export const assetsColumns = (setShowTotal) => {
 
       render: (_, record) => (
         <Space>
-          <button
+          {/* <button
             onClick={() => {
               setShowTotal(true)
             }}
           >
             {t('account.Payment')}
-          </button>
+          </button> */}
           <button
             className="button-style"
             onClick={() => {
