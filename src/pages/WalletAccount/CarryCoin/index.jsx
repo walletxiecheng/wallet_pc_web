@@ -76,7 +76,7 @@ export default function CarryCoin() {
   // 获取地址余额
   const { data: balanceData, run: runBalance } = useRequest(async (id) => {
     const req = {
-      coin_id: id || currentToken?.id || 1
+      coin_id: id || currentToken?.id || 5
     }
     try {
       const { data } = await getWithDrawBalance(req)
@@ -194,7 +194,7 @@ export default function CarryCoin() {
               <Flex className={style.quotaItem}>
                 <span>{t('carryCoin.info1')}</span>
                 <span>
-                  {balanceData?.total_24h_withdraw_amount}{' '}
+                  {balanceData?.total_24h_withdraw_amount || 0}{' '}
                   {currentToken?.coin_symbol}
                 </span>
               </Flex>
@@ -203,7 +203,8 @@ export default function CarryCoin() {
                   <span>{t('carryCoin.info2')}</span>
                 </span>
                 <span>
-                  {balanceData?.remaining_amount} {currentToken?.coin_symbol}
+                  {balanceData?.remaining_amount || 0}{' '}
+                  {currentToken?.coin_symbol}
                 </span>
               </Flex>
               <Flex className={style.quotaItem}>
@@ -218,7 +219,7 @@ export default function CarryCoin() {
                 <span>{t('carryCoin.mentioned')}</span>
               </span>
               <span>
-                {balanceData?.available} {currentToken?.coin_symbol}
+                {balanceData?.available || 0} {currentToken?.coin_symbol}
               </span>
             </div>
             <Divider />

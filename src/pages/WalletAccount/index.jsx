@@ -30,6 +30,7 @@ export default function WalletAccount() {
   const getTransactionHandler = async (params) => {
     try {
       const { data } = await getAccountAssets(params)
+      setAssetsData(data?.total_assets)
       return { total: data?.total || 0, list: data?.records || [] }
     } catch (err) {
       return showError(err?.msg)
@@ -38,7 +39,6 @@ export default function WalletAccount() {
   const { data, run, pagination } = usePagination(getTransactionHandler, {
     defaultParams: [pageParams]
   })
-
   //
   const search = () => {
     const value = searchRef.current.value
@@ -56,11 +56,15 @@ export default function WalletAccount() {
         <div className="walletCard">
           <header>{t('account.title')}</header>
           <div className="balance">
-            0.00000000 BTC
-            <span className="computed">≈ 0.00 USD</span>
+            {assetsData?.tender_amount} {assetsData?.tender_type}
+            <span className="computed">≈ {assetsData?.usdt} USDT</span>
           </div>
           <div className="desc">
-            今日收益: <span>0.00 USD(0.00%)</span>
+            今日收益:{' '}
+            <span>
+              {assetsData?.today_income} {assetsData?.tender_type} (
+              {assetsData?.income_rate}%)
+            </span>
           </div>
           <div className="walletButtonGroup">
             <button
