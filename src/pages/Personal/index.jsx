@@ -122,7 +122,7 @@ export default function Personal() {
             <div className={style.title}>
               <header>{userInfo.name}</header>
               <div className={style.time}>
-                {t('crypto.section1.lastLoginTime')}
+                {t('crypto.lastLoginTime')}
                 <span style={{ marginRight: 10 }}>
                   {userInfo.last_login_time || '暂无'}
                 </span>
