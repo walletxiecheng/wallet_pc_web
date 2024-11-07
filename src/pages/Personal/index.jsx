@@ -9,6 +9,7 @@ import iconPhone from '@/assets/icon/light/icon-phone-line.svg'
 import iconGoggle from '@/assets/icon/light/icon-google-line.svg'
 import iconPassword from '@/assets/icon/light/icon-password-line.svg'
 import iconCode from '@/assets/icon/light/icon-code-line.svg'
+import iconCopyLine from '@/assets/icon/light/icon-copy-line.svg'
 import { useUserStore } from '@/stores'
 import BindBaseTips from './components/BindBaseTips'
 import BindEmail from './components/BindEmail'
@@ -16,7 +17,7 @@ import BindPhone from './components/BindPhone'
 import Identity from './components/Identity'
 import LoginPswToast from './components/LoginPswToast'
 import { useNavigate } from 'react-router-dom'
-import { showSuccess } from '@/common/message'
+import { showError, showSuccess } from '@/common/message'
 import { URLS } from '@/routes/urls'
 import StatusTag from '@/components/StatusTag'
 import { useTranslation } from 'react-i18next'
@@ -44,6 +45,7 @@ const verifyList = [
 
 export default function Personal() {
   const navigate = useNavigate()
+  const [status, setStatus] = useState(false)
   const { t } = useTranslation()
   const { userInfo } = useUserStore()
   const emailStatus = userInfo.email !== '' || false
@@ -87,7 +89,15 @@ export default function Personal() {
       return showSuccess('您已完成基础认证')
     }
   }
-  const [status, setStatus] = useState(false)
+  const copyId = () => {
+    try {
+      navigator.clipboard.writeText(userInfo.commercial_id)
+      showSuccess('复制成功')
+    } catch (err) {
+      showError('复制失败' + err)
+    }
+  }
+
   return (
     <>
       <NavBar />
@@ -120,7 +130,19 @@ export default function Personal() {
               <img src={avatar} width={52} />
             </Flex>
             <div className={style.title}>
-              <header>{userInfo.name}</header>
+              <header>
+                <div>{userInfo.name}</div>
+                <div className={style.commercial}>
+                  <span>商户号：{userInfo?.commercial_id}</span>
+                  <img
+                    src={iconCopyLine}
+                    width={14}
+                    onClick={() => {
+                      copyId()
+                    }}
+                  />
+                </div>
+              </header>
               <div className={style.time}>
                 {t('crypto.lastLoginTime')}
                 <span style={{ marginRight: 10 }}>
