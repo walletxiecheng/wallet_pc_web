@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import NavBar from '@/components/NavBar'
 import style from './index.module.less'
 import avatar from '@/assets/image/avatar.svg'
-import { Flex, Space } from 'antd'
+import { Flex, Space, Switch } from 'antd'
 // import iconSate from '@/assets/icon/light/icon-safer-line.svg'
 import iconEmail from '@/assets/icon/light/icon-email-line.svg'
 import iconPhone from '@/assets/icon/light/icon-phone-line.svg'
@@ -10,17 +10,20 @@ import iconGoggle from '@/assets/icon/light/icon-google-line.svg'
 import iconPassword from '@/assets/icon/light/icon-password-line.svg'
 import iconCode from '@/assets/icon/light/icon-code-line.svg'
 import iconCopyLine from '@/assets/icon/light/icon-copy-line.svg'
+import iconWhitelistLine from '@/assets/icon/light/icon-Whitelist-line.svg'
 import { useUserStore } from '@/stores'
 import BindBaseTips from './components/BindBaseTips'
 import BindEmail from './components/BindEmail'
 import BindPhone from './components/BindPhone'
 import Identity from './components/Identity'
 import LoginPswToast from './components/LoginPswToast'
+import IpWhiteToast from './components/IpWhiteToast'
 import { useNavigate } from 'react-router-dom'
 import { showError, showSuccess } from '@/common/message'
 import { URLS } from '@/routes/urls'
 import StatusTag from '@/components/StatusTag'
 import { useTranslation } from 'react-i18next'
+import { settingWhiteIP } from '@/service'
 
 const verifyList = [
   {
@@ -40,6 +43,12 @@ const verifyList = [
     title: 'crypto.section1.title4',
     content: 'crypto.section1.content4',
     icon: iconGoggle
+  },
+  {
+    id: 5,
+    title: '白名单',
+    content: '开启白名单时，仅授权地址可以登录',
+    icon: iconWhitelistLine
   }
 ]
 
@@ -62,6 +71,9 @@ export default function Personal() {
   const toggleTipsStatus = (status) => {
     setShowBindTips(status)
   }
+
+  //  白名单弹窗
+  const [showIpWhite, setShowIpWhite] = useState(false)
 
   //邮箱弹窗的显示与隐藏
   const [showEmail, setShowEmail] = useState(false)
@@ -89,12 +101,31 @@ export default function Personal() {
       return showSuccess('您已完成基础认证')
     }
   }
+  // 复制id
   const copyId = () => {
     try {
       navigator.clipboard.writeText(userInfo.commercial_id)
       showSuccess('复制成功')
     } catch (err) {
       showError('复制失败' + err)
+    }
+  }
+
+  // 设置是否开启白名单
+  const handleSetIpWhite = async (value) => {
+    // 设置是否开启登录白名单
+    const req = {
+      open_white_list: value
+    }
+    try {
+      await settingWhiteIP(req)
+      if (value) {
+        showSuccess('setting success')
+      } else {
+        showSuccess('close success')
+      }
+    } catch (err) {
+      showError(err?.msg || err)
     }
   }
 
@@ -122,7 +153,7 @@ export default function Personal() {
         toggleShowIdentity={toggleShowIdentity}
       />
       {status && <LoginPswToast status={status} setStatus={setStatus} />}
-
+      <IpWhiteToast showIpWhite={showIpWhite} setShowIpWhite={setShowIpWhite} />
       <div className={style.personalContainer}>
         <div className={style.info}>
           <Flex>
@@ -133,7 +164,10 @@ export default function Personal() {
               <header>
                 <div>{userInfo.name}</div>
                 <div className={style.commercial}>
-                  <span>商户号：{userInfo?.commercial_id}</span>
+                  <span>
+                    {t('crypto.commercial_id')}
+                    {userInfo?.commercial_id}
+                  </span>
                   <img
                     src={iconCopyLine}
                     width={14}
@@ -195,11 +229,11 @@ export default function Personal() {
                     <span className={style.content}>{t(item.content)}</span>
                   </div>
                 </Flex>
-
                 {item.id === 2 && (
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     <div>{userInfo?.email}</div>
                     <button
+                      className={style.button}
                       style={{
                         display: emailStatus ? 'none' : 'block'
                       }}
@@ -210,6 +244,7 @@ export default function Personal() {
                       {t('crypto.section1.binding')}
                     </button>
                     <button
+                      className={style.button}
                       style={{
                         display: emailStatus ? 'block' : 'none',
                         marginLeft: 6
@@ -226,6 +261,7 @@ export default function Personal() {
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     <div>{userInfo?.phone}</div>
                     <button
+                      className={style.button}
                       style={{ display: phoneStatus ? 'none' : 'block' }}
                       onClick={() => {
                         togglePhone(true)
@@ -234,6 +270,7 @@ export default function Personal() {
                       {t('crypto.section1.binding')}
                     </button>
                     <button
+                      className={style.button}
                       style={{
                         display: phoneStatus ? 'block' : 'none',
                         marginLeft: '6px'
@@ -249,12 +286,14 @@ export default function Personal() {
                 {item.id === 4 && (
                   <div>
                     <button
+                      className={style.button}
                       style={{ display: googleStatus ? 'block' : 'none' }}
                     >
                       {t('crypto.section1.bound')}
                     </button>
                     <button
                       style={{ display: googleStatus ? 'none' : 'block' }}
+                      className={style.button}
                       onClick={() => {
                         setStatus(true)
                       }}
@@ -262,6 +301,30 @@ export default function Personal() {
                       {t('crypto.section1.binding')}
                     </button>
                   </div>
+                )}
+                {item.id === 5 && (
+                  <Flex align="center">
+                    <Switch
+                      className={style.switch}
+                      defaultChecked={userInfo?.open_white_list}
+                      onChange={(e) => {
+                        handleSetIpWhite(e)
+                      }}
+                      style={{
+                        height: 24,
+                        width: 42,
+                        marginRight: 5
+                      }}
+                    ></Switch>
+                    <button
+                      className={style.button}
+                      onClick={() => {
+                        setShowIpWhite(true)
+                      }}
+                    >
+                      编辑
+                    </button>
+                  </Flex>
                 )}
               </Flex>
             ))}

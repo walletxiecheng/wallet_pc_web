@@ -37,3 +37,7 @@ input:focus {
 button:hover {
   opacity: 0.8;
 }
+
+.ant-switch {
+  background-color: var(--color-fill-white8);
+}

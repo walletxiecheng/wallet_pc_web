@@ -212,3 +212,17 @@ export const getRate = (data) => {
 export const getStatistics = (data) => {
   return axiosDefine.get('/home/statistics', data)
 }
+
+// 设置是否开启IP白名单
+export const settingWhiteIP = (data) => {
+  return axiosDefine.post('/account/login/whiteIP/setting', data)
+}
+
+// 添加IP白名单
+export const addWhiteIp = (data) => {
+  return axiosDefine.post('/account/login/white/ip', data)
+}
+// 获取IP白名单
+export const getWhiteIp = (data) => {
+  return axiosDefine.get('/account/login/white/ip', data)
+}

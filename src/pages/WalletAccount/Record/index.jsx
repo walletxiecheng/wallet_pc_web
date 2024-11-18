@@ -102,7 +102,7 @@ export default function Record() {
           </div>
           <div className="filter">
             <select ref={tokenRef} onChange={filterWithdraw}>
-              <option value="0">全部币种</option>
+              <option value="0">All</option>
               {/* <option value="">BTC</option> */}
               {tokens?.map((item) => (
                 <option key={item.coin_id} value={item.coin_id}>

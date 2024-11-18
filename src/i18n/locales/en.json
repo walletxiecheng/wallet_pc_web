@@ -94,6 +94,7 @@
     },
     "crypto": {
       "lastLoginTime": "Last login time:",
+      "commercial_id": "commercial_id",
       "authTitle": "identity authentication",
       "authDesc": "Completing identity authentication helps protect account security, increase withdrawal limits and transaction permissions",
       "authTagFail": "Review",
@@ -173,6 +174,19 @@
       "establish": "establish",
       "tips": "Tips",
       "tipsContent": ""
+    },
+    "record": {
+      "CollectionRecord": "Collection Record",
+      "WithdrawalRecord": "Withdrawal Record",
+      "AllCurrencies": "All currencies",
+      "time": "time",
+      "Payment address": "Payment address",
+      "currency": "currency",
+      "type": "type",
+      "quantity": "quantity",
+      "WithdrawalAddress": "Withdrawal address",
+      "Service Charge": "Service Charge",
+      "state": "state"
     },
     "Welcome to React": "Welcome",
     "User Agreement": "User Agreement",

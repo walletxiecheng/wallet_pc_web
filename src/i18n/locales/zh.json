@@ -94,6 +94,8 @@
     },
     "crypto": {
       "lastLoginTime": "最后登录时间",
+      "commercial_id": "商户号：",
+
       "authTitle": "身份认证",
       "authDesc": "完成身份认证，有助于保护账户安全，提高提现额度及交易权限",
       "authTagFail": "待审核",
@@ -141,6 +143,7 @@
     },
     "carryCoin": {
       "title1": "选择提币币种",
+
       "currency": "币种",
       "info1": "24H累计提币额度",
       "info2": "剩余额度",
