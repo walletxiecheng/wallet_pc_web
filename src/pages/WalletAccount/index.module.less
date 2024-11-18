@@ -3,6 +3,7 @@
   min-height: 100vh;
   padding-top: 90px;
   margin: 0 auto;
+
   .walletCard {
     display: flex;
     width: 1200px;
@@ -30,14 +31,15 @@
     }
     .walletButtonGroup {
       display: flex;
-      button {
-        width: 94px;
+      height: 80px;
+      margin-top: 10px;
+      align-items: center;
+      justify-content: space-around;
+      .btn {
         height: 48px;
-        cursor: pointer;
-        margin-right: var(--spacing-16);
-      }
-      .history {
-        width: 154px;
+        padding: 0 32px;
+        margin-right: 10px;
+        color: var(--color-text-pri);
         border-radius: var(--radius-8);
         border: 1px solid var(--color-border-white8);
         background-color: var(--color-fill-white4);
@@ -59,12 +61,18 @@
     }
     .search {
       display: flex;
-      width: 300px;
+      width: 314px;
+      height: 40px;
+      justify-content: space-between;
+      align-items: center;
       border-radius: var(--radius-8);
       border: 1px solid var(--color-border-white8);
       background-color: var(--color-fill-white4);
       padding: 0 5px;
-      input {
+      color: var(--color-text-pri);
+
+      .input {
+        color: var(--color-text-pri);
         border: none;
         padding: none;
         background-color: transparent;
@@ -83,22 +91,22 @@
       font-size: var(--font-size-headline);
       border: 0.5px solid var(--color-border-white8);
     }
-    .ant-table-wrapper table {
+    :global(.ant-table-wrapper table) {
       border-spacing: 0.5px;
       // background-color: inherit;
       border-radius: 0;
       border: 0.5px solid var(--color-border-white8);
     }
-    .ant-table {
+    :global(.ant-table) {
       border-radius: 0;
       background-color: var(--color-fill-white8);
       background-color: inherit;
     }
 
-    .ant-spin-container {
-      .ant-table-content {
-        .ant-table-thead {
-          .ant-table-cell {
+    :global(.ant-spin-container) {
+      :global(.ant-table-content) {
+        :global(.ant-table-thead) {
+          :global(.ant-table-cell) {
             color: var(--color-text-ter);
             font-weight: 400;
             font-size: 11px;
@@ -106,12 +114,12 @@
             border-radius: 0;
             background-color: inherit;
           }
-          .ant-table-cell::before {
+          :global(.ant-table-cell::before) {
             width: 0 !important;
           }
         }
-        .ant-table-tbody {
-          .ant-table-cell {
+        :global(.ant-table-tbody) {
+          :global(.ant-table-cell) {
             border-bottom: none;
             font-weight: 400;
             font-size: 15px;
@@ -119,11 +127,11 @@
             // background-color: var(--color-fill-white4);
             // background-color: inherit;
 
-            .ant-empty-description {
+            :global(.ant-empty-description) {
               color: var(--color-text-ter);
             }
           }
-          .ant-table-cell-row-hover {
+          :global(.ant-table-cell-row-hover) {
             background-color: var(--color-fill-white4);
           }
         }
@@ -132,9 +140,11 @@
   }
 }
 
-.ant-table-pagination-right {
+:global(.ant-table-pagination-right) {
   display: flex;
-  .ant-pagination-item {
+  justify-content: center;
+
+  :global(.ant-pagination-item) {
     border: none;
     background-color: none;
     a {
@@ -149,5 +159,4 @@
       }
     }
   }
-  justify-content: center;
 }

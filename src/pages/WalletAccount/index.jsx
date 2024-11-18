@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import NavBar from '@/components/NavBar'
-import './index.less'
+import style from './index.module.less'
 import { Radio, Table } from 'antd'
 import { getAccountAssets } from '@/service'
 import { usePagination } from 'ahooks'
@@ -52,12 +52,12 @@ export default function WalletAccount() {
     <>
       <NavBar />
       {showTotal && <Collection setShowTotal={setShowTotal} />}
-      <div className="walletContainer">
-        <div className="walletCard">
+      <div className={style.walletContainer}>
+        <div className={style.walletCard}>
           <header>{t('account.title')}</header>
-          <div className="balance">
+          <div className={style.balance}>
             {assetsData?.tender_amount} {assetsData?.tender_type}
-            <span className="computed">≈ {assetsData?.usdt} USDT</span>
+            <span className={style.computed}>≈ {assetsData?.usdt} USDT</span>
           </div>
           <div className="desc">
             今日收益:{' '}
@@ -66,16 +66,17 @@ export default function WalletAccount() {
               {assetsData?.income_rate}%)
             </span>
           </div>
-          <div className="walletButtonGroup">
+          <div className={style.walletButtonGroup}>
             <button
               onClick={() => {
                 navigate('/carryCoin')
               }}
+              className={style.btn}
             >
               {t('account.Withdrawal')}
             </button>
             <button
-              className="history"
+              className={style.btn}
               onClick={() => {
                 navigate('/walletRecord')
               }}
@@ -85,15 +86,21 @@ export default function WalletAccount() {
           </div>
         </div>
 
-        <div className="tableCard">
-          <header className="tableHeader">
-            <div className="search">
-              <input type="text" placeholder="搜索" ref={searchRef} />
+        <div className={style.tableCard}>
+          <header className={style.tableHeader}>
+            <div className={style.search}>
+              <input
+                type="text"
+                placeholder="搜索"
+                ref={searchRef}
+                className={style.input}
+              />
               <SearchOutlined width={16} onClick={search} />
             </div>
-            <div className="hidden">
+            <div className={style.hidden}>
               <Radio
                 checked={showAssets}
+                style={{ color: 'var(--color-text-ter)' }}
                 onClick={() => {
                   setShowAssets(!showAssets)
                 }}
@@ -103,8 +110,8 @@ export default function WalletAccount() {
             </div>
           </header>
 
-          <div className="tableBox">
-            <div className="tableTitle">加密货币</div>
+          <div className={style.tableBox}>
+            <div className={style.tableTitle}>加密货币</div>
             <Table
               columns={assetsColumns(setShowTotal)}
               dataSource={showAssets ? [] : data?.list}
