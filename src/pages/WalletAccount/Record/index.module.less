@@ -39,59 +39,88 @@
     justify-content: space-between;
     border-radius: var(--radius-6);
     .filter {
-      select {
+      display: flex;
+      width: 45%;
+      align-items: center;
+      justify-content: space-around;
+      .select {
         width: 156px;
         height: 32px;
         padding: 0 10px;
         color: var(--color-text-pri);
-        background-color: initial;
+        background-color: var(--color-border-white8);
+
         border-radius: var(--radius-6);
         border: 0.5px solid var(--color-border-white8);
+      }
+      :global(.ant-input-group-wrapper) {
+        height: 32px;
+        background-color: var(--color-border-white8);
+        border-radius: var(--radius-6);
+        border: 0.5px solid
+          var(--color-border-white8, rgba(255, 255, 255, 0.08));
+        input {
+          height: 32px;
+          border: none;
+          color: white;
+
+          background-color: var(--color-border-white8);
+        }
+
+        input::-webkit-input-placeholder {
+          /* WebKit, Blink, Edge */
+          color: var(--color-text-quat);
+        }
+        button {
+          margin: 0;
+          border: none;
+          background-color: var(--color-border-white8);
+        }
       }
     }
   }
   .tableBox {
-    .ant-table-wrapper {
+    :global(.ant-table-wrapper) {
       border-spacing: 0.5px;
       // background-color: var(--color-fill-white8);
       border-radius: 0;
       background-color: inherit;
     }
-    .ant-table {
+    :global(.ant-table) {
       border-radius: 0;
       background-color: inherit;
     }
 
-    .ant-spin-container {
-      .ant-pagination {
+    :global(.ant-spin-container) {
+      :global(.ant-pagination) {
         display: flex;
         align-items: center;
-        button {
+        :global(button) {
           color: var(--color-text-ter);
         }
       }
 
-      .ant-table-content {
-        .ant-table-thead {
-          .ant-table-cell {
+      :global(.ant-table-content) {
+        :global(.ant-table-thead) {
+          :global(.ant-table-cell) {
             color: var(--color-text-ter);
             font-weight: 400;
             font-size: 11px;
             background-color: var(--color-fill-white4);
             border-bottom: none;
           }
-          .ant-table-cell::before {
+          :global(.ant-table-cell::before) {
             width: 0 !important;
           }
         }
-        .ant-table-tbody {
-          .ant-table-cell {
+        :global(.ant-table-tbody) {
+          :global(.ant-table-cell) {
             background-color: var(--color-fill-white4);
             border-bottom: none;
             font-weight: 400;
             font-size: 15px;
             color: var(--color-text-pri);
-            .ant-empty-description {
+            :global(.ant-empty-description) {
               color: var(--color-text-ter);
             }
           }

@@ -173,7 +173,9 @@ export default function LoginForm() {
         >
           忘记密码？
         </div>
-        <button onClick={loginEmailHandler}>下一步</button>
+        <button style={style.button} onClick={loginEmailHandler}>
+          下一步
+        </button>
       </div>
 
       {/* 手机号登录 */}

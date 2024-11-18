@@ -199,11 +199,14 @@ export default function Personal() {
             <div className={style.description}>{t('crypto.authDesc')}</div>
 
             <Space style={{ width: '500px' }}>
-              <button onClick={checkBaseAuth}>{t('crypto.authLabel1')}</button>
+              <button className={style.button} onClick={checkBaseAuth}>
+                {t('crypto.authLabel1')}
+              </button>
               <button
                 onClick={() => {
                   navigate(URLS.advancedAuth)
                 }}
+                className={style.button}
               >
                 {t('crypto.authLabel2')}
               </button>
@@ -349,7 +352,9 @@ export default function Personal() {
                 </div>
               </Flex>
               <div>
-                <button>{t('crypto.section2.modify')}</button>
+                <button className={style.button}>
+                  {t('crypto.section2.modify')}
+                </button>
               </div>
             </Flex>
             <Flex
@@ -373,6 +378,7 @@ export default function Personal() {
               <div>
                 {/* <button>修改</button> */}
                 <button
+                  className={style.button}
                   style={{ display: has_fund_password ? 'none' : 'block' }}
                   onClick={() => {
                     toggleShowIdentity(true)
@@ -381,7 +387,10 @@ export default function Personal() {
                   {t('crypto.section2.setUp')}
                 </button>
                 <button
-                  style={{ display: has_fund_password ? 'block' : 'none' }}
+                  className={style.button}
+                  style={{
+                    display: has_fund_password ? 'block' : 'none'
+                  }}
                   onClick={() => {
                     toggleShowIdentity(true)
                   }}

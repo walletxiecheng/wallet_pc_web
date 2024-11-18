@@ -1,16 +1,16 @@
 import React, { useState, useRef } from 'react'
 import NavBar from '@/components/NavBar'
 import backIcon from '@/assets/icon/light/icon-arrow-left-line.png'
-import { Flex, Select, Table } from 'antd'
+import { DatePicker, Flex, Input, Select, Table } from 'antd'
 import { withdrawColumns, receiveColumns } from './config'
 import { useRequest, usePagination } from 'ahooks'
 import { useUserStore } from '@/stores'
 import { getWithdrawRecord, getReceiveRecord } from '@/service'
-import './index.less'
 import { useNavigate } from 'react-router-dom'
 import { pageParams } from '@/common/config'
+import style from './index.module.less'
 import { getToken } from '@/service'
-
+const { Search } = Input
 const tabList = [
   {
     id: 1,
@@ -81,12 +81,12 @@ export default function Record() {
   return (
     <>
       <NavBar />
-      <div className="recordContainer">
-        <div className="tabs">
+      <div className={style.recordContainer}>
+        <div className={style.tabs}>
           {tabList.map((item) => (
             <span
               key={item.id}
-              className={checkTab === item.id ? 'active' : ''}
+              className={checkTab === item.id ? style.active : ''}
               onClick={() => {
                 setCheckTab(item.id)
               }}
@@ -96,13 +96,25 @@ export default function Record() {
           ))}
         </div>
 
-        <div className="tableHeader">
-          <div className="table-title">
+        <div className={style.tableHeader}>
+          <div className={style.tableTitle}>
             {checkTab === 1 ? '提币记录' : '收款记录'}
           </div>
-          <div className="filter">
-            <select ref={tokenRef} onChange={filterWithdraw}>
-              <option value="0">All</option>
+          <div className={style.filter}>
+            <Search
+              className={style.search}
+              placeholder="input search text"
+              style={{
+                width: 200
+              }}
+            />
+            <DatePicker></DatePicker>
+            <select
+              ref={tokenRef}
+              onChange={filterWithdraw}
+              className={style.select}
+            >
+              <option value="0">全部币种</option>
               {/* <option value="">BTC</option> */}
               {tokens?.map((item) => (
                 <option key={item.coin_id} value={item.coin_id}>
@@ -113,7 +125,7 @@ export default function Record() {
           </div>
         </div>
 
-        <div className="tableBox">
+        <div className={style.tableBox}>
           {checkTab === 1 && (
             <Table
               columns={withdrawColumns()}
