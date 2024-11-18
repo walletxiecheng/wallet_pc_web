@@ -79,6 +79,7 @@ export default function Password({
 
       <div className={style.passwordBox}>
         <input
+          className={style.input}
           ref={passwordInputRef}
           type={passwordStatus ? 'type' : 'password'}
           placeholder={t('toast.password.input1')}
@@ -93,6 +94,7 @@ export default function Password({
       </div>
       <div className={style.passwordBox}>
         <input
+          className={style.input}
           ref={newPasswordInputRef}
           type={newPasswordStatus ? 'type' : 'password'}
           placeholder={t('toast.password.input2')}
@@ -106,7 +108,9 @@ export default function Password({
         </span>
       </div>
       <div>
-        <button onClick={registerHandler}>{t('toast.confirm')}</button>
+        <button className={style.btn} onClick={registerHandler}>
+          {t('toast.confirm')}
+        </button>
       </div>
     </div>
   )

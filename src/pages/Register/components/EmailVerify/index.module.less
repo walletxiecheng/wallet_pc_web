@@ -22,14 +22,34 @@
   .EmailInput {
     margin-top: 20px;
     justify-content: space-around;
-    input {
+    .input {
+      display: flex;
       width: 52px;
       height: 52px;
+      padding: var(---0, 0px) var(--spacing---spacing-16, 16px);
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: var(--radius---radius-8, 8px);
+      border: 0.5px solid var(--color-border-white8, rgba(255, 255, 255, 0.08));
+      background: var(--color-fill-white2, rgba(255, 255, 255, 0.02));
     }
   }
   .send {
     text-align: right;
     margin-top: 10px;
     color: var(--color-text-link);
+  }
+  .btn {
+    margin-top: 24px;
+    display: flex;
+    width: 380px;
+    height: 52px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-fill-quin);
+    border-radius: var(--radius---radius-8, 8px);
+    border: none;
+    color: var(--color-text-pri);
   }
 }

@@ -30,6 +30,10 @@ body {
   background: var(--color-fill-white8);
 }
 
+input {
+  color: var(--color-text-ter);
+}
+
 input:focus {
   outline: none;
 }

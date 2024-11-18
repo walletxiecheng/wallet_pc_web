@@ -74,6 +74,7 @@ export default function EmailVerify({
                 .fill(null)
                 .map((item, index) => (
                   <input
+                    className={style.input}
                     type="text"
                     key={index}
                     maxLength={1}
@@ -86,6 +87,7 @@ export default function EmailVerify({
               {t('toast.veryCode.Resend')}
             </div>
             <button
+              className={style.btn}
               onClick={() => {
                 toggleShowPassword(true)
               }}
