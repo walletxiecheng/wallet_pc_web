@@ -326,7 +326,8 @@ export default function Personal() {
                         setShowIpWhite(true)
                       }}
                     >
-                      编辑
+                      {/* 编辑 */}
+                      {t('crypto.section1.edit')}
                     </button>
                   </Flex>
                 )}

@@ -29,6 +29,17 @@
     }
   }
   .tableHeader {
+    :global(.ant-picker) {
+      height: 32px;
+      border: none;
+      color: var(--color-text-pri);
+      background-color: var(--color-border-white8);
+      input::-webkit-input-placeholder {
+        /* WebKit, Blink, Edge */
+        color: var(--color-text-quat);
+      }
+    }
+
     height: 56px;
     margin-top: var(--spacing-24);
     padding: var(--spacing-16);
@@ -40,8 +51,8 @@
     border-radius: var(--radius-6);
     .filter {
       display: flex;
-      width: 45%;
       align-items: center;
+      width: 45%;
       justify-content: space-around;
       .select {
         width: 156px;
@@ -62,8 +73,7 @@
         input {
           height: 32px;
           border: none;
-          color: white;
-
+          color: var(--color-text-pri);
           background-color: var(--color-border-white8);
         }
 

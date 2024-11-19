@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { pageParams } from '@/common/config'
 import style from './index.module.less'
 import { getToken } from '@/service'
+import { showError } from '@/common/message'
 const { Search } = Input
 const tabList = [
   {
@@ -73,10 +74,41 @@ export default function Record() {
   const filterWithdraw = async (e) => {
     const id = parseInt(e.target.value)
     const req = { ...pageParams, coin_id: id }
-    runWithdraw(req)
-    runReceive(req)
+    if (checkTab === 1) {
+      try {
+        runWithdraw(req)
+      } catch (err) {
+        showError(err?.msg || err)
+      }
+    } else {
+      try {
+        runReceive(req)
+      } catch (err) {
+        showError(err?.msg || err)
+      }
+    }
   }
 
+  //按照时间查询
+  const queryDate = (e) => {
+    const req = {
+      ...pageParams,
+      time: e?.format('YYYY-MM-DD')
+    }
+    if (checkTab === 1) {
+      try {
+        runWithdraw(req)
+      } catch (err) {
+        showError(err?.msg || err)
+      }
+    } else {
+      try {
+        runReceive(req)
+      } catch (err) {
+        showError(err?.msg || err)
+      }
+    }
+  }
   // 过滤收币列表
   return (
     <>
@@ -100,15 +132,63 @@ export default function Record() {
           <div className={style.tableTitle}>
             {checkTab === 1 ? '提币记录' : '收款记录'}
           </div>
-          <div className={style.filter}>
+
+          <div
+            className={style.filter}
+            style={{
+              width: checkTab === 2 ? '65%' : ''
+            }}
+          >
             <Search
               className={style.search}
-              placeholder="input search text"
+              placeholder="Input order number"
+              onSearch={(value) => {
+                const req = { ...pageParams, order_id: value }
+                try {
+                  runReceive(req)
+                } catch (err) {
+                  showError(err?.msg || err)
+                }
+              }}
               style={{
-                width: 200
+                width: 200,
+                display: checkTab === 2 ? 'block' : 'none'
               }}
             />
-            <DatePicker></DatePicker>
+
+            <Search
+              className={style.search}
+              placeholder="Input payment address"
+              onSearch={(value) => {
+                const req = { ...pageParams, payment_address: value }
+                try {
+                  runWithdraw(req)
+                } catch (err) {
+                  showError(err?.msg || err)
+                }
+              }}
+              style={{
+                width: 200,
+                display: checkTab === 2 ? 'block' : 'none'
+              }}
+            />
+            <Search
+              className={style.search}
+              placeholder="Input address"
+              onSearch={(value) => {
+                const req = { ...pageParams, address: value }
+                try {
+                  runWithdraw(req)
+                } catch (err) {
+                  showError(err?.msg || err)
+                }
+              }}
+              style={{
+                width: 200,
+                display: checkTab === 1 ? 'block' : 'none'
+              }}
+            />
+            <DatePicker onChange={queryDate} />
             <select
               ref={tokenRef}
               onChange={filterWithdraw}

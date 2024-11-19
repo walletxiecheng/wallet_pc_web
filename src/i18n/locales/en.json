@@ -106,6 +106,7 @@
         "binding": "binding",
         "change": "change",
         "bound": "bound",
+        "edit": "edit",
         "title1": "Security level: Low",
         "content1": "Strongly recommend enabling two factor authentication",
         "title2": "mailbox",
