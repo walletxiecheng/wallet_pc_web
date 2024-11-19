@@ -41,6 +41,7 @@ export default function BindEmail({ showEmail, toggleEmail, email }) {
         email={emailInputRef?.current?.value || ''}
         showVerify={showVerify}
         toggleShowVerify={toggleShowVerify}
+        getVerifyCode={getVerifyCode}
       />
       <div
         className="toast-container"

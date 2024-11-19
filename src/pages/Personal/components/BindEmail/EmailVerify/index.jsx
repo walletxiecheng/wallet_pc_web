@@ -9,7 +9,12 @@ import { useNavigate } from 'react-router-dom'
 import { toggleFocus, codeComputed } from '@/common/method'
 import { showSuccess, showError } from '@/common/message'
 
-export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
+export default function EmailVerity({
+  email,
+  toggleShowVerify,
+  showVerify,
+  getVerifyCode
+}) {
   const { userInfo, setUserInfo } = useUserStore()
   const navigate = useNavigate()
   // 输入框列表
@@ -99,6 +104,9 @@ export default function EmailVerity({ email, toggleShowVerify, showVerify }) {
         </Flex>
         <Flex
           justify="right"
+          onClick={() => {
+            getVerifyCode()
+          }}
           style={{
             marginTop: 'var(--spacing-6)',
             color: 'var(--color-text-link)'

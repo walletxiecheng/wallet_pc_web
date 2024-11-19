@@ -71,6 +71,7 @@ export default function PhoneVerity({
         <input
           type="text"
           placeholder="请输入验证码"
+          style={{ width: '100%' }}
           ref={verifyCodeRef}
           onKeyDown={(e) => {
             setBind(e.target.value.length <= 1 ? false : true)

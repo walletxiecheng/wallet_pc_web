@@ -66,7 +66,8 @@ export default function Reset() {
       verify_type: 'ResetPassword',
       account: emailRef.current?.value
     }
-    if (validateEmail(req.account)) {
+
+    if (!validateEmail(req.account)) {
       return showWarning('Please enter a valid email')
     }
     try {

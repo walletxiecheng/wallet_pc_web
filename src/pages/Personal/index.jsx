@@ -188,6 +188,7 @@ export default function Personal() {
             </div>
           </Flex>
 
+          {/* 身份认证 */}
           <div className={style.card}>
             <header>
               <div className={style.title}>
@@ -352,6 +353,7 @@ export default function Personal() {
                 </div>
               </Flex>
               <div>
+                {/* 修改登录密码 */}
                 <button className={style.button}>
                   {t('crypto.section2.modify')}
                 </button>
@@ -379,13 +381,16 @@ export default function Personal() {
                 {/* <button>修改</button> */}
                 <button
                   className={style.button}
-                  style={{ display: has_fund_password ? 'none' : 'block' }}
+                  style={{
+                    display: has_fund_password ? 'none' : 'block'
+                  }}
                   onClick={() => {
                     toggleShowIdentity(true)
                   }}
                 >
                   {t('crypto.section2.setUp')}
                 </button>
+
                 <button
                   className={style.button}
                   style={{
@@ -395,7 +400,7 @@ export default function Personal() {
                     toggleShowIdentity(true)
                   }}
                 >
-                  {t('crypto.section2.modify')}
+                  1{t('crypto.section2.modify')}
                 </button>
               </div>
             </Flex>

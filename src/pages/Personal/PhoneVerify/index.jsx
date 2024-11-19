@@ -45,6 +45,7 @@ export default function PhoneVerify({ showTel, toggleShowTel, phone }) {
               请输入发送至 +{phone} 的验证码
               <br />
             </span>
+            1{' '}
           </header>
           <div>
             <Flex>

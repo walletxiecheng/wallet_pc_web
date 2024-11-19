@@ -4,7 +4,7 @@
   border-radius: 16px;
   border: 1px solid var(--color-border-white8);
   background: var(--color-fill-quin);
-
+  background-color: red;
   padding: 37px;
   position: absolute;
   z-index: 99;
@@ -24,8 +24,16 @@
     margin-top: 20px;
     justify-content: space-around;
     input {
+      display: flex;
       width: 52px;
       height: 52px;
+      padding: var(---0, 0px) var(--spacing---spacing-16, 16px);
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: var(--radius---radius-8, 8px);
+      border: 0.5px solid var(--color-border-white8, rgba(255, 255, 255, 0.08));
+      background: var(--color-fill-white2, rgba(255, 255, 255, 0.02));
     }
   }
   .send {
@@ -39,8 +47,9 @@
     height: 52px;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
-    opacity: 0.4;
-    background: var(--color-fill-white8);
+    background-color: var(--color-fill-quin);
+    border-radius: var(--radius---radius-8, 8px);
+    border: none;
+    color: var(--color-text-pri);
   }
 }

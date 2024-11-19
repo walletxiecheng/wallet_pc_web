@@ -16,6 +16,7 @@ export default function IpWhiteToast({ showIpWhite, setShowIpWhite }) {
     try {
       await addWhiteIp(req)
       showSuccess('add success')
+      setShowIpWhite(false)
     } catch (err) {
       showError(err?.msg || err)
     }
@@ -57,7 +58,14 @@ export default function IpWhiteToast({ showIpWhite, setShowIpWhite }) {
         ></input>
       </div>
       <Flex style={{ marginTop: 16 }}>
-        <button className={style.cancelBtn}>取消</button>
+        <button
+          className={style.cancelBtn}
+          onClick={() => {
+            setShowIpWhite(false)
+          }}
+        >
+          取消
+        </button>
         <button
           className={style.confirmBtn}
           style={{ background: '#4f98fa' }}

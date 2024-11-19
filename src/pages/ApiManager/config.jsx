@@ -63,7 +63,7 @@ export const apiColumns = (setShowEdit, setCurrentData) => {
       title: '操作',
       render: (_, record) => (
         <button
-          className="tableButton"
+          className="button-style"
           onClick={() => {
             setShowEdit(true)
             setCurrentData(record)

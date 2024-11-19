@@ -32,8 +32,8 @@ export default function LoginPswToast({ status, setStatus }) {
     try {
       await verifyAccountInfo(req)
       setGoogleStatus(true)
-    } catch {
-      showWarning('密码输入错误，请重试。')
+    } catch (err) {
+      showWarning(err?.msg || err)
     }
   }
   return (
@@ -55,7 +55,7 @@ export default function LoginPswToast({ status, setStatus }) {
       </Flex>
 
       <header>
-        <h3>身份认证</h3>
+        <h3 style={{ color: 'var(--color-text-pri)' }}>身份认证</h3>
         <span>请输入账户登录密码</span>
       </header>
 
