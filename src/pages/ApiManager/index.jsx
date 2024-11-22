@@ -27,7 +27,7 @@ export default function APIManager() {
   const [tips, showTips] = useState(false)
   // 是否展示修改弹窗
   const [showEdit, setShowEdit] = useState(false)
-  const [showGoogleToast, setShowGoogleToast] = useState(true)
+  const [showGoogleToast, setShowGoogleToast] = useState(false)
   // 编辑数据
   const [currentData, setCurrentData] = useState(null)
   const [accessKey, setAccessKey] = useState()

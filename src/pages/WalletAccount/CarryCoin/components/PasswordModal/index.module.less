@@ -20,9 +20,15 @@
     display: flex;
     justify-content: space-between;
     input {
+      display: flex;
       width: 52px;
       height: 52px;
-      border: none;
+      padding: 0px var(--spacing---spacing-16, 16px);
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: var(--radius---radius-8, 8px);
+      border: 0.5px solid var(--color-border-white8, rgba(255, 255, 255, 0.08));
       background-color: var(--color-fill-input);
     }
   }
@@ -30,6 +36,19 @@
     margin: var(--spacing-6);
     color: var(--color-text-link);
     text-align: right;
+  }
+  button {
+    display: flex;
+    width: 380px;
+    height: 52px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: var(--radius-8, 8px);
+    opacity: 0.4;
+    background: var(--color-fill-white8, rgba(255, 255, 255, 0.08));
+    border: none;
+    color: var(--color-text-pri);
   }
   .confirmButton {
     background-color: var(--color-fill-blue);
