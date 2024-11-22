@@ -1,8 +1,9 @@
+import { useTokenStore } from '@/stores'
+
 // 请求头
 export const header = {
-  headers: {
-    'Content-Type': 'multipart/form-data'
-  }
+  Authorization: 'Bearer ' + useTokenStore?.getState()?.token || null,
+  'Content-Type': 'multipart/form-data'
 }
 
 // 分页请求参数

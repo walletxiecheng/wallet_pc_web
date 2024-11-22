@@ -401,7 +401,7 @@ export default function Personal() {
                     toggleShowIdentity(true)
                   }}
                 >
-                  1{t('crypto.section2.modify')}
+                  {t('crypto.section2.modify')}
                 </button>
               </div>
             </Flex>

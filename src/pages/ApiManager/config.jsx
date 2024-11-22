@@ -1,7 +1,20 @@
 import '@/assets/css/public.css'
 import { timesTampDate } from '@/common/method'
-
-export const apiColumns = (setShowEdit, setCurrentData) => {
+import { Button } from 'antd'
+import { useUserStore } from '@/stores'
+export const apiColumns = (setShowEdit, setCurrentData, showTips, setUid) => {
+  const { userInfo } = useUserStore()
+  const googleStatus = userInfo?.google_verify_status
+  // 谷歌状态
+  const has_fund_password = userInfo?.has_fund_password
+  const checkKey = (uid) => {
+    setUid(uid)
+    // 查看是否有资金密码和谷歌验证码 没有提示
+    if (!googleStatus || !has_fund_password) {
+      showTips(true)
+    }
+    // 有展示谷歌验证码弹窗
+  }
   return [
     {
       key: 'create_time',
@@ -30,7 +43,16 @@ export const apiColumns = (setShowEdit, setCurrentData) => {
       title: '访问密钥Access Key',
       render: (_, record) => (
         <div style={{ width: 150 }} className="text-ellipsis">
-          {record.content}
+          <div> {record.content}</div>
+          <Button
+            type="link"
+            style={{ marginTop: '5px', border: 'none' }}
+            onClick={() => {
+              checkKey()
+            }}
+          >
+            查看密钥
+          </Button>
         </div>
       )
     },

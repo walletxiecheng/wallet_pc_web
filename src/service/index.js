@@ -226,3 +226,8 @@ export const addWhiteIp = (data) => {
 export const getWhiteIp = (data) => {
   return axiosDefine.get('/account/login/white/ip', data)
 }
+
+// 获取api访问密钥内容
+export const getAccessKeys = (data) => {
+  return axiosDefine.get('/account/keys/content', data)
+}

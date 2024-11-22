@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import NavBar from '@/components/NavBar'
-import KeyToast from './KeyToast'
-import EditToast from './EditToast'
+import KeyToast from './components/KeyToast'
+import EditToast from './components/EditToast'
 import { openModal } from '@/components/Modal'
 import { Form, Input, Button, Checkbox, Table } from 'antd'
 import {
@@ -14,19 +14,22 @@ import { usePagination, useRequest } from 'ahooks'
 import { showError, showSuccess } from '@/common/message'
 import { apiColumns } from './config'
 import { pageParams } from '@/common/config'
-
+import Tips from '../WalletAccount/CarryCoin/components/Tips'
+import GoogleCodeModal from './components/GoogleCodeModal'
 export default function APIManager() {
   // 是否展示密钥提示
   const [showToast, setShowToast] = useState(false)
   // form表
   const [form] = Form.useForm()
-
+  // 当前选中uid
+  const [uid, setUid] = useState(null)
+  // 是否展示提示框
+  const [tips, showTips] = useState(false)
   // 是否展示修改弹窗
   const [showEdit, setShowEdit] = useState(false)
-
+  const [showGoogleToast, setShowGoogleToast] = useState(true)
   // 编辑数据
   const [currentData, setCurrentData] = useState(null)
-
   const [accessKey, setAccessKey] = useState()
   const [secretKey, setSecretKey] = useState()
 
@@ -39,6 +42,7 @@ export default function APIManager() {
     })
     return data
   })
+
   // 获取apiKey记录
   const getAccountKeysHandler = async (params) => {
     try {
@@ -86,6 +90,11 @@ export default function APIManager() {
         currentData={currentData}
         runApiList={runApiList}
       />
+      <Tips tips={tips} toggleToast={showTips}></Tips>
+      <GoogleCodeModal
+        showGoogleModal={showGoogleToast}
+        toggleGoogleModal={setShowGoogleToast}
+      ></GoogleCodeModal>
       <div className="apiContainer">
         <div className="creteAPI">
           <header>创建API Key</header>
@@ -104,7 +113,7 @@ export default function APIManager() {
                     { required: false, message: 'Please input your remark!' }
                   ]}
                 >
-                  <Input />
+                  <Input placeholder="请输入备注" />
                 </Form.Item>
 
                 <Form.Item
@@ -159,7 +168,7 @@ export default function APIManager() {
               hideOnSinglePage: true,
               onShowSizeChange: pagination.onChange
             }}
-            columns={apiColumns(setShowEdit, setCurrentData)}
+            columns={apiColumns(setShowEdit, setCurrentData, showTips, setUid)}
           />
         </div>
       </div>

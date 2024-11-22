@@ -38,7 +38,7 @@ export default function AdvancedAuth() {
       showSuccess('Upload Success')
       navigate(URLS.personal)
     } catch (err) {
-      return showError(err?.msg)
+      return showError(err?.msg || err)
     }
   }
 
@@ -54,7 +54,7 @@ export default function AdvancedAuth() {
       navigate(URLS.personal)
       showSuccess('Upload Success')
     } catch (err) {
-      showError(err.msg)
+      showError(err.msg || err)
     }
   }
   return (

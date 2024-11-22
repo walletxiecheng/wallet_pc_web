@@ -54,10 +54,7 @@ export default function Password({
         window.location.reload()
       }, 1000)
     } catch (err) {
-      if (err.code === 3) {
-        showError('验证码错误')
-      }
-      return showError('设置资金密码失败，请重试')
+      return showError(err?.msg || err)
     }
   }
   return (
