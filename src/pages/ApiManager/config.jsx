@@ -2,7 +2,13 @@ import '@/assets/css/public.css'
 import { timesTampDate } from '@/common/method'
 import { Button } from 'antd'
 import { useUserStore } from '@/stores'
-export const apiColumns = (setShowEdit, setCurrentData, showTips, setUid) => {
+export const apiColumns = (
+  setShowEdit,
+  setCurrentData,
+  showTips,
+  setUid,
+  setShowGoogleToast
+) => {
   const { userInfo } = useUserStore()
   const googleStatus = userInfo?.google_verify_status
   // 谷歌状态
@@ -14,6 +20,7 @@ export const apiColumns = (setShowEdit, setCurrentData, showTips, setUid) => {
       showTips(true)
     }
     // 有展示谷歌验证码弹窗
+    setShowGoogleToast(true)
   }
   return [
     {
@@ -48,7 +55,7 @@ export const apiColumns = (setShowEdit, setCurrentData, showTips, setUid) => {
             type="link"
             style={{ marginTop: '5px', border: 'none' }}
             onClick={() => {
-              checkKey()
+              checkKey(record.uid)
             }}
           >
             查看密钥

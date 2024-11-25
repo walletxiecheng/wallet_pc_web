@@ -8,17 +8,16 @@ import { toggleFocus } from '@/common/method'
 import { getAccessKeys } from '@/service'
 
 import '@/assets/css/public.css'
+import KeyTip from '../KeyTip'
 
 export default function GoogleCodeModal({
   showGoogleModal,
   toggleGoogleModal,
-  id
+  uid
 }) {
   const inputRefs = useRef([])
-  const [pswStatus, setPswStatus] = useState(false)
-  const togglePswStatus = (status) => {
-    setPswStatus(status)
-  }
+  const [accessKey, setAccessKey] = useState(null)
+  const [showModal, setShowModal] = useState(false)
   // 计算输入框
   const codeComputed = () => {
     const goggleCode = []
@@ -36,12 +35,16 @@ export default function GoogleCodeModal({
     }
     const req = {
       google_code: goggleCode,
-      key_id: id || 1
+      key_id: uid
     }
 
     // 校验access key
     try {
       const { data } = await getAccessKeys(req)
+      setAccessKey(data)
+      setShowModal(true)
+
+      toggleGoogleModal(false)
     } catch (err) {
       showError(err?.msg || err)
     }
@@ -61,6 +64,13 @@ export default function GoogleCodeModal({
 
   return (
     <>
+      {showModal && (
+        <KeyTip
+          accessKey={accessKey}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
       <div
         className={style.pswContainer}
         style={{ display: showGoogleModal ? 'block' : 'none' }}
@@ -71,7 +81,7 @@ export default function GoogleCodeModal({
           }}
         >
           <img src={leftArrowLine} width={16} />
-          <span>返回</span>
+          <span>关闭</span>
         </Flex>
 
         <div className={style.title}>

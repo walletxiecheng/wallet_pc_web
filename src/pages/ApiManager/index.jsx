@@ -94,6 +94,7 @@ export default function APIManager() {
       <GoogleCodeModal
         showGoogleModal={showGoogleToast}
         toggleGoogleModal={setShowGoogleToast}
+        uid={uid}
       ></GoogleCodeModal>
       <div className="apiContainer">
         <div className="creteAPI">
@@ -168,7 +169,13 @@ export default function APIManager() {
               hideOnSinglePage: true,
               onShowSizeChange: pagination.onChange
             }}
-            columns={apiColumns(setShowEdit, setCurrentData, showTips, setUid)}
+            columns={apiColumns(
+              setShowEdit,
+              setCurrentData,
+              showTips,
+              setUid,
+              setShowGoogleToast
+            )}
           />
         </div>
       </div>
