@@ -1,13 +1,5 @@
 import { showError, showWarning } from './message'
-import { useTokenStore } from '@/stores'
 import axios from 'axios'
-
-export const getDefaultHeader = () => {
-  return {
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + useTokenStore?.getState()?.token || null
-  }
-}
 
 const axiosInstance = axios.create({
   // baseURL: '/api',

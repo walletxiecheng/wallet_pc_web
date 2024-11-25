@@ -1,9 +1,11 @@
 import { useTokenStore } from '@/stores'
 
 // 请求头
-export const header = {
-  Authorization: 'Bearer ' + useTokenStore?.getState()?.token || null,
-  'Content-Type': 'multipart/form-data'
+export const getFormdataReq = () => {
+  return {
+    Authorization: 'Bearer ' + useTokenStore?.getState()?.token || null,
+    'Content-Type': 'multipart/form-data'
+  }
 }
 
 // 分页请求参数

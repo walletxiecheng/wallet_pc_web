@@ -1,5 +1,12 @@
 import axiosInstance from './interceptors'
-import { getDefaultHeader } from './interceptors'
+import { useTokenStore } from '@/stores'
+
+export const getDefaultHeader = () => {
+  return {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer ' + useTokenStore?.getState()?.token || null
+  }
+}
 const axiosDefine = {
   // GET 请求
   get: (url, params = {}, headers = getDefaultHeader()) =>

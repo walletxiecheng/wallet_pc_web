@@ -4,9 +4,9 @@ import { Button, Form, Input, Upload, Flex } from 'antd'
 import frontImg from '@/assets/image/frontCertificate.svg'
 import backImg from '@/assets/image/backCertificate.svg'
 import { PlusOutlined } from '@ant-design/icons'
-import { header } from '@/common/config'
+import { getFormdataReq } from '@/common/config'
 import { personAuthentication, enterpriseAuthentication } from '@/service'
-import { showError, showSuccess } from '@/common/message'
+import { showError, showLoading, showSuccess } from '@/common/message'
 import NavBar from '@/components/NavBar'
 import arrowLeftIcon from '@/assets/icon/light/icon-arrow-left-line.png'
 import { useNavigate } from 'react-router-dom'
@@ -24,6 +24,7 @@ export default function AdvancedAuth() {
 
   //个人认证
   const personHandler = async (values) => {
+    showLoading('上传中....')
     const req = {
       real_name: values?.real_name,
       id_card_number: values?.id_card_number,
@@ -33,28 +34,29 @@ export default function AdvancedAuth() {
     }
 
     try {
-      await personAuthentication(req, header)
+      await personAuthentication(req, getFormdataReq())
       setUserInfo({ ...userInfo, personal_review_status: 2 })
       showSuccess('Upload Success')
       navigate(URLS.personal)
     } catch (err) {
-      return showError(err?.msg || err)
+      return showError(err?.msg || '上传失败')
     }
   }
 
   // 企业认证
   const enterpriseHandler = async (values) => {
+    showLoading('上传中....')
     const req = {
       enterprise_name: values?.enterprise_name,
       business_license: values?.file4?.file,
       business_license_by_hand: values?.file4?.file
     }
     try {
-      await enterpriseAuthentication(req, header)
+      await enterpriseAuthentication(req, getFormdataReq())
       navigate(URLS.personal)
       showSuccess('Upload Success')
     } catch (err) {
-      showError(err.msg || err)
+      showError(err.msg || '上传失败')
     }
   }
   return (
