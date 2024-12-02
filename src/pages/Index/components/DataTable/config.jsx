@@ -109,6 +109,9 @@ export const columns = (runMarket, column) => {
       title: '操作',
       render: () => (
         <button
+          style={{
+            color: 'var(--color-text-pri)'
+          }}
           onClick={() => {
             if (useTokenStore?.getState()?.token) {
               navigate(URLS.carryCoin)
