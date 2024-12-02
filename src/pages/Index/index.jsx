@@ -9,8 +9,8 @@ import Important from './components/Important'
 import Portfolio from './components/Portfolio'
 import Evaluation from './components/Evaluation'
 import Bottom from './components/Bottom'
-import DataBoard from '@/assets/image/dataBoard.png'
 import NavBar from '@/components/NavBar'
+import Footer from './components/Footer'
 
 export default function Index() {
   return (
@@ -36,6 +36,7 @@ export default function Index() {
         <Evaluation />
         {/* 底部 */}
         <Bottom />
+        <Footer></Footer>
       </div>
     </>
   )
