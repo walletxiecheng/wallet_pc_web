@@ -46,6 +46,7 @@ html[data-theme='dark'] {
   /* 边框 */
   --radius-8: 8px;
   --radius-6: 6px;
+  --radius-12: 12px;
 
   /* 字体 */
   --font-size-headline: 17px;
