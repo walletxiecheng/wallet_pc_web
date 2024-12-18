@@ -16,7 +16,7 @@ import iconHistoryLine from '@/assets/icon/light/icon-history-line.svg'
 import { URLS } from '@/routes/urls'
 import { useLocation } from 'react-router-dom'
 import { loginOut } from '@/service'
-import { showSuccess, showWarning } from '@/common/message'
+import { showError, showSuccess, showWarning } from '@/common/message'
 
 const navLink = [
   {
@@ -77,10 +77,14 @@ export default function NavBar() {
   }
   // 退出登录
   const loginOutHandler = async () => {
-    navigate('/index')
-    setToken(null)
-    setUserInfo(null)
-    await loginOut()
+    try {
+      await loginOut()
+      navigate('/index')
+      setToken(null)
+      setUserInfo(null)
+    } catch (err) {
+      showError(err)
+    }
   }
 
   // 钱包下拉菜单
