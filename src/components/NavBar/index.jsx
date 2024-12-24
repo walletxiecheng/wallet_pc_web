@@ -17,6 +17,7 @@ import { URLS } from '@/routes/urls'
 import { useLocation } from 'react-router-dom'
 import { loginOut } from '@/service'
 import { showError, showSuccess, showWarning } from '@/common/message'
+import QRCode from './QRcode'
 
 const navLink = [
   {
@@ -45,6 +46,7 @@ export default function NavBar() {
   const { i18n } = useTranslation()
   const [currentLanguage, setCurrentLanguage] = useState(i18n.language)
   const location = useLocation()
+
   // 当前路由
   const pathname = location.pathname
   // 更改主题
@@ -52,6 +54,8 @@ export default function NavBar() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [icon, setIcon] = useState(iconArrowBottomFill)
+  //展示下载二维码
+  const [showQRCode, setShowQRcode] = useState(false)
   // 判断是否有token
   const { token, setToken } = useTokenStore()
   const { setUserInfo } = useUserStore()
@@ -232,7 +236,13 @@ export default function NavBar() {
             </Dropdown>
           </Flex>
 
-          <img src={downloadNavIcon} />
+          <img
+            src={downloadNavIcon}
+            onMouseOver={() => {
+              setShowQRcode(true)
+            }}
+          />
+          {showQRCode && <QRCode setShowQRcode={setShowQRcode} />}
           <img src={languageNavIcon} onClick={change} />
           <img src={modeNavIcon} />
         </Flex>
