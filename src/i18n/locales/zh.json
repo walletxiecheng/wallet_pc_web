@@ -45,6 +45,9 @@
       "content2": "24小时成交量",
       "content3": "优质数字资产"
     },
+    "evaluation": {
+      "title": "对我们的称赞络绎不绝"
+    },
     "bottom": {
       "title": "随时随地开启安全交易",
       "description": "全面支持Web、iOS、Android，即刻下载开启交易新时代"
@@ -95,7 +98,6 @@
     "crypto": {
       "lastLoginTime": "最后登录时间",
       "commercial_id": "商户号：",
-
       "authTitle": "身份认证",
       "authDesc": "完成身份认证，有助于保护账户安全，提高提现额度及交易权限",
       "authTagFail": "待审核",

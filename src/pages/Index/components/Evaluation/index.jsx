@@ -2,86 +2,92 @@ import React from 'react'
 import style from './index.module.less'
 import Card from './Card'
 import defaultAvatar from '@/assets/image/avatar.png'
-
+import { useTranslation } from 'react-i18next'
 const evaluationList = [
   {
     id: 1,
     avatar: defaultAvatar,
     title: 'Jane Cooper',
     content:
-      'Token 17 的优秀之处在于它不仅仅满足了基本的账单管理和资产追踪功能，更通过其智能算法和数据分析，为用户提供了一种全新的财务管理体验。使用Token 17，我可以轻松地创建预算并且实时监控我的支出情况，它的提醒功能也帮助我不再错过重要的财务事件。。'
+      'Jane Cooper The Token 17 wallet app greatly simplifies my financial management, allowing me to easily track and manage my assets.'
   },
   {
     id: 2,
     avatar: defaultAvatar,
     title: 'Kristin Watson',
     content:
-      'Token 17 钱包App极大地简化了我的财务管理，让我能够轻松地追踪和管理我的资产。'
+      'Darlene Robertson The security of Token 17 has left a deep impression on me. It adopts the most advanced encryption technology to ensure the security of my personal financial information.'
   },
   {
     id: 3,
     avatar: defaultAvatar,
     title: 'Brooklyn Simmons',
     content:
-      'Token 17 提供了丰富的数据分析和图表，让我能够深入了解我的消费模式和投资表现。'
+      'Guy Hawkins The user interface design of Token 17 is simple and intuitive, allowing me to quickly find the desired features and complete complex operations with just a few clicks. For me, Token 17 is not only a tool, but also a symbol of trust. It provides me with a secure and efficient financial management platform, allowing me to focus on my life and future planning.'
   },
   {
     id: 4,
     avatar: defaultAvatar,
     title: 'Wade Warren',
     content:
-      'Token 17 的用户界面设计简洁直观，使得我能够快速找到所需的功能，并在几次点击之间完成复杂的操作。对我而言，Token 17 不仅是一个工具，更是一个信任的象征，它为我提供了一个安全和高效的财务管理平台，让我能够专注于我的生活和未来的规划。'
+      'The excellence of Token 17 lies in its ability to not only meet basic billing management and asset tracking functions, but also provide users with a new financial management experience through its intelligent algorithms and data analysis. With Token 17, I can easily create budgets and monitor my expenses in real-time, and its reminder function also helps me not miss important financial events again.'
   },
   {
     id: 5,
     avatar: defaultAvatar,
     title: 'Darlene Robertson',
     content:
-      'Token 17 钱包App极大地简化了我的财务管理，让我能够轻松地追踪和管理我的资产。'
+      'Wade Warren The account synchronization function of Token 17 is very reliable, ensuring that all my financial information can be updated and synchronized to my phone in a timely manner.'
   },
   {
     id: 6,
     avatar: defaultAvatar,
     title: 'Jacob Jones',
     content:
-      'Token 17 的优秀之处在于它不仅仅满足了基本的账单管理和资产追踪功能，更通过其智能算法和数据分析，为用户提供了一种全新的财务管理体验。使用Token 17，我可以轻松地创建预算并且实时监控我的支出情况，它的提醒功能也帮助我不再错过重要的财务事件。'
+      'Wade Warren The account synchronization function of Token 17 is very reliable, ensuring that all my financial information can be updated and synchronized to my phone in a timely manner.'
   },
   {
     id: 7,
     avatar: defaultAvatar,
     title: 'Kristin Watson',
-    content: 'Token 17 的优秀之处在于它不仅仅满足。'
+    content:
+      'Wade Warren The account synchronization function of Token 17 is very reliable, ensuring that all my financial information can be updated and synchronized to my phone in a timely manner.'
   },
   {
     id: 8,
     avatar: defaultAvatar,
     title: 'Floyd Miles',
-    content: 'Token 17 的优秀之处在于它不仅仅满足。'
+    content:
+      'The excellence of Token 17 lies in its ability to not only meet basic billing management and asset tracking functions, but also provide users with a new financial management experience through its intelligent algorithms and data analysis. With Token 17, I can easily create budgets and monitor my expenses in real-time, and its reminder function also helps me not miss important financial events again.'
   },
   {
     id: 9,
     avatar: defaultAvatar,
     title: 'Theresa Webb',
-    content: 'Token 17 的优秀之处在于它不仅仅满足。'
+    content:
+      'Jane Cooper The Token 17 wallet app greatly simplifies my financial management, allowing me to easily track and manage my assets.'
   },
   {
     id: 10,
     avatar: defaultAvatar,
     title: 'Jane Cooper',
-    content: 'Token 17 的优秀之处在于它不仅仅满足。'
+    content:
+      'Jane Cooper The Token 17 wallet app greatly simplifies my financial management, allowing me to easily track and manage my assets.'
   },
   {
     id: 11,
     avatar: defaultAvatar,
     title: 'Jane Cooper',
-    content: 'Token 17 的优秀之处在于它不仅仅满足。'
+    content:
+      'Jane Cooper The Token 17 wallet app greatly simplifies my financial management, allowing me to easily track and manage my assets.'
   }
 ]
 // 用户称赞组件
 export default function Evaluation() {
+  const { t } = useTranslation()
   return (
     <div className={style.evalContainer}>
-      <h1>对我们的称赞络绎不绝</h1>
+      <h1>{t('evaluation.title')}</h1>
       <div className={style.evaluationBox}>
         <div className={style.cardList}>
           {evaluationList.map((item) => (
