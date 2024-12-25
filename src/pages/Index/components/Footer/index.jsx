@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '@/assets/icon/dark/logo_light.svg'
 import style from './index.module.less'
+import { URLS } from '@/routes/urls'
 
 const dataSource = [
   {
@@ -13,6 +14,7 @@ const dataSource = [
       }
     ]
   },
+
   {
     id: 1,
     title: '产品',
@@ -24,6 +26,10 @@ const dataSource = [
       {
         label: '闪兑',
         link: 'https://www.baidu.com'
+      },
+      {
+        label: '数字货币计算器',
+        link: URLS.calculator
       }
     ]
   },
