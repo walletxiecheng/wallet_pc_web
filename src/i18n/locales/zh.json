@@ -169,6 +169,16 @@
       "Withdrawal": "提币",
       "fee": "手续费"
     },
+    "calculator": {
+      "back": "返回首页",
+      "title": "数字货币计算器",
+      "description": "本页面显示了数字货币与法币的实时汇率。您可以立即将 100 多种热门数字货币，如比特币 (BTC)，以太坊 (ETH) 和瑞波 (XRP) 转换为您所需的法币。",
+      "sell": "我要卖出",
+      "receive": "我将收到",
+      "Select currency": "选择货币",
+      "Select fiat currency": "选择法币",
+      "tip": "提示：由于汇率波动频繁，该结果仅作为参考使用"
+    },
     "Welcome to React": "欢迎来到react",
     "User Agreement": "用户协议",
     "Privacy Policy": "隐私协议",

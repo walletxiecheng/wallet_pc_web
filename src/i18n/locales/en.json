@@ -192,6 +192,16 @@
       "Service Charge": "Service Charge",
       "state": "state"
     },
+    "calculator": {
+      "back": "Back",
+      "title": "Digital Currency Calculator",
+      "description": "This page displays the real-time exchange rate between digital currency and fiat currency. You can immediately convert over 100 popular digital currencies such as Bitcoin (BTC), Ethereum (ETH), and Ripple (XRP) into the fiat currency you need.",
+      "sell": "I want to sell",
+      "receive": "I will receive",
+      "Select currency": "Select currency",
+      "Select fiat currency": "Select fiat currency",
+      "tip": "Tip: Due to frequent exchange rate fluctuations, this result is for reference only"
+    },
     "Welcome to React": "Welcome",
     "User Agreement": "User Agreement",
     "Privacy Policy": "Privacy Policy",
