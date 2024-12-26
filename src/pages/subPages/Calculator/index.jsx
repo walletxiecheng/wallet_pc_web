@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './index.less'
+import style from './index.module.less'
 import NavBar from '@/components/NavBar'
 import { getRate } from '@/service'
 import { useRequest } from 'ahooks'
@@ -31,22 +31,23 @@ export default function Calculator() {
   return (
     <>
       <NavBar />
-      <div className="calContainer">
-        <div className="box">
+      <div className={style.calContainer}>
+        <div className="">返回首页</div>
+        <div className={style.box}>
           <header>数字货币计算器</header>
-          <div className="desc">
+          <div className={style.desc}>
             本页面显示了数字货币与法币的实时汇率。您可以立即将 100
             多种热门数字货币，如比特币 (BTC)，以太坊 (ETH) 和瑞波 (XRP)
             转换为您所需的法币。
           </div>
         </div>
 
-        <div className="coinBox">
-          <div className="left">
+        <div className={style.coinBox}>
+          <div className={style.left}>
             <div>我要卖出</div>
             <input
               type="text"
-              className="coinInput"
+              className={style.coinInput}
               value={inputVal}
               onChange={(e) => {
                 setInputValue(e.target.value)
@@ -66,13 +67,13 @@ export default function Calculator() {
             ))}
           </Select>
         </div>
-        <div className="changeImg" onClick={change}>
+        <div className={style.changeImg} onClick={change}>
           <img src={iconChangeLine} />
         </div>
-        <div className="coinBox">
-          <div className="left">
+        <div className={style.coinBox}>
+          <div className={style.left}>
             <div>我将收到</div>
-            <div className="outInput">{parseFloat(getOutPutVal())}</div>
+            <div className={style.outInput}>{parseFloat(getOutPutVal())}</div>
           </div>
           <Select
             placeholder="选择法币"
@@ -88,7 +89,7 @@ export default function Calculator() {
           </Select>
         </div>
 
-        <div className="tips">
+        <div className={style.tips}>
           <div>1 USDT ≈ 1 USD</div>
           <div className="tipBox">
             <img src={iconAlertWarnLine} style={{ marginRight: 3 }} />

@@ -36,7 +36,7 @@ export default function Index() {
         <Evaluation />
         {/* 底部 */}
         <Bottom />
-        <Footer></Footer>
+        <Footer />
       </div>
     </>
   )
