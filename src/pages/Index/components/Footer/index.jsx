@@ -9,7 +9,7 @@ const dataSource = [
     title: '关于Token17',
     value: [
       {
-        label: '关于我们',
+        // label: '关于我们',
         link: 'https://www.baidu.com'
       }
     ]
@@ -19,14 +19,14 @@ const dataSource = [
     id: 1,
     title: '产品',
     value: [
-      {
-        label: '快捷买币',
-        link: 'https://www.baidu.com'
-      },
-      {
-        label: '闪兑',
-        link: 'https://www.baidu.com'
-      },
+      // {
+      //   label: '快捷买币',
+      //   link: 'https://www.baidu.com'
+      // },
+      // {
+      //   label: '闪兑',
+      //   link: 'https://www.baidu.com'
+      // },
       {
         label: '数字货币计算器',
         link: URLS.calculator
@@ -48,7 +48,7 @@ const dataSource = [
     title: '买币',
     value: [
       {
-        label: '购买USDC',
+        // label: '购买USDC',
         link: 'https://www.baidu.com'
       }
     ]
@@ -59,7 +59,7 @@ const dataSource = [
     title: '交易',
     value: [
       {
-        label: 'BTC USDC',
+        // label: 'BTC USDC',
         link: 'https://www.baidu.com'
       }
     ]
