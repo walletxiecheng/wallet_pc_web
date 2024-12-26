@@ -6,9 +6,13 @@ import { useRequest } from 'ahooks'
 import { Select } from 'antd'
 import iconChangeLine from '@/assets/icon/light/icon-change-line.svg'
 import iconAlertWarnLine from '@/assets/icon/light/icon-alert-line-warn.svg'
+import arrowLeftIcon from '@/assets/icon/light/icon-arrow-left-line.png'
+import { useNavigate } from 'react-router-dom'
 
 const { Option } = Select
 export default function Calculator() {
+  const navigate = useNavigate()
+
   const { data } = useRequest(async () => {
     try {
       const { data } = await getRate()
@@ -32,7 +36,15 @@ export default function Calculator() {
     <>
       <NavBar />
       <div className={style.calContainer}>
-        <div className="">返回首页</div>
+        <div
+          className={style.back}
+          onClick={() => {
+            navigate(-1)
+          }}
+        >
+          <img src={arrowLeftIcon} width={16} alt="" />
+          返回首页
+        </div>
         <div className={style.box}>
           <header>数字货币计算器</header>
           <div className={style.desc}>
