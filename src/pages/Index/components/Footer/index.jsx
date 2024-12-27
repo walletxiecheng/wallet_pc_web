@@ -2,22 +2,18 @@ import React from 'react'
 import logo from '@/assets/icon/dark/logo_light.svg'
 import style from './index.module.less'
 import { URLS } from '@/routes/urls'
+import { useTranslation } from 'react-i18next'
 
 const dataSource = [
   {
     id: 0,
-    title: '关于Token17',
-    value: [
-      {
-        // label: '关于我们',
-        link: 'https://www.baidu.com'
-      }
-    ]
+    title: 'About',
+    value: []
   },
 
   {
     id: 1,
-    title: '产品',
+    title: 'product',
     value: [
       // {
       //   label: '快捷买币',
@@ -28,14 +24,14 @@ const dataSource = [
       //   link: 'https://www.baidu.com'
       // },
       {
-        label: '数字货币计算器',
+        label: 'Digital Currency Calculator',
         link: URLS.calculator
       }
     ]
   },
   {
     id: 2,
-    title: '服务',
+    title: 'service',
     value: [
       {
         label: 'API',
@@ -45,28 +41,19 @@ const dataSource = [
   },
   {
     id: 3,
-    title: '买币',
-    value: [
-      {
-        // label: '购买USDC',
-        link: 'https://www.baidu.com'
-      }
-    ]
+    title: 'Buy coins',
+    value: []
   },
 
   {
     id: 5,
-    title: '交易',
-    value: [
-      {
-        // label: 'BTC USDC',
-        link: 'https://www.baidu.com'
-      }
-    ]
+    title: 'transaction',
+    value: []
   }
 ]
 
 export default function Footer() {
+  const { t } = useTranslation()
   return (
     <div className={style.footerContainer}>
       <div className={style.title}>
@@ -75,7 +62,7 @@ export default function Footer() {
       <div className={style.list}>
         {dataSource.map((item, index) => (
           <div className={style.listColumn} key={item.id}>
-            <header>{item.title}</header>
+            <header> {t('footer.' + item.title)}</header>
             {item.value.map((item, index) => (
               <div
                 className={style.itemList}
@@ -84,7 +71,7 @@ export default function Footer() {
                   window.open(item.link, '_blank')
                 }}
               >
-                {item.label}
+                {t('footer.' + item.label)}
               </div>
             ))}
           </div>

@@ -52,6 +52,15 @@
       "title": "随时随地开启安全交易",
       "description": "全面支持Web、iOS、Android，即刻下载开启交易新时代"
     },
+    "footer": {
+      "About": "关于",
+      "product": "产品",
+      "service": "服务",
+      "Buy coins": "买币",
+      "transaction": "交易",
+      "Digital Currency Calculator": "数字货币计算器",
+      "API": "API"
+    },
     "login": {
       "registerHeader": "欢迎注册token B",
       "loginHeader": "欢迎登录token B",

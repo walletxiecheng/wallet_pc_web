@@ -52,6 +52,15 @@
       "title": "Open secure transactions at any time",
       "description": "Fully supports web, iOS, and Android, download now and start a new era of trading"
     },
+    "footer": {
+      "About": "About",
+      "product": "product",
+      "service": "service",
+      "Buy coins": "Buy coins",
+      "transaction": "transaction",
+      "Digital Currency Calculator": "Digital Currency Calculator",
+      "API": "API"
+    },
     "login": {
       "registerHeader": "Welcome",
       "loginHeader": "Welcome",
