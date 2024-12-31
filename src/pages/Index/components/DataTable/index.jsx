@@ -9,11 +9,13 @@ import { usePagination, useRequest } from 'ahooks'
 import { getMarket } from '@/service'
 import { showWarning } from '@/common/message'
 import { useUserStore } from '@/stores'
+import { useTranslation } from 'react-i18next'
 
-const columList = ['Custom', 'USDT', 'ETC', 'BTC']
+const list = ['Custom', 'USDT', 'ETC', 'BTC']
 const pageParams = { current: 1, pageSize: 10 }
 
 export default function DataTable() {
+  const { t } = useTranslation()
   // 当前列
   const [column, setColumn] = useState('Custom')
   // 当前页数
@@ -76,7 +78,7 @@ export default function DataTable() {
       <div className={style.dataBoardContainer}>
         <Flex justify="space-between">
           <Flex className={style.tabBox}>
-            {columList.map((item) => (
+            {list.map((item) => (
               <div
                 className={item === column ? style.active : ''}
                 key={item}
@@ -104,7 +106,7 @@ export default function DataTable() {
         <div style={{ marginTop: 40 }} className="tableBox">
           <Table
             bordered={false}
-            columns={columns(runMarket, column)}
+            columns={columns(runMarket, column, t)}
             rowKey={(record) => record.id}
             dataSource={marketList?.info}
             pagination={false}
@@ -112,7 +114,7 @@ export default function DataTable() {
           />
         </div>
         <div className={style.moreButton} onClick={onRefreshTale}>
-          <span>查看更多</span>
+          <span>{t('banner.View more')}</span>
           <img src={icon} />
         </div>
       </div>

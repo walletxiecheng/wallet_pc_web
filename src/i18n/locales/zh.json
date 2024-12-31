@@ -10,6 +10,16 @@
       "register": "注册"
     },
     "banner": {
+      "Collection": "收藏",
+      "Crypto": "币种",
+      "Last Price (USD)": "最新价 (CNY)",
+      "24h high": "24h 最高价",
+      "24h low": "24h 最低价",
+      "Change": "24h 涨跌幅",
+      "Last 24h": "24小时走势",
+      "Action": "操作",
+      "View more": "查看更多",
+      "Trade": "交易",
       "header": "真正的自我监护 Web3 钱包",
       "description": "token B钱包是在 Algorand 区块链上存储、购买和交换的最简单、最安全的方式。它可以在任何设备上发现并连接去中心化应用程序 (DApp)。"
     },

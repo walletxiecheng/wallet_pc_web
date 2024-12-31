@@ -11,7 +11,7 @@ import { showError, showSuccess, showWarning } from '@/common/message'
 import { useUserStore } from '@/stores'
 import { pageParams } from '@/common/config'
 
-export const columns = (runMarket, column) => {
+export const columns = (runMarket, column, t) => {
   const navigate = useNavigate()
   // 收藏代币
   const starCoin = async (id, status) => {
@@ -31,7 +31,7 @@ export const columns = (runMarket, column) => {
     {
       key: 'is_collected',
       dataIndex: 'is_collected',
-      title: '收藏',
+      title: t('banner.Collection'),
       render: (_, record) => (
         <div>
           {record.is_collected && (
@@ -56,7 +56,7 @@ export const columns = (runMarket, column) => {
     {
       key: 'coin_name',
       dataIndex: 'coin_name',
-      title: '币种',
+      title: t('banner.Crypto'),
       render: (_, record) => (
         <Space>
           {/* <img src={iconStarLine} /> */}
@@ -67,25 +67,26 @@ export const columns = (runMarket, column) => {
     {
       key: 'price',
       dataIndex: 'price',
-      title: '最新价(CNY)',
+      title: t('banner.Last Price (USD)'),
       render: (_, record) => <span>{Number(record.price).toFixed(2)}</span>
     },
     {
       key: 'high',
       dataIndex: 'high',
-      title: '24小时最高价',
+      title: t('banner.24h high'),
+
       render: (_, record) => <span>{Number(record.high).toFixed(2)}</span>
     },
     {
       key: 'low',
       dataIndex: 'low',
-      title: '24小时最低价',
+      title: t('banner.24h low'),
       render: (_, record) => <span>{Number(record.low).toFixed(2)}</span>
     },
     {
       key: 'rate_percent',
       dataIndex: 'rate_percent',
-      title: '24小时涨跌幅',
+      title: t('banner.Change'),
       render: (_, record) => (
         <span>{Number(record.rate_percent).toFixed(2)}</span>
       )
@@ -93,7 +94,7 @@ export const columns = (runMarket, column) => {
     {
       key: 'trend24h',
       dataIndex: 'trend24h',
-      title: '24小时走势',
+      title: t('banner.Last 24h'),
       render: (_, record) => (
         <div>
           <img
@@ -106,7 +107,8 @@ export const columns = (runMarket, column) => {
     {
       key: '8',
       dataIndex: '8',
-      title: '操作',
+      title: t('banner.Action'),
+
       render: () => (
         <button
           style={{
@@ -120,7 +122,7 @@ export const columns = (runMarket, column) => {
             }
           }}
         >
-          交易
+          {t('banner.Trade')}
         </button>
       )
     }

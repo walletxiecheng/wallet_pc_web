@@ -10,6 +10,16 @@
       "register": "Register"
     },
     "banner": {
+      "Collection": "Collection",
+      "Crypto": "Crypto",
+      "Last Price (USD)": "Last Price (USD)",
+      "24h high": "24h high",
+      "24h low": "24h low",
+      "Change": "Change",
+      "Last 24h": "Last 24h",
+      "View more": "View more",
+      "Action": "Action",
+      "Trade": "Trade",
       "header": "True Self Custodial Web3 Wallet",
       "description": "The token B Wallet is the easiest and most secure way to store, buy and exchange on the Algorand blockchain.Discover and connect decentralized applications (DApps) on any device."
     },
