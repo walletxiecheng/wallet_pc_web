@@ -7,7 +7,13 @@
       "link4": "用户协议",
       "wallet": "钱包",
       "login": "登录",
-      "register": "注册"
+      "register": "注册",
+      "Account": "账户",
+      "Wallet history": "钱包历史记录",
+      "Account Manager": "账户管理",
+      "API Manager": "API管理",
+      "logout": "退出登录",
+      "Download Token 17 App": "扫码下载 Token 17 App"
     },
     "banner": {
       "Collection": "收藏",

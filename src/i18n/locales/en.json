@@ -7,7 +7,13 @@
       "link4": "Agreement",
       "wallet": "Wallet",
       "login": "Login",
-      "register": "Register"
+      "register": "Register",
+      "Account": "Account",
+      "Wallet history": "Wallet history",
+      "Account Manager": "Account Manager",
+      "API Manager": "API Manager",
+      "logout": "logout",
+      "Download Token 17 App": "Download Token 17 App"
     },
     "banner": {
       "Collection": "Collection",

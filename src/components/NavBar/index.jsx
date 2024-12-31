@@ -102,7 +102,7 @@ export default function NavBar() {
           }}
         >
           <img src={iconSpotLine} />
-          账户
+          {t('nav.Account')}
         </div>
       )
     },
@@ -115,7 +115,7 @@ export default function NavBar() {
           }}
         >
           <img src={iconHistoryLine} />
-          钱包历史记录
+          {t('nav.Wallet history')}
         </div>
       )
     }
@@ -132,7 +132,7 @@ export default function NavBar() {
           }}
         >
           <img src={iconSpotLine} />
-          账户管理
+          {t('nav.Account Manager')}
         </div>
       )
     },
@@ -145,7 +145,7 @@ export default function NavBar() {
           }}
         >
           <img src={iconHistoryLine} />
-          API管理
+          {t('nav.API Manager')}
         </div>
       )
     },
@@ -154,7 +154,7 @@ export default function NavBar() {
       label: (
         <div onClick={loginOutHandler}>
           <img src={iconHistoryLine} />
-          退出登录
+          {t('nav.logout')}
         </div>
       )
     }

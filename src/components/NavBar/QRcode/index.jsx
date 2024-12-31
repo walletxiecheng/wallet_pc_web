@@ -1,8 +1,10 @@
 import React from 'react'
 import style from './index.module.less'
 import downLoadQRcode from '@/assets/image/downLoadQrcode.png'
+import { useTranslation } from 'react-i18next'
 
 export default function QRcord({ setShowQRcode }) {
+  const { t } = useTranslation()
   return (
     <div
       onMouseOver={() => {
@@ -16,7 +18,7 @@ export default function QRcord({ setShowQRcode }) {
       className={style.qrCOdeContainer}
     >
       <img width={100} src={downLoadQRcode} alt="" />
-      <div className={style.title}>扫码下载 Token 17 App</div>
+      <div className={style.title}>{t('nav.Download Token 17 App')}</div>
     </div>
   )
 }
