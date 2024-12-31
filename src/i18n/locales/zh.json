@@ -178,6 +178,21 @@
       "Withdrawal": "提币",
       "fee": "手续费"
     },
+    "record": {
+      "Collection record": "提币记录",
+      "Withdrawal record": "收款记录",
+      "All currencies": "全部币种",
+      "time": "时间",
+      "Payment address": "打款地址",
+      "currency": "币种",
+      "type": "类型",
+      "quantity": "数量",
+      "WithdrawalAddress": "收款地址",
+      "Service Charge": "手续费",
+      "state": "状态",
+      "Serial number": "流水号",
+      "order number": "订单号"
+    },
     "calculator": {
       "back": "返回首页",
       "title": "数字货币计算器",

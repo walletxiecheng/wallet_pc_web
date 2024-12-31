@@ -4,13 +4,17 @@
   margin: 0 auto;
   padding-top: 90px;
   .tabs {
-    width: 160px;
+    max-width: 300px;
+    min-width: 160px;
     margin-top: 28px;
     margin-bottom: 10px;
     display: flex;
-    align-items: c;
+    align-items: center;
     font-size: var(--font-size-headline);
     justify-content: space-between;
+    .tabItem {
+      width: 300px;
+    }
     .active {
       color: var(--color-text-pri);
       position: relative;
@@ -20,9 +24,9 @@
       content: '';
       position: absolute;
       top: 30px;
-      left: 6px;
+      left: 0px;
       // width: 100%;
-      width: 56px;
+      width: 100%;
       height: 4px;
       border-radius: 2px;
       background-color: var(--color-text-pri);

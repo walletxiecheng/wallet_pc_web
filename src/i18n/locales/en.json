@@ -189,9 +189,9 @@
       "tipsContent": ""
     },
     "record": {
-      "CollectionRecord": "Collection Record",
-      "WithdrawalRecord": "Withdrawal Record",
-      "AllCurrencies": "All currencies",
+      "Collection record": "Collection Record",
+      "Withdrawal record": "Withdrawal Record",
+      "All currencies": "All currencies",
       "time": "time",
       "Payment address": "Payment address",
       "currency": "currency",
@@ -199,7 +199,9 @@
       "quantity": "quantity",
       "WithdrawalAddress": "Withdrawal address",
       "Service Charge": "Service Charge",
-      "state": "state"
+      "state": "state",
+      "Serial number": "Serial number",
+      "order number": "order number"
     },
     "calculator": {
       "back": "Back",

@@ -11,15 +11,17 @@ import { pageParams } from '@/common/config'
 import style from './index.module.less'
 import { getToken } from '@/service'
 import { showError } from '@/common/message'
+import { useTranslation } from 'react-i18next'
 const { Search } = Input
+
 const tabList = [
   {
     id: 1,
-    label: '提币记录'
+    label: 'record.Collection record'
   },
   {
     id: 2,
-    label: '收款记录'
+    label: 'record.Withdrawal record'
   }
 ]
 
@@ -27,6 +29,7 @@ export default function Record() {
   // 用户信息
   const { userInfo } = useUserStore()
   const navigate = useNavigate()
+  const { t } = useTranslation()
   // 当前选中tab
   const [checkTab, setCheckTab] = useState(1)
   const [coinId, setCoinId] = useState(0)
@@ -116,21 +119,25 @@ export default function Record() {
       <div className={style.recordContainer}>
         <div className={style.tabs}>
           {tabList.map((item) => (
-            <span
+            <div
               key={item.id}
-              className={checkTab === item.id ? style.active : ''}
+              className={
+                checkTab === item.id
+                  ? style.active + ' ' + style.tabItem
+                  : style.tabItem
+              }
               onClick={() => {
                 setCheckTab(item.id)
               }}
             >
-              {item.label}
-            </span>
+              {t(item.label)}
+            </div>
           ))}
         </div>
 
         <div className={style.tableHeader}>
           <div className={style.tableTitle}>
-            {checkTab === 1 ? '提币记录' : '收款记录'}
+            {checkTab === 1 ? t(tabList[0].label) : t(tabList[1].label)}
           </div>
 
           <div
@@ -194,7 +201,7 @@ export default function Record() {
               onChange={filterWithdraw}
               className={style.select}
             >
-              <option value="0">全部币种</option>
+              <option value="0">{t('record.All currencies')}</option>
               {/* <option value="">BTC</option> */}
               {tokens?.map((item) => (
                 <option key={item.coin_id} value={item.coin_id}>
@@ -208,7 +215,7 @@ export default function Record() {
         <div className={style.tableBox}>
           {checkTab === 1 && (
             <Table
-              columns={withdrawColumns()}
+              columns={withdrawColumns(t)}
               dataSource={withdrawList?.list}
               loading={!withdrawList}
               rowKey={(record) => record.order_id}
@@ -224,7 +231,7 @@ export default function Record() {
           )}
           {checkTab === 2 && (
             <Table
-              columns={receiveColumns()}
+              columns={receiveColumns(t)}
               dataSource={receiveList?.list}
               rowKey={(record) => record.order_id}
               loading={!receiveList}
