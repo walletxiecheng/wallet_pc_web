@@ -99,7 +99,6 @@ export const receiveColumns = (t) => {
     {
       key: 'payment_address',
       dataIndex: 'payment_address',
-      title: '打款地址',
       title: t('record.Payment address'),
       width: '15%'
     },

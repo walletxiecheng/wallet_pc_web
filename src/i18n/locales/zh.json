@@ -194,6 +194,26 @@
       "Withdrawal": "提币",
       "fee": "手续费"
     },
+    "apiManager": {
+      "header": "创建API Key",
+      "Create API Key": "Create API Key",
+      "Remarks": "备注",
+      "Permission": "权限设置(可多选)",
+      "bindTitle": "绑定IP地址或IP段(选填)",
+      "bindTip": "多个IP地址请用英文逗号隔开，最多填写20个IP地址",
+      "Establish": "创建",
+      "Tips": "提示",
+      "tipsContent": "• Token17 为您提供了强大的API，您可以通过 API 使用行情查询、自动交易等服务。通过API 文档 查看如何使用。\n• 每个用户最多创建20组API Key\n• 请不要泄露您的API Key，以免造成资产损失。出于安全考虑，建议为API Key绑定IP，每个API Key最多绑定20个IP地址或IP段。 单个IP地址或IP段直接填写，多个IP地址或IP段用半角逗号分隔，如：192.168.1.1,192.168.1.2,192.168.0.1/24\n• 未绑定IP且拥有交易或提现权限的API Key，将在闲置90天后自动失效，如长期使用，则API有效期将自动延长至最后一次使用时间的90天后",
+      "My API Key": "我的API Key",
+      "Creation time": "创建时间",
+      "purpose": "用途",
+      "jurisdiction": "权限",
+      "Access Key": "访问密钥 Access Key",
+      "Bind IP address": "绑定IP地址",
+      "State": "状态",
+      "Tradable": "可交易币对",
+      "Operation": "操作"
+    },
     "record": {
       "Collection record": "提币记录",
       "Withdrawal record": "收款记录",

@@ -195,14 +195,23 @@
     },
     "apiManager": {
       "header": "API management",
-      "title": "Create API Key",
-      "remarks": "remarks",
-      "permissionTitle": "Permission Settings (Multiple Choice)",
+      "Create API Key": "Create API Key",
+      "Remarks": "Remarks",
+      "Permission": "Permission Settings (Multiple Choice)",
       "bindTitle": "Bind IP address or IP segment (optional)",
       "bindTip": "Multiple IP addresses should be separated by commas in English, with a maximum of 20 IP addresses to be filled in",
-      "establish": "establish",
-      "tips": "Tips",
-      "tipsContent": ""
+      "Establish": "Establish",
+      "Tips": "Tips",
+      "tipsContent": "Token17 provides you with a powerful API that allows you to use services such as market research and automated trading. View how to use it through the API documentation.\n• Each user can create up to 20 sets of API keys\n• Please do not disclose your API Key to avoid asset loss. For security reasons, it is recommended to bind IP addresses to API keys, with a maximum of 20 IP addresses or IP segments bound to each API key. Fill in a single IP address or IP segment directly, and separate multiple IP addresses or IP segments with half width commas, for example: 192.168.1.1192.168.1.2192.168.0.1/24 \name keys that are not bound to an IP and have transaction or withdrawal permissions will automatically expire after 90 days of inactivity. If used for a long time, the API validity period will be automatically extended to 90 days after the last use ",
+      "My API Key": "My API Key",
+      "Creation time": "Creation time",
+      "purpose": "purpose",
+      "jurisdiction": "jurisdiction",
+      "Access Key": "Access Key",
+      "Bind IP address": "Bind IP address",
+      "State": "State",
+      "Tradable": "Tradable",
+      "Operation": "Operation"
     },
     "record": {
       "Collection record": "Collection Record",
@@ -229,6 +238,7 @@
       "Select fiat currency": "Select fiat currency",
       "tip": "Tip: Due to frequent exchange rate fluctuations, this result is for reference only"
     },
+
     "Welcome to React": "Welcome",
     "User Agreement": "User Agreement",
     "Privacy Policy": "Privacy Policy",
