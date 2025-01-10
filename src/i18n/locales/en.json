@@ -194,9 +194,11 @@
       "fee": "Handling fee"
     },
     "apiManager": {
+      "check": "check",
       "header": "API management",
       "Create API Key": "Create API Key",
       "Remarks": "Remarks",
+      "remarksTips": "Please input your remark!'",
       "Permission": "Permission Settings (Multiple Choice)",
       "bindTitle": "Bind IP address or IP segment (optional)",
       "bindTip": "Multiple IP addresses should be separated by commas in English, with a maximum of 20 IP addresses to be filled in",

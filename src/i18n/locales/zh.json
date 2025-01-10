@@ -195,8 +195,8 @@
       "fee": "手续费"
     },
     "apiManager": {
-      "header": "创建API Key",
-      "Create API Key": "Create API Key",
+      "header": "API 管理",
+      "Create API Key": "创建API Key",
       "Remarks": "备注",
       "Permission": "权限设置(可多选)",
       "bindTitle": "绑定IP地址或IP段(选填)",

@@ -2,17 +2,20 @@ import '@/assets/css/public.css'
 import { timesTampDate } from '@/common/method'
 import { Button } from 'antd'
 import { useUserStore } from '@/stores'
+
 export const apiColumns = (
   setShowEdit,
   setCurrentData,
   showTips,
   setUid,
-  setShowGoogleToast
+  setShowGoogleToast,
+  t
 ) => {
   const { userInfo } = useUserStore()
   const googleStatus = userInfo?.google_verify_status
   // 谷歌状态
   const has_fund_password = userInfo?.has_fund_password
+
   const checkKey = (uid) => {
     setUid(uid)
     // 查看是否有资金密码和谷歌验证码 没有提示
@@ -22,32 +25,34 @@ export const apiColumns = (
     // 有展示谷歌验证码弹窗
     setShowGoogleToast(true)
   }
+
   return [
     {
       key: 'create_time',
       dataIndex: 'create_time',
-      title: '创建时间',
+      title: t('apiManager.Creation time'),
       render: (_, record) => <span>{timesTampDate(record.create_time)}</span>
     },
     {
       key: 'remark',
       dataIndex: 'remark',
-      title: '备注'
+      title: t('apiManager.Remarks')
     },
     {
       key: 'usage',
       dataIndex: 'usage',
-      title: '用途'
+      title: t('apiManager.purpose')
     },
     {
       key: 'auth',
       dataIndex: 'auth',
-      title: '权限'
+      title: t('apiManager.jurisdiction')
     },
     {
       key: 'content',
       dataIndex: 'content',
-      title: '访问密钥Access Key',
+      title: t('apiManager.Access Key'),
+
       render: (_, record) => (
         <div style={{ width: 150 }} className="text-ellipsis">
           <div> {record.content}</div>
@@ -66,7 +71,8 @@ export const apiColumns = (
     {
       key: 'bind_ip',
       dataIndex: 'bind_ip',
-      title: '绑定地址',
+      title: t('apiManager.Bind IP address'),
+
       render: (_, record) => (
         <div style={{ width: 100 }} className="text-ellipsis">
           {record.bind_ip}
@@ -76,20 +82,21 @@ export const apiColumns = (
     {
       key: 'status',
       dataIndex: 'status',
-      title: '状态',
+      title: t('apiManager.State'),
       render: (_, record) => (
-        <span>{record.status === 0 ? '成功' : '失败'}</span>
+        <span>{record.status === 0 ? 'success' : 'fail'}</span>
       )
     },
     {
       key: 'exchangeable',
       dataIndex: 'exchangeable',
-      title: '可交易对'
+      title: t('apiManager.Tradable')
     },
     {
       key: 'operate',
       dataIndex: 'operate',
-      title: '操作',
+      title: t('apiManager.Operation'),
+
       render: (_, record) => (
         <button
           className="button-style"
