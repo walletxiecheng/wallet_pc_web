@@ -18,7 +18,7 @@ export default function QRcord({ setShowQRcode }) {
       className={style.qrCOdeContainer}
     >
       <img width={100} src={downLoadQRcode} alt="" />
-      <div className={style.title}>{t('nav.Download Token 17 App')}</div>
+      <div className={style.title}>{t('nav.Download Token 13 App')}</div>
     </div>
   )
 }
