@@ -82,7 +82,7 @@
       "loginHeader": "欢迎登录token B",
       "email": "邮箱",
       "phone": "手机号",
-      "forgetPassWord": "忘记密码",
+      "forgetPassWord": "忘记密码？",
       "emailToast": "请输入邮箱",
       "phoneToast": "请输入手机号",
       "passwordToast": "请输入密码",

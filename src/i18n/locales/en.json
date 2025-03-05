@@ -84,7 +84,7 @@
       "phone": "Phone",
       "forgetPassWord": "Forgot password?",
       "emailToast": "Please enter your email address",
-      "phoneToast": "Please input a password",
+      "phoneToast": "Please input a phone",
       "passwordToast": "Please input a password",
       "newUserRegistration": "New user registration",
       "verificationCodeLogin": "Verification code login",
@@ -192,6 +192,14 @@
       "actualReceipt": "Actual Receipt",
       "Withdrawal": "Withdrawal of currency",
       "fee": "Handling fee"
+    },
+    "AdvancedAuth": {
+      "Personal authentication": "Personal authentication",
+      "Real name": "Real name",
+      "Identification Number": "Identification Number",
+      "Front of ID card": "Front of ID card",
+      "Handheld identification": "Handheld identification",
+      "Enterprise certification": "Enterprise certification"
     },
     "apiManager": {
       "check": "check",

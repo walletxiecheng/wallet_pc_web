@@ -15,7 +15,7 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: lang || 'zh',
+  lng: lang || 'en',
   fallbackLng: 'zh',
   interpolation: {
     escapeValue: false

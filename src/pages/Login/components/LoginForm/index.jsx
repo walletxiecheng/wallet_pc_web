@@ -12,17 +12,7 @@ import { useTokenStore, useUserStore } from '@/stores'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '@/routes/urls'
 import { validatePassword, validatePhone } from '@/common/regex'
-
-const tabList = [
-  {
-    id: 1,
-    label: '邮箱'
-  },
-  {
-    id: 2,
-    label: '手机号'
-  }
-]
+import { useTranslation } from 'react-i18next'
 
 const options = [
   {
@@ -55,6 +45,18 @@ const options = [
 ]
 
 export default function LoginForm() {
+  const tabList = [
+    {
+      id: 1,
+      label: 'login.email'
+    },
+    {
+      id: 2,
+      label: 'login.phone'
+    }
+  ]
+  const { t } = useTranslation()
+
   // 当前选中tab
   const [checkTab, setCheckTab] = useState(1)
   // 密码可见状态 0不可见/1可见
@@ -126,7 +128,7 @@ export default function LoginForm() {
     <div className={style.loginBox}>
       <header>
         <img src={icon} />
-        欢迎登录Token17
+        {t('login.registerHeader')}
       </header>
       <div className={style.tabs}>
         {tabList.map((item) => (
@@ -137,7 +139,7 @@ export default function LoginForm() {
               setCheckTab(item.id)
             }}
           >
-            {item.label}
+            {t(item.label)}
           </span>
         ))}
       </div>
@@ -147,12 +149,12 @@ export default function LoginForm() {
         style={{ display: checkTab === 1 ? 'block' : 'none' }}
       >
         <div className={style.inputBox}>
-          <input placeholder="请输入邮箱" ref={emailInputRef} />
+          <input placeholder={t('login.phoneToast')} ref={emailInputRef} />
         </div>
         <div className={style.inputBox} style={{ marginTop: '10px' }}>
           <input
             type={passwordStatus ? 'type' : 'password'}
-            placeholder="请输入密码"
+            placeholder={t('login.passwordToast')}
             ref={emailPasswordRef}
           />
           <span>
@@ -171,10 +173,10 @@ export default function LoginForm() {
             navigate(URLS.reset)
           }}
         >
-          忘记密码？
+          {t('login.forgetPassWord')}
         </div>
         <button style={style.button} onClick={loginEmailHandler}>
-          下一步
+          {t('login.next')}
         </button>
       </div>
 
@@ -193,7 +195,7 @@ export default function LoginForm() {
           />
           <div className={style.inputBox}>
             <input
-              placeholder="手机号"
+              placeholder={t('login.phoneToast')}
               style={{ width: '264px' }}
               ref={phoneInputRef}
             />
@@ -202,7 +204,7 @@ export default function LoginForm() {
         <div className={style.inputBox} style={{ marginTop: '10px' }}>
           <input
             type={passwordStatus ? 'type' : 'password'}
-            placeholder="请输入密码"
+            placeholder={t('login.passwordToast')}
             ref={phonePasswordRef}
           />
           <span>
@@ -215,16 +217,16 @@ export default function LoginForm() {
             />
           </span>
         </div>
-        <button onClick={loginPhoneHandler}>下一步</button>
+        <button onClick={loginPhoneHandler}> {t('login.next')}</button>
       </div>
       <div className={style.fun}>
-        <span>验证码登录</span>|
+        <span>{t('login.verificationCodeLogin')}</span>|
         <span
           onClick={() => {
             navigate('/register')
           }}
         >
-          新用户注册
+          {t('login.newUserRegistration')}
         </span>
       </div>
     </div>
